@@ -1,0 +1,106 @@
+ {
+    margin 0;
+    padding 0;
+    box-sizing border-box;
+    font-family Microsoft Yahei, sans-serif;
+}
+
+body {
+    background #0a0e27;
+    color #fff;
+    line-height 1.6;
+}
+
+.header {
+    display flex;
+    justify-content space-between;
+    align-items center;
+    padding 1rem 5%;
+    background rgba(0,0,0,0.3);
+    position sticky;
+    top 0;
+    z-index 100;
+}
+
+.logo {
+    font-size 1.5rem;
+    font-weight bold;
+    color #64ffda;
+}
+
+.nav a {
+    color #fff;
+    text-decoration none;
+    margin-left 2rem;
+    transition color 0.3s;
+}
+
+.nav ahover {
+    color #64ffda;
+}
+
+.banner {
+    text-align center;
+    padding 5rem 2rem;
+    background linear-gradient(135deg, #1a1f3a 0%, #0a0e27 100%);
+}
+
+.banner h1 {
+    font-size 2.5rem;
+    margin-bottom 1rem;
+    color #64ffda;
+}
+
+.tools {
+    padding 3rem 5%;
+    max-width 1200px;
+    margin 0 auto;
+}
+
+.tools h2 {
+    text-align center;
+    font-size 2rem;
+    margin-bottom 2rem;
+    color #64ffda;
+}
+
+.tool-card {
+    background rgba(255,255,255,0.05);
+    padding 2rem;
+    border-radius 10px;
+    margin-bottom 1.5rem;
+    transition transform 0.3s;
+}
+
+.tool-cardhover {
+    transform translateY(-5px);
+}
+
+.tool-card h3 {
+    color #64ffda;
+    margin-bottom 0.5rem;
+}
+
+.tool-card button {
+    background #64ffda;
+    color #0a0e27;
+    border none;
+    padding 0.5rem 1.5rem;
+    border-radius 5px;
+    cursor pointer;
+    margin 1rem 0;
+    font-weight bold;
+}
+
+.about {
+    padding 3rem 5%;
+    text-align center;
+    background rgba(0,0,0,0.2);
+}
+
+.footer {
+    text-align center;
+    padding 2rem;
+    background #000;
+    color #666;
+}
