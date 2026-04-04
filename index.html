@@ -1,59 +1,576 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>星空娱乐 | 趣味工具合集</title>
-    <link rel="stylesheet" href="./css/style.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>星空全能工具站 - 82+实用工具</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,Microsoft Yahei,sans-serif}
+body{background:#030712;color:#e6e6e6;overflow-x:hidden}
+#stars{position:fixed;top:0;left=0;width:100vw;height:100vh;z-index:-2;background:#02040a}
+#overlay{position:fixed;top:0;left:0;width:100vw;height:100vh;background:radial-gradient(circle at 50% 20%,rgba(20,40,80,0.4),transparent 60%);z-index:-1}
+
+.header{position:sticky;top:0;z-index:999;background:rgba(0,0,0,0.5);backdrop-filter:blur(12px);padding:14px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.08)}
+.logo{font-size:22px;font-weight:700;color:#9ae3ff}
+.nav a{color:#eee;margin:0 12px;text-decoration:none;font-size:15px;transition:.3s}
+.nav a:hover{color:#9ae3ff}
+.toggle{background:#111;color:#fff;border:1px solid #444;padding:6px 10px;border-radius:8px;cursor:pointer}
+
+.banner{padding:70px 20px;text-align:center}
+.banner h1{font-size:38px;color:#9ae3ff;margin-bottom:10px}
+.banner p{color:#aaa;font-size:16px}
+
+.module{max-width:1300px;margin:50px auto;padding:0 20px}
+.module h2{font-size:26px;color:#9ae3ff;margin-bottom:20px;border-left:4px solid #9ae3ff;padding-left:12px}
+
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.tool-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:22px;backdrop-filter:blur(8px);transition:all 0.3s}
+.tool-card:hover{transform:translateY(-6px);background:rgba(255,255,255,0.08);box-shadow:0 8px 30px rgba(100,180,255,0.15)}
+.tool-card h3{color:#9ae3ff;margin-bottom:8px;font-size:17px}
+.tool-card p{color:#aaa;font-size:14px;margin-bottom:14px}
+.tool-card button{background:linear-gradient(90deg,#3b82f6,#60a5fa);color:#fff;border:none;padding:8px 14px;border-radius:10px;margin-right:6px;margin-bottom:8px;cursor:pointer;font-weight:500}
+.tool-content{margin-top:10px;padding:10px;border-radius:10px;background:rgba(0,0,0,0.25);font-size:13px;line-height:1.7;color:#eee;display:none;max-height:240px;overflow-y:auto}
+
+.footer{text-align:center;padding:40px 20px;color:#777;background:rgba(0,0,0,0.3);margin-top:60px}
+
+.copy-btn{background:#222!important;color:#ccc!important;border:1px solid #444!important;padding:6px 10px!important;font-size:12px!important}
+.light body{background:#f4f7ff;color:#111}
+.light .tool-card{background:rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.1)}
+.light .tool-content{background:rgba(0,0,0,0.05);color:#111}
+.light .header{background:rgba(255,255,255,0.7);color:#111}
+.light .nav a{color:#111}
+</style>
 </head>
+
 <body>
-    <!-- 导航栏 -->
-    <header class="header">
-        <div class="logo">星空娱乐</div>
-        <nav class="nav">
-            <a href="#tools">工具合集</a>
-            <a href="#about">关于本站</a>
-        </nav>
-    </header>
+<canvas id="stars"></canvas>
+<div id="overlay"></div>
 
-    <!-- 首页banner -->
-    <section class="banner">
-        <h1>✨ 星空娱乐工具站 ✨</h1>
-        <p>全网最有趣的在线工具，免费使用，无需下载</p>
-    </section>
+<div class="header">
+  <div class="logo">星空全能工具站</div>
+  <div class="nav">
+    <a href="#computer">💻电脑效率</a>
+    <a href="#cad">📐CAD指令</a>
+    <a href="#office">📝办公快捷</a>
+    <a href="#fun">🎮趣味工具</a>
+    <a href="#tools">🔧万能转换</a>
+  </div>
+  <button class="toggle" id="themeToggle">浅色模式</button>
+</div>
 
-    <!-- 工具合集区 -->
-    <section class="tools" id="tools">
-        <h2>热门工具</h2>
-        <div class="tool-card">
-            <h3>网名生成器</h3>
-            <p>一键生成好听的网名、游戏名、昵称</p>
-            <button onclick="generateName()">立即生成</button>
-            <p id="nameResult"></p>
-        </div>
-        <div class="tool-card">
-            <h3>运势测算</h3>
-            <p>每日运势、星座运势在线查询</p>
-            <button onclick="showFortune()">查看运势</button>
-            <p id="fortuneResult"></p>
-        </div>
-        <div class="tool-card">
-            <h3>表情包生成</h3>
-            <p>自定义文字表情包，一键生成</p>
-            <button onclick="generateEmoji()">生成表情包</button>
-        </div>
-    </section>
+<div class="banner">
+  <h1>✨ 星空全能工具站 ✨</h1>
+  <p>82个实用工具 · 电脑快捷 · CAD大全 · 办公技巧 · 趣味娱乐 · 单位换算</p>
+</div>
 
-    <!-- 关于本站 -->
-    <section class="about" id="about">
-        <h2>关于本站</h2>
-        <p>星空娱乐是一个免费的在线趣味工具站，持续更新更多好玩有趣的功能</p>
-    </section>
+<!-- ===================== 模块1：电脑效率（20个） ===================== -->
+<div class="module" id="computer">
+<h2>💻 电脑效率模块（20个）</h2>
+<div class="tool-grid">
 
-    <footer class="footer">
-        <p>© 2026 星空娱乐 | xkmyth.github.io</p>
-    </footer>
+<div class="tool-card"><h3>Windows系统快捷键</h3><p>系统级核心快捷</p>
+<button onclick="toggle('c1')">查看</button><button onclick="copy('c1')" class="copy-btn">复制</button><div id="c1" class="tool-content">
+Win+E 打开文件资源管理器<br>Win+D 显示桌面<br>Win+L 锁屏<br>Win+R 运行<br>Win+Shift+S 截图<br>Ctrl+Shift+Esc 任务管理器<br>Win+Ctrl+D 新建桌面<br>Win+Ctrl+←→ 切换桌面
+</div></div>
 
-    <script src="./js/main.js"></script>
+<div class="tool-card"><h3>窗口控制快捷</h3><p>分屏、缩放、置顶</p>
+<button onclick="toggle('c2')">查看</button><button onclick="copy('c2')" class="copy-btn">复制</button><div id="c2" class="tool-content">
+Win+↑ 最大化<br>Win+↓ 还原/最小化<br>Win+← 左分屏<br>Win+→ 右分屏<br>Alt+Tab 切换窗口<br>Win+Tab 任务视图<br>Alt+F4 关闭窗口<br>Win+↑+← 左上分屏
+</div></div>
+
+<div class="tool-card"><h3>文件操作快捷</h3><p>复制、粘贴、重命名</p>
+<button onclick="toggle('c3')">查看</button><button onclick="copy('c3')" class="copy-btn">复制</button><div id="c3" class="tool-content">
+Ctrl+C 复制<br>Ctrl+V 粘贴<br>Ctrl+X 剪切<br>Ctrl+Z 撤销<br>Ctrl+Y 恢复<br>F2 重命名<br>Ctrl+A 全选<br>Shift+Del 永久删除
+</div></div>
+
+<div class="tool-card"><h3>CMD常用命令</h3><p>网络、查看、控制</p>
+<button onclick="toggle('c4')">查看</button><button onclick="copy('c4')" class="copy-btn">复制</button><div id="c4" class="tool-content">
+ping 测试网络<br>ipconfig 查看IP<br>cls 清空屏幕<br>dir 目录列表<br>cd.. 返回上一级<br>notepad 记事本<br>mspaint 画图<br>systeminfo 系统信息
+</div></div>
+
+<div class="tool-card"><h3>系统清理命令</h3><p>垃圾、缓存、修复</p>
+<button onclick="toggle('c5')">查看</button><button onclick="copy('c5')" class="copy-btn">复制</button><div id="c5" class="tool-content">
+cleanmgr 磁盘清理<br>sfc /scannow 系统修复<br>chkdsk 磁盘检查<br>temp 临时文件<br>%temp% 用户临时文件<br>winver 系统版本<br>wuauclt 检查更新
+</div></div>
+
+<div class="tool-card"><h3>浏览器通用快捷</h3><p>Chrome/Edge通用</p>
+<button onclick="toggle('c6')">查看</button><button onclick="copy('c6')" class="copy-btn">复制</button><div id="c6" class="tool-content">
+Ctrl+T 新标签<br>Ctrl+W 关闭标签<br>Ctrl+Shift+T 恢复标签<br>Ctrl+F 查找<br>F5 刷新<br>F11 全屏<br>Ctrl+D 收藏<br>Ctrl+Tab 切换标签
+</div></div>
+
+<div class="tool-card"><h3>键盘特殊符号</h3><p>★、→、△、■等</p>
+<button onclick="toggle('c7')">查看</button><button onclick="copy('c7')" class="copy-btn">复制</button><div id="c7" class="tool-content">
+Alt+41457 → ★<br>Alt+41468 → →<br>Alt+41469 → ←<br>Alt+41420 → ■<br>Alt+41421 → □<br>Alt+41461 → √<br>Alt+41403 → ×
+</div></div>
+
+<div class="tool-card"><h3>截图录屏快捷</h3><p>系统自带无水印</p>
+<button onclick="toggle('c8')">查看</button><button onclick="copy('c8')" class="copy-btn">复制</button><div id="c8" class="tool-content">
+Win+Shift+S 自由截图<br>Win+G 录屏工具栏<br>PrScn 全屏截图<br>Win+PrScn 自动保存截图<br>Alt+PrScn 当前窗口<br>Win+Alt+R 直接录屏
+</div></div>
+
+<div class="tool-card"><h3>运行命令速查</h3><p>快速打开系统工具</p>
+<button onclick="toggle('c9')">查看</button><button onclick="copy('c9')" class="copy-btn">复制</button><div id="c9" class="tool-content">
+control 控制面板<br>desk.cpl 显示设置<br>ncpa.cpl 网络连接<br>lusrmgr.msc 用户管理<br>gpedit.msc 组策略<br>services.msc 服务
+</div></div>
+
+<div class="tool-card"><h3>输入法快捷</h3><p>中英文、全角半角</p>
+<button onclick="toggle('c10')">查看</button><button onclick="copy('c10')" class="copy-btn">复制</button><div id="c10" class="tool-content">
+Ctrl+空格 切换中英文<br>Shift+Ctrl 切换输入法<br>Shift 中英文切换<br>Ctrl+. 中英文标点<br>Shift+空格 全角半角
+</div></div>
+
+<div class="tool-card"><h3>资源管理器快捷</h3><p>文件夹快速操作</p>
+<button onclick="toggle('c11')">查看</button><button onclick="copy('c11')" class="copy-btn">复制</button><div id="c11" class="tool-content">
+Alt+↑ 向上一级<br>Ctrl+Shift+N 新建文件夹<br>Ctrl+Shift+Esc 任务管理器<br>Alt+P 显示预览窗格
+</div></div>
+
+<div class="tool-card"><h3>鼠标增强技巧</h3><p>滚轮、选中、拖动</p>
+<button onclick="toggle('c12')">查看</button><button onclick="copy('c12')" class="copy-btn">复制</button><div id="c12" class="tool-content">
+Ctrl+滚轮 缩放桌面/网页<br>Shift+点击 连续选中<br>Ctrl+点击 多选<br>Shift+Delete 永久删除<br>拖动文件+Ctrl 复制
+</div></div>
+
+<div class="tool-card"><h3>网络诊断命令</h3><p>网络修复、刷新</p>
+<button onclick="toggle('c13')">查看</button><button onclick="copy('c13')" class="copy-btn">复制</button><div id="c13" class="tool-content">
+ipconfig /flushdns 刷新DNS<br>ipconfig /release 释放IP<br>ipconfig /renew 重获IP<br>netsh winsock reset 网络重置
+</div></div>
+
+<div class="tool-card"><h3>账户快捷操作</h3><p>切换、注销、UAC</p>
+<button onclick="toggle('c14')">查看</button><button onclick="copy('c14')" class="copy-btn">复制</button><div id="c14" class="tool-content">
+Win+Ctrl+Shift+B 刷新显卡<br>Win+. 表情符号<br>Ctrl+Alt+Delete 安全界面<br>logoff 注销
+</div></div>
+
+<div class="tool-card"><h3>PowerShell常用</h3><p>运维、查询、控制</p>
+<button onclick="toggle('c15')">查看</button><button onclick="copy('c15')" class="copy-btn">复制</button><div id="c15" class="tool-content">
+Get-Process 查看进程<br>Stop-Process 结束进程<br>Get-Service 服务<br>Test-Connection 网络测试<br>Clear-Host 清屏
+</div></div>
+
+<div class="tool-card"><h3>多显示器快捷</h3><p>多屏窗口移动</p>
+<button onclick="toggle('c16')">查看</button><button onclick="copy('c16')" class="copy-btn">复制</button><div id="c16" class="tool-content">
+Win+Shift+← 左移屏幕<br>Win+Shift+→ 右移屏幕<br>Win+P 投影设置<br>Win+↑↓ 拉伸窗口
+</div></div>
+
+<div class="tool-card"><h3>游戏模式快捷</h3><p>录制、性能、工具栏</p>
+<button onclick="toggle('c17')">查看</button><button onclick="copy('c17')" class="copy-btn">复制</button><div id="c17" class="tool-content">
+Win+G 游戏工具栏<br>Win+Alt+G 录制最后30秒<br>Win+Alt+R 开始/停止录制<br>Win+Alt+PrtScn 截图
+</div></div>
+
+<div class="tool-card"><h3>时间日期快捷</h3><p>查看、校准、格式</p>
+<button onclick="toggle('c18')">查看</button><button onclick="copy('c18')" class="copy-btn">复制</button><div id="c18" class="tool-content">
+Win+Alt+D 显示日历<br>timedate.cpl 日期时间设置<br>w32tm /resync 同步时间
+</div></div>
+
+<div class="tool-card"><h3>磁盘管理命令</h3><p>分区、健康、优化</p>
+<button onclick="toggle('c19')">查看</button><button onclick="copy('c19')" class="copy-btn">复制</button><div id="c19" class="tool-content">
+diskmgmt.msc 磁盘管理<br>defrag 磁盘碎片整理<br>diskpart 磁盘分区工具
+</div></div>
+
+<div class="tool-card"><h3>电脑护眼快捷</h3><p>夜间模式、缩放</p>
+<button onclick="toggle('c20')">查看</button><button onclick="copy('c20')" class="copy-btn">复制</button><div id="c20" class="tool-content">
+Win+Ctrl+C 颜色滤镜<br>Win+I 设置<br>Win+Ctrl+Shift+B 重置显示驱动
+</div></div>
+
+</div></div>
+
+<!-- ===================== 模块2：CAD指令（22个） ===================== -->
+<div class="module" id="cad">
+<h2>📐 CAD通用指令模块（22个）</h2>
+<div class="tool-grid">
+
+<div class="tool-card"><h3>CAD绘图基础</h3><p>线、圆、矩形、多边形</p>
+<button onclick="toggle('d1')">查看</button><button onclick="copy('d1')" class="copy-btn">复制</button><div id="d1" class="tool-content">
+L → 直线<br>C → 圆<br>REC → 矩形<br>PL → 多段线<br>A → 圆弧<br>EL → 椭圆<br>POL → 多边形<br>SPL → 样条曲线
+</div></div>
+
+<div class="tool-card"><h3>CAD修改编辑</h3><p>复制、移动、偏移、镜像</p>
+<button onclick="toggle('d2')">查看</button><button onclick="copy('d2')" class="copy-btn">复制</button><div id="d2" class="tool-content">
+CO → 复制<br>M → 移动<br>O → 偏移<br>MI → 镜像<br>TR → 修剪<br>EX → 延伸<br>F → 圆角<br>CHA → 倒角
+</div></div>
+
+<div class="tool-card"><h3>CAD标注指令</h3><p>线性、半径、角度</p>
+<button onclick="toggle('d3')">查看</button><button onclick="copy('d3')" class="copy-btn">复制</button><div id="d3" class="tool-content">
+DLI → 线性标注<br>DAL → 对齐标注<br>DRA → 半径标注<br>DDI → 直径标注<br>DAN → 角度标注<br>DCO → 连续标注
+</div></div>
+
+<div class="tool-card"><h3>CAD图层管理</h3><p>图层、颜色、线宽</p>
+<button onclick="toggle('d4')">查看</button><button onclick="copy('d4')" class="copy-btn">复制</button><div id="d4" class="tool-content">
+LA → 图层管理器<br>COL → 颜色<br>LW → 线宽<br>LTS → 线型比例<br>UNITS → 单位设置
+</div></div>
+
+<div class="tool-card"><h3>CAD文字指令</h3><p>单行、多行、编辑</p>
+<button onclick="toggle('d5')">查看</button><button onclick="copy('d5')" class="copy-btn">复制</button><div id="d5" class="tool-content">
+DT → 单行文字<br>MT → 多行文字<br>ED → 编辑文字<br>ST → 文字样式<br>SCALETEXT 缩放文字
+</div></div>
+
+<div class="tool-card"><h3>CAD阵列与镜像</h3><p>矩形、环形阵列</p>
+<button onclick="toggle('d6')">查看</button><button onclick="copy('d6')" class="copy-btn">复制</button><div id="d6" class="tool-content">
+AR → 阵列<br>MI → 镜像<br>ARRAYRECT 矩形阵列<br>ARRAYPOLAR 环形阵列
+</div></div>
+
+<div class="tool-card"><h3>CAD延伸与修剪</h3><p>批量修剪、延伸</p>
+<button onclick="toggle('d7')">查看</button><button onclick="copy('d7')" class="copy-btn">复制</button><div id="d7" class="tool-content">
+TR → 修剪<br>EX → 延伸<br>TR+空格 全选修剪<br>EX+空格 全选延伸
+</div></div>
+
+<div class="tool-card"><h3>CAD块与属性</h3><p>创建块、插入块</p>
+<button onclick="toggle('d8')">查看</button><button onclick="copy('d8')" class="copy-btn">复制</button><div id="d8" class="tool-content">
+B → 创建块<br>I → 插入块<br>WBLOCK 写块<br>ATT 定义属性<br>ATTE 编辑属性
+</div></div>
+
+<div class="tool-card"><h3>CAD尺寸样式</h3><p>标注样式、修改</p>
+<button onclick="toggle('d9')">查看</button><button onclick="copy('d9')" class="copy-btn">复制</button><div id="d9" class="tool-content">
+D → 标注样式管理器<br>OVERRIDE 替代标注<br>DIMUPDATE 更新标注
+</div></div>
+
+<div class="tool-card"><h3>CAD图案填充</h3><p>填充、编辑、渐变色</p>
+<button onclick="toggle('d10')">查看</button><button onclick="copy('d10')" class="copy-btn">复制</button><div id="d10" class="tool-content">
+H → 图案填充<br>HE → 编辑填充<br>GRADIENT 渐变色<br>BHATCH 边界填充
+</div></div>
+
+<div class="tool-card"><h3>CAD视图控制</h3><p>缩放、平移、视图</p>
+<button onclick="toggle('d11')">查看</button><button onclick="copy('d11')" class="copy-btn">复制</button><div id="d11" class="tool-content">
+Z → 缩放<br>P → 平移<br>REA → 重生成<br>VS 当前视图<br>TOP 俯视图
+</div></div>
+
+<div class="tool-card"><h3>CAD测量工具</h3><p>距离、面积、坐标</p>
+<button onclick="toggle('d12')">查看</button><button onclick="copy('d12')" class="copy-btn">复制</button><div id="d12" class="tool-content">
+DI → 距离<br>AA → 面积<br>LI → 列表显示<br>ID → 坐标点<br>MASSPROP 质量属性
+</div></div>
+
+<div class="tool-card"><h3>CAD坐标系</h3><p>UCS、世界坐标系</p>
+<button onclick="toggle('d13')">查看</button><button onclick="copy('d13')" class="copy-btn">复制</button><div id="d13" class="tool-content">
+UCS 用户坐标系<br>WCS 世界坐标系<br>UCSICON 坐标系图标
+</div></div>
+
+<div class="tool-card"><h3>CAD倒角与圆角</h3><p>工程倒角常用</p>
+<button onclick="toggle('d14')">查看</button><button onclick="copy('d14')" class="copy-btn">复制</button><div id="d14" class="tool-content">
+F → 圆角<br>CHA → 倒角<br>FILLETRAD 圆角半径<br>CHAMFERA 倒角距离
+</div></div>
+
+<div class="tool-card"><h3>CAD分解与合并</h3><p>分解、多段线合并</p>
+<button onclick="toggle('d15')">查看</button><button onclick="copy('d15')" class="copy-btn">复制</button><div id="d15" class="tool-content">
+X → 分解<br>PE → 编辑多段线<br>JOIN 合并对象<br>PEDIT 合并线段
+</div></div>
+
+<div class="tool-card"><h3>CAD打印与导出</h3><p>打印、输出PDF</p>
+<button onclick="toggle('d16')">查看</button><button onclick="copy('d16')" class="copy-btn">复制</button><div id="d16" class="tool-content">
+PLOT 打印<br>EXPORT 导出<br>DWGTOPDF PDF输出<br>PAGESETUP 页面设置
+</div></div>
+
+<div class="tool-card"><h3>CAD选择技巧</h3><p>框选、快速选择</p>
+<button onclick="toggle('d17')">查看</button><button onclick="copy('d17')" class="copy-btn">复制</button><div id="d17" class="tool-content">
+Ctrl+A 全选<br>QSELECT 快速选择<br>SELECT 选择对象<br>交叉选择 从右往左
+</div></div>
+
+<div class="tool-card"><h3>CAD约束工具</h3><p>几何约束、尺寸约束</p>
+<button onclick="toggle('d18')">查看</button><button onclick="copy('d18')" class="copy-btn">复制</button><div id="d18" class="tool-content">
+GCONSTRAINT 几何约束<br>DCONSTRAINT 尺寸约束<br>CONSTRAINTSOLVE 求解约束
+</div></div>
+
+<div class="tool-card"><h3>CAD渲染与视觉</h3><p>真实、概念、着色</p>
+<button onclick="toggle('d19')">查看</button><button onclick="copy('d19')" class="copy-btn">复制</button><div id="d19" class="tool-content">
+SHADE 着色<br>RENDER 渲染<br>VISUALSTYLES 视觉样式<br>HIDE 消隐
+</div></div>
+
+<div class="tool-card"><h3>CAD设计中心</h3><p>调用块、图层、样式</p>
+<button onclick="toggle('d20')">查看</button><button onclick="copy('d20')" class="copy-btn">复制</button><div id="d20" class="tool-content">
+ADC 设计中心<br>ADCENTER 打开设计中心<br>TOOLPALETTES 工具选项板
+</div></div>
+
+<div class="tool-card"><h3>CAD脚本与批量</h3><p>脚本播放、批量处理</p>
+<button onclick="toggle('d21')">查看</button><button onclick="copy('d21')" class="copy-btn">复制</button><div id="d21" class="tool-content">
+SCRIPT 运行脚本<br>RSCRIPT 循环脚本<br>BATCHPLT 批量打印
+</div></div>
+
+<div class="tool-card"><h3>CAD常用快捷键汇总</h3><p>绘图员必备速查</p>
+<button onclick="toggle('d22')">查看</button><button onclick="copy('d22')" class="copy-btn">复制</button><div id="d22" class="tool-content">
+空格=重复上一命令<br>ESC 取消命令<br>Ctrl+Z 撤销<br>Ctrl+Y 恢复<br>Ctrl+S 保存
+</div></div>
+
+</div></div>
+
+<!-- ===================== 模块3：办公快捷（14个） ===================== -->
+<div class="module" id="office">
+<h2>📝 办公快捷模块（14个）</h2>
+<div class="tool-grid">
+
+<div class="tool-card"><h3>Word通用快捷</h3><p>格式、排版、选中</p>
+<button onclick="toggle('o1')">查看</button><button onclick="copy('o1')" class="copy-btn">复制</button><div id="o1" class="tool-content">
+Ctrl+B 加粗<br>Ctrl+I 斜体<br>Ctrl+U 下划线<br>Ctrl+L 左对齐<br>Ctrl+E 居中<br>Ctrl+R 右对齐
+</div></div>
+
+<div class="tool-card"><h3>Word选中技巧</h3><p>段落、全文、选词</p>
+<button onclick="toggle('o2')">查看</button><button onclick="copy('o2')" class="copy-btn">复制</button><div id="o2" class="tool-content">
+Ctrl+A 全选<br>鼠标三击段落 全段选<br>Ctrl+鼠标点击 句选<br>Shift+方向键 扩展选中
+</div></div>
+
+<div class="tool-card"><h3>Excel核心快捷</h3><p>求和、格式、筛选</p>
+<button onclick="toggle('o3')">查看</button><button onclick="copy('o3')" class="copy-btn">复制</button><div id="o3" class="tool-content">
+Alt+= 自动求和<br>Ctrl+Enter 批量填充<br>Ctrl+1 单元格格式<br>Ctrl+Shift+L 筛选
+</div></div>
+
+<div class="tool-card"><h3>Excel行列操作</h3><p>插入、删除、隐藏</p>
+<button onclick="toggle('o4')">查看</button><button onclick="copy('o4')" class="copy-btn">复制</button><div id="o4" class="tool-content">
+Ctrl+Shift++ 插入单元格<br>Ctrl+- 删除<br>Ctrl+9 隐藏行<br>Ctrl+0 隐藏列
+</div></div>
+
+<div class="tool-card"><h3>PPT快捷操作</h3><p>放映、复制、组合</p>
+<button onclick="toggle('o5')">查看</button><button onclick="copy('o5')" class="copy-btn">复制</button><div id="o5" class="tool-content">
+F5 从头放映<br>Shift+F5 当前页放映<br>Ctrl+D 快速复制<br>Ctrl+G 组合对象
+</div></div>
+
+<div class="tool-card"><h3>WPS通用快捷</h3><p>兼容MS Office</p>
+<button onclick="toggle('o6')">查看</button><button onclick="copy('o6')" class="copy-btn">复制</button><div id="o6" class="tool-content">
+Ctrl+S 保存<br>Ctrl+N 新建<br>Ctrl+O 打开<br>Ctrl+P 打印<br>Ctrl+F 查找
+</div></div>
+
+<div class="tool-card"><h3>办公PDF常用</h3><p>查看、缩放、查找</p>
+<button onclick="toggle('o7')">查看</button><button onclick="copy('o7')" class="copy-btn">复制</button><div id="o7" class="tool-content">
+Ctrl+滚轮 缩放<br>F11 全屏<br>Ctrl+F 查找<br>PageUp/PageDown 翻页
+</div></div>
+
+<div class="tool-card"><h3>Excel函数速查</h3><p>常用基础函数</p>
+<button onclick="toggle('o8')">查看</button><button onclick="copy('o8')" class="copy-btn">复制</button><div id="o8" class="tool-content">
+SUM 求和<br>AVERAGE 平均<br>MAX 最大<br>MIN 最小<br>COUNT 计数<br>IF 判断
+</div></div>
+
+<div class="tool-card"><h3>Excel定位技巧</h3><p>空值、常量、公式</p>
+<button onclick="toggle('o9')">查看</button><button onclick="copy('o9')" class="copy-btn">复制</button><div id="o9" class="tool-content">
+Ctrl+G 定位<br>定位空值<br>定位常量<br>定位公式<br>定位条件格式
+</div></div>
+
+<div class="tool-card"><h3>Word样式快捷</h3><p>样式、格式刷、清除</p>
+<button onclick="toggle('o10')">查看</button><button onclick="copy('o10')" class="copy-btn">复制</button><div id="o10" class="tool-content">
+Ctrl+Shift+C 格式复制<br>Ctrl+Shift+V 格式粘贴<br>Ctrl+Space 清除格式
+</div></div>
+
+<div class="tool-card"><h3>PPT动画快捷</h3><p>动画、切换、排练</p>
+<button onclick="toggle('o11')">查看</button><button onclick="copy('o11')" class="copy-btn">复制</button><div id="o11" class="tool-content">
+Alt+F10 选择窗格<br>Shift+鼠标 多选对象<br>Ctrl+Shift+G 取消组合
+</div></div>
+
+<div class="tool-card"><h3>邮件与 Outlook</h3><p>收发、查找、新建</p>
+<button onclick="toggle('o12')">查看</button><button onclick="copy('o12')" class="copy-btn">复制</button><div id="o12" class="tool-content">
+Ctrl+N 新邮件<br>Ctrl+Enter 发送<br>Ctrl+Shift+M 新建邮件<br>F9 发送接收
+</div></div>
+
+<div class="tool-card"><h3>办公通用效率</h3><p>全软件通用</p>
+<button onclick="toggle('o13')">查看</button><button onclick="copy('o13')" class="copy-btn">复制</button><div id="o13" class="tool-content">
+Ctrl+Z 撤销<br>Ctrl+Y 恢复<br>Ctrl+S 随时保存<br>Ctrl+P 打印<br>F1 帮助
+</div></div>
+
+<div class="tool-card"><h3>打字输入提速</h3><p>符号、日期、快速输入</p>
+<button onclick="toggle('o14')">查看</button><button onclick="copy('o14')" class="copy-btn">复制</button><div id="o14" class="tool-content">
+Win+. 表情符号<br>Alt+数字 特殊符号<br>Ctrl+; 插入日期<br>Ctrl+Shift+; 插入时间
+</div></div>
+
+</div></div>
+
+<!-- ===================== 模块4：趣味工具（14个） ===================== -->
+<div class="module" id="fun">
+<h2>🎮 趣味娱乐模块（14个）</h2>
+<div class="tool-grid">
+
+<div class="tool-card"><h3>星空网名生成</h3><p>文艺、清冷、高级感</p>
+<button onclick="nameGen()">生成</button><button onclick="copyLast()">复制</button><div id="nameRes" class="tool-content" style="display:block"></div></div>
+
+<div class="tool-card"><h3>今日运势生成</h3><p>随机运势、心情指南</p>
+<button onclick="luckGen()">生成</button><button onclick="copyLast()">复制</button><div id="luckRes" class="tool-content" style="display:block"></div></div>
+
+<div class="tool-card"><h3>土味情话生成</h3><p>搞笑、撩人、不尴尬</p>
+<button onclick="loveGen()">生成</button><button onclick="copyLast()">复制</button><div id="loveRes" class="tool-content" style="display:block"></div></div>
+
+<div class="tool-card"><h3>搞笑段子生成</h3><p>神反转、轻松一笑</p>
+<button onclick="jokeGen()">生成</button><button onclick="copyLast()">复制</button><div id="jokeRes" class="tool-content" style="display:block"></div></div>
+
+<div class="tool-card"><h3>个性签名生成</h3><p>酷拽、温柔、伤感</p>
+<button onclick="signGen()">生成</button><button onclick="copyLast()">复制</button><div id="signRes" class="tool-content" style="display:block"></div></div>
+
+<div class="tool-card"><h3>随机数字抽奖</h3><p>抽签、抓阄、选择困难</p>
+<button onclick="lottoGen()">生成</button><button onclick="copyLast()">复制</button><div id="lottoRes" class="tool-content" style="display:block"></div></div>
+
+<div class="tool-card"><h3>摸鱼小句子</h3><p>上班摸鱼专用文案</p>
+<button onclick="moyuGen()">生成</button><button onclick="copyLast()">复制</button><div id="moyuRes" class="tool-content" style="display:block"></div></div>
+
+<div class="tool-card"><h3>emo文案生成</h3><p>伤感、深夜、情绪文案</p>
+<button onclick="emoGen()">生成</button><button onclick="copyLast()">复制</button><div id="emoRes" class="tool-content" style="display:block"></div></div>
+
+<div class="tool-card"><h3>夸夸语录生成</h3><p>彩虹屁、鼓励、赞美</p>
+<button onclick="praiseGen()">生成</button><button onclick="copyLast()">复制</button><div id="praiseRes" class="tool-content" style="display:block"></div></div>
+
+<div class="tool-card"><h3>骂人文明语录</h3><p>阴阳怪气、不吐脏字</p>
+<button onclick="yinGen()">生成</button><button onclick="copyLast()">复制</button><div id="yinRes" class="tool-content" style="display:block"></div></div>
+
+<div class="tool-card"><h3>游戏ID生成</h3><p>霸气、可爱、中二</p>
+<button onclick="gameGen()">生成</button><button onclick="copyLast()">复制</button><div id="gameRes" class="tool-content" style="display:block"></div></div>
+
+<div class="tool-card"><h3>朋友圈文案</h3><p>日常、美食、旅行、自拍</p>
+<button onclick="pyqGen()">生成</button><button onclick="copyLast()">复制</button><div id="pyqRes" class="tool-content" style="display:block"></div></div>
+
+<div class="tool-card"><h3>励志语录生成</h3><p>自律、奋斗、加油</p>
+<button onclick="lzGen()">生成</button><button onclick="copyLast()">复制</button><div id="lzRes" class="tool-content" style="display:block"></div></div>
+
+<div class="tool-card"><h3>晚安文案生成</h3><p>温柔治愈、睡前句子</p>
+<button onclick="nightGen()">生成</button><button onclick="copyLast()">复制</button><div id="nightRes" class="tool-content" style="display:block"></div></div>
+
+</div></div>
+
+<!-- ===================== 模块5：万能转换（12个） ===================== -->
+<div class="module" id="tools">
+<h2>🔧 万能转换模块（12个）</h2>
+<div class="tool-grid">
+
+<div class="tool-card"><h3>长度单位换算</h3><p>米、厘米、英寸、尺</p>
+<button onclick="toggle('t1')">查看</button><button onclick="copy('t1')" class="copy-btn">复制</button><div id="t1" class="tool-content">
+1米 = 100厘米<br>1厘米 = 10毫米<br>1英寸 = 2.54厘米<br>1尺 ≈ 33.33厘米<br>1公里 = 1000米
+</div></div>
+
+<div class="tool-card"><h3>重量单位换算</h3><p>千克、斤、磅、克</p>
+<button onclick="toggle('t2')">查看</button><button onclick="copy('t2')" class="copy-btn">复制</button><div id="t2" class="tool-content">
+1千克 = 2斤<br>1斤 = 500克<br>1磅 ≈ 0.45千克<br>1吨 = 1000千克
+</div></div>
+
+<div class="tool-card"><h3>面积单位换算</h3><p>平方米、亩、公顷</p>
+<button onclick="toggle('t3')">查看</button><button onclick="copy('t3')" class="copy-btn">复制</button><div id="t3" class="tool-content">
+1亩 ≈ 666.67㎡<br>1公顷 = 15亩<br>1平方公里=100公顷
+</div></div>
+
+<div class="tool-card"><h3>体积容积换算</h3><p>升、毫升、立方</p>
+<button onclick="toggle('t4')">查看</button><button onclick="copy('t4')" class="copy-btn">复制</button><div id="t4" class="tool-content">
+1升 = 1000毫升<br>1立方米 = 1000升<br>1加仑 ≈ 3.785升
+</div></div>
+
+<div class="tool-card"><h3>时间单位换算</h3><p>天、小时、分、秒</p>
+<button onclick="toggle('t5')">查看</button><button onclick="copy('t5')" class="copy-btn">复制</button><div id="t5" class="tool-content">
+1天 = 24小时<br>1小时 = 60分钟<br>1分钟 = 60秒<br>1小时 = 3600秒
+</div></div>
+
+<div class="tool-card"><h3>速度单位换算</h3><p>km/h、m/s、节</p>
+<button onclick="toggle('t6')">查看</button><button onclick="copy('t6')" class="copy-btn">复制</button><div id="t6" class="tool-content">
+1m/s = 3.6km/h<br>1节 ≈ 1.85km/h<br>1马赫≈1225km/h
+</div></div>
+
+<div class="tool-card"><h3>温度单位换算</h3><p>摄氏度、华氏度</p>
+<button onclick="toggle('t7')">查看</button><button onclick="copy('t7')" class="copy-btn">复制</button><div id="t7" class="tool-content">
+℉ = ℃×1.8+32<br>℃ = (℉-32)÷1.8<br>0℃=32℉<br>100℃=212℉
+</div></div>
+
+<div class="tool-card"><h3>存储单位换算</h3><p>TB、GB、MB、KB</p>
+<button onclick="toggle('t8')">查看</button><button onclick="copy('t8')" class="copy-btn">复制</button><div id="t8" class="tool-content">
+1TB=1024GB<br>1GB=1024MB<br>1MB=1024KB<br>1KB=1024B
+</div></div>
+
+<div class="tool-card"><h3>汇率参考换算</h3><p>美元、欧元、日元</p>
+<button onclick="toggle('t9')">查看</button><button onclick="copy('t9')" class="copy-btn">复制</button><div id="t9" class="tool-content">
+1美元≈7.2人民币<br>1欧元≈7.8人民币<br>100日元≈4.8人民币
+</div></div>
+
+<div class="tool-card"><h3>进制转换速查</h3><p>二进制、十进制、十六进制</p>
+<button onclick="toggle('t10')">查看</button><button onclick="copy('t10')" class="copy-btn">复制</button><div id="t10" class="tool-content">
+二进制 0 1<br>十进制 0-9<br>十六进制 0-9 A-F<br>2=10 8=100 16=10000
+</div></div>
+
+<div class="tool-card"><h3>角度弧度换算</h3><p>360°、2π、90°</p>
+<button onclick="toggle('t11')">查看</button><button onclick="copy('t11')" class="copy-btn">复制</button><div id="t11" class="tool-content">
+360°=2π<br>180°=π<br>90°=π/2<br>45°=π/4<br>1弧度≈57.3°
+</div></div>
+
+<div class="tool-card"><h3>功率单位换算</h3><p>瓦、千瓦、马力</p>
+<button onclick="toggle('t12')">查看</button><button onclick="copy('t12')" class="copy-btn">复制</button><div id="t12" class="tool-content">
+1千瓦=1000瓦<br>1马力≈735瓦<br>1匹≈735瓦
+</div></div>
+
+</div></div>
+
+<div class="footer">© 2026 星空全能工具站 | 82个实用工具 | xkmyth.github.io</div>
+
+<script>
+// 展开/收起
+function toggle(id){let e=document.getElementById(id);e.style.display=e.style.display=='block'?'none':'block'}
+
+// 复制内容
+function copy(id){
+  let t=document.getElementById(id).innerText;
+  navigator.clipboard.writeText(t).then(()=>alert("已复制")).catch(()=>alert("复制失败"))
+}
+let lastCopy=""
+function copyLast(){
+  navigator.clipboard.writeText(lastCopy).then(()=>alert("已复制")).catch(()=>alert("复制失败"))
+}
+
+// 趣味生成器
+function nameGen(){
+  let p=["星尘","星河","星眠","月见","雾岛","屿风","晚舟","云边","清欢","辞雪"]
+  let s=["入梦","低语","漫行","来信","飞行","晚风","屿歌","人间","星落","月升"]
+  let r=p[Math.floor(Math.random()*p.length)]+s[Math.floor(Math.random()*s.length)]
+  lastCopy=r;document.getElementById("nameRes").innerText="✨ "+r
+}
+function luckGen(){
+  let t=["大吉","吉","中平","小吉","偏吉","顺遂","平安","好运"]
+  let r=t[Math.floor(Math.random()*t.length)]
+  lastCopy="今日运势："+r;document.getElementById("luckRes").innerText=lastCopy
+}
+function loveGen(){
+  let t=["我觉得你特别像一款游戏，我的世界。","近朱者赤，近你者甜。","遇见您之后，我看谁都像将就。"]
+  let r=t[Math.floor(Math.random()*t.length)]
+  lastCopy=r;document.getElementById("loveRes").innerText=r
+}
+function jokeGen(){
+  let t=["从前有个人钓鱼，钓上来一只鱿鱼。鱿鱼求他：你放了我吧，别烤我。那人说：行，我考你几个问题。鱿鱼说：你考吧你考吧！然后那个人就把鱿鱼烤了。"]
+  let r=t[Math.floor(Math.random()*t.length)]
+  lastCopy=r;document.getElementById("jokeRes").innerText=r
+}
+function signGen(){
+  let t="保持热爱，奔赴山海";lastCopy=t;document.getElementById("signRes").innerText=t
+}
+function lottoGen(){
+  let r=Math.floor(Math.random()*100)+1;lastCopy="中奖号码："+r;document.getElementById("lottoRes").innerText=lastCopy
+}
+function moyuGen(){
+  let t=["上班不摸鱼，对不起人民币。","只要我摸得够快，工作就追不上我。"]
+  let r=t[Math.floor(Math.random()*t.length)];lastCopy=r;document.getElementById("moyuRes").innerText=r
+}
+function emoGen(){
+  let t="后来烟雨落盛京，一人撑伞两人行";lastCopy=t;document.getElementById("emoRes").innerText=t
+}
+function praiseGen(){
+  let t=["你也太优秀了吧！","你真的好厉害，闪闪发光！"]
+  let r=t[Math.floor(Math.random()*t.length)];lastCopy=r;document.getElementById("praiseRes").innerText=r
+}
+function yinGen(){
+  let t="你这么会抬杠，不去工地真可惜了。";lastCopy=t;document.getElementById("yinRes").innerText=t
+}
+function gameGen(){
+  let t=["战神","星辰","破晓","雾隐","风刃"]
+  let r=t[Math.floor(Math.random()*t.length)]+"猎手"
+  lastCopy=r;document.getElementById("gameRes").innerText=r
+}
+function pyqGen(){
+  let t="生活边角料，快乐小证据。";lastCopy=t;document.getElementById("pyqRes").innerText=t
+}
+function lzGen(){
+  let t="半山腰总是最挤的，你得去山顶看看。";lastCopy=t;document.getElementById("lzRes").innerText=t
+}
+function nightGen(){
+  let t="晚安，把所有烦恼都丢进梦里。";lastCopy=t;document.getElementById("nightRes").innerText=t
+}
+
+// 主题切换
+document.getElementById("themeToggle").onclick=()=>{
+  document.body.classList.toggle("light");
+  let b=document.body.classList.contains("light");
+  document.getElementById("themeToggle").innerText=b?"深色模式":"浅色模式"
+}
+
+// 星空流星雨背景
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;canvas.height=innerHeight;
+let stars=[];for(let i=0;i<900;i++)stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.1,vy:Math.random()*0.4+0.05})
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle="#fff";
+  stars.forEach(s=>{ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();s.y+=s.vy;if(s.y>canvas.height)s.y=0});
+  requestAnimationFrame(draw)
+}
+draw()
+</script>
 </body>
 </html>
