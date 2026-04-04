@@ -104,3 +104,57 @@ body {
     background #000;
     color #666;
 }
+/* ============================================== */
+/* 📱 移动端终极适配 · 直接复制这里即可 */
+/* ============================================== */
+@media (max-width: 768px) {
+  /* 头部导航换行，避免挤爆 */
+  .header {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 15px;
+  }
+  .nav {
+    text-align: center;
+  }
+  .nav a {
+    margin: 0 6px;
+    font-size: 13px;
+  }
+
+  /* 标题缩小，不超出屏幕 */
+  .banner h1 {
+    font-size: 24px;
+  }
+  .banner p {
+    font-size: 14px;
+  }
+  .module h2 {
+    font-size: 20px;
+  }
+
+  /* 卡片网格：手机自动 1列，平板 2列 */
+  .tool-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+
+  /* 卡片内边距缩小 */
+  .tool-card {
+    padding: 16px;
+  }
+
+  /* 按钮自动换行，不挤在一起 */
+  .tool-card button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+/* 平板设备 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .tool-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
