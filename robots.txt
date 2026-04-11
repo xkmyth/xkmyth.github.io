@@ -1,0 +1,20 @@
+# GitHub Pages 必应收录优化版 robots.txt
+User-agent: bingbot
+Allow: /
+Sitemap: https://xkmyth.github.io/sitemap.xml
+
+User-agent: *
+Allow: /
+Disallow: /user/
+Disallow: /member/
+Disallow: /account/
+Disallow: /404.html
+Disallow: /error/
+Disallow: /search/
+Disallow: /tag/
+Disallow: /category/*?*
+Disallow: /images/
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Sitemap: https://xkmyth.github.io/sitemap.xml
