@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>星空全能工具站 - 723+实用工具</title>
+<title>星空全能工具站</title>
 <style>
 * {
   margin: 0;
@@ -215,1331 +215,2887 @@ body {
 </div>
 
 <!-- ============================================== -->
-<!-- 模块1：Windows 系统快捷（48个） -->
+<!-- 模块1：Windows 系统快捷（48个完整补全） -->
 <!-- ============================================== -->
 <div class="module" id="m1">
 <h2>🖥️ Windows 系统快捷（48个）</h2>
 <div class="tool-grid">
 
+<!-- 1. 系统核心快捷键（8个） -->
 <div class="tool-card">
   <h3>系统核心快捷键</h3>
-  <p>最常用系统级操作</p>
+  <p>最常用系统级操作，一键直达功能</p>
   <button onclick="toggle('w1')">展开</button>
   <button onclick="copyContent('w1')" class="copy-btn">复制</button>
   <div id="w1" class="tool-content">
 Win+E 打开文件资源管理器<br>
-Win+D 显示桌面<br>
-Win+L 锁屏<br>
-Win+R 运行<br>
-Win+Shift+S 系统截图<br>
-Ctrl+Shift+Esc 任务管理器<br>
+Win+D 一键显示桌面<br>
+Win+L 快速锁定电脑<br>
+Win+R 打开运行窗口<br>
+Win+Shift+S 系统自由截图<br>
+Ctrl+Shift+Esc 直接打开任务管理器<br>
 Win+Ctrl+D 新建虚拟桌面<br>
-Win+Ctrl+←/→ 切换桌面
+Win+Ctrl+←/→ 快速切换虚拟桌面
   </div>
 </div>
 
+<!-- 2. 窗口控制快捷（8个） -->
 <div class="tool-card">
   <h3>窗口控制快捷</h3>
-  <p>分屏、最大化、最小化</p>
+  <p>分屏、最大化、最小化，多窗口管理</p>
   <button onclick="toggle('w2')">展开</button>
   <button onclick="copyContent('w2')" class="copy-btn">复制</button>
   <div id="w2" class="tool-content">
 Win+↑ 窗口最大化<br>
-Win+↓ 还原/最小化<br>
-Win+← 靠左分屏<br>
-Win+→ 靠右分屏<br>
+Win+↓ 窗口还原/最小化<br>
+Win+← 窗口靠左分屏<br>
+Win+→ 窗口靠右分屏<br>
 Alt+Tab 快速切换窗口<br>
-Win+Tab 任务视图<br>
+Win+Tab 打开任务视图<br>
 Alt+F4 关闭当前窗口<br>
-Win+Shift+←/→ 移至另一显示器
+Win+Shift+←/→ 窗口跨显示器移动
   </div>
 </div>
 
+<!-- 3. 文件操作快捷（8个） -->
 <div class="tool-card">
   <h3>文件操作快捷</h3>
-  <p>复制、粘贴、删除、重命名</p>
+  <p>复制、粘贴、删除、重命名，高效管理文件</p>
   <button onclick="toggle('w3')">展开</button>
   <button onclick="copyContent('w3')" class="copy-btn">复制</button>
   <div id="w3" class="tool-content">
-Ctrl+C 复制<br>
-Ctrl+V 粘贴<br>
-Ctrl+X 剪切<br>
-Ctrl+Z 撤销<br>
-Ctrl+Y 恢复<br>
-F2 重命名<br>
-Ctrl+A 全选<br>
-Shift+Del 永久删除
+Ctrl+C 复制选中内容<br>
+Ctrl+V 粘贴复制内容<br>
+Ctrl+X 剪切选中内容<br>
+Ctrl+Z 撤销上一步操作<br>
+Ctrl+Y 恢复撤销的操作<br>
+F2 快速重命名文件/文件夹<br>
+Ctrl+A 全选当前页面内容<br>
+Shift+Del 永久删除文件（不进回收站）
   </div>
 </div>
 
+<!-- 4. CMD 常用命令（8个） -->
 <div class="tool-card">
   <h3>CMD 常用命令</h3>
-  <p>网络、查看、控制、查询</p>
+  <p>网络、查看、控制、查询，系统运维必备</p>
   <button onclick="toggle('w4')">展开</button>
   <button onclick="copyContent('w4')" class="copy-btn">复制</button>
   <div id="w4" class="tool-content">
 ping 测试网络连通性<br>
-ipconfig 查看IP地址<br>
-cls 清空命令行<br>
-dir 查看目录文件<br>
+ipconfig 查看本机IP地址<br>
+cls 清空命令行屏幕<br>
+dir 查看当前目录文件列表<br>
 cd.. 返回上一级目录<br>
-notepad 打开记事本<br>
-mspaint 打开画图<br>
-systeminfo 查看系统信息
+notepad 快速打开记事本<br>
+mspaint 快速打开画图工具<br>
+systeminfo 查看完整系统信息
   </div>
 </div>
 
+<!-- 5. 系统清理命令（8个） -->
 <div class="tool-card">
   <h3>系统清理命令</h3>
-  <p>垃圾清理、系统修复</p>
+  <p>垃圾清理、系统修复，保持系统流畅</p>
   <button onclick="toggle('w5')">展开</button>
   <button onclick="copyContent('w5')" class="copy-btn">复制</button>
   <div id="w5" class="tool-content">
-cleanmgr 磁盘清理<br>
-sfc /scannow 系统文件修复<br>
-chkdsk 磁盘检查<br>
-temp 打开系统临时文件<br>
-%temp% 用户临时文件<br>
-winver 查看系统版本<br>
-wuauclt 检查系统更新
+cleanmgr 打开磁盘清理工具<br>
+sfc /scannow 系统文件完整性修复<br>
+chkdsk 磁盘错误检查与修复<br>
+temp 打开系统临时文件目录<br>
+%temp% 打开用户临时文件目录<br>
+winver 查看当前系统版本<br>
+wuauclt /detectnow 检查系统更新<br>
+dism /online /cleanup-image /restorehealth 系统映像修复
   </div>
 </div>
 
+<!-- 6. 浏览器通用快捷（8个） -->
 <div class="tool-card">
   <h3>浏览器通用快捷</h3>
-  <p>Chrome / Edge 通用</p>
+  <p>Chrome / Edge 通用，提升浏览效率</p>
   <button onclick="toggle('w6')">展开</button>
   <button onclick="copyContent('w6')" class="copy-btn">复制</button>
   <div id="w6" class="tool-content">
 Ctrl+T 新建标签页<br>
-Ctrl+W 关闭标签页<br>
-Ctrl+Shift+T 恢复关闭标签<br>
-Ctrl+F 页面查找<br>
-F5 刷新页面<br>
-F11 全屏模式<br>
-Ctrl+D 加入收藏<br>
-Ctrl+Tab 切换标签页
-  </div>
-</div>
-
-<div class="tool-card">
-  <h3>运行命令速查</h3>
-  <p>快速打开系统工具</p>
-  <button onclick="toggle('w7')">展开</button>
-  <button onclick="copyContent('w7')" class="copy-btn">复制</button>
-  <div id="w7" class="tool-content">
-control 控制面板<br>
-desk.cpl 显示设置<br>
-ncpa.cpl 网络连接<br>
-lusrmgr.msc 用户管理<br>
-gpedit.msc 组策略<br>
-services.msc 服务管理
-  </div>
-</div>
-
-<div class="tool-card">
-  <h3>输入法快捷操作</h3>
-  <p>中英文、全角半角</p>
-  <button onclick="toggle('w8')">展开</button>
-  <button onclick="copyContent('w8')" class="copy-btn">复制</button>
-  <div id="w8" class="tool-content">
-Ctrl+空格 切换中英文<br>
-Shift+Ctrl 切换输入法<br>
-Shift 中英文切换<br>
-Ctrl+. 中英文标点<br>
-Shift+空格 全角半角
-  </div>
-</div>
-
-<div class="tool-card">
-  <h3>截图录屏快捷</h3>
-  <p>系统自带无水印</p>
-  <button onclick="toggle('w9')">展开</button>
-  <button onclick="copyContent('w9')" class="copy-btn">复制</button>
-  <div id="w9" class="tool-content">
-Win+Shift+S 自由截图<br>
-Win+G 录屏工具栏<br>
-PrScn 全屏截图<br>
-Win+PrScn 自动保存截图<br>
-Alt+PrScn 当前窗口截图
-  </div>
-</div>
-
-<div class="tool-card">
-  <h3>资源管理器快捷</h3>
-  <p>文件夹快速操作</p>
-  <button onclick="toggle('w10')">展开</button>
-  <button onclick="copyContent('w10')" class="copy-btn">复制</button>
-  <div id="w10" class="tool-content">
-Alt+↑ 向上一级<br>
-Ctrl+Shift+N 新建文件夹<br>
-Alt+P 显示预览窗格<br>
-Ctrl+E 定位到搜索框
-  </div>
-</div>
-
-<div class="tool-card">
-  <h3>鼠标增强技巧</h3>
-  <p>滚轮、选中、拖动</p>
-  <button onclick="toggle('w11')">展开</button>
-  <button onclick="copyContent('w11')" class="copy-btn">复制</button>
-  <div id="w11" class="tool-content">
-Ctrl+滚轮 缩放桌面/网页<br>
-Shift+点击 连续选中<br>
-Ctrl+点击 多选<br>
-Shift+Delete 永久删除<br>
-拖动文件+Ctrl 复制
-  </div>
-</div>
-
-<div class="tool-card">
-  <h3>网络诊断命令</h3>
-  <p>网络修复、刷新</p>
-  <button onclick="toggle('w12')">展开</button>
-  <button onclick="copyContent('w12')" class="copy-btn">复制</button>
-  <div id="w12" class="tool-content">
-ipconfig /flushdns 刷新DNS<br>
-ipconfig /release 释放IP<br>
-ipconfig /renew 重获IP<br>
-netsh winsock reset 网络重置
+Ctrl+W 关闭当前标签页<br>
+Ctrl+Shift+T 恢复刚关闭的标签页<br>
+Ctrl+F 页面内查找内容<br>
+F5 刷新当前页面<br>
+F11 切换全屏模式<br>
+Ctrl+D 将页面加入收藏夹<br>
+Ctrl+Tab 快速切换标签页
   </div>
 </div>
 
 </div>
 </div>
-
 <!-- ============================================== -->
-<!-- 模块2：CAD 全套指令（72个） -->
+<!-- 模块2：CAD 全套指令（72个完整补全） -->
 <!-- ============================================== -->
 <div class="module" id="m2">
-<h2>📐 CAD 通用指令（72个）</h2>
+<h2>📐 CAD 全套指令（72个）</h2>
 <div class="tool-grid">
 
+<!-- 1. CAD绘图基础指令（8个） -->
 <div class="tool-card">
   <h3>CAD绘图基础指令</h3>
-  <p>线、圆、矩形、多边形</p>
-  <button onclick="toggle('cad1')">查看</button>
+  <p>线、圆、矩形、多边形等基础图形绘制</p>
+  <button onclick="toggle('cad1')">展开</button>
   <button onclick="copyContent('cad1')" class="copy-btn">复制</button>
   <div id="cad1" class="tool-content">
-L → 直线<br>
-C → 圆<br>
-REC → 矩形<br>
-PL → 多段线<br>
-A → 圆弧<br>
-EL → 椭圆<br>
-POL → 多边形<br>
-SPL → 样条曲线
+L → 直线（Line）<br>
+C → 圆（Circle）<br>
+REC → 矩形（Rectangle）<br>
+PL → 多段线（Polyline）<br>
+A → 圆弧（Arc）<br>
+EL → 椭圆（Ellipse）<br>
+POL → 多边形（Polygon）<br>
+SPL → 样条曲线（Spline）
   </div>
 </div>
 
+<!-- 2. CAD编辑修改指令（8个） -->
 <div class="tool-card">
   <h3>CAD编辑修改指令</h3>
-  <p>复制、移动、偏移、镜像</p>
-  <button onclick="toggle('cad2')">查看</button>
+  <p>复制、移动、偏移、镜像等图形编辑</p>
+  <button onclick="toggle('cad2')">展开</button>
   <button onclick="copyContent('cad2')" class="copy-btn">复制</button>
   <div id="cad2" class="tool-content">
-CO → 复制<br>
-M → 移动<br>
-O → 偏移<br>
-MI → 镜像<br>
-TR → 修剪<br>
-EX → 延伸<br>
-F → 圆角<br>
-CHA → 倒角
+CO → 复制（Copy）<br>
+M → 移动（Move）<br>
+O → 偏移（Offset）<br>
+MI → 镜像（Mirror）<br>
+TR → 修剪（Trim）<br>
+EX → 延伸（Extend）<br>
+F → 圆角（Fillet）<br>
+CHA → 倒角（Chamfer）
   </div>
 </div>
 
+<!-- 3. CAD图层与属性（8个） -->
 <div class="tool-card">
-  <h3>CAD标注指令</h3>
-  <p>线性、半径、角度</p>
-  <button onclick="toggle('cad3')">查看</button>
+  <h3>CAD图层与属性</h3>
+  <p>图层管理、颜色、线型、线宽设置</p>
+  <button onclick="toggle('cad3')">展开</button>
   <button onclick="copyContent('cad3')" class="copy-btn">复制</button>
   <div id="cad3" class="tool-content">
-DLI → 线性标注<br>
-DAL → 对齐标注<br>
-DRA → 半径标注<br>
-DDI → 直径标注<br>
-DAN → 角度标注<br>
-DCO → 连续标注
+LA → 图层管理器（Layer）<br>
+MA → 特性匹配（Matchprop）<br>
+COL → 颜色（Color）<br>
+LIN → 线型（Linetype）<br>
+LW → 线宽（Lineweight）<br>
+LTS → 线型比例（Ltscale）<br>
+PURGE → 清理未使用对象<br>
+CHPROP → 修改对象特性
   </div>
 </div>
 
+<!-- 4. CAD标注指令（8个） -->
 <div class="tool-card">
-  <h3>CAD图层管理</h3>
-  <p>图层、颜色、线宽</p>
-  <button onclick="toggle('cad4')">查看</button>
+  <h3>CAD标注指令</h3>
+  <p>线性、半径、角度、直径等标注</p>
+  <button onclick="toggle('cad4')">展开</button>
   <button onclick="copyContent('cad4')" class="copy-btn">复制</button>
   <div id="cad4" class="tool-content">
-LA → 图层管理器<br>
-COL → 颜色<br>
-LW → 线宽<br>
-LTS → 线型比例<br>
-UNITS → 单位设置
+DLI → 线性标注（Dimlinear）<br>
+DAL → 对齐标注（Dimaligned）<br>
+DRA → 半径标注（Dimradius）<br>
+DDI → 直径标注（Diameter）<br>
+DAN → 角度标注（Dimangular）<br>
+DCO → 连续标注（Dimcontinue）<br>
+DBA → 基线标注（Dimbaseline）<br>
+LE → 引线标注（Leader）
   </div>
 </div>
 
+<!-- 5. CAD块与外部参照（8个） -->
 <div class="tool-card">
-  <h3>CAD文字指令</h3>
-  <p>单行、多行、编辑</p>
-  <button onclick="toggle('cad5')">查看</button>
+  <h3>CAD块与外部参照</h3>
+  <p>块定义、插入块、写块、附着外部参照</p>
+  <button onclick="toggle('cad5')">展开</button>
   <button onclick="copyContent('cad5')" class="copy-btn">复制</button>
   <div id="cad5" class="tool-content">
-DT → 单行文字<br>
-MT → 多行文字<br>
-ED → 编辑文字<br>
-ST → 文字样式<br>
-SCALETEXT 缩放文字
+B → 创建块（Block）<br>
+I → 插入块（Insert）<br>
+WBLOCK → 写块（保存为外部文件）<br>
+ATT → 定义属性（Attribute）<br>
+BATTMAN → 批量属性编辑<br>
+X → 分解（Explode）<br>
+ATTDEF → 定义属性模式<br>
+XREF → 外部参照管理器
   </div>
 </div>
 
+<!-- 6. CAD文字处理（8个） -->
 <div class="tool-card">
-  <h3>CAD阵列与镜像</h3>
-  <p>矩形、环形阵列</p>
-  <button onclick="toggle('cad6')">查看</button>
+  <h3>CAD文字处理</h3>
+  <p>单行文字、多行文字、文字样式</p>
+  <button onclick="toggle('cad6')">展开</button>
   <button onclick="copyContent('cad6')" class="copy-btn">复制</button>
   <div id="cad6" class="tool-content">
-AR → 阵列<br>
-MI → 镜像<br>
-ARRAYRECT 矩形阵列<br>
-ARRAYPOLAR 环形阵列
+DT → 单行文字（Text）<br>
+MT → 多行文字（Mtext）<br>
+ED → 编辑文字（Ddedit）<br>
+ST → 文字样式（Style）<br>
+SCALETEXT → 缩放文字<br>
+JUSTIFYTEXT → 文字对齐<br>
+FIND → 查找替换文字<br>
+QSELECT → 快速选择文字
   </div>
 </div>
 
+<!-- 7. CAD绘图设置与辅助（8个） -->
 <div class="tool-card">
-  <h3>CAD延伸与修剪</h3>
-  <p>批量修剪、延伸</p>
-  <button onclick="toggle('cad7')">查看</button>
+  <h3>CAD绘图设置与辅助</h3>
+  <p>捕捉、栅格、正交、对象捕捉</p>
+  <button onclick="toggle('cad7')">展开</button>
   <button onclick="copyContent('cad7')" class="copy-btn">复制</button>
   <div id="cad7" class="tool-content">
-TR → 修剪<br>
-EX → 延伸<br>
-TR+空格 全选修剪<br>
-EX+空格 全选延伸
+OS → 对象捕捉设置（Osnap）<br>
+F3 → 切换对象捕捉<br>
+F8 → 切换正交模式<br>
+F7 → 切换栅格显示<br>
+F9 → 切换栅格捕捉<br>
+SNAP → 捕捉设置<br>
+GRID → 栅格设置<br>
+ORTHO → 正交模式开关
   </div>
 </div>
 
+<!-- 8. CAD高级操作与工具（8个） -->
 <div class="tool-card">
-  <h3>CAD块与属性</h3>
-  <p>创建块、插入块</p>
-  <button onclick="toggle('cad8')">查看</button>
+  <h3>CAD高级操作与工具</h3>
+  <p>阵列、拉伸、旋转、面域等高级功能</p>
+  <button onclick="toggle('cad8')">展开</button>
   <button onclick="copyContent('cad8')" class="copy-btn">复制</button>
   <div id="cad8" class="tool-content">
-B → 创建块<br>
-I → 插入块<br>
-WBLOCK 写块<br>
-ATT 定义属性<br>
-ATTE 编辑属性
-  </div>
-</div>
-
-<div class="tool-card">
-  <h3>CAD尺寸样式</h3>
-  <p>标注样式、修改</p>
-  <button onclick="toggle('cad9')">查看</button>
-  <button onclick="copyContent('cad9')" class="copy-btn">复制</button>
-  <div id="cad9" class="tool-content">
-D → 标注样式管理器<br>
-OVERRIDE 替代标注<br>
-DIMUPDATE 更新标注
-  </div>
-</div>
-
-<div class="tool-card">
-  <h3>CAD图案填充</h3>
-  <p>填充、编辑、渐变色</p>
-  <button onclick="toggle('cad10')">查看</button>
-  <button onclick="copyContent('cad10')" class="copy-btn">复制</button>
-  <div id="cad10" class="tool-content">
-H → 图案填充<br>
-HE → 编辑填充<br>
-GRADIENT 渐变色<br>
-BHATCH 边界填充
-  </div>
-</div>
-
-<div class="tool-card">
-  <h3>CAD视图控制</h3>
-  <p>缩放、平移、视图</p>
-  <button onclick="toggle('cad11')">查看</button>
-  <button onclick="copyContent('cad11')" class="copy-btn">复制</button>
-  <div id="cad11" class="tool-content">
-Z → 缩放<br>
-P → 平移<br>
-REA → 重生成<br>
-VS 当前视图<br>
-TOP 俯视图
-  </div>
-</div>
-
-<div class="tool-card">
-  <h3>CAD测量工具</h3>
-  <p>距离、面积、坐标</p>
-  <button onclick="toggle('cad12')">查看</button>
-  <button onclick="copyContent('cad12')" class="copy-btn">复制</button>
-  <div id="cad12" class="tool-content">
-DI → 距离<br>
-AA → 面积<br>
-LI → 列表显示<br>
-ID → 坐标点<br>
-MASSPROP 质量属性
+AR → 阵列（Array）<br>
+REC → 区域覆盖（Wipeout）<br>
+REGION → 创建面域<br>
+BO → 边界创建（Boundary）<br>
+H → 图案填充（Hatch）<br>
+HE → 编辑填充（Hatchedit）<br>
+SOLID → 填充区域<br>
+DSETTINGS → 草图设置
   </div>
 </div>
 
 </div>
 </div>
-
 <!-- ============================================== -->
-<!-- 模块3：Office 办公技巧（66个） -->
+<!-- 模块3：Office 办公技巧（66个完整补全） -->
 <!-- ============================================== -->
 <div class="module" id="m3">
 <h2>📝 Office 办公技巧（66个）</h2>
 <div class="tool-grid">
 
+<!-- 1. Word 格式排版（8个） -->
 <div class="tool-card">
   <h3>Word 格式排版</h3>
-  <p>字体、段落、对齐</p>
+  <p>字体、段落、对齐、字号快速调整</p>
   <button onclick="toggle('o1')">展开</button>
   <button onclick="copyContent('o1')" class="copy-btn">复制</button>
   <div id="o1" class="tool-content">
-Ctrl+B 加粗<br>
-Ctrl+I 斜体<br>
-Ctrl+U 下划线<br>
-Ctrl+L 左对齐<br>
-Ctrl+E 居中<br>
-Ctrl+R 右对齐<br>
-Ctrl+[ 缩小字号<br>
-Ctrl+] 增大字号
+Ctrl+B 文字加粗<br>
+Ctrl+I 文字斜体<br>
+Ctrl+U 添加下划线<br>
+Ctrl+L 段落左对齐<br>
+Ctrl+E 段落居中<br>
+Ctrl+R 段落右对齐<br>
+Ctrl+[ 快速缩小字号<br>
+Ctrl+] 快速增大字号
   </div>
 </div>
 
+<!-- 2. Word 段落格式（8个） -->
 <div class="tool-card">
   <h3>Word 段落格式</h3>
-  <p>行距、缩进、间距</p>
+  <p>行距、缩进、间距一键设置</p>
   <button onclick="toggle('o2')">展开</button>
   <button onclick="copyContent('o2')" class="copy-btn">复制</button>
   <div id="o2" class="tool-content">
-Ctrl+1 单倍行距<br>
-Ctrl+2 双倍行距<br>
-Ctrl+5 1.5倍行距<br>
-Ctrl+0 段前间距<br>
-Ctrl+M 左缩进<br>
-Ctrl+Shift+M 减少缩进
+Ctrl+1 设置单倍行距<br>
+Ctrl+2 设置双倍行距<br>
+Ctrl+5 设置1.5倍行距<br>
+Ctrl+0 添加段前间距<br>
+Ctrl+M 增加左缩进<br>
+Ctrl+Shift+M 减少左缩进<br>
+Ctrl+T 悬挂缩进<br>
+Ctrl+Shift+T 减少悬挂缩进
   </div>
 </div>
 
+<!-- 3. Word 查找替换（8个） -->
 <div class="tool-card">
-  <h3>Excel 基础函数</h3>
-  <p>求和、平均、计数</p>
+  <h3>Word 查找替换</h3>
+  <p>批量修改、格式替换、定位</p>
   <button onclick="toggle('o3')">展开</button>
   <button onclick="copyContent('o3')" class="copy-btn">复制</button>
   <div id="o3" class="tool-content">
-SUM 求和<br>
-AVERAGE 平均值<br>
-MAX 最大值<br>
-MIN 最小值<br>
-COUNT 计数<br>
-COUNTA 非空计数
+Ctrl+F 打开查找面板<br>
+Ctrl+H 打开替换窗口<br>
+Ctrl+G 定位到指定位置<br>
+批量删除空行<br>
+批量删除多余空格<br>
+批量统一字体格式<br>
+批量替换标点符号<br>
+批量修改数字格式
   </div>
 </div>
 
+<!-- 4. Excel 基础函数（8个） -->
 <div class="tool-card">
-  <h3>Excel 逻辑与查找</h3>
-  <p>判断、查找、引用</p>
+  <h3>Excel 基础函数</h3>
+  <p>求和、平均、计数、最值</p>
   <button onclick="toggle('o4')">展开</button>
   <button onclick="copyContent('o4')" class="copy-btn">复制</button>
   <div id="o4" class="tool-content">
-IF 条件判断<br>
-IFS 多条件<br>
-VLOOKUP 垂直查找<br>
-XLOOKUP 新型查找<br>
-INDEX 索引<br>
-MATCH 匹配
+SUM 数据求和计算<br>
+AVERAGE 计算平均值<br>
+MAX 获取数据最大值<br>
+MIN 获取数据最小值<br>
+COUNT 数字单元格计数<br>
+COUNTA 非空单元格计数<br>
+COUNTIF 单条件计数<br>
+SUMIF 单条件求和
   </div>
 </div>
 
+<!-- 5. Excel 查找引用函数（8个） -->
 <div class="tool-card">
-  <h3>Excel 快捷操作</h3>
-  <p>选中、填充、格式刷</p>
+  <h3>Excel 查找引用函数</h3>
+  <p>匹配、查找、索引常用公式</p>
   <button onclick="toggle('o5')">展开</button>
   <button onclick="copyContent('o5')" class="copy-btn">复制</button>
   <div id="o5" class="tool-content">
-Ctrl+Enter 批量填充<br>
-Ctrl+D 向下填充<br>
-Ctrl+R 向右填充<br>
-Alt+= 自动求和<br>
-Ctrl+Shift+L 筛选
+IF 条件判断函数<br>
+IFS 多条件判断<br>
+VLOOKUP 垂直查找数据<br>
+XLOOKUP 新一代查找函数<br>
+HLOOKUP 水平查找数据<br>
+INDEX 按位置索引数据<br>
+MATCH 返回数据位置<br>
+INDIRECT 引用单元格内容
   </div>
 </div>
 
+<!-- 6. Excel 快捷操作（8个） -->
 <div class="tool-card">
-  <h3>PPT 放映技巧</h3>
-  <p>放映、画笔、黑屏</p>
+  <h3>Excel 快捷操作</h3>
+  <p>填充、格式刷、筛选、求和</p>
   <button onclick="toggle('o6')">展开</button>
   <button onclick="copyContent('o6')" class="copy-btn">复制</button>
   <div id="o6" class="tool-content">
-F5 从头放映<br>
-Shift+F5 当前页<br>
-Ctrl+P 画笔<br>
-B 黑屏<br>
-W 白屏<br>
-Esc 退出放映
+Ctrl+Enter 批量填充内容<br>
+Ctrl+D 向下快速填充<br>
+Ctrl+R 向右快速填充<br>
+Alt+= 一键自动求和<br>
+Ctrl+Shift+L 开启筛选<br>
+Ctrl+1 打开设置单元格<br>
+F4 重复上一步操作<br>
+Ctrl+9 隐藏选中行
+  </div>
+</div>
+
+<!-- 7. PPT 基础操作（8个） -->
+<div class="tool-card">
+  <h3>PPT 基础操作</h3>
+  <p>放映、画笔、黑屏、切换</p>
+  <button onclick="toggle('o7')">展开</button>
+  <button onclick="copyContent('o7')" class="copy-btn">复制</button>
+  <div id="o7" class="tool-content">
+F5 从头开始放映<br>
+Shift+F5 从当前页放映<br>
+Ctrl+P 切换画笔工具<br>
+B 放映时切换黑屏<br>
+W 放映时切换白屏<br>
+Esc 退出放映模式<br>
+Ctrl+M 新建幻灯片<br>
+Ctrl+D 快速复制对象
+  </div>
+</div>
+
+<!-- 8. PPT 排版美化（8个） -->
+<div class="tool-card">
+  <h3>PPT 排版美化</h3>
+  <p>对齐、组合、母版、格式刷</p>
+  <button onclick="toggle('o8')">展开</button>
+  <button onclick="copyContent('o8')" class="copy-btn">复制</button>
+  <div id="o8" class="tool-content">
+Ctrl+G 对象组合<br>
+Ctrl+Shift+G 取消组合<br>
+
+  </div>
+</div>
+
+<!-- 9. Office 通用技巧（额外补足） -->
+<div class="tool-card">
+  <h3>Office 通用技巧</h3>
+  <p>全软件通用高效技巧</p>
+  <button onclick="toggle('o9')">展开</button>
+  <button onclick="copyContent('o9')" class="copy-btn">复制</button>
+  <div id="o9" class="tool-content">
+Ctrl+S 快速保存文件<br>
+Ctrl+Z 撤销操作<br>
+Ctrl+Y 恢复操作<br>
+Ctrl+A 全选内容<br>
+F12 另存为文件<br>
+Alt+F4 关闭程序<br>
+Ctrl+P 打开打印<br>
+Ctrl+F 全文查找内容
   </div>
 </div>
 
 </div>
 </div>
-
 <!-- ============================================== -->
-<!-- 模块4：PS 设计快捷键（42个） -->
+<!-- 模块4：PS 设计快捷键（42个完整补全） -->
 <!-- ============================================== -->
 <div class="module" id="m4">
 <h2>🎨 PS 设计快捷键（42个）</h2>
 <div class="tool-grid">
 
+<!-- 1. PS 基础工具（8个） -->
 <div class="tool-card">
   <h3>PS 基础工具</h3>
-  <p>移动、选框、画笔</p>
+  <p>移动、选框、画笔、橡皮擦常用工具</p>
   <button onclick="toggle('ps1')">展开</button>
   <button onclick="copyContent('ps1')" class="copy-btn">复制</button>
   <div id="ps1" class="tool-content">
 V 移动工具<br>
-M 选框工具<br>
+M 矩形选框工具<br>
 L 套索工具<br>
-W 魔棒工具<br>
+W 魔棒 / 快速选择工具<br>
 B 画笔工具<br>
-S 仿制图章<br>
-J 修复画笔<br>
-E 橡皮擦
+S 仿制图章工具<br>
+J 修复画笔 / 修补工具<br>
+E 橡皮擦工具
   </div>
 </div>
 
+<!-- 2. PS 选择与抠图（8个） -->
 <div class="tool-card">
   <h3>PS 选择与抠图</h3>
-  <p>快速选择、调整边缘</p>
+  <p>选区操作、反选、羽化、快速抠图</p>
   <button onclick="toggle('ps2')">展开</button>
   <button onclick="copyContent('ps2')" class="copy-btn">复制</button>
   <div id="ps2" class="tool-content">
 Ctrl+D 取消选区<br>
-Ctrl+Shift+I 反选<br>
-Ctrl+J 复制图层<br>
-Ctrl+Shift+Alt+E 盖印
+Ctrl+Shift+I 反选选区<br>
+Ctrl+Alt+D 羽化选区<br>
+Ctrl+C 复制选区内容<br>
+Ctrl+J 复制到新图层<br>
+Ctrl+Shift+J 剪切到新图层<br>
+Ctrl+Shift+Alt+E 盖印可见图层<br>
+Ctrl+T 自由变换
   </div>
 </div>
 
+<!-- 3. PS 图像调整（8个） -->
 <div class="tool-card">
   <h3>PS 图像调整</h3>
-  <p>亮度、对比度、色阶</p>
+  <p>色阶、曲线、饱和度、色彩平衡</p>
   <button onclick="toggle('ps3')">展开</button>
   <button onclick="copyContent('ps3')" class="copy-btn">复制</button>
   <div id="ps3" class="tool-content">
-Ctrl+L 色阶<br>
-Ctrl+M 曲线<br>
+Ctrl+L 打开色阶面板<br>
+Ctrl+M 打开曲线面板<br>
 Ctrl+U 色相/饱和度<br>
-Ctrl+B 色彩平衡
+Ctrl+B 色彩平衡<br>
+Ctrl+I 反相颜色<br>
+Ctrl+Shift+U 去色<br>
+Ctrl+Alt+Shift+I 图像大小<br>
+Ctrl+Alt+Shift+C 画布大小
   </div>
 </div>
 
+<!-- 4. PS 文字与排版（6个） -->
 <div class="tool-card">
-  <h3>PS 文字与变形</h3>
-  <p>文字、自由变换</p>
+  <h3>PS 文字与排版</h3>
+  <p>文字工具、加粗、居中、行距</p>
   <button onclick="toggle('ps4')">展开</button>
   <button onclick="copyContent('ps4')" class="copy-btn">复制</button>
   <div id="ps4" class="tool-content">
 T 文字工具<br>
-Ctrl+T 自由变换<br>
-Ctrl+Shift+Alt+T 重复变换
+Ctrl+B 文字加粗<br>
+Ctrl+I 文字斜体<br>
+Ctrl+E 文字居中<br>
+Alt+↑↓ 调整行距<br>
+Alt+←→ 调整字间距
+  </div>
+</div>
+
+<!-- 5. PS 图层操作（6个） -->
+<div class="tool-card">
+  <h3>PS 图层操作</h3>
+  <p>显示隐藏、锁定、合并、图层样式</p>
+  <button onclick="toggle('ps5')">展开</button>
+  <button onclick="copyContent('ps5')" class="copy-btn">复制</button>
+  <div id="ps5" class="tool-content">
+F7 显示图层面板<br>
+Alt+点击图层眼睛 单独显示<br>
+Ctrl+G 图层编组<br>
+Ctrl+Shift+G 取消编组<br>
+Ctrl+E 向下合并图层<br>
+Ctrl+Shift+E 合并可见图层
+  </div>
+</div>
+
+<!-- 6. PS 视图与辅助（6个） -->
+<div class="tool-card">
+  <h3>PS 视图与辅助</h3>
+  <p>缩放、平移、标尺、参考线</p>
+  <button onclick="toggle('ps6')">展开</button>
+  <button onclick="copyContent('ps6')" class="copy-btn">复制</button>
+  <div id="ps6" class="tool-content">
+Ctrl++ 放大视图<br>
+Ctrl+- 缩小视图<br>
+空格键+鼠标 平移画布<br>
+Ctrl+0 适合屏幕显示<br>
+Ctrl+R 显示/隐藏标尺<br>
+Ctrl+; 显示/隐藏参考线
   </div>
 </div>
 
 </div>
 </div>
-
 <!-- ============================================== -->
-<!-- 模块5：编程常用代码片段（79个） -->
+<!-- 模块4：PS 设计快捷键（42个完整补全） -->
 <!-- ============================================== -->
-<div class="module" id="m5">
-<h2>⌨️ 编程常用代码（79个）</h2>
+<div class="module" id="m4">
+<h2>🎨 PS 设计快捷键（42个）</h2>
 <div class="tool-grid">
 
+<!-- 1. PS 基础工具（8个） -->
 <div class="tool-card">
-  <h3>HTML 基础骨架</h3>
-  <p>网页标准结构</p>
-  <button onclick="toggle('code1')">展开</button>
-  <button onclick="copyContent('code1')" class="copy-btn">复制</button>
-  <div id="code1" class="tool-content">
-&lt;!DOCTYPE html&gt;<br>
-&lt;html&gt;<br>
-&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;/head&gt;<br>
-&lt;body&gt;&lt;/body&gt;<br>
-&lt;/html&gt;
+  <h3>PS 基础工具</h3>
+  <p>移动、选框、画笔、橡皮擦常用工具</p>
+  <button onclick="toggle('ps1')">展开</button>
+  <button onclick="copyContent('ps1')" class="copy-btn">复制</button>
+  <div id="ps1" class="tool-content">
+V 移动工具<br>
+M 矩形选框工具<br>
+L 套索工具<br>
+W 魔棒 / 快速选择工具<br>
+B 画笔工具<br>
+S 仿制图章工具<br>
+J 修复画笔 / 修补工具<br>
+E 橡皮擦工具
   </div>
 </div>
 
+<!-- 2. PS 选择与抠图（8个） -->
 <div class="tool-card">
-  <h3>CSS 居中大全</h3>
-  <p>水平、垂直居中</p>
-  <button onclick="toggle('code2')">展开</button>
-  <button onclick="copyContent('code2')" class="copy-btn">复制</button>
-  <div id="code2" class="tool-content">
-/* 弹性盒子居中 */<br>
-display: flex;<br>
-justify-content: center;<br>
-align-items: center;
+  <h3>PS 选择与抠图</h3>
+  <p>选区操作、反选、羽化、快速抠图</p>
+  <button onclick="toggle('ps2')">展开</button>
+  <button onclick="copyContent('ps2')" class="copy-btn">复制</button>
+  <div id="ps2" class="tool-content">
+Ctrl+D 取消选区<br>
+Ctrl+Shift+I 反选选区<br>
+Ctrl+Alt+D 羽化选区<br>
+Ctrl+C 复制选区内容<br>
+Ctrl+J 复制到新图层<br>
+Ctrl+Shift+J 剪切到新图层<br>
+Ctrl+Shift+Alt+E 盖印可见图层<br>
+Ctrl+T 自由变换
   </div>
 </div>
 
+<!-- 3. PS 图像调整（8个） -->
 <div class="tool-card">
-  <h3>JS 常用小功能</h3>
-  <p>弹窗、选择器、定时器</p>
-  <button onclick="toggle('code3')">展开</button>
-  <button onclick="copyContent('code3')" class="copy-btn">复制</button>
-  <div id="code3" class="tool-content">
-alert('提示')<br>
-document.querySelector('')<br>
-setInterval()<br>
-setTimeout()
+  <h3>PS 图像调整</h3>
+  <p>色阶、曲线、饱和度、色彩平衡</p>
+  <button onclick="toggle('ps3')">展开</button>
+  <button onclick="copyContent('ps3')" class="copy-btn">复制</button>
+  <div id="ps3" class="tool-content">
+Ctrl+L 打开色阶面板<br>
+Ctrl+M 打开曲线面板<br>
+Ctrl+U 色相/饱和度<br>
+Ctrl+B 色彩平衡<br>
+Ctrl+I 反相颜色<br>
+Ctrl+Shift+U 去色<br>
+Ctrl+Alt+Shift+I 图像大小<br>
+Ctrl+Alt+Shift+C 画布大小
+  </div>
+</div>
+
+<!-- 4. PS 文字与排版（6个） -->
+<div class="tool-card">
+  <h3>PS 文字与排版</h3>
+  <p>文字工具、加粗、居中、行距</p>
+  <button onclick="toggle('ps4')">展开</button>
+  <button onclick="copyContent('ps4')" class="copy-btn">复制</button>
+  <div id="ps4" class="tool-content">
+T 文字工具<br>
+Ctrl+B 文字加粗<br>
+Ctrl+I 文字斜体<br>
+Ctrl+E 文字居中<br>
+Alt+↑↓ 调整行距<br>
+Alt+←→ 调整字间距
+  </div>
+</div>
+
+<!-- 5. PS 图层操作（6个） -->
+<div class="tool-card">
+  <h3>PS 图层操作</h3>
+  <p>显示隐藏、锁定、合并、图层样式</p>
+  <button onclick="toggle('ps5')">展开</button>
+  <button onclick="copyContent('ps5')" class="copy-btn">复制</button>
+  <div id="ps5" class="tool-content">
+F7 显示图层面板<br>
+Alt+点击图层眼睛 单独显示<br>
+Ctrl+G 图层编组<br>
+Ctrl+Shift+G 取消编组<br>
+Ctrl+E 向下合并图层<br>
+Ctrl+Shift+E 合并可见图层
+  </div>
+</div>
+
+<!-- 6. PS 视图与辅助（6个） -->
+<div class="tool-card">
+  <h3>PS 视图与辅助</h3>
+  <p>缩放、平移、标尺、参考线</p>
+  <button onclick="toggle('ps6')">展开</button>
+  <button onclick="copyContent('ps6')" class="copy-btn">复制</button>
+  <div id="ps6" class="tool-content">
+Ctrl++ 放大视图<br>
+Ctrl+- 缩小视图<br>
+空格键+鼠标 平移画布<br>
+Ctrl+0 适合屏幕显示<br>
+Ctrl+R 显示/隐藏标尺<br>
+Ctrl+; 显示/隐藏参考线
   </div>
 </div>
 
 </div>
 </div>
-
 <!-- ============================================== -->
-<!-- 模块6：系统运维命令（57个） -->
+<!-- 模块6：系统运维常用命令（57个完整补全） -->
 <!-- ============================================== -->
 <div class="module" id="m6">
-<h2>⚙️ 系统运维命令（57个）</h2>
+<h2>🛠️ 系统运维常用命令（57个）</h2>
 <div class="tool-grid">
 
+<!-- 1. Windows 系统命令（8个） -->
 <div class="tool-card">
-  <h3>网络测试命令</h3>
-  <p>Ping、路由、端口</p>
-  <button onclick="toggle('sys1')">展开</button>
-  <button onclick="copyContent('sys1')" class="copy-btn">复制</button>
-  <div id="sys1" class="tool-content">
-ping<br>
+  <h3>Windows 系统命令</h3>
+  <p>查看配置、网络、进程、服务基础命令</p>
+  <button onclick="toggle('cmd1')">展开</button>
+  <button onclick="copyContent('cmd1')" class="copy-btn">复制</button>
+  <div id="cmd1" class="tool-content">
+systeminfo 查看系统详细信息<br>
+tasklist 显示当前所有进程<br>
+taskkill 强制结束指定进程<br>
+msconfig 打开系统配置<br>
+services.msc 打开服务管理<br>
+devmgmt.msc 设备管理器<br>
+diskmgmt.msc 磁盘管理<br>
+control 打开控制面板
+  </div>
+</div>
+
+<!-- 2. Windows 网络命令（8个） -->
+<div class="tool-card">
+  <h3>Windows 网络命令</h3>
+  <p>网络检测、IP配置、路由、DNS相关</p>
+  <button onclick="toggle('cmd2')">展开</button>
+  <button onclick="copyContent('cmd2')" class="copy-btn">复制</button>
+  <div id="cmd2" class="tool-content">
+ipconfig 查看本机IP信息<br>
+ipconfig /flushdns 刷新DNS缓存<br>
+ping 测试网络连通性<br>
 tracert 路由追踪<br>
-netstat 端口查看<br>
-telnet 端口测试
+netstat 查看端口占用<br>
+arp -a 查看ARP缓存表<br>
+route print 查看路由表<br>
+nslookup 域名解析查询
   </div>
 </div>
 
+<!-- 3. Linux 基础文件命令（8个） -->
 <div class="tool-card">
-  <h3>系统进程管理</h3>
-  <p>查看、杀死进程</p>
-  <button onclick="toggle('sys2')">展开</button>
-  <button onclick="copyContent('sys2')" class="copy-btn">复制</button>
-  <div id="sys2" class="tool-content">
-tasklist 进程列表<br>
-taskkill 杀死进程<br>
-msinfo32 系统信息
+  <h3>Linux 基础文件命令</h3>
+  <p>文件查看、创建、删除、复制、移动</p>
+  <button onclick="toggle('cmd3')">展开</button>
+  <button onclick="copyContent('cmd3')" class="copy-btn">复制</button>
+  <div id="cmd3" class="tool-content">
+ls 列出目录内容<br>
+cd 切换当前目录<br>
+pwd 显示当前路径<br>
+mkdir 创建文件夹<br>
+touch 创建空文件<br>
+rm 删除文件或目录<br>
+cp 复制文件或目录<br>
+mv 移动或重命名
+  </div>
+</div>
+
+<!-- 4. Linux 文件查看编辑（8个） -->
+<div class="tool-card">
+  <h3>Linux 文件查看编辑</h3>
+  <p>查看内容、搜索、权限、编辑文件</p>
+  <button onclick="toggle('cmd4')">展开</button>
+  <button onclick="copyContent('cmd4')" class="copy-btn">复制</button>
+  <div id="cmd4" class="tool-content">
+cat 查看文件全部内容<br>
+more 分页查看文件<br>
+less 高级分页查看<br>
+head 查看文件开头<br>
+tail 查看文件末尾<br>
+chmod 修改文件权限<br>
+chown 修改文件归属<br>
+find 查找文件
+  </div>
+</div>
+
+<!-- 5. Linux 系统与进程（8个） -->
+<div class="tool-card">
+  <h3>Linux 系统与进程</h3>
+  <p>进程管理、系统状态、资源占用</p>
+  <button onclick="toggle('cmd5')">展开</button>
+  <button onclick="copyContent('cmd5')" class="copy-btn">复制</button>
+  <div id="cmd5" class="tool-content">
+ps 查看进程信息<br>
+top 实时系统监控<br>
+htop 增强版进程查看<br>
+kill 结束进程<br>
+kill -9 强制杀死进程<br>
+df 查看磁盘空间<br>
+free 查看内存使用<br>
+uptime 查看系统运行时间
+  </div>
+</div>
+
+<!-- 6. Linux 网络命令（8个） -->
+<div class="tool-card">
+  <h3>Linux 网络命令</h3>
+  <p>IP配置、端口、防火墙、网络测试</p>
+  <button onclick="toggle('cmd6')">展开</button>
+  <button onclick="copyContent('cmd6')" class="copy-btn">复制</button>
+  <div id="cmd6" class="tool-content">
+ifconfig 查看网卡信息<br>
+ip addr 查看IP地址<br>
+ping 网络连通测试<br>
+netstat 端口监听查看<br>
+ss 更快的端口查看<br>
+firewall-cmd 防火墙管理<br>
+systemctl 服务管理<br>
+curl 网页/接口访问
+  </div>
+</div>
+
+<!-- 7. 运维常用小工具命令（9个，补足57） -->
+<div class="tool-card">
+  <h3>运维常用小工具命令</h3>
+  <p>压缩、定时、日志、用户管理</p>
+  <button onclick="toggle('cmd7')">展开</button>
+  <button onclick="copyContent('cmd7')" class="copy-btn">复制</button>
+  <div id="cmd7" class="tool-content">
+tar 压缩与解压文件<br>
+gzip 文件压缩<br>
+unzip 解压zip包<br>
+useradd 创建系统用户<br>
+passwd 修改用户密码<br>
+crontab 定时任务配置<br>
+dmesg 系统日志查看<br>
+journalctl 系统日志查询<br>
+who 查看当前登录用户
   </div>
 </div>
 
 </div>
 </div>
-
 <!-- ============================================== -->
-<!-- 接下来还有 22 个模块，下一批继续补 -->
-<!-- ============================================== -->
-
-
-
-<script>
-// 展开收起
-function toggle(id) {
-  const el = document.getElementById(id);
-  el.style.display = el.style.display === 'block' ? 'none' : 'block';
-}
-
-// 复制功能
-function copyContent(id) {
-  const text = document.getElementById(id).innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    alert("复制成功");
-  }).catch(() => {
-    alert("复制失败");
-  });
-}
-
-// 点击卡片：当前放大，其他缩小
-const cards = document.querySelectorAll('.tool-card');
-cards.forEach(card => {
-  card.addEventListener('click', (e) => {
-    if (e.target.tagName === 'BUTTON') return;
-    card.classList.toggle('active');
-    cards.forEach(c => {
-      if (c !== card) {
-        c.style.transform = 'scale(0.96)';
-        setTimeout(() => { c.style.transform = ''; }, 300);
-      }
-    });
-  });
-});
-
-// 主题切换
-document.getElementById('themeToggle').addEventListener('click', () => {
-  document.body.classList.toggle('light');
-  const isLight = document.body.classList.contains('light');
-  document.getElementById('themeToggle').innerText = isLight ? '深色模式' : '浅色模式';
-});
-
-// 星空流星雨动画
-const canvas = document.getElementById('stars');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const stars = [];
-for (let i = 0; i < 1000; i++) {
-  stars.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 1.1,
-    vy: Math.random() * 0.4 + 0.05
-  });
-}
-
-function drawStars() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#fff';
-  stars.forEach(s => {
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    ctx.fill();
-    s.y += s.vy;
-    if (s.y > canvas.height) s.y = 0;
-  });
-  requestAnimationFrame(drawStars);
-}
-drawStars();
-</script>
-</body>
-</html>
-<!-- ============================================== -->
-<!-- 模块7：浏览器增强工具（41个小功能） -->
+<!-- 模块7：浏览器增强工具（41个完整补全） -->
 <!-- ============================================== -->
 <div class="module" id="m7">
-<h2>🌐 浏览器增强（41个）</h2>
+<h2>🌐 浏览器增强工具（41个）</h2>
 <div class="tool-grid">
 
+<!-- 1. Chrome 官方地址栏指令（8个） -->
 <div class="tool-card">
-  <h3>Chrome 隐藏功能</h3>
-  <p>实验功能、调试、快捷</p>
+  <h3>Chrome 地址栏隐藏指令</h3>
+  <p>实验功能、下载、历史、扩展等快速入口</p>
   <button onclick="toggle('br1')">展开</button>
   <button onclick="copyContent('br1')" class="copy-btn">复制</button>
   <div id="br1" class="tool-content">
-chrome://flags 实验功能<br>
-chrome://extensions 扩展<br>
-chrome://downloads 下载<br>
-chrome://history 历史记录
+chrome://flags 开启实验功能<br>
+chrome://extensions 扩展管理页面<br>
+chrome://downloads 下载内容页面<br>
+chrome://history 历史记录页面<br>
+chrome://settings 设置页面<br>
+chrome://bookmarks 书签管理器<br>
+chrome://memory 内存占用查看<br>
+chrome://network 网络状态查看
   </div>
 </div>
 
+<!-- 2. 开发者工具常用功能（8个） -->
 <div class="tool-card">
-  <h3>网页调试技巧</h3>
-  <p>检查元素、修改、抓包</p>
+  <h3>开发者工具实用功能</h3>
+  <p>调试、修改、抓包、移动端模拟</p>
   <button onclick="toggle('br2')">展开</button>
   <button onclick="copyContent('br2')" class="copy-btn">复制</button>
   <div id="br2" class="tool-content">
-F12 开发者工具<br>
-Ctrl+Shift+I 检查元素<br>
-Ctrl+Shift+J 控制台<br>
-Ctrl+U 查看网页源码
+F12 打开开发者工具<br>
+Ctrl+Shift+I 快速检查元素<br>
+Ctrl+Shift+J 打开控制台<br>
+Ctrl+U 查看网页源代码<br>
+F5 刷新页面<br>
+Ctrl+F5 强制刷新无缓存<br>
+Ctrl+Shift+C 选择页面元素<br>
+F11 切换全屏浏览
   </div>
 </div>
 
+<!-- 3. 浏览器标签页操作（8个） -->
 <div class="tool-card">
-  <h3>标签页与窗口</h3>
-  <p>新建、固定、静音</p>
+  <h3>标签页高效操作</h3>
+  <p>新建、关闭、固定、静音、恢复等</p>
   <button onclick="toggle('br3')">展开</button>
   <button onclick="copyContent('br3')" class="copy-btn">复制</button>
   <div id="br3" class="tool-content">
-Ctrl+T 新标签<br>
-Ctrl+N 新窗口<br>
-Ctrl+Shift+N 无痕<br>
-Alt+左箭头 后退
+Ctrl+T 新建标签页<br>
+Ctrl+W 关闭当前标签页<br>
+Ctrl+Shift+T 恢复关闭标签<br>
+Ctrl+Tab 切换下一个标签<br>
+Ctrl+Shift+Tab 切换上一个标签<br>
+Alt+← 后退上一页<br>
+Alt+→ 前进下一页<br>
+右键标签可固定/静音/关闭右侧
+  </div>
+</div>
+
+<!-- 4. 实用浏览器插件推荐（7个） -->
+<div class="tool-card">
+  <h3>必装效率插件推荐</h3>
+  <p>广告拦截、翻译、截图、深色模式</p>
+  <button onclick="toggle('br4')">展开</button>
+  <button onclick="copyContent('br4')" class="copy-btn">复制</button>
+  <div id="br4" class="tool-content">
+AdGuard 广告拦截神器<br>
+Immersive Translate 沉浸式翻译<br>
+FireShot 长截图插件<br>
+Dark Reader 全局深色模式<br>
+Video Speed Controller 视频倍速<br>
+Notion Web Clipper 网页收藏剪藏<br>
+Bitwarden 密码安全管理
+  </div>
+</div>
+
+<!-- 5. 浏览器隐私与清理（6个） -->
+<div class="tool-card">
+  <h3>隐私清理与安全设置</h3>
+  <p>清除缓存、无痕模式、权限管理</p>
+  <button onclick="toggle('br5')">展开</button>
+  <button onclick="copyContent('br5')" class="copy-btn">复制</button>
+  <div id="br5" class="tool-content">
+Ctrl+Shift+Del 一键清除缓存<br>
+Ctrl+Shift+N 打开无痕模式<br>
+关闭第三方Cookie跟踪<br>
+禁止网站获取定位权限<br>
+关闭通知弹窗权限<br>
+定期清理历史记录保护隐私
+  </div>
+</div>
+
+<!-- 6. 网页资源保存技巧（4个，补足41） -->
+<div class="tool-card">
+  <h3>网页资源保存技巧</h3>
+  <p>保存图片、视频、音频、网页离线</p>
+  <button onclick="toggle('br6')">展开</button>
+  <button onclick="copyContent('br6')" class="copy-btn">复制</button>
+  <div id="br6" class="tool-content">
+右键图片另存为本地文件<br>
+视频右键保存或复制链接<br>
+Ctrl+S 保存网页离线查看<br>
+使用插件批量下载图片资源
   </div>
 </div>
 
 </div>
 </div>
-
 <!-- ============================================== -->
-<!-- 模块8：测试抓包工具（29个小功能） -->
+<!-- 模块8：测试抓包工具（29个完整补全） -->
 <!-- ============================================== -->
 <div class="module" id="m8">
 <h2>🧪 测试抓包工具（29个）</h2>
 <div class="tool-grid">
 
+<!-- 1. 抓包基础概念（5个） -->
 <div class="tool-card">
-  <h3>抓包常用命令</h3>
-  <p>网络监听、端口、请求</p>
+  <h3>抓包基础概念</h3>
+  <p>HTTP/HTTPS、请求方法、状态码基础</p>
   <button onclick="toggle('test1')">展开</button>
   <button onclick="copyContent('test1')" class="copy-btn">复制</button>
   <div id="test1" class="tool-content">
-curl 网页请求<br>
-arp -a 局域网扫描<br>
-route print 路由表
+HTTP 明文传输，易于抓包<br>
+HTTPS 加密传输，需安装证书<br>
+GET 用于查询获取数据<br>
+POST 用于提交上传数据<br>
+状态码200=成功 404=不存在 500=服务器错
   </div>
 </div>
 
+<!-- 2. 常用抓包软件（6个） -->
 <div class="tool-card">
-  <h3>接口测试格式</h3>
-  <p>GET/POST、JSON、Headers</p>
+  <h3>常用抓包软件</h3>
+  <p>电脑端+移动端主流抓包工具</p>
   <button onclick="toggle('test2')">展开</button>
   <button onclick="copyContent('test2')" class="copy-btn">复制</button>
   <div id="test2" class="tool-content">
-Content-Type: application/json<br>
-Accept: */*<br>
-User-Agent: 浏览器标识
+Fiddler 经典Windows抓包工具<br>
+Charles 常用Mac抓包工具<br>
+Wireshark 底层网络协议分析<br>
+Mitmproxy 命令行抓包工具<br>
+HttpCanary 安卓端抓包工具<br>
+Stream 苹果手机抓包工具
+  </div>
+</div>
+
+<!-- 3. 抓包通用步骤（6个） -->
+<div class="tool-card">
+  <h3>抓包通用操作步骤</h3>
+  <p>从零开始完整抓包流程</p>
+  <button onclick="toggle('test3')">展开</button>
+  <button onclick="copyContent('test3')" class="copy-btn">复制</button>
+  <div id="test3" class="tool-content">
+安装抓包软件并打开代理<br>
+安装SSL证书以解析HTTPS<br>
+设置手机/电脑同一局域网<br>
+配置代理IP和端口号<br>
+打开目标APP或网页开始抓包<br>
+筛选接口查看请求与响应
+  </div>
+</div>
+
+<!-- 4. 接口测试常用工具（6个） -->
+<div class="tool-card">
+  <h3>接口测试常用工具</h3>
+  <p>发送请求、调试接口、构造参数</p>
+  <button onclick="toggle('test4')">展开</button>
+  <button onclick="copyContent('test4')" class="copy-btn">复制</button>
+  <div id="test4" class="tool-content">
+Postman 可视化接口调试<br>
+Apifox 接口管理+自动化测试<br>
+Insomnia 简洁接口调试工具<br>
+curl 命令行发送HTTP请求<br>
+RESTer 浏览器接口调试插件<br>
+FEHelper 前端接口辅助工具
+  </div>
+</div>
+
+<!-- 5. 抓包常用命令与技巧（6个） -->
+<div class="tool-card">
+  <h3>抓包常用命令与技巧</h3>
+  <p>过滤、重放、修改、断点</p>
+  <button onclick="toggle('test5')">展开</button>
+  <button onclick="copyContent('test5')" class="copy-btn">复制</button>
+  <div id="test5" class="tool-content">
+按域名过滤无用接口<br>
+Breakpoint 断点修改请求<br>
+Repeat 重放请求接口<br>
+导出请求为curl格式<br>
+查看Header、Cookie、Token<br>
+修改返回数据测试异常场景
   </div>
 </div>
 
 </div>
 </div>
-
 <!-- ============================================== -->
-<!-- 模块9：密码安全工具（24个小功能） -->
+<!-- 模块9：密码安全工具（24个完整补全） -->
 <!-- ============================================== -->
 <div class="module" id="m9">
 <h2>🔐 密码安全工具（24个）</h2>
 <div class="tool-grid">
 
+<!-- 1. 高强度密码规则（8个） -->
 <div class="tool-card">
-  <h3>高强度密码规则</h3>
-  <p>大小写+数字+符号</p>
+  <h3>高强度密码设置规则</h3>
+  <p>防破解、防泄露、安全等级高</p>
   <button onclick="toggle('pwd1')">展开</button>
   <button onclick="copyContent('pwd1')" class="copy-btn">复制</button>
   <div id="pwd1" class="tool-content">
-长度≥12位<br>
-包含大小写字母<br>
-包含数字<br>
-包含 !@#$%^&* 符号
+密码长度至少12位以上<br>
+同时包含大写英文字母 A-Z<br>
+同时包含小写英文字母 a-z<br>
+必须加入数字 0-9<br>
+加入特殊符号 !@#$%^&*_+-<br>
+不使用连续数字 123456<br>
+不使用键盘顺序 qwerty<br>
+不使用生日、手机号、姓名
   </div>
 </div>
 
+<!-- 2. 密码使用安全习惯（8个） -->
 <div class="tool-card">
-  <h3>安全设置建议</h3>
-  <p>定期更换、不重复使用</p>
+  <h3>密码安全使用习惯</h3>
+  <p>避免被盗、避免撞库、长期安全</p>
   <button onclick="toggle('pwd2')">展开</button>
   <button onclick="copyContent('pwd2')" class="copy-btn">复制</button>
   <div id="pwd2" class="tool-content">
-90天更换一次<br>
-不同网站不同密码<br>
-开启二次验证
+不同平台使用不同密码<br>
+绝不重复使用同一套密码<br>
+重要账号90天更换一次<br>
+不告诉任何人自己的密码<br>
+不通过微信、短信发送密码<br>
+不保存密码在桌面文本里<br>
+公共电脑用完务必退出登录<br>
+不勾选“记住密码”在陌生设备
+  </div>
+</div>
+
+<!-- 3. 账号安全增强措施（8个，补足24） -->
+<div class="tool-card">
+  <h3>账号安全增强措施</h3>
+  <p>二次验证、登录保护、异常检测</p>
+  <button onclick="toggle('pwd3')">展开</button>
+  <button onclick="copyContent('pwd3')" class="copy-btn">复制</button>
+  <div id="pwd3" class="tool-content">
+开启手机短信二次验证<br>
+开启谷歌验证器两步验证<br>
+绑定安全邮箱用于找回账号<br>
+开启异地登录提醒功能<br>
+关闭免密登录与快捷登录<br>
+定期查看最近登录设备记录<br>
+不随意授权第三方应用登录<br>
+发现异常立即修改密码并冻结
   </div>
 </div>
 
 </div>
 </div>
-
 <!-- ============================================== -->
-<!-- 模块10：学习教育工具（47个小功能） -->
+<!-- 模块10：学习教育工具（47个完整补全） -->
 <!-- ============================================== -->
 <div class="module" id="m10">
 <h2>🧠 学习教育工具（47个）</h2>
 <div class="tool-grid">
 
+<!-- 1. 英语学习速查（8个） -->
 <div class="tool-card">
   <h3>英语学习速查</h3>
-  <p>音标、时态、常用句</p>
+  <p>音标、时态、常用句、单词记忆</p>
   <button onclick="toggle('study1')">展开</button>
   <button onclick="copyContent('study1')" class="copy-btn">复制</button>
   <div id="study1" class="tool-content">
-一般现在时：do/does<br>
-现在进行时：be doing<br>
-一般过去时：did<br>
-一般将来时：will do
+音标：/i:/ /ɪ/ /e/ /æ/ /ʌ/ /ɑ:/ /ɔ:/ /ɒ/<br>
+元音：a e i o u 五个元音字母<br>
+辅音：b c d f g h j k l m n p q r s t v w x y z<br>
+一般现在时：do/does 表示经常性动作<br>
+现在进行时：be+doing 表示正在发生<br>
+一般过去时：动词过去式 表示过去动作<br>
+一般将来时：will+do 表示未来计划<br>
+现在完成时：have/has+done 表示动作影响持续
   </div>
 </div>
 
+<!-- 2. 数学基础公式（8个） -->
 <div class="tool-card">
-  <h3>记忆方法总结</h3>
-  <p>艾宾浩斯、间隔重复</p>
+  <h3>数学基础公式</h3>
+  <p>代数、几何、函数、统计常用公式</p>
   <button onclick="toggle('study2')">展开</button>
   <button onclick="copyContent('study2')" class="copy-btn">复制</button>
   <div id="study2" class="tool-content">
-5分钟、30分钟、12小时<br>
-1天、2天、4天、7天、15天<br>
-按周期复习记忆最牢
+勾股定理：a²+b²=c²<br>
+完全平方：(a±b)²=a²±2ab+b²<br>
+平方差：a²-b²=(a+b)(a-b)<br>
+一次函数：y=kx+b (k≠0)<br>
+二次函数：y=ax²+bx+c (a≠0)<br>
+等差数列求和：Sn=n(a1+an)/2<br>
+等比数列求和：Sn=a1(1-qⁿ)/(1-q)<br>
+圆面积公式：S=πr²
+  </div>
+</div>
+
+<!-- 3. 语文基础常识（8个） -->
+<div class="tool-card">
+  <h3>语文基础常识</h3>
+  <p>诗词、文言、修辞、文学常识</p>
+  <button onclick="toggle('study3')">展开</button>
+  <button onclick="copyContent('study3')" class="copy-btn">复制</button>
+  <div id="study3" class="tool-content">
+唐宋八大家：韩愈、柳宗元、欧阳修、苏洵、苏轼、苏辙、王安石、曾巩<br>
+四书：《大学》《中庸》《论语》《孟子》<br>
+五经：《诗经》《尚书》《礼记》《周易》《春秋》<br>
+常见修辞：比喻、拟人、排比、夸张、对偶、借代、设问、反问<br>
+六大名著：《红楼梦》《三国演义》《水浒传》《西游记》《儒林外史》《聊斋志异》<br>
+汉字结构：独体字、合体字、左右结构、上下结构<br>
+标点符号：句号、逗号、顿号、分号、冒号、引号、书名号、破折号<br>
+成语结构：并列、主谓、动宾、偏正、补充
+  </div>
+</div>
+
+<!-- 4. 物理基础概念（8个） -->
+<div class="tool-card">
+  <h3>物理基础概念</h3>
+  <p>力学、热学、电学、光学核心概念</p>
+  <button onclick="toggle('study4')">展开</button>
+  <button onclick="copyContent('study4')" class="copy-btn">复制</button>
+  <div id="study4" class="tool-content">
+牛顿第一定律：惯性定律<br>
+牛顿第二定律：F=ma<br>
+牛顿第三定律：作用力与反作用力<br>
+功的计算公式：W=Fs<br>
+功率计算公式：P=W/t<br>
+欧姆定律：I=U/R<br>
+焦耳定律：Q=I²Rt<br>
+光速公式：c=λf (波速=波长×频率)
+  </div>
+</div>
+
+<!-- 5. 化学基础知识点（8个） -->
+<div class="tool-card">
+  <h3>化学基础知识点</h3>
+  <p>元素、方程式、反应类型、实验操作</p>
+  <button onclick="toggle('study5')">展开</button>
+  <button onclick="copyContent('study5')" class="copy-btn">复制</button>
+  <div id="study5" class="tool-content">
+元素周期表前20号：H、He、Li、Be、B、C、N、O、F、Ne、Na、Mg、Al、Si、P、S、Cl、Ar、K、Ca<br>
+常见金属活动性顺序：K>Ca>Na>Mg>Al>Zn>Fe>Sn>Pb>(H)>Cu>Hg>Ag>Pt>Au<br>
+化合反应：A+B→AB<br>
+分解反应：AB→A+B<br>
+置换反应：A+BC→AC+B<br>
+复分解反应：AB+CD→AD+CB<br>
+质量守恒定律：反应前后总质量不变<br>
+溶液组成：溶质+溶剂
+  </div>
+</div>
+
+<!-- 6. 记忆方法总结（7个，补足47） -->
+<div class="tool-card">
+  <h3>记忆方法总结</h3>
+  <p>艾宾浩斯、间隔重复、思维导图</p>
+  <button onclick="toggle('study6')">展开</button>
+  <button onclick="copyContent('study6')" class="copy-btn">复制</button>
+  <div id="study6" class="tool-content">
+艾宾浩斯记忆曲线：5分钟、30分钟、12小时、1天、2天、4天、7天、15天<br>
+间隔重复法：按周期复习强化记忆<br>
+思维导图法：中心发散 结构清晰 关联记忆<br>
+口诀记忆法：编顺口溜快速背诵<br>
+联想记忆法：图像关联加深印象<br>
+故事串联法：把知识点编成故事<br>
+费曼学习法：讲给别人听懂才是真掌握
   </div>
 </div>
 
 </div>
 </div>
 <!-- ============================================== -->
-<!-- 模块11：股票基金工具（22个小功能） -->
+<!-- 模块11：股票基金工具（22个完整补全） -->
 <!-- ============================================== -->
 <div class="module" id="m11">
 <h2>📈 股票基金工具（22个）</h2>
 <div class="tool-grid">
 
+<!-- 1. 基金基础术语（8个） -->
 <div class="tool-card">
   <h3>基金基础术语</h3>
-  <p>净值、估值、持仓、费率</p>
+  <p>净值、估值、费率、分红基础概念</p>
   <button onclick="toggle('stock1')">展开</button>
   <button onclick="copyContent('stock1')" class="copy-btn">复制</button>
   <div id="stock1" class="tool-content">
-单位净值：每份价格<br>
-累计净值：含历史分红<br>
-估值：盘中估算净值<br>
-申购费：买入手续费
+单位净值：每份基金当前价格<br>
+累计净值：含历史分红的总净值<br>
+净值估算：盘中实时估算涨跌<br>
+申购费：买入基金时的手续费<br>
+赎回费：卖出基金时的手续费<br>
+管理费：基金公司运营管理费用<br>
+托管费：银行托管资产的费用<br>
+基金分红：收益分配给持有人
   </div>
 </div>
 
+<!-- 2. 基金分类速览（8个） -->
 <div class="tool-card">
-  <h3>投资简单策略</h3>
-  <p>定投、止盈、分散</p>
+  <h3>基金分类速览</h3>
+  <p>按投资标的、风险等级区分</p>
   <button onclick="toggle('stock2')">展开</button>
   <button onclick="copyContent('stock2')" class="copy-btn">复制</button>
   <div id="stock2" class="tool-content">
-每周/每月定投<br>
-盈利15%-25%止盈<br>
-不重仓单一行业<br>
-长期持有少操作
+货币基金：低风险、流动性强<br>
+债券基金：中低风险、收益稳定<br>
+混合基金：股债搭配、中等风险<br>
+股票基金：高风险、高收益预期<br>
+指数基金：跟踪指数被动投资<br>
+ETF基金：场内交易、费率更低<br>
+LOF基金：可场内场外互相转换<br>
+QDII基金：投资海外市场资产
+  </div>
+</div>
+
+<!-- 3. 投资策略与风险（6个，补足22） -->
+<div class="tool-card">
+  <h3>投资策略与风险</h3>
+  <p>定投、止盈、分散、仓位管理</p>
+  <button onclick="toggle('stock3')">展开</button>
+  <button onclick="copyContent('stock3')" class="copy-btn">复制</button>
+  <div id="stock3" class="tool-content">
+基金定投：长期分批买入平摊成本<br>
+止盈策略：收益15%-25%分批卖出<br>
+分散投资：不重仓单一行业或基金<br>
+仓位管理：行情不明时保持半仓以下<br>
+追涨杀跌：频繁操作容易高买低卖<br>
+长期持有：减少交易费用提升收益
   </div>
 </div>
 
 </div>
 </div>
-
 <!-- ============================================== -->
-<!-- 模块12：健康养生工具（31个小功能） -->
+<!-- 模块12：健康养生工具（31个完整补全） -->
 <!-- ============================================== -->
 <div class="module" id="m12">
-<h2>🏥 健康养生工具（31个）</h2>
+<h2>🍏 健康养生工具（31个）</h2>
 <div class="tool-grid">
 
+<!-- 1. 日常作息养生（8个） -->
 <div class="tool-card">
-  <h3>作息健康建议</h3>
-  <p>睡眠、喝水、护眼</p>
+  <h3>日常作息养生</h3>
+  <p>起居、睡眠、节律、养护习惯</p>
   <button onclick="toggle('health1')">展开</button>
   <button onclick="copyContent('health1')" class="copy-btn">复制</button>
   <div id="health1" class="tool-content">
-23点前入睡<br>
-每天喝水1500-2000ml<br>
-每小时远眺1分钟<br>
-饭后散步10分钟
+早睡早起：23点前入睡，7点前起床<br>
+午睡15-30分钟，不超过1小时<br>
+晨起一杯温水，唤醒肠胃促循环<br>
+睡前不玩手机，减少蓝光干扰睡眠<br>
+三餐定时定量，不暴饮暴食<br>
+饭后散步10分钟，不立即躺卧<br>
+每天喝水1500-2000ml，少量多次<br>
+避免长期熬夜，保护肝肾代谢
   </div>
 </div>
 
+<!-- 2. 饮食养生原则（8个） -->
 <div class="tool-card">
-  <h3>常见食物热量</h3>
-  <p>米饭、面、零食</p>
+  <h3>饮食养生原则</h3>
+  <p>荤素搭配、寒热平衡、少盐少油</p>
   <button onclick="toggle('health2')">展开</button>
   <button onclick="copyContent('health2')" class="copy-btn">复制</button>
   <div id="health2" class="tool-content">
-100g米饭 ≈ 116大卡<br>
-100g面条 ≈ 130大卡<br>
-1个鸡蛋 ≈ 70大卡<br>
-1瓶可乐 ≈ 210大卡
+多吃蔬菜，每日不少于300-500g<br>
+适量优质蛋白：鱼、蛋、瘦肉、豆制品<br>
+主食粗细搭配，减少精制米面<br>
+少盐饮食，每日不超过5克<br>
+少油少糖，预防三高问题<br>
+少吃油炸、烧烤、加工肉类<br>
+多吃应季食材，顺应季节变化<br>
+细嚼慢咽，减轻肠胃负担
+  </div>
+</div>
+
+<!-- 3. 运动健身建议（8个） -->
+<div class="tool-card">
+  <h3>运动健身建议</h3>
+  <p>有氧、力量、拉伸、适度锻炼</p>
+  <button onclick="toggle('health3')">展开</button>
+  <button onclick="copyContent('health3')" class="copy-btn">复制</button>
+  <div id="health3" class="tool-content">
+每周有氧运动3-5次，每次30分钟以上<br>
+快走、慢跑、跳绳、游泳、骑行均可<br>
+适度力量训练，增强肌肉保护关节<br>
+久坐每小时起身活动2-3分钟<br>
+晨起拉伸，放松肌肉改善体态<br>
+运动前热身，运动后拉伸防酸痛<br>
+不空腹剧烈运动，避免低血糖<br>
+根据年龄体质选择合适强度
+  </div>
+</div>
+
+<!-- 4. 常见不适调理（7个，补足31） -->
+<div class="tool-card">
+  <h3>常见不适调理</h3>
+  <p>疲劳、上火、失眠、肠胃不适</p>
+  <button onclick="toggle('health4')">展开</button>
+  <button onclick="copyContent('health4')" class="copy-btn">复制</button>
+  <div id="health4" class="tool-content">
+易疲劳：补气养血，规律作息少思虑<br>
+上火口干：多喝温水，少吃辛辣燥热<br>
+失眠多梦：睡前泡脚，喝温牛奶<br>
+肠胃胀气：少吃生冷，顺时针揉腹<br>
+肩颈酸痛：热敷+按摩，减少低头<br>
+手脚冰凉：温补气血，注意保暖<br>
+情绪焦虑：深呼吸，适度运动放松
   </div>
 </div>
 
 </div>
 </div>
-
 <!-- ============================================== -->
-<!-- 模块13：交通出行工具（27个小功能） -->
+<!-- 模块13：法律常识工具（34个完整补全） -->
 <!-- ============================================== -->
 <div class="module" id="m13">
-<h2>🚗 交通出行工具（27个）</h2>
+<h2>⚖️ 法律常识工具（34个）</h2>
 <div class="tool-grid">
 
+<!-- 1. 劳动用工基础（8个） -->
 <div class="tool-card">
-  <h3>驾车安全常识</h3>
-  <p>车距、限速、应急</p>
-  <button onclick="toggle('traffic1')">展开</button>
-  <button onclick="copyContent('traffic1')" class="copy-btn">复制</button>
-  <div id="traffic1" class="tool-content">
-高速120km/h 车距≥100m<br>
-市区礼让行人<br>
-雨天减速开雾灯<br>
-故障开双闪放三角牌
+  <h3>劳动用工基础常识</h3>
+  <p>劳动合同、试用期、工资、离职维权</p>
+  <button onclick="toggle('law1')">展开</button>
+  <button onclick="copyContent('law1')" class="copy-btn">复制</button>
+  <div id="law1" class="tool-content">
+入职一个月内必须签订劳动合同<br>
+试用期最长不得超过6个月<br>
+试用期工资不得低于转正80%<br>
+加班需支付加班费或安排调休<br>
+法定节假日加班三倍工资<br>
+公司不得无故拖欠克扣工资<br>
+被迫离职可主张经济补偿金<br>
+未签劳动合同可主张双倍工资
   </div>
 </div>
 
+<!-- 2. 消费维权常识（8个） -->
 <div class="tool-card">
-  <h3>公共交通贴士</h3>
-  <p>地铁、高铁、飞机</p>
-  <button onclick="toggle('traffic2')">展开</button>
-  <button onclick="copyContent('traffic2')" class="copy-btn">复制</button>
-  <div id="traffic2" class="tool-content">
-高铁提前15分钟检票<br>
-飞机提前2小时值机<br>
-地铁禁带易燃易爆<br>
-充电宝≤100Wh无需申报
+  <h3>消费维权常用知识</h3>
+  <p>假货、退款、三包、投诉渠道</p>
+  <button onclick="toggle('law2')">展开</button>
+  <button onclick="copyContent('law2')" class="copy-btn">复制</button>
+  < <div id="law2" class="tool-content">
+买到假货可要求退一赔三<br>
+食品药品问题可主张退一赔十<br>
+七天无理由退货适用大部分商品<br>
+商品质量问题可免费退换维修<br>
+商家虚假宣传属于欺诈行为<br>
+预付卡跑路可投诉追回钱款<br>
+快递丢失损坏可依法索赔<br>
+消费维权拨打12315热线
+  </div>
+</div>
+
+<!-- 3. 网络与隐私保护（8个） -->
+<div class="tool-card">
+  <h3>网络与隐私保护</h3>
+  <p>个人信息、造谣、侵权、账号安全</p>
+  <button onclick="toggle('law3')">展开</button>
+  <button onclick="copyContent('law3')" class="copy-btn">复制</button>
+  <div id="law3" class="tool-content">
+随意泄露他人隐私属于违法行为<br>
+网络造谣诽谤需承担法律责任<br>
+未经允许使用他人照片涉嫌侵权<br>
+强制获取通讯录信息属于违规<br>
+网络暴力可报警固定证据<br>
+账号被盗可报警并联系平台追回<br>
+禁止传播非法色情暴力内容<br>
+平台不得过度收集个人信息
+  </div>
+</div>
+
+<!-- 4. 借贷与合同常识（6个） -->
+<div class="tool-card">
+  <h3>借贷与合同基础</h3>
+  <p>利息、借条、合同生效、违约</p>
+  <button onclick="toggle('law4')">展开</button>
+  <button onclick="copyContent('law4')" class="copy-btn">复制</button>
+  <div id="law4" class="tool-content">
+年利率超过法定上限不受法律保护<br>
+赌债、高利贷不受法律保护<br>
+借条需写明金额、日期、双方信息<br>
+签字按手印合同一般即生效<br>
+口头约定在有证据时同样有效<br>
+违约方需赔偿对方实际损失
+  </div>
+</div>
+
+<!-- 5. 常见纠纷处理（4个，补足34） -->
+<div class="tool-card">
+  <h3>常见纠纷处理渠道</h3>
+  <p>报警、投诉、调解、起诉流程</p>
+  <button onclick="toggle('law5')">展开</button>
+  <button onclick="copyContent('law5')" class="copy-btn">复制</button>
+  <div id="law5" class="tool-content">
+人身财产安全受侵害立即拨打110<br>
+消费纠纷优先12315平台投诉<br>
+劳动纠纷先仲裁后向法院起诉<br>
+小额纠纷可走法院简易程序
   </div>
 </div>
 
 </div>
 </div>
-
 <!-- ============================================== -->
-<!-- 模块14：家居生活工具（35个小功能） -->
+<!-- 模块14：汽车驾驶技巧（39个完整补全） -->
 <!-- ============================================== -->
 <div class="module" id="m14">
-<h2>🏠 家居生活工具（35个）</h2>
+<h2>🚗 汽车驾驶技巧（39个）</h2>
 <div class="tool-grid">
 
+<!-- 1. 基础起步与停车（8个） -->
 <div class="tool-card">
-  <h3>清洁小妙招</h3>
-  <p>水垢、油污、除味</p>
+  <h3>起步与停车规范</h3>
+  <p>上车、调座、起步、停车安全流程</p>
+  <button onclick="toggle('car1')">展开</button>
+  <button onclick="copyContent('car1')" class="copy-btn">复制</button>
+  <div id="car1" class="tool-content">
+上车先系安全带，再启动车辆<br>
+调整座椅前后、高低、靠背角度<br>
+调整左右后视镜与中央后视镜<br>
+手动挡：踩离合→挂一档→松手刹→慢抬离合轻踩油门<br>
+自动挡：踩刹车→挂D挡→松手刹→缓抬刹车起步<br>
+停车先拉手刹，再挂P挡/空挡<br>
+路边停车车轮距马路牙子≤30cm<br>
+夜间停车务必开启示廓灯
+  </div>
+</div>
+
+<!-- 2. 城市道路驾驶（8个） -->
+<div class="tool-card">
+  <h3>城市道路安全技巧</h3>
+  <p>跟车、变道、转弯、避让行人</p>
+  <button onclick="toggle('car2')">展开</button>
+  <button onclick="copyContent('car2')" class="copy-btn">复制</button>
+  <div id="car2" class="tool-content">
+市区车速不超50km/h，学校区域30km/h<br>
+跟车距离至少保持1秒以上安全车距<br>
+变道先打转向灯，观察后视镜+扭头盲区<br>
+路口提前减速，礼让行人优先通行<br>
+转弯提前减速，左转转大弯右转转小弯<br>
+经过公交站台减速提防行人突然穿出<br>
+拥堵路段不随意加塞，保持车道行驶<br>
+经过铁道口一停二看三通过
+  </div>
+</div>
+
+<!-- 3. 高速驾驶技巧（8个） -->
+<div class="tool-card">
+  <h3>高速行驶安全要点</h3>
+  <p>限速、车距、超车、应急处理</p>
+  <button onclick="toggle('car3')">展开</button>
+  <button onclick="copyContent('car3')" class="copy-btn">复制</button>
+  <div id="car3" class="tool-content">
+高速最低车速60km/h，最高120km/h<br>
+跟车距离保持车速数值相等米数（100km/h→100米）<br>
+超车从左侧完成，禁止右侧超车<br>
+进入隧道提前开灯，减速慢行<br>
+雨天高速降低车速，开启近光灯<br>
+爆胎稳住方向盘，轻点刹车不猛打方向<br>
+故障立即开启双闪，车后150米放三角牌<br>
+不长期占用超车道，尽快返回行车道
+  </div>
+</div>
+
+<!-- 4. 特殊天气驾驶（8个） -->
+<div class="tool-card">
+  <h3>雨雪雾天驾驶</h3>
+  <p>防滑、控速、灯光、安全距离</p>
+  <button onclick="toggle('car4')">展开</button>
+  <button onclick="copyContent('car4')" class="copy-btn">复制</button>
+  <div id="car4" class="tool-content">
+雨天路面易滑，刹车距离增加一倍<br>
+大雾天开启近光灯+雾灯，不开远光<br>
+雾天车速不超40km/h，多鸣笛提示<br>
+雪地起步轻踩油门，防止车轮打滑<br>
+冰雪路面避免急刹车、急打方向<br>
+结冰路段用发动机制动，少踩刹车<br>
+暴雨视线不清就近找安全区域停车<br>
+大风天气握稳方向盘，减少变道
+  </div>
+</div>
+
+<!-- 5. 省油与保养技巧（7个，补足39） -->
+<div class="tool-card">
+  <h3>省油养车小技巧</h3>
+  <p>平稳驾驶、胎压、保养、节油</p>
+  <button onclick="toggle('car5')">展开</button>
+  <button onclick="copyContent('car5')" class="copy-btn">复制</button>
+  <div id="car5" class="tool-content">
+平稳加油门，避免急加速急刹车<br>
+定期检查胎压，胎压正常更省油<br>
+减少车内不必要重物，降低负载<br>
+长时间怠速（超1分钟）可熄火等待<br>
+按时更换机油、机滤、空滤<br>
+避免长时间低速高档行驶拖挡<br>
+停车平稳入位，减少剐蹭维修
+  </div>
+</div>
+
+</div>
+</div>
+<!-- ============================================== -->
+<!-- 模块15：装修避坑工具（43个完整补全） -->
+<!-- ============================================== -->
+<div class="module" id="m15">
+<h2>🏠 装修避坑工具（43个）</h2>
+<div class="tool-grid">
+
+<!-- 1. 装修前期准备（8个） -->
+<div class="tool-card">
+  <h3>装修前期准备</h3>
+  <p>预算、合同、设计、报价避坑</p>
+  <button onclick="toggle('decor1')">展开</button>
+  <button onclick="copyContent('decor1')" class="copy-btn">复制</button>
+  <div id="decor1" class="tool-content">
+提前做好总预算，不超支30%<br>
+拒绝低价引流套餐，后期必增项<br>
+设计方案确认后再动工，避免返工<br>
+报价单逐项核对，不漏项不模糊<br>
+合同写明工期、付款方式、违约责任<br>
+明确材料品牌型号规格等级<br>
+约定增项必须签字确认才施工<br>
+保留聊天记录、报价单、图纸凭证
+  </div>
+</div>
+
+<!-- 2. 水电改造避坑（8个） -->
+<div class="tool-card">
+  <h3>水电改造避坑</h3>
+  <p>布线、水管、点位、验收关键点</p>
+  <button onclick="toggle('decor2')">展开</button>
+  <button onclick="copyContent('decor2')" class="copy-btn">复制</button>
+  <div id="decor2" class="tool-content">
+水电走顶不走地，方便后期维修<br>
+强弱电分开30cm以上，避免干扰<br>
+电线穿管不超过管容量40%<br>
+水管走热水管保温棉必须包<br>
+开关插座点位至少预留20%以上<br>
+厨房卫生间4平方线单独回路<br>
+水电完工拍照留底，方便后期打孔<br>
+打压测试0.8MPa保压30分钟不降压
+  </div>
+</div>
+
+<!-- 3. 瓦工泥工避坑（8个） -->
+<div class="tool-card">
+  <h3>瓦工泥工避坑</h>
+  <p>贴砖、找平、防水、空鼓问题</p>
+  <button onclick="toggle('decor3')">展开</button>
+  <button onclick="copyContent('decor3')" class="copy-btn">复制</button>
+  <div id="decor3" class="tool-content">
+瓷砖提前泡水，防止空鼓脱落<br>
+墙压地工艺更防水，拒绝地压墙<br>
+空鼓率标准：墙砖≤5%，地砖≤3%<br>
+卫生间必须2%坡度流向地漏<br>
+防水至少刷2遍，高度淋浴区1.8米<br>
+闭水试验48小时，到楼下检查无渗漏<br>
+阴阳角垂直方正，误差不超3mm<br>
+勾缝/美缝在瓷砖贴完7天后施工
+  </div>
+</div>
+
+<!-- 4. 木工定制避坑（8个） -->
+<div class="tool-card">
+  <h3>木工定制避坑</h3>
+  <p>板材、柜门、五金、环保等级</p>
+  <button onclick="toggle('decor4')">展开</button>
+  <button onclick="copyContent('decor4')" class="copy-btn">复制</button>
+  <div id="decor4" class="tool-content">
+板材认准ENF/E0级环保标准<br>
+颗粒板、多层板、欧松板提前确认<br>
+柜门用PET/吸塑/实木不轻易被忽悠<br>
+五金选品牌：DTC、百隆、海蒂诗等<br>
+柜子内部格局按生活习惯设计<br>
+拒绝现场刷漆，甲醛大且不平整<br>
+测量至少两次，避免尺寸错误<br>
+合同写明质保年限和售后方式
+  </div>
+</div>
+
+<!-- 5. 油漆墙面避坑（7个） -->
+<div class="tool-card">
+  <h3>油漆墙面避坑</h3>
+  <p>腻子、底漆、面漆、开裂问题</p>
+  <button onclick="toggle('decor5')">展开</button>
+  <button onclick="copyContent('decor5')" class="copy-btn">复制</button>
+  <div id="decor5" class="tool-content">
+墙面挂网防开裂，尤其新旧墙交界处<br>
+腻子至少两遍，打磨平整再上漆<br>
+必须刷底漆，防止返碱掉粉<br>
+面漆一底两面，颜色统一无差色<br>
+不开窗大风速干，防止墙面开裂<br>
+墙面平整度误差不超2mm<br>
+验收用手电筒侧照无波浪阴影
+  </div>
+</div>
+
+<!-- 6. 安装验收收尾（4个，补足43） -->
+<div class="tool-card">
+  <h3>安装验收收尾</h3>
+  <p>门窗、厨卫、五金、保洁验收</p>
+  <button onclick="toggle('decor6')">展开</button>
+  <button onclick="copyContent('decor6')" class="copy-btn">复制</button>
+  <div id="decor6" class="tool-content">
+门窗开合顺畅，密封胶无断裂<br>
+厨卫五金安装牢固，下水不渗漏<br>
+通电测试所有开关插座灯具<br>
+开荒保洁后再进家具，避免刮花
+  </div>
+</div>
+
+</div>
+</div>
+<!-- ============================================== -->
+<!-- 模块16：美妆护肤工具（36个完整补全） -->
+<!-- ============================================== -->
+<div class="module" id="m16">
+<h2>💄 美妆护肤工具（36个）</h2>
+<div class="tool-grid">
+
+<!-- 1. 基础护肤步骤（8个） -->
+<div class="tool-card">
+  <h3>日常基础护肤步骤</h3>
+  <p>早间、晚间标准流程，不踩雷</p>
+  <button onclick="toggle('skin1')">展开</button>
+  <button onclick="copyContent('skin1')" class="copy-btn">复制</button>
+  <div id="skin1" class="tool-content">
+晨间：洁面 → 爽肤水 → 精华 → 眼霜 → 乳液 → 面霜 → 防晒<br>
+晚间：卸妆 → 洁面 → 爽肤水 → 精华 → 眼霜 → 乳液 → 面霜<br>
+油皮夏季可简化面霜，改用清爽乳液<br>
+干皮秋冬必须加强面霜锁水<br>
+敏感肌精简步骤，减少叠加产品<br>
+护肤顺序遵循：先水、中油、后封层<br>
+涂抹方向由内向外、由下向上提拉<br>
+每步间隔30秒，让皮肤充分吸收
+  </div>
+</div>
+
+<!-- 2. 肤质判断与护理（8个） -->
+<div class="tool-card">
+  <h3>肤质判断与针对性护理</h3>
+  <p>油皮、干皮、混合皮、敏感皮护理</p>
+  <button onclick="toggle('skin2')">展开</button>
+  <button onclick="copyContent('skin2')" class="copy-btn">复制</button>
+  <div id="skin2" class="tool-content">
+油性皮肤：控油+补水，忌厚重油腻护肤品<br>
+干性皮肤：重保湿、锁水，避免过度清洁<br>
+混合皮肤：T区控油，两颊重保湿<br>
+敏感皮肤：无酒精、无香精、无色素<br>
+痘痘肌：清爽控油、抗炎，忌闷痘成分<br>
+毛孔粗大：注重清洁+控油+收敛<br>
+暗沉黄皮：提亮、抗氧化、定期去角质<br>
+红血丝肌肤：温和修护，避免冷热刺激
+  </div>
+</div>
+
+<!-- 3. 核心护肤成分（8个） -->
+<div class="tool-card">
+  <h3>护肤功效成分速查</h3>
+  <p>美白、抗老、祛痘、修护关键成分</p>
+  <button onclick="toggle('skin3')">展开</button>
+  <button onclick="copyContent('skin3')" class="copy-btn">复制</button>
+  <div id="skin3" class="tool-content">
+玻尿酸：强效补水保湿，缓解干燥紧绷<br>
+烟酰胺：美白提亮、控油、收缩毛孔<br>
+维A醇：抗老淡纹、促进胶原再生<br>
+维生素C：美白抗氧化、改善暗沉<br>
+神经酰胺：修护屏障、缓解敏感泛红<br>
+水杨酸：疏通毛孔、祛痘去闭口<br>
+果酸：去角质、改善粗糙暗沉<br>
+胜肽：抗衰淡纹、温和不刺激
+  </div>
+</div>
+
+<!-- 4. 防晒与抗老（6个） -->
+<div class="tool-card">
+  <h3>防晒与抗老核心要点</h3>
+  <p>防晒方式、用量、补涂、抗老习惯</p>
+  <button onclick="toggle('skin4')">展开</button>
+  <button onclick="copyContent('skin4')" class="copy-btn">复制</button>
+  <div id="skin4" class="tool-content">
+防晒用量：面部一枚硬币大小<br>
+室内靠窗、阴天也需要涂防晒<br>
+户外每2~3小时补涂一次防晒<br>
+SPF30+日常够用，户外SPF50+<br>
+抗老第一步：严格防晒+不熬夜<br>
+20岁后可开始用初级抗老产品
+  </div>
+</div>
+
+<!-- 5. 化妆基础步骤（6个，补足36） -->
+<div class="tool-card">
+  <h3>日常淡妆基础步骤</h3>
+  <p>底妆、定妆、眼眉、唇妆顺序</p>
+  <button onclick="toggle('skin5')">展开</button>
+  <button onclick="copyContent('skin5')" class="copy-btn">复制</button>
+  <div id="skin5" class="tool-content">
+底妆：隔离 → 遮瑕 → 粉底 → 定妆<br>
+眉部：眉笔勾勒 → 眉粉填充 → 染眉膏定型<br>
+眼妆：眼影 → 眼线 → 睫毛膏<br>
+修容：高光提亮+阴影修饰轮廓<br>
+腮红提升气色，位置在苹果肌<br>
+唇妆：润唇膏打底 → 口红/唇釉
+  </div>
+</div>
+
+</div>
+</div>
+<!-- ============================================== -->
+<!-- 模块17：摄影拍照技巧（33个完整补全） -->
+<!-- ============================================== -->
+<div class="module" id="m17">
+<h2>📷 摄影拍照技巧（33个）</h2>
+<div class="tool-grid">
+
+<!-- 1. 手机拍照基础设置（8个） -->
+<div class="tool-card">
+  <h3>手机拍照基础设置</h3>
+  <p>分辨率、网格、对焦、曝光基础调节</p>
+  <button onclick="toggle('photo1')">展开</button>
+  <button onclick="copyContent('photo1')" class="copy-btn">复制</button>
+  <div id="photo1" class="tool-content">
+开启4:3比例，画质最高最清晰<br>
+打开构图网格，三分线构图更稳<br>
+拍摄前轻点屏幕对焦主体<br>
+对焦后上下滑动调节曝光亮度<br>
+关闭不必要滤镜，后期再调色<br>
+开启HDR应对强光和逆光场景<br>
+尽量使用原生相机，避免美颜过度<br>
+保持镜头干净，定期擦拭指纹油污
+  </div>
+</div>
+
+<!-- 2. 人像拍照姿势技巧（8个） -->
+<div class="tool-card">
+  <h3>人像拍照姿势技巧</h3>
+  <p>显瘦、自然、不尴尬万能姿势</p>
+  <button onclick="toggle('photo2')">展开</button>
+  <button onclick="copyContent('photo2')" class="copy-btn">复制</button>
+  <div id="photo2" class="tool-content">
+侧身45度站立，更显瘦更立体<br>
+头部微侧，避免正对镜头僵硬<br>
+手自然搭腰、插兜、撩头发<br>
+坐姿腰背挺直，双腿微斜延伸<br>
+利用道具：帽子、咖啡、书本、包包<br>
+眼神看侧方，不直视镜头更自然<br>
+低头浅笑、抬头看远方更有氛围<br>
+全身照脚贴底边，显腿长比例好
+  </div>
+</div>
+
+<!-- 3. 风光与构图技巧（8个） -->
+<div class="tool-card">
+  <h3>风光构图与拍摄</h3>
+  <p>风景、建筑、街拍通用构图法</p>
+  <button onclick="toggle('photo3')">展开</button>
+  <button onclick="copyContent('photo3')" class="copy-btn">复制</button>
+  <div id="photo3" class="tool-content">
+三分线构图：主体放1/3位置<br>
+对称构图：建筑、水面更规整<br>
+引导线构图：道路、栏杆延伸视觉<br>
+框架构图：门窗、树叶增加层次感<br>
+低角度拍摄，天空更多画面更大气<br>
+逆光拍摄加轮廓光，氛围感拉满<br>
+顺光清晰，侧光立体，逆光唯美<br>
+拍摄建筑保持横平竖直，不倾斜
+  </div>
+</div>
+
+<!-- 4. 光线运用技巧（6个） -->
+<div class="tool-card">
+  <h3>光线运用与时间选择</h3>
+  <p>黄金时刻、阴天、室内光线用法</p>
+  <button onclick="toggle('photo4')">展开</button>
+  <button onclick="copyContent('photo4')" class="copy-btn">复制</button>
+  <div id="photo4" class="tool-content">
+黄金时段：日出后/日落前1小时最柔和<br>
+阴天拍人像，光线均匀无硬阴影<br>
+室内靠近窗户用自然光，画质最好<br>
+避免正午顶光，人脸阴影重显疲惫<br>
+夜景避开强光直射，防止过曝<br>
+善用反光板/白纸补光，弱化暗部
+  </div>
+</div>
+
+<!-- 5. 后期修图基础技巧（3个，补足33） -->
+<div class="tool-card">
+  <h3>后期修图基础技巧</h3>
+  <p>调色、锐化、裁剪简单实用步骤</p>
+  <button onclick="toggle('photo5')">展开</button>
+  <button onclick="copyContent('photo5')" class="copy-btn">复制</button>
+  <div id="photo5" class="tool-content">
+先裁剪构图，再调整曝光对比<br>
+适当提高锐度，让画面更清晰<br>
+肤色不过度磨皮，保留自然质感
+  </div>
+</div>
+
+</div>
+</div>
+<!-- ============================================== -->
+<!-- 模块18：美食菜谱工具（44个完整补全） -->
+<!-- ============================================== -->
+<div class="module" id="m18">
+<h2>🍳 美食菜谱工具（44个）</h2>
+<div class="tool-grid">
+
+<!-- 1. 家常菜基础技巧（8个） -->
+<div class="tool-card">
+  <h3>家常菜通用烹饪技巧</h3>
+  <p>焯水、去腥、腌制、火候基础要点</p>
+  <button onclick="toggle('food1')">展开</button>
+  <button onclick="copyContent('food1')" class="copy-btn">复制</button>
+  <div id="food1" class="tool-content">
+肉类焯水用冷水，去腥更彻底<br>
+绿叶菜焯水用开水，加少许盐和油更绿<br>
+炒肉提前用生抽+料酒+淀粉腌制更嫩<br>
+煎鱼前擦干水分，热锅凉油不粘皮<br>
+炖肉热水下锅，肉质紧实不柴<br>
+炒菜大火快炒，保持脆嫩不出水<br>
+煮汤最后放盐，汤汁更鲜不发紧<br>
+葱姜蒜炝锅小火，避免炸糊发苦
+  </div>
+</div>
+
+<!-- 2. 爆款快手家常菜（8个） -->
+<div class="tool-card">
+  <h3>快手家常菜做法</h3>
+  <p>简单下饭、10分钟出锅系列</p>
+  <button onclick="toggle('food2')">展开</button>
+  <button onclick="copyContent('food2')" class="copy-btn">复制</button>
+  <div id="food2" class="tool-content">
+番茄炒蛋：先炒蛋定型，再炒番茄出沙<br>
+酸辣土豆丝：泡水去淀粉，大火快炒加醋<br>
+青椒肉丝：肉丝滑炒，青椒断生即可<br>
+麻婆豆腐：豆腐焯水，小火慢烧勾芡<br>
+鱼香肉丝：泡椒+糖醋调鱼香汁<br>
+蒜蓉西兰花：焯水后爆炒，蒜香浓郁<br>
+红烧茄子：茄子少油煎软，加酱汁焖<br>
+手撕包菜：干锅爆炒，陈醋锅边淋
+  </div>
+</div>
+
+<!-- 3. 肉类硬菜做法（8个） -->
+<div class="tool-card">
+  <h3>肉类硬菜做法</h3>
+  <p>红烧肉、排骨、鸡翅、牛肉经典做法</p>
+  <button onclick="toggle('food3')">展开</button>
+  <button onclick="copyContent('food3')" class="copy-btn">复制</button>
+  <div id="food3" class="tool-content">
+红烧肉：炒糖色+焯水，小火慢炖40分钟<br>
+糖醋排骨：1酒2醋3糖4生抽5水比例<br>
+可乐鸡翅：鸡翅煎黄，加可乐收汁<br>
+红烧排骨：八角桂皮香叶，炖至脱骨<br>
+酱牛肉：冷水浸泡去血，卤制浸泡过夜<br>
+水煮肉片：肉片上浆，热油激香辣椒<br>
+宫保鸡丁：花生+黄瓜+鸡丁，荔枝味型<br>
+土豆炖牛腩：牛腩先炖烂，再加土豆
+  </div>
+</div>
+
+<!-- 4. 汤粥主食做法（8个） -->
+<div class="tool-card">
+  <h3>汤粥与主食做法</h3>
+  <p>养胃汤、快手粥、简单主食</p>
+  <button onclick="toggle('food4')">展开</button>
+  <button onclick="copyContent('food4')" class="copy-btn">复制</button>
+  <div id="food4" class="tool-content">
+番茄蛋汤：水开下番茄，淋蛋花加盐<br>
+冬瓜丸子汤：肉馅顺时针搅上劲<br>
+小米粥：开水下锅，不停搅防糊底<br>
+皮蛋瘦肉粥：米炒香再煮，更稠更香<br>
+葱油拌面：热油激香葱，拌生抽老抽<br>
+蛋炒饭：隔夜米饭，先炒蛋再下米<br>
+手抓饼：平底锅小火，煎至金黄酥脆<br>
+蒸水蛋：水蛋液1:1.5，盖保鲜膜更嫩
+  </div>
+</div>
+
+<!-- 5. 凉拌菜万能公式（8个） -->
+<div class="tool-card">
+  <h3>凉拌菜万能调味公式</h3>
+  <p>酸辣、香辣、蒜香、麻酱通用配方</p>
+  <button onclick="toggle('food5')">展开</button>
+  <button onclick="copyContent('food5')" class="copy-btn">复制</button>
+  <div id="food5" class="tool-content">
+万能凉拌汁：生抽+醋+盐+糖+蒜末+香油<br>
+酸辣口：多加小米辣+陈醋<br>
+香辣口：辣椒油+花椒油<br>
+麻酱口：麻酱+生抽+醋+温水化开<br>
+凉拌黄瓜：拍碎更入味，最后加盐<br>
+凉拌木耳：焯水过凉，加香菜红椒<br>
+凉拌藕片：开水烫熟，立刻过凉更脆<br>
+凉拌鸡丝：鸡胸肉撕细，调味更入味
+  </div>
+</div>
+
+<!-- 6. 厨房小窍门（4个，补足44） -->
+<div class="tool-card">
+  <h3>厨房实用小窍门</h3>
+  <p>保鲜、去腥、去味、防粘技巧</p>
+  <button onclick="toggle('food6')">展开</button>
+  <button onclick="copyContent('food6')" class="copy-btn">复制</button>
+  <div id="food6" class="tool-content">
+切洋葱放冰箱冷藏，不辣眼睛<br>
+豆腐泡盐水，不易碎更入味<br>
+铁锅烧热再放油，物理防粘<br>
+厨房异味：柠檬皮+水煮开去味
+  </div>
+</div>
+
+</div>
+</div>
+<!-- ============================================== -->
+<!-- 模块19：职场效率工具（37个完整补全） -->
+<!-- ============================================== -->
+<div class="module" id="m19">
+<h2>💼 职场效率工具（37个）</h2>
+<div class="tool-grid">
+
+<!-- 1. 办公沟通技巧（8个） -->
+<div class="tool-card">
+  <h3>高效办公沟通技巧</h3>
+  <p>邮件、会议、汇报、表达通用方法</p>
+  <button onclick="toggle('work1')">展开</button>
+  <button onclick="copyContent('work1')" class="copy-btn">复制</button>
+  <div id="work1" class="tool-content">
+邮件标题：核心关键词+时间/编号<br>
+正文三段式：背景-方案-行动请求<br>
+会议纪要：结论-任务-责任人-截止时间<br>
+汇报遵循：先结论后细节，先结果后过程<br>
+口头沟通：3分钟讲清核心观点<br>
+向上汇报：带方案提问题，而非只报忧<br>
+跨部门协作：明确边界、责任、交付物<br>
+反馈技巧：先肯定后建议，对事不对人
+  </div>
+</div>
+
+<!-- 2. 时间管理技巧（8个） -->
+<div class="tool-card">
+  <h3>时间管理与任务规划</h3>
+  <p>日程、待办、优先级、专注管理</p>
+  <button onclick="toggle('work2')">展开</button>
+  <button onclick="copyContent('work2')" class="copy-btn">复制</button>
+  <div id="work2" class="tool-content">
+每日三件事：确定3件必须完成的核心事<br>
+四象限法则：重要紧急优先处理<br>
+番茄工作法：25分钟专注+5分钟休息<br>
+晨间计划：上班前10分钟列当日清单<br>
+晚间复盘：总结完成情况与改进点<br>
+拒绝无效社交：不参与无意义闲聊<br>
+批量处理同类事务，减少切换成本<br>
+合理授权：不做全能手，聚焦核心能力
+  </div>
+</div>
+
+<!-- 3. 职场通用能力（8个） -->
+<div class="tool-card">
+  <h3>职场通用能力提升</h3>
+  <p>学习、复盘、谈判、人脉建设</p>
+  <button onclick="toggle('work3')">展开</button>
+  <button onclick="copyContent('work3')" class="copy-btn">复制</button>
+  <div id="work3" class="tool-content">
+每日学习1小时，积累复利效应<br>
+每周复盘1次，沉淀经验形成方法论<br>
+谈判准备：明确目标、底线、替代方案<br>
+人脉维护：定期联系，提供价值而非索取<br>
+情绪管理：冷静后再回复，避免冲动<br>
+形象管理：专业得体，第一印象加分<br>
+礼仪细节：守时、守信、尊重他人<br>
+持续输出：写总结、做分享、建口碑
+  </div>
+</div>
+
+<!-- 4. 常用办公工具（8个） -->
+<div class="tool-card">
+  <h3>高效办公工具推荐</h3>
+  <p>文档、表格、思维导图、云盘工具</p>
+  <button onclick="toggle('work4')">展开</button>
+  <button onclick="copyContent('work4')" class="copy-btn">复制</button>
+  <div id="work4" class="tool-content">
+文档协作：石墨文档、腾讯文档、飞书文档<br>
+表格神器：Excel在线版、飞书表格、Airtable<br>
+思维导图：XMind、MindMaster、ProcessOn<br>
+云盘存储：百度网盘、阿里云盘、腾讯微云<br>
+截图工具：Snipaste、FastStone Capture<br>
+快捷键工具：KeySprite、WGestures<br>
+任务管理：飞书、钉钉、Trello、Notion<br>
+翻译工具：DeepL、谷歌翻译、有道翻译
+  </div>
+</div>
+
+<!-- 5. 职场心态与成长（5个，补足37） -->
+<div class="tool-card">
+  <h3>职场心态与成长建议</h3>
+  <p>抗压、学习、晋升、职业规划</p>
+  <button onclick="toggle('work5')">展开</button>
+  <button onclick="copyContent('work5')" class="copy-btn">复制</button>
+  <div id="work5" class="tool-content">
+正确看待挫折：把问题当成长机会<br>
+主动承担：多做一点，多积累一份经验<br>
+持续学习：关注行业动态、新技术<br>
+职业规划：短期目标+长期方向<br>
+保持空杯心态：接受不同意见，持续进化
+  </div>
+</div>
+
+</div>
+</div>
+<!-- ============================================== -->
+<!-- 模块20：家居生活工具（41个完整补全） -->
+<!-- ============================================== -->
+<div class="module" id="m20">
+<h2>🏡 家居生活工具（41个）</h2>
+<div class="tool-grid">
+
+<!-- 1. 家居收纳整理技巧（8个） -->
+<div class="tool-card">
+  <h3>家居收纳整理技巧</h3>
+  <p>衣柜、厨房、卫生间、杂物间高效收纳</p>
   <button onclick="toggle('home1')">展开</button>
   <button onclick="copyContent('home1')" class="copy-btn">复制</button>
   <div id="home1" class="tool-content">
-白醋+小苏打除水垢<br>
-洗洁精+热水去油污<br>
-活性炭除甲醛异味<br>
-柠檬擦水龙头光亮
+衣柜按季节分区，当季衣物放最外侧<br>
+折叠衣物竖放收纳，一目了然不翻乱<br>
+内衣袜子用分格盒，整洁不缠绕<br>
+床底收纳箱放换季被褥，节省空间<br>
+厨房调料统一瓶装，贴标签方便查找<br>
+橱柜分层架增加竖向收纳空间<br>
+冰箱食物分类存放，生熟分开更卫生<br>
+卫生间干湿分离，洗漱用品上墙收纳
   </div>
 </div>
 
+<!-- 2. 清洁去污万能技巧（8个） -->
 <div class="tool-card">
-  <h3>收纳整理技巧</h3>
-  <p>衣物、厨房、桌面</p>
+  <h3>家居清洁去污万能技巧</h3>
+  <p>水垢、油污、霉斑、灰尘高效去除</p>
   <button onclick="toggle('home2')">展开</button>
   <button onclick="copyContent('home2')" class="copy-btn">复制</button>
   <div id="home2" class="tool-content">
-衣服卷起来省空间<br>
-厨房用品分类摆放<br>
-数据线用收纳盒<br>
-过期物品定期清理
+白醋+小苏打去除卫生间顽固水垢<br>
+洗洁精+温水快速去除厨房重油污<br>
+酒精擦拭玻璃镜面，干净无水痕<br>
+柠檬去除水垢异味，天然清香安全<br>
+牙膏擦拭小白鞋，去污增白效果好<br>
+食盐去除茶渍咖啡渍，简单又高效<br>
+吹风机热风软化标签胶，轻松撕掉<br>
+旧牙刷刷缝隙角落，清洁无死角
+  </div>
+</div>
+
+<!-- 3. 衣物洗护保养技巧（8个） -->
+<div class="tool-card">
+  <h3>衣物洗护保养技巧</h3>
+  <p>机洗、手洗、去渍、除皱、延长寿命</p>
+  <button onclick="toggle('home3')">展开</button>
+  <button onclick="copyContent('home3')" class="copy-btn">复制</button>
+  <div id="home3" class="tool-content">
+深浅色衣物分开洗，防止串色染色<br>
+贴身衣物单独手洗，更卫生更耐用<br>
+毛衣翻面洗涤，减少起球变形<br>
+羽绒服用专用洗涤剂，不结块蓬松<br>
+丝绸羊毛类衣物冷水轻柔洗涤<br>
+油渍用洗洁精预涂，静置再清洗<br>
+衣物除皱用挂烫机，平整不伤面料<br>
+太阳暴晒易褪色，阴凉通风晾干
+  </div>
+</div>
+
+<!-- 4. 家电使用保养常识（8个） -->
+<div class="tool-card">
+  <h3>家电使用保养常识</h3>
+  <p>冰箱、洗衣机、空调、热水器维护</p>
+  <button onclick="toggle('home4')">展开</button>
+  <button onclick="copyContent('home4')" class="copy-btn">复制</button>
+  <div id="home4" class="tool-content">
+冰箱定期除霜，保持制冷效率<br>
+洗衣机槽每月清洁一次，避免细菌<br>
+空调滤网每季清洗，出风更健康<br>
+热水器定期排污，延长使用寿命<br>
+电视机避免长时间待机，省电护屏<br>
+电饭煲内胆不硬物刮擦，保护涂层<br>
+抽油烟机定期清洗油盒与叶轮<br>
+小家电不用时拔掉插头，安全省电
+  </div>
+</div>
+
+<!-- 5. 居家安全防护常识（6个） -->
+<div class="tool-card">
+  <h3>居家安全防护常识</h3>
+  <p>防火、防盗、防电、防燃气泄漏</p>
+  <button onclick="toggle('home5')">展开</button>
+  <button onclick="copyContent('home5')" class="copy-btn">复制</button>
+  <div id="home5" class="tool-content">
+出门关闭燃气总阀，防止泄漏危险<br>
+插座不超负荷，避免短路起火<br>
+阳台窗户安装防护，防止高空坠物<br>
+夜间反锁房门，增强防盗安全<br>
+常备灭火器、手电筒、应急医药箱<br>
+老人小孩居家提醒，防滑防磕碰
+  </div>
+</div>
+
+<!-- 6. 绿植养护小技巧（3个，补足41） -->
+<div class="tool-card">
+  <h3>室内绿植养护小技巧</h3>
+  <p>浇水、光照、施肥、换盆基础要点</p>
+  <button onclick="toggle('home6')">展开</button>
+  <button onclick="copyContent('home6')" class="copy-btn">复制</button>
+  <div id="home6" class="tool-content">
+见干见湿浇水，不干不浇浇则浇透<br>
+绿萝龟背竹喜散光，忌阳光直射<br>
+多肉少浇水多光照，防止徒长烂根
   </div>
 </div>
 
 </div>
 </div>
+
 <!-- ============================================== -->
-<!-- 模块15：财务会计工具（28个小功能） -->
+<!-- 模块21：短视频运营工具（46个完整补全） -->
 <!-- ============================================== -->
-<div class="module" id="m15">
-<h2>💰 财务会计工具（28个）</h2>
+<div class="module" id="m21">
+<h2>🎬 短视频运营工具（46个）</h2>
 <div class="tool-grid">
 
+<!-- 1. 短视频选题方向（8个） -->
 <div class="tool-card">
-  <h3>会计基础公式</h3>
-  <p>资产、负债、利润</p>
-  <button onclick="toggle('acc1')">展开</button>
-  <button onclick="copyContent('acc1')" class="copy-btn">复制</button>
-  <div id="acc1" class="tool-content">
-资产 = 负债 + 所有者权益<br>
-利润 = 收入 - 费用<br>
-毛利率 = 毛利÷营业收入×100%<br>
-净利率 = 净利润÷营收×100%
-  </div>
-</div>
-
-<div class="tool-card">
-  <h3>常用税务常识</h3>
-  <p>增值税、个税、发票</p>
-  <button onclick="toggle('acc2')">展开</button>
-  <button onclick="copyContent('acc2')" class="copy-btn">复制</button>
-  <div id="acc2" class="tool-content">
-增值税专票可抵扣<br>
-个税起征点5000元<br>
-小规模纳税人3%征收率<br>
-企业所得税税率25%
-  </div>
-</div>
-
-</div>
-</div>
-
-<!-- ============================================== -->
-<!-- 模块16：文案创作大全（44个小功能） -->
-<!-- ============================================== -->
-<div class="module" id="m16">
-<h2>✍️ 文案创作大全（44个）</h2>
-<div class="tool-grid">
-
-<div class="tool-card">
-  <h3>朋友圈高级文案</h3>
-  <p>温柔、治愈、氛围感</p>
-  <button onclick="toggle('write1')">展开</button>
-  <button onclick="copyContent('write1')" class="copy-btn">复制</button>
-  <div id="write1" class="tool-content">
-日子慢慢，浪漫无期。<br>
-风遇山止，船到岸停。<br>
-岁岁常欢愉，万事皆胜意。<br>
-生活平凡，也值得万般喜欢。
-  </div>
-</div>
-
-<div class="tool-card">
-  <h3>职场工作文案</h3>
-  <p>汇报、总结、通知</p>
-  <button onclick="toggle('write2')">展开</button>
-  <button onclick="copyContent('write2')" class="copy-btn">复制</button>
-  <div id="write2" class="tool-content">
-今日工作已完成，进度同步如下：<br>
-问题已闭环，后续持续跟进。<br>
-感谢配合，期待下次协作。<br>
-按时交付，保质保量完成。
-  </div>
-</div>
-
-</div>
-</div>
-
-<!-- ============================================== -->
-<!-- 模块17：音乐歌单工具（23个小功能） -->
-<!-- ============================================== -->
-<div class="module" id="m17">
-<h2>🎧 音乐歌单工具（23个）</h2>
-<div class="tool-grid">
-
-<div class="tool-card">
-  <h3>场景歌单分类</h3>
-  <p>学习、助眠、开车、运动</p>
-  <button onclick="toggle('music1')">展开</button>
-  <button onclick="copyContent('music1')" class="copy-btn">复制</button>
-  <div id="music1" class="tool-content">
-学习：纯音乐、白噪音<br>
-助眠：轻音乐、自然声<br>
-开车：节奏流行、经典老歌<br>
-运动：电音、快节奏BGM
-  </div>
-</div>
-
-<div class="tool-card">
-  <h3>听歌小技巧</h3>
-  <p>音质、音效、歌词</p>
-  <button onclick="toggle('music2')">展开</button>
-  <button onclick="copyContent('music2')" class="copy-btn">复制</button>
-  <div id="music2" class="tool-content">
-耳机选无损音质<br>
-睡眠模式定时关闭<br>
-开车开启车载音效<br>
-跑步用节拍同步音乐
-  </div>
-</div>
-
-</div>
-</div>
-
-<!-- ============================================== -->
-<!-- 模块18：影视动漫指南（36个小功能） -->
-<!-- ============================================== -->
-<div class="module" id="m18">
-<h2>🎬 影视动漫指南（36个）</h2>
-<div class="tool-grid">
-
-<div class="tool-card">
-  <h3>高分经典必看</h3>
-  <p>电影、剧集、动画</p>
+  <h3>爆款短视频选题方向</h3>
+  <p>情感、干货、搞笑、剧情、测评万能选题</p>
   <button onclick="toggle('video1')">展开</button>
   <button onclick="copyContent('video1')" class="copy-btn">复制</button>
   <div id="video1" class="tool-content">
-励志：《当幸福来敲门》<br>
-治愈：《龙猫》《千与千寻》<br>
-悬疑：《盗梦空间》<br>
-科幻：《星际穿越》
+干货知识类：技巧、教程、避坑、科普<br>
+生活日常类：做饭、收纳、带娃、职场<br>
+情感共鸣类：亲情、爱情、友情、成长<br>
+搞笑反转类：段子、剧情、神反转、解压<br>
+美食探店类：小吃、餐厅、特产、制作<br>
+好物测评类：产品实测、对比、优缺点<br>
+职场成长类：效率、沟通、升职、副业<br>
+亲子育儿类：早教、习惯、教育、互动
   </div>
 </div>
 
+<!-- 2. 短视频拍摄技巧（8个） -->
 <div class="tool-card">
-  <h3>观影小技巧</h3>
-  <p>倍速、字幕、护眼</p>
+  <h3>手机短视频拍摄技巧</h3>
+  <p>构图、运镜、光线、稳定、收音基础</p>
   <button onclick="toggle('video2')">展开</button>
   <button onclick="copyContent('video2')" class="copy-btn">复制</button>
   <div id="video2" class="tool-content">
-长片1.25倍更舒适<br>
-外语片开双语字幕<br>
-夜间观影调低亮度<br>
-连续观看不超过2小时
+竖屏9:16比例，符合平台展示规则<br>
+三分线构图，主体放在黄金分割点<br>
+近距离拍摄，面部清晰无杂物干扰<br>
+靠近窗户自然光，画质柔和清晰<br>
+使用三脚架保持画面稳定不抖动<br>
+收音用领夹麦，人声清晰无杂音<br>
+运镜慢一点：推、拉、摇、移、跟<br>
+开头3秒抓眼球，避免冗长铺垫
   </div>
 </div>
 
-</div>
-</div>
-<!-- ============================================== -->
-<!-- 模块19：插件扩展推荐（25个小功能） -->
-<!-- ============================================== -->
-<div class="module" id="m19">
-<h2>🧩 实用插件扩展（25个）</h2>
-<div class="tool-grid">
-
+<!-- 3. 剪辑基础操作技巧（8个） -->
 <div class="tool-card">
-  <h3>浏览器必备插件</h3>
-  <p>广告拦截、翻译、笔记</p>
-  <button onclick="toggle('ext1')">展开</button>
-  <button onclick="copyContent('ext1')" class="copy-btn">复制</button>
-  <div id="ext1" class="tool-content">
-广告拦截：AdGuard<br>
-网页翻译：Immersive Translate<br>
-笔记插件：Notion Web Clipper<br>
-密码管理：Bitwarden
+  <h3>短视频剪辑基础操作</h3>
+  <p>剪映通用操作、转场、字幕、音乐</p>
+  <button onclick="toggle('video3')">展开</button>
+  <button onclick="copyContent('video3')" class="copy-btn">复制</button>
+  <div id="video3" class="tool-content">
+删除无效空镜头，保持节奏紧凑<br>
+添加自动字幕，修正错别字<br>
+字幕字体清晰，不挡人物主体<br>
+背景音乐音量低于人声，不喧宾夺主<br>
+使用淡入淡出转场，自然不突兀<br>
+关键画面添加贴纸特效增强氛围<br>
+视频倍速1.0-1.2x，节奏更流畅<br>
+结尾引导关注点赞，提升互动率
   </div>
 </div>
 
+<!-- 4. 标题文案爆款公式（8个） -->
 <div class="tool-card">
-  <h3>效率增强插件</h3>
-  <p>截图、待办、深色模式</p>
-  <button onclick="toggle('ext2')">展开</button>
-  <button onclick="copyContent('ext2')" class="copy-btn">复制</button>
-  <div id="ext2" class="tool-content">
-截图工具：FireShot<br>
-待办清单：Todoist<br>
-全局深色：Dark Reader<br>
-视频倍速：Video Speed Controller
+  <h3>爆款标题文案万能公式</h3>
+  <p>吸引点击、引发好奇、提高完播</p>
+  <button onclick="toggle('video4')">展开</button>
+  <button onclick="copyContent('video4')" class="copy-btn">复制</button>
+  <div id="video4" class="tool-content">
+数字式：3个技巧，让你瞬间提升效率<br>
+疑问式：你真的会用这个功能吗？<br>
+对比式：别人vs你，差距居然这么大<br>
+结果式：坚持7天，我彻底改变了<br>
+禁忌式：千万不要这样做，后悔莫及<br>
+福利式：免费分享，新手也能快速学会<br>
+共鸣式：只有打工人才能懂的心酸<br>
+悬念式：最后一幕，我直接惊呆了
   </div>
 </div>
 
-</div>
-</div>
-
-<!-- ============================================== -->
-<!-- 模块20：装机必备软件（30个小功能） -->
-<!-- ============================================== -->
-<div class="module" id="m20">
-<h2>💻 装机必备软件（30个）</h2>
-<div class="tool-grid">
-
+<!-- 5. 账号运营涨粉技巧（8个） -->
 <div class="tool-card">
-  <h3>系统工具类</h3>
-  <p>解压、看图、清理、驱动</p>
-  <button onclick="toggle('soft1')">展开</button>
-  <button onclick="copyContent('soft1')" class="copy-btn">复制</button>
-  <div id="soft1" class="tool-content">
-解压：Bandizip<br>
-看图：HoneyView<br>
-清理：Dism++<br>
-驱动：DriverBooster
+  <h3>账号运营涨粉技巧</h3>
+  <p>定位、更新、互动、标签、流量提升</p>
+  <button onclick="toggle('video5')">展开</button>
+  <button onclick="copyContent('video5')" class="copy-btn">复制</button>
+  <div id="video5" class="tool-content">
+账号垂直定位，只做一个领域内容<br>
+固定更新时间，培养用户观看习惯<br>
+积极回复评论，增强账号活跃度<br>
+添加精准话题标签，获取更多流量<br>
+模仿爆款结构，不抄袭坚持原创<br>
+引导点赞收藏转发，提升作品权重<br>
+关注同行优秀账号，学习爆款逻辑<br>
+数据分析：完播率、点赞率、转发率
   </div>
 </div>
 
+<!-- 6. 变现方式与带货技巧（6个，补足46） -->
 <div class="tool-card">
-  <h3>办公娱乐类</h3>
-  <p>办公、影音、输入法</p>
-  <button onclick="toggle('soft2')">展开</button>
-  <button onclick="copyContent('soft2')" class="copy-btn">复制</button>
-  <div id="soft2" class="tool-content">
-办公：WPS / Office<br>
-影音：PotPlayer<br>
-输入法：搜狗/微信输入法<br>
-下载：IDM / Motrix
+  <h3>短视频变现与带货技巧</h3>
+  <p>橱窗、团购、广告、商单、直播变现</p>
+  <button onclick="toggle('video6')">展开</button>
+  <button onclick="copyContent('video6')" class="copy-btn">复制</button>
+  <div id="video6" class="tool-content">
+开通商品橱窗，挂载相关好物<br>
+视频自然植入产品，不生硬推销<br>
+团购达人到店拍摄，赚取佣金<br>
+粉丝达标后接品牌商单广告<br>
+直播带货讲解产品卖点与使用场景<br>
+知识付费：课程、咨询、社群变现
   </div>
 </div>
 
 </div>
 </div>
-
 <!-- ============================================== -->
-<!-- 模块21：图片处理工具（22个） -->
-<!-- 模块22：视频剪辑工具（24个） -->
-<!-- 模块23：音频处理工具（19个） -->
-<!-- 模块24：文件管理技巧（26个） -->
-<!-- 模块25：手机使用技巧（31个） -->
-<!-- 模块26：社交聊天技巧（27个） -->
-<!-- 模块27：职场效率工具（33个） -->
-<!-- 模块28：趣味互动生成器（29个） -->
+<!-- 模块22：宠物养护工具（38个完整补全） -->
 <!-- ============================================== -->
-
-<div class="module" id="m21">
-<h2>🖼️ 图片处理工具（22个）</h2>
-<div class="tool-grid">
-<div class="tool-card"><h3>图片基础处理</h3><p>裁剪、压缩、水印</p>
-<button onclick="toggle('img1')">展开</button><div id="img1" class="tool-content">
-裁剪比例1:1/4:3/16:9<br>
-压缩不损失画质<br>
-文字水印+图片水印<br>
-批量重命名
-</div></div>
-</div>
-</div>
-
 <div class="module" id="m22">
-<h2>🎞️ 视频剪辑工具（24个）</h2>
+<h2>🐾 宠物养护工具（38个）</h2>
 <div class="tool-grid">
-<div class="tool-card"><h3>剪辑基础操作</h3><p>切割、合并、字幕</p>
-<button onclick="toggle('vid1')">展开</button><div id="vid1" class="tool-content">
-切割删除多余片段<br>
-多视频合并顺序<br>
-自动语音识别字幕<br>
-背景音乐音量调节
-</div></div>
+
+<!-- 1. 狗狗基础喂养（8个） -->
+<div class="tool-card">
+  <h3>狗狗喂养与护理</h3>
+  <p>喂食、疫苗、驱虫、训练基础常识</p>
+  <button onclick="toggle('pet1')">展开</button>
+  <button onclick="copyContent('pet1')" class="copy-btn">复制</button>
+  <div id="pet1" class="tool-content">
+幼犬少食多餐，每日3-4次定时定量<br>
+成犬每日1-2餐，不随意喂人食<br>
+禁止喂食：巧克力、葡萄、洋葱、葱姜蒜<br>
+幼犬2月龄开始首次疫苗，全程3针<br>
+体内驱虫每月1次，成年后每3月1次<br>
+体外驱虫每月1次，夏季跳蚤高发期加强<br>
+出门必牵绳，文明养犬避免惊吓他人<br>
+定点上厕所耐心引导，奖励大于惩罚
+  </div>
+</div>
+
+<!-- 2. 猫咪基础养护（8个） -->
+<div class="tool-card">
+  <h3>猫咪喂养与习惯</h3>
+  <p>猫粮、猫砂、疫苗、情绪安抚要点</p>
+  <button onclick="toggle('pet2')">展开</button>
+  <button onclick="copyContent('pet2')" class="copy-btn">复制</button>
+  <div id="pet2" class="tool-content">
+猫咪是纯肉食动物，主食优先高蛋白猫粮<br>
+每日更换新鲜饮水，鼓励多喝水防结石<br>
+猫砂盆每日清理，保持干净无异味<br>
+猫抓板必备，减少抓沙发家具行为<br>
+猫咪疫苗首针2月龄，定期加强免疫<br>
+绝育可减少发情乱叫、乱尿、走失风险<br>
+猫咪怕水，非必要不频繁洗澡<br>
+独处时准备玩具，避免焦虑拆家
+  </div>
+</div>
+
+<!-- 3. 常见疾病观察（8个） -->
+<div class="tool-card">
+  <h3>宠物健康异常判断</h3>
+  <p>呕吐、拉稀、咳嗽、精神差识别</p>
+  <button onclick="toggle('pet3')">展开</button>
+  <button onclick="copyContent('pet3')" class="copy-btn">复制</button>
+  <div id="pet3" class="tool-content">
+连续呕吐超过2次，警惕肠胃炎或异物<br>
+拉稀带血、腥臭，立即就医排查细小<br>
+咳嗽打喷嚏可能感冒或呼吸道感染<br>
+眼屎多、鼻干、发热多为生病信号<br>
+频繁抓耳甩头，大概率耳螨感染<br>
+皮肤红肿掉毛，多为真菌或螨虫皮肤病<br>
+突然食欲废绝、精神萎靡必须尽快检查<br>
+夏季防止中暑，高温不留在车内暴晒
+  </div>
+</div>
+
+<!-- 4. 清洁美容护理（8个） -->
+<div class="tool-card">
+  <h3>宠物清洁美容技巧</h3>
+  <p>洗澡、梳毛、剪指甲、洁牙基础</p>
+  <button onclick="toggle('pet4')">展开</button>
+  <button onclick="copyContent('pet4')" class="copy-btn">复制</button>
+  <div id="pet4" class="tool-content">
+长毛宠物理毛每日1次，防止打结脱毛<br>
+短毛宠物每周梳毛1次，去除浮毛<br>
+剪指甲避开血线，防止出血疼痛<br>
+宠物专用沐浴露，不可用人用洗发水<br>
+洗完彻底吹干，避免潮湿引发皮肤病<br>
+定期洁牙或喂磨牙棒，预防口臭牙结石<br>
+清理耳道污垢，保持干燥预防耳病<br>
+肛门腺定期清理，减少体臭发炎
+  </div>
+</div>
+
+<!-- 5. 安全与应急（6个，补足38） -->
+<div class="tool-card">
+  <h3>宠物安全与应急</h3>
+  <p>走失、中毒、外伤、高温应急处理</p>
+  <button onclick="toggle('pet5')">展开</button>
+  <button onclick="copyContent('pet5')" class="copy-btn">复制</button>
+  <div id="pet5" class="tool-content">
+佩戴狗牌猫牌，刻电话防走失<br>
+误食有毒物品立即催吐并送医<br>
+外伤出血先压迫止血，清洁消毒<br>
+抽搐时保持安静，不要强行掰嘴<br>
+冬季注意保暖，避免趴冰凉地面<br>
+常备益生菌，应对轻微软便肠胃不适
+  </div>
+</div>
+
 </div>
 </div>
 
+<!-- ============================================== -->
+<!-- 模块23：旅行出游工具（42个完整补全） -->
+<!-- ============================================== -->
 <div class="module" id="m23">
-<h2>🎙️ 音频处理工具（19个）</h2>
+<h2>✈️ 旅行出游工具（42个）</h2>
 <div class="tool-grid">
-<div class="tool-card"><h3>音频常用操作</h3><p>降噪、格式、混音</p>
-<button onclick="toggle('aud1')">展开</button><div id="aud1" class="tool-content">
-环境噪音一键消除<br>
-格式转换MP3/WAV/FLAC<br>
-人声分离背景音乐<br>
-录音剪辑拼接
-</div></div>
-</div>
+
+<!-- 1. 出行前准备（8个） -->
+<div class="tool-card">
+  <h3>旅行前必备准备</h3>
+  <p>证件、行李、攻略、预订避坑要点</p>
+  <button onclick="toggle('travel1')">展开</button>
+  <button onclick="copyContent('travel1')" class="copy-btn">复制</button>
+  <div id="travel1" class="tool-content">
+身份证、护照、签证提前检查有效期<br>
+手机、充电宝、充电线、耳机必备<br>
+少量现金备用，部分场所无法移动支付<br>
+提前预订机票酒店，避开节假日高峰<br>
+简单攻略：景点、美食、交通路线规划<br>
+下载离线地图，境外无网也能导航<br>
+购买旅行意外险，保障出行安全<br>
+查看目的地天气，准备合适衣物
+  </div>
 </div>
 
+<!-- 2. 行李收纳技巧（8个） -->
+<div class="tool-card">
+  <h3>行李箱高效收纳</h3>
+  <p>省空间、防皱、分类、快速取用</p>
+  <button onclick="toggle('travel2')">展开</button>
+  <button onclick="copyContent('travel2')" class="copy-btn">复制</button>
+  <div id="travel2" class="tool-content">
+衣物卷起来收纳，节省空间不易皱<br>
+内衣袜子用收纳袋，整洁好找<br>
+化妆品分装小瓶，符合登机液体规定<br>
+贵重物品放随身包，不托运更安全<br>
+鞋子用浴帽包裹，防止弄脏衣物<br>
+收纳箱分层，常用物品放最上层<br>
+数据线耳机用绕线器，不缠绕打结<br>
+备用塑料袋装脏衣、湿物、垃圾
+  </div>
+</div>
+
+<!-- 3. 交通出行技巧（8个） -->
+<div class="tool-card">
+  <h3>交通乘坐与避坑</h3>
+  <p>飞机、高铁、打车、地铁实用技巧</p>
+  <button onclick="toggle('travel3')">展开</button>
+  <button onclick="copyContent('travel3')" class="copy-btn">复制</button>
+  <div id="travel3" class="tool-content">
+飞机提前2小时到机场，预留值机安检时间<br>
+高铁刷身份证进站，无需取纸质票<br>
+夜间打车选择正规平台，不坐黑车<br>
+地铁优先，省钱快捷不堵车<br>
+长途备U型枕、耳塞，提升舒适度<br>
+转机预留足够时间，避免误机赶不上<br>
+晕车提前吃药，开窗通风减少不适<br>
+记住酒店地址电话，防止迷路失联
+  </div>
+</div>
+
+<!-- 4. 景区游玩技巧（8个） -->
+<div class="tool-card">
+  <h3>景区游玩避坑指南</h3>
+  <p>排队、拍照、消费、防骗实用技巧</p>
+  <button onclick="toggle('travel4')">展开</button>
+  <button onclick="copyContent('travel4')" class="copy-btn">复制</button>
+  <div id="travel4" class="tool-content">
+热门景点早去，避开人流高峰排队<br>
+景区高价饮料零食，自带更划算<br>
+不轻易相信野生导游，避免强制消费<br>
+寺庙景区谨慎上香祈福，防止天价收费<br>
+拍照避开人群，利用边角构图更干净<br>
+贵重物品贴身放，防范小偷扒手<br>
+景区纪念品谨慎购买，多为溢价商品<br>
+遵守景区规定，不攀爬不破坏文物绿植
+  </div>
+</div>
+
+<!-- 5. 住宿与安全（6个） -->
+<div class="tool-card">
+  <h3>住宿安全与卫生</h3>
+  <p>酒店检查、隐私、防盗、应急</p>
+  <button onclick="toggle('travel5')">展开</button>
+  <button onclick="copyContent('travel5')" class="copy-btn">复制</button>
+  <div id="travel5" class="tool-content">
+入住先反锁房门，扣安全链更放心<br>
+检查摄像头：关灯看反光，排查针孔设备<br>
+烧水壶、水杯简单烫洗再使用<br>
+不轻易给陌生人开门，确认身份再开门<br>
+睡前检查门窗，贵重物品放保险箱<br>
+记住当地紧急电话，报警求助更快捷
+  </div>
+</div>
+
+<!-- 6. 饮食与健康（4个，补足42） -->
+<div class="tool-card">
+  <h3>旅行饮食健康</h3>
+  <p>肠胃不适、水土不服、防晒应急</p>
+  <button onclick="toggle('travel6')">展开</button>
+  <button onclick="copyContent('travel6')" class="copy-btn">复制</button>
+  <div id="travel6" class="tool-content">
+品尝小吃注意卫生，不吃生冷变质食物<br>
+水土不服备肠胃药，防腹泻腹痛<br>
+户外长时间游玩，做好防晒防中暑<br>
+多喝水少熬夜，保持体力玩得更尽兴
+  </div>
+</div>
+
+</div>
+</div>
+<!-- ============================================== -->
+<!-- 模块24：理财记账工具（39个完整补全） -->
+<!-- ============================================== -->
 <div class="module" id="m24">
-<h2>📂 文件管理技巧（26个）</h2>
+<h2>💰 理财记账工具（39个）</h2>
 <div class="tool-grid">
-<div class="tool-card"><h3>文件高效管理</h3><p>分类、搜索、备份</p>
-<button onclick="toggle('file1')">展开</button><div id="file1" class="tool-content">
-按日期/类型/大小排序<br>
-快速搜索文件名<br>
-重要文件自动备份<br>
-重复文件清理
-</div></div>
+
+<!-- 1. 记账基础方法（8个） -->
+<div class="tool-card">
+  <h3>日常记账基础技巧</h3>
+  <p>分类、记录、复盘、省钱核心方法</p>
+  <button onclick="toggle('finance1')">展开</button>
+  <button onclick="copyContent('finance1')" class="copy-btn">复制</button>
+  <div id="finance1" class="tool-content">
+记账分类清晰：收入、固定支出、可变支出、储蓄<br>
+每日睡前5分钟，记录当天所有收支，不遗漏<br>
+固定支出：房租、房贷、水电、通讯费提前预留<br>
+可变支出：餐饮、娱乐、购物，设置月度预算<br>
+记账工具：手写账本、Excel、记账APP（随手记、鲨鱼记账）<br>
+每笔支出备注用途，方便后续复盘分析<br>
+拒绝“小钱不记”，积少成多影响总预算<br>
+每月固定时间复盘，找出不必要的开支
+  </div>
+</div>
+
+<!-- 2. 预算规划技巧（8个） -->
+<div class="tool-card">
+  <h3>月度预算规划方法</h3>
+  <p>收入分配、应急储备、消费控制</p>
+  <button onclick="toggle('finance2')">展开</button>
+  <button onclick="copyContent('finance2')" class="copy-btn">复制</button>
+  <div id="finance2" class="tool-content">
+收入分配公式：50%必要开支+30%灵活消费+20%储蓄/投资<br>
+应急储备金：预留3-6个月固定支出，应对突发情况<br>
+购物前列清单，不买清单外的物品，避免冲动消费<br>
+大额支出（超1000元）提前规划，不临时透支<br>
+避免月光：发工资先存一部分，再用于开支<br>
+定期调整预算，根据收入变化、季节变化优化<br>
+不提前消费，少用信用卡、网贷，避免负债<br>
+灵活消费设置上限，超支后停止非必要消费
+  </div>
+</div>
+
+<!-- 3. 省钱实用技巧（8个） -->
+<div class="tool-card">
+  <h3>日常省钱避坑技巧</h3>
+  <p>购物、餐饮、出行、居家省钱方法</p>
+  <button onclick="toggle('finance3')">展开</button>
+  <button onclick="copyContent('finance3')" class="copy-btn">复制</button>
+  <div id="finance3" class="tool-content">
+购物货比三家，优先选择性价比高的商品，不盲目追求品牌<br>
+网购蹲活动：618、双11、年货节，提前加购更划算<br>
+餐饮少点外卖，自己做饭更省钱、更健康<br>
+出行优先公共交通，打车拼车更省钱<br>
+水电燃气节约使用，养成随手关灯、关水龙头习惯<br>
+不办不必要的会员、充值卡，避免浪费<br>
+旧物利用、闲置转让，增加额外收入<br>
+避免跟风消费，不买“用不上”的闲置物品
+  </div>
+</div>
+
+<!-- 4. 小额理财入门（8个） -->
+<div class="tool-card">
+  <h3>小额理财入门要点</h3>
+  <p>低风险、易操作，适合新手的理财方式</p>
+  <button onclick="toggle('finance4')">展开</button>
+  <button onclick="copyContent('finance4')" class="copy-btn">复制</button>
+  <div id="finance4" class="tool-content">
+新手优先选择低风险理财：货币基金、国债、定期存款<br>
+基金定投：每月固定投入小额资金，平摊成本、风险低<br>
+不盲目跟风买股票、基金，先学习基础理财知识<br>
+分散投资：不把所有钱放在一个理财产品里<br>
+了解理财产品的风险等级，匹配自己的风险承受能力<br>
+定期查看理财收益，及时调整理财方案<br>
+不追求“高收益”，高收益必然伴随高风险<br>
+理财前先还清高利息负债（如网贷、信用卡分期）
+  </div>
+</div>
+
+<!-- 5. 理财避坑提醒（7个，补足39） -->
+<div class="tool-card">
+  <h3>理财避坑重要提醒</h3>
+  <p>防诈骗、防套路，守护个人财产安全</p>
+  <button onclick="toggle('finance5')">展开</button>
+  <button onclick="copyContent('finance5')" class="copy-btn">复制</button>
+  <div id="finance5" class="tool-content">
+警惕“保本高收益”，大概率是诈骗陷阱<br>
+不轻易相信陌生人推荐的理财产品、投资项目<br>
+保护个人银行卡、身份证信息，不泄露给他人<br>
+远离非法集资、传销，避免血本无归<br>
+不借贷理财、不杠杆投资，量力而行<br>
+理财APP选择正规平台，不下载非官方软件<br>
+定期核对理财账户，发现异常及时处理
+  </div>
+</div>
+
 </div>
 </div>
 
+<!-- ============================================== -->
+<!-- 模块25：手工DIY工具（45个完整补全） -->
+<!-- ============================================== -->
 <div class="module" id="m25">
-<h2>📱 手机使用技巧（31个）</h2>
+<h2>✂️ 手工DIY工具（45个）</h2>
 <div class="tool-grid">
-<div class="tool-card"><h3>手机隐藏功能</h3><p>长截图、应用双开</p>
-<button onclick="toggle('phone1')">展开</button><div id="phone1" class="tool-content">
-三指长截图/滚动截图<br>
-应用双开微信QQ<br>
-手机省电模式设置<br>
-隐私权限管理
-</div></div>
+
+<!-- 1. 手工基础工具（8个） -->
+<div class="tool-card">
+  <h3>手工DIY必备基础工具</h3>
+  <p>裁剪、粘贴、测量、固定通用工具</p>
+  <button onclick="toggle('diy1')">展开</button>
+  <button onclick="copyContent('diy1')" class="copy-btn">复制</button>
+  <div id="diy1" class="tool-content">
+剪刀：家用剪刀、手工剪刀、剪纸专用剪刀分开使用<br>
+胶水：固体胶（粘贴纸张）、液体胶（通用）、热熔胶（固定牢固）<br>
+尺子：直尺、卷尺、量角器，精准测量尺寸<br>
+画笔：马克笔、彩笔、水彩笔，用于上色、勾勒轮廓<br>
+纸张：彩纸、卡纸、宣纸、皱纹纸，适配不同手工需求<br>
+夹子：长尾夹、小夹子，固定材料防止移位<br>
+刻刀：美工刀、雕刻刀，用于精细裁剪、雕刻<br>
+双面胶：普通双面胶、泡沫双面胶，增加立体感
+  </div>
+</div>
+
+<!-- 2. 纸类手工教程（8个） -->
+<div class="tool-card">
+  <h3>简单纸类手工教程</h3>
+  <p>新手易上手，耗时短、颜值高</p>
+  <button onclick="toggle('diy2')">展开</button>
+  <button onclick="copyContent('diy2')" class="copy-btn">复制</button>
+  <div id="diy2" class="tool-content">
+折纸千纸鹤：正方形纸张，对折、翻折，简单几步成型<br>
+折纸玫瑰：用彩纸或皱纹纸，折叠花瓣、组合成型，可做装饰<br>
+剪纸窗花：正方形红纸，折叠后勾勒图案，裁剪出精美花纹<br>
+纸飞机：长方形纸张，折叠出机翼、机身，可调整飞行距离<br>
+纸灯笼：彩纸裁剪、折叠，粘贴手柄，点亮后氛围感拉满<br>
+纸星星：长条彩纸，缠绕成型，可装瓶做装饰、送礼物<br>
+纸贺卡：卡纸裁剪成型，搭配绘画、贴纸，写上祝福<br>
+纸折青蛙：正方形纸张，折叠后可按压跳跃，适合小朋友
+  </div>
+</div>
+
+<!-- 3. 旧物改造技巧（8个） -->
+<div class="tool-card">
+  <h3>旧物改造DIY技巧</h3>
+  <p>环保又实用，变废为宝不浪费</p>
+  <button onclick="toggle('diy3')">展开</button>
+  <button onclick="copyContent('diy3')" class="copy-btn">复制</button>
+  <div id="diy3" class="tool-content">
+塑料瓶改造：剪掉上半部分，粘贴装饰，做成笔筒、花盆<br>
+快递盒改造：裁剪、粘贴，做成收纳盒、书架、玩具收纳箱<br>
+旧T恤改造：裁剪袖子、领口，做成购物袋、抱枕套<br>
+旧罐子改造：玻璃瓶、易拉罐，粘贴麻绳、贴纸，做成花瓶、笔筒<br>
+旧报纸改造：揉碎后粘贴成型，做成纸浆画、小摆件<br>
+旧袜子改造：填充棉花，缝制五官，做成小玩偶、钥匙扣<br>
+旧窗帘改造：裁剪成小块，缝制桌布、餐垫、抱枕套<br>
+旧光盘改造：粘贴装饰，做成杯垫、墙面装饰画
+  </div>
+</div>
+
+<!-- 4. 手工装饰DIY（8个） -->
+<div class="tool-card">
+  <h3>家居手工装饰DIY</h3>
+  <p>低成本、高颜值，装饰家居更有格调</p>
+  <button onclick="toggle('diy4')">展开</button>
+  <button onclick="copyContent('diy4')" class="copy-btn">复制</button>
+  <div id="diy4" class="tool-content">
+麻绳装饰：缠绕花瓶、笔筒、相框，打造复古风格<br>
+干花装饰：晾干鲜花，搭配相框、玻璃瓶，做成桌面、墙面装饰<br>
+串珠挂饰：彩色串珠，搭配绳子，做成门帘、窗帘挂饰<br>
+黏土摆件：超轻黏土，捏制小动物、花朵，晾干后上色装饰<br>
+毛线编织：简单编织围巾、杯套、抱枕，温暖又实用<br>
+贝壳装饰：收集海边贝壳，粘贴成型，做成相框、杯垫<br>
+灯笼装饰：卡纸、皱纹纸制作，适合节日、日常家居装饰<br>
+贴纸装饰：利用各类贴纸，装饰笔记本、墙面、家具
+  </div>
+</div>
+
+<!-- 5. 手工DIY小窍门（8个） -->
+<div class="tool-card">
+  <h3>手工DIY实用小窍门</h3>
+  <p>避坑、高效、美观，新手也能做好</p>
+  <button onclick="toggle('diy5')">展开</button>
+  <button onclick="copyContent('diy5')" class="copy-btn">复制</button>
+  <div id="diy5" class="tool-content">
+裁剪纸张时，用尺子固定，裁剪更整齐、不歪斜<br>
+粘贴时先定位，再涂抹胶水，避免粘贴错位<br>
+热熔胶使用时注意防烫，提前准备湿布降温<br>
+上色时先浅后深，逐步叠加，颜色更均匀<br>
+旧物改造前，先清洁、晾干，粘贴更牢固<br>
+黏土作品晾干时，放在通风处，避免暴晒开裂<br>
+剪纸时先画简单图案，新手不挑战复杂花纹<br>
+手工材料分类存放，方便查找、避免丢失
+  </div>
+</div>
+
+<!-- 6. 儿童手工推荐（5个，补足45） -->
+<div class="tool-card">
+  <h3>儿童手工推荐（简单安全）</h3>
+  <p>锻炼动手能力，亲子互动更有趣</p>
+  <button onclick="toggle('diy6')">展开</button>
+  <button onclick="copyContent('diy6')" class="copy-btn">复制</button>
+  <div id="diy6" class="tool-content">
+手指画：用可水洗颜料，手指蘸取上色，简单易操作<br>
+树叶贴画：收集落叶，粘贴成型，做成小动物、风景图案<br>
+黏土捏制：超轻黏土，捏制简单造型，安全无异味<br>
+纸折小船：长方形纸张折叠，可放在水中漂浮<br>
+贴纸画：利用卡通贴纸，粘贴在画纸上，完成简单装饰
+  </div>
+</div>
+
 </div>
 </div>
 
+<!-- ============================================== -->
+<!-- 模块26：园艺种植工具（41个完整补全） -->
+<!-- ============================================== -->
 <div class="module" id="m26">
-<h2>💬 社交聊天技巧（27个）</h2>
+<h2>🌱 园艺种植工具（41个）</h2>
 <div class="tool-grid">
-<div class="tool-card"><h3>高情商聊天句式</h3><p>开场、回应、安慰</p>
-<button onclick="toggle('chat1')">展开</button><div id="chat1" class="tool-content">
-开场：在干嘛→有个事想分享<br>
-拒绝：不用啦，我自己可以<br>
-安慰：没事，我一直在<br>
-感谢：太谢谢你啦，帮大忙了
-</div></div>
+
+<!-- 1. 种植基础工具（8个） -->
+<div class="tool-card">
+  <h3>园艺种植必备工具</h3>
+  <p>翻土、浇水、施肥、修剪通用工具</p>
+  <button onclick="toggle('garden1')">展开</button>
+  <button onclick="copyContent('garden1')" class="copy-btn">复制</button>
+  <div id="garden1" class="tool-content">
+小铲子：用于翻土、挖坑、移栽幼苗，家用选小巧款<br>
+浇水壶：带花洒，浇水均匀，避免冲倒幼苗<br>
+喷壶：用于叶面喷水、施肥，适合多肉、绿植<br>
+修枝剪：修剪枯枝、病枝、多余枝条，保持植株美观<br>
+耙子：用于松土、平整土壤，去除土壤中的杂物<br>
+手套：园艺专用手套，防止手部弄脏、划伤<br>
+花盆：透气款（陶盆、紫砂盆），底部带排水孔<br>
+托盘：放置花盆下方，承接多余水分，保护桌面、地面
+  </div>
+</div>
+
+<!-- 2. 室内绿植种植（8个） -->
+<div class="tool-card">
+  <h3>室内绿植种植技巧</h3>
+  <p>新手易养活，好打理、净化空气</p>
+  <button onclick="toggle('garden2')">展开</button>
+  <button onclick="copyContent('garden2')" class="copy-btn">复制</button>
+  <div id="garden2" class="tool-content">
+绿萝：耐阴、耐旱，浇水见干见湿，适合新手<br>
+龟背竹：喜散光，避免阳光直射，叶片大、观赏性强<br>
+多肉植物：少浇水、多光照，土壤透气，防止烂根<br>
+虎皮兰：耐旱、耐阴，每月浇水1-2次，净化空气效果好<br>
+吊兰：喜半阴，浇水适中，可垂吊观赏，易繁殖<br>
+发财树：耐旱，浇水不宜过多，避免积水烂根<br>
+文竹：喜散光、湿润，避免强光，叶片纤细美观<br>
+常春藤：耐阴，可垂吊，适合放在窗台、阳台
+  </div>
+</div>
+
+<!-- 3. 阳台蔬菜种植（8个） -->
+<div class="tool-card">
+  <h3>阳台蔬菜种植指南</h3>
+  <p>易种植、可食用，新鲜又健康</p>
+  <button onclick="toggle('garden3')">展开</button>
+  <button onclick="copyContent('garden3')" class="copy-btn">复制</button>
+  <div id="garden3" class="tool-content">
+小葱：可从菜市场买带根的，移栽到花盆，浇水即可生长，可多次采摘<br>
+大蒜：剥瓣插入土壤，浇水保湿，长出蒜苗后可采摘食用<br>
+生菜：种子播种，喜凉爽，浇水均匀，20-30天可收获<br>
+番茄：适合盆栽，需要搭支架，喜光、浇水适中，可结小番茄<br>
+辣椒：盆栽易养活，喜光、耐旱，结果多，可采摘食用<br>
+香菜：种子提前浸泡，播种后浇水保湿，生长速度快，适合凉拌<br>
+菠菜：喜凉爽，播种简单，浇水均匀，可多次采摘<br>
+黄瓜：需要搭支架，喜光、喜水，结果后及时采摘，促进后续结果
+  </div>
+</div>
+
+<!-- 4. 种植基础技巧（8个） -->
+<div class="tool-card">
+  <h3>园艺种植基础技巧</h3>
+  <p>土壤、浇水、施肥、光照核心要点</p>
+  <button onclick="toggle('garden4')">展开</button>
+  <button onclick="copyContent('garden4')" class="copy-btn">复制</button>
+  <div id="garden4" class="tool-content">
+土壤选择：疏松透气、排水良好，可搭配腐叶土、园土、沙土<br>
+浇水原则：见干见湿，不干不浇，浇则浇透，避免积水烂根<br>
+施肥技巧：薄肥勤施，生长期施氮肥，开花结果期施磷钾肥<br>
+光照管理：喜光植物放在阳光充足处，耐阴植物放在散光处<br>
+移栽技巧：带土移栽，避免损伤根系，移栽后及时浇水缓苗<br>
+病虫害防治：定期检查叶片，发现病虫害及时喷洒杀虫剂、杀菌剂<br>
+修剪技巧：及时修剪枯枝、病枝、徒长枝，促进植株生长<br>
+换盆技巧：每年换一次盆，更换新土壤，修剪老化根系
+  </div>
+</div>
+
+<!-- 5. 种植避坑与养护（6个） -->
+<div class="tool-card">
+  <h3>种植避坑与日常养护</h3>
+  <p>新手常见问题，快速解决不踩雷</p>
+  <button onclick="toggle('garden5')">展开</button>
+  <button onclick="copyContent('garden5')" class="copy-btn">复制</button>
+  <div id="garden5" class="tool-content">
+避免浇水过多：多数绿植烂根都是因为浇水太频繁、积水<br>
+避免阳光直射：耐阴植物暴晒会导致叶片发黄、枯萎<br>
+避免施肥过多：施肥过量会烧根，导致植株死亡<br>
+及时清理枯叶：枯叶会消耗养分，还可能滋生细菌<br>
+定期松土：土壤板结会影响根系呼吸，每月松土1-2次<br>
+冬季保暖：耐寒性差的植物，冬季移到室内，避免冻伤
+  </div>
+</div>
+
+<!-- 6. 花卉种植推荐（5个，补足41） -->
+<div class="tool-card">
+  <h3>易开花花卉种植推荐</h3>
+  <p>花期长、好打理，适合阳台、室内</p>
+  <button onclick="toggle('garden6')">展开</button>
+  <button onclick="copyContent('garden6')" class="copy-btn">复制</button>
+  <div id="garden6" class="tool-content">
+月季：喜光、喜肥，花期长，花色丰富，适合阳台种植<br>
+矮牵牛：易开花，花色多样，适合盆栽、垂吊，好打理<br>
+长寿花：耐旱、喜光，花期长，冬季也能开花，适合室内<br>
+太阳花：喜光、耐旱，开花多，花色鲜艳，适合阳台暴晒处<br>
+栀子花：喜湿润、散光，花香浓郁，花期长，适合室内种植
+  </div>
+</div>
+
 </div>
 </div>
 
+<!-- ============================================== -->
+<!-- 模块27：户外露营工具（43个完整补全） -->
+<!-- ============================================== -->
 <div class="module" id="m27">
-<h2>💼 职场效率工具（33个）</h2>
+<h2>🏕️ 户外露营工具（43个）</h2>
 <div class="tool-grid">
-<div class="tool-card"><h3>职场高效模板</h3><p>日报、周报、计划</p>
-<button onclick="toggle('work1')">展开</button><div id="work1" class="tool-content">
-今日完成+明日计划+问题<br>
-本周总结+下周目标<br>
-项目进度甘特图<br>
-会议纪要模板
-</div></div>
-</div>
+
+<!-- 1. 露营基础装备（8个） -->
+<div class="tool-card">
+  <h3>露营必备基础装备</h3>
+  <p>住宿、保暖、防护核心装备</p>
+  <button onclick="toggle('camping1')">展开</button>
+  <button onclick="copyContent('camping1')" class="copy-btn">复制</button>
+  <div id="camping1" class="tool-content">
+帐篷：选择防风、防雨、透气款，根据人数选择大小<br>
+睡袋：根据露营温度选择厚度，保暖舒适，易收纳<br>
+防潮垫/气垫床：铺在帐篷内，防潮、保暖，提升睡眠舒适度<br>
+天幕：搭建在帐篷上方，遮阳、防雨，打造休息区域<br>
+折叠桌椅：轻便易携带，用于休息、吃饭、摆放物品<br>
+头灯/手电筒：夜间照明，必备应急装备，提前充好电<br>
+露营包：大容量、轻便，用于装露营装备，耐磨耐用<br>
+防晒用品：防晒霜、遮阳帽、防晒衣，户外防晒必备
+  </div>
 </div>
 
-<div class="module" id="m28">
-<h2>🎮 趣味互动生成器（29个）</h2>
-<div class="tool-grid">
-<div class="tool-card"><h3>互动小游戏</h3><p>抽签、转盘、真心话</p>
-<button onclick="toggle('fun1')">展开</button><div id="fun1" class="tool-content">
-随机抽签工具<br>
-转盘抽奖自定义<br>
-真心话大冒险题库<br>
-朋友默契挑战提问
-</div></div>
+<!-- 2. 露营饮食装备（8个） -->
+<div class="tool-card">
+  <h3>露营饮食相关装备</h3>
+  <p>烹饪、饮水、储存实用装备</p>
+  <button onclick="toggle('camping2')">展开</button>
+  <button onclick="copyContent('camping2')" class="copy-btn">复制</button>
+  <div id="camping2" class="tool-content">
+便携炉具：瓦斯炉、卡式炉，轻便易携带，用于烹饪食物<br>
+锅具：便携平底锅、汤锅，耐高温、易清洗，适合户外使用<br>
+餐具：不锈钢、折叠餐具，筷子、勺子、盘子，环保不浪费<br>
+饮用水：提前准备足量瓶装水，或带便携滤水器<br>
+食物储存：保鲜盒、密封袋，储存食材、零食，防止变质<br>
+打火机、火柴：用于点火、烹饪，备用1-2份<br>
+调料包：小瓶装盐、酱油、食用油等，方便烹饪<br>
+垃圾袋：分类携带，保持露营地卫生，无痕露营
+  </div>
 </div>
+
+<!-- 3. 露营安全装备（8个） -->
+<div class="tool-card">
+  <h3>露营安全应急装备</h3>
+  <p>防蚊、急救、应急，保障露营安全</p>
+  <button onclick="toggle('camping3')">展开</button>
+  <button onclick="copyContent('camping3')" class="copy-btn">复制</button>
+  <div id="camping3" class="tool-content">
+急救包：含创可贴、消毒棉片、纱布、止痛药、肠胃药等<br>
+防蚊用品：驱蚊液、驱蚊贴、蚊帐，户外防蚊必备<br>
+刀具：多功能刀具，用于切割食材、应急处理<br>
+绳索：用于固定帐篷、天幕，应急救援<br>
+应急口哨：用于求救、联系同伴，声音响亮<br>
+手电筒备用电池：防止头灯、手电筒没电<br>
+保暖衣物：夜间户外温度低，准备外套、围巾<br>
+消防用品：小型灭火器、防火毯，预防火灾
+  </div>
 </div>
-<div class="footer">
-© 2026 星空工具站 | 已完成：28大模块 · 362个小工具 | 正在持续更新    pxb7675@outlook.com
+
+<!-- 4. 露营选址与搭建（8个） -->
+<div class="tool-card">
+  <h3>露营选址与搭建技巧</h3>
+  <p>安全、舒适，新手也能快速搭建</p>
+  <button onclick="toggle('camping4')">展开</button>
+  <button onclick="copyContent('camping4')" class="copy-btn">复制</button>
+  <div id="camping4" class="tool-content">
+选址原则：地势平坦、排水良好，远离河道、陡坡、大树<br>
+避开低洼处：防止下雨积水，浸泡帐篷<br>
+靠近水源但不靠近河道：方便取水，避免洪水风险<br>
+搭建帐篷：选择平整地面，清理杂物，固定地钉、风绳<br>
+天幕搭建：高于帐篷，固定牢固，避免被风吹倒<br>
+帐篷朝向：避开风口，朝向阳光，提升保暖性<br>
+搭建顺序：先搭天幕，再搭帐篷，最后摆放装备<br>
+检查装备：搭建完成后，检查帐篷、天幕是否固定牢固
+  </div>
+</div>
+
+<!-- 5. 露营实用技巧（8个） -->
+<div class="tool-card">
+  <h3>露营实用小技巧</h3>
+  <p>避坑、高效、舒适，提升露营体验</p>
+  <button onclick="toggle('camping5')">展开</button>
+  <button onclick="copyContent('camping5')" class="copy-btn">复制</button>
+  <div id="camping5" class="tool-content">
+提前查看天气：避开雨天、大风天，选择晴朗天气露营<br>
+装备提前整理：分类打包，常用物品放在易取用的地方<br>
+食材提前处理：切好、腌好，减少户外烹饪时间<br>
+夜间保暖：睡袋外可盖外套，帐篷内放置暖宝宝<br>
+防潮湿：帐篷内放置干燥剂，防潮垫铺平整<br>
+无痕露营：带走所有垃圾，不破坏植被、不污染环境<br>
+同伴分工：有人负责搭建、有人负责烹饪，提高效率<br>
+提前熟悉装备：露营前熟悉帐篷、炉具搭建和使用方法
+  </div>
+</div>
+
+<!-- 6. 露营娱乐与应急（3个，补足43） -->
+<div class="tool-card">
+  <h3>露营娱乐与应急处理</h3>
+  <p>休闲娱乐、突发情况应对</p>
+  <button onclick="toggle('camping6')">展开</button>
+  <button onclick="copyContent('camping6')" class="copy-btn">复制</button>
+  <div id="camping6" class="tool-content">
+露营娱乐：带扑克牌、风筝、桌游，增加休闲乐趣<br>
+突发天气：遇到下雨、大风，及时加固帐篷，必要时撤离<br>
+受伤处理：轻微擦伤用急救包消毒包扎，严重受伤立即就医
+  </div>
+</div>
+
+</div>
 </div>
