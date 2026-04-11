@@ -1,160 +1,103 @@
- {
-    margin 0;
-    padding 0;
-    box-sizing border-box;
-    font-family Microsoft Yahei, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    background #0a0e27;
-    color #fff;
-    line-height 1.6;
+  background: #02040a;
+  color: #eef6ff;
+  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
-.header {
-    display flex;
-    justify-content space-between;
-    align-items center;
-    padding 1rem 5%;
-    background rgba(0,0,0,0.3);
-    position sticky;
-    top 0;
-    z-index 100;
-}
-
-.logo {
-    font-size 1.5rem;
-    font-weight bold;
-    color #64ffda;
-}
-
-.nav a {
-    color #fff;
-    text-decoration none;
-    margin-left 2rem;
-    transition color 0.3s;
-}
-
-.nav ahover {
-    color #64ffda;
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 .banner {
-    text-align center;
-    padding 5rem 2rem;
-    background linear-gradient(135deg, #1a1f3a 0%, #0a0e27 100%);
+  text-align: center;
+  padding: 40px 20px;
 }
 
 .banner h1 {
-    font-size 2.5rem;
-    margin-bottom 1rem;
-    color #64ffda;
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.tools {
-    padding 3rem 5%;
-    max-width 1200px;
-    margin 0 auto;
+.banner p {
+  font-size: 1.1rem;
+  opacity: 0.8;
 }
 
-.tools h2 {
-    text-align center;
-    font-size 2rem;
-    margin-bottom 2rem;
-    color #64ffda;
+.module {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.module h2 {
+  margin-bottom: 15px;
+  color: #00e0ff;
 }
 
 .tool-card {
-    background rgba(255,255,255,0.05);
-    padding 2rem;
-    border-radius 10px;
-    margin-bottom 1.5rem;
-    transition transform 0.3s;
-}
-
-.tool-cardhover {
-    transform translateY(-5px);
+  margin-bottom: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
 }
 
 .tool-card h3 {
-    color #64ffda;
-    margin-bottom 0.5rem;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
 }
 
-.tool-card button {
-    background #64ffda;
-    color #0a0e27;
-    border none;
-    padding 0.5rem 1.5rem;
-    border-radius 5px;
-    cursor pointer;
-    margin 1rem 0;
-    font-weight bold;
+.tool-content {
+  display: none; /* 默认关闭 */
+  margin-top: 10px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  line-height: 1.6;
 }
 
-.about {
-    padding 3rem 5%;
-    text-align center;
-    background rgba(0,0,0,0.2);
+button {
+  padding: 6px 12px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 4px;
+  background: #0072ff;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-.footer {
-    text-align center;
-    padding 2rem;
-    background #000;
-    color #666;
-}
-/* ============================================== */
-/* 📱 移动端终极适配 · 直接复制这里即可 */
-/* ============================================== */
-@media (max-width: 768px) {
-  /* 头部导航换行，避免挤爆 */
-  .header {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    padding: 12px 15px;
-  }
-  .nav {
-    text-align: center;
-  }
-  .nav a {
-    margin: 0 6px;
-    font-size: 13px;
-  }
-
-  /* 标题缩小，不超出屏幕 */
-  .banner h1 {
-    font-size: 24px;
-  }
-  .banner p {
-    font-size: 14px;
-  }
-  .module h2 {
-    font-size: 20px;
-  }
-
-  /* 卡片网格：手机自动 1列，平板 2列 */
-  .tool-grid {
-    grid-template-columns: 1fr !important;
-    gap: 14px;
-  }
-
-  /* 卡片内边距缩小 */
-  .tool-card {
-    padding: 16px;
-  }
-
-  /* 按钮自动换行，不挤在一起 */
-  .tool-card button {
-    font-size: 12px;
-    padding: 6px 10px;
-  }
+button:hover {
+  background: #005bcc;
 }
 
-/* 平板设备 */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .tool-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
+.copy-btn {
+  background: #28a745;
+}
+
+.copy-btn:hover {
+  background: #218838;
 }
