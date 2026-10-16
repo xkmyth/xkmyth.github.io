@@ -1,62 +1,64 @@
-// ===== 星空动画 =====
-const canvas = document.getElementById('stars');
-const ctx = canvas.getContext('2d');
+// xkmyth 官网：星空动画 + 流星
+(function () {
+  const cv = document.getElementById('sky');
+  const ctx = cv.getContext('2d');
+  let W, H, stars = [], meteors = [];
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
+  function resize() { W = cv.width = innerWidth; H = cv.height = innerHeight; }
+  resize();
+  addEventListener('resize', resize);
 
-const stars = [];
-for (let i = 0; i < 200; i++) {
-  stars.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 2 + 0.3,
-    speed: Math.random() * 0.3 + 0.05,
-    alpha: Math.random()
-  });
-}
-
-function drawStars() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  for (const s of stars) {
-    s.alpha += 0.01;
-    if (s.alpha > 1 || s.alpha < 0.2) s.alpha = 0.2;
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(255,255,255,${Math.abs(Math.sin(s.alpha))})`;
-    ctx.fill();
+  for (let i = 0; i < 170; i++) {
+    stars.push({
+      x: Math.random() * 2 - 1,
+      y: Math.random() * 2 - 1,
+      z: Math.random(),
+      r: Math.random() * 1.5 + 0.3,
+      tw: Math.random() * Math.PI * 2
+    });
   }
-  requestAnimationFrame(drawStars);
-}
-drawStars();
 
-// ===== 网名生成器 =====
-function generateName() {
-  const prefix = ['星尘','星河','星云','星野','星眠','星屿','星澜','星雾'];
-  const suffix = ['低语','入梦','远航','私语','幻梦','微光','晚风','破晓'];
-  const p = prefix[Math.floor(Math.random() * prefix.length)];
-  const s = suffix[Math.floor(Math.random() * suffix.length)];
-  document.getElementById('nameResult').innerText = p + s;
-}
+  function spawnMeteor() {
+    meteors.push({
+      x: Math.random() * W * 0.8 + W * 0.2,
+      y: Math.random() * H * 0.25,
+      vx: -(Math.random() * 3 + 4),
+      vy: Math.random() * 1.6 + 1.6,
+      life: 1
+    });
+  }
+  setInterval(spawnMeteor, 2600);
 
-// ===== 运势测算 =====
-function showFortune() {
-  const fortunes = [
-    '今日运势极佳，适合开展新计划 ✨',
-    '今日运势平稳，稳扎稳打即可 👍',
-    '今日运势小吉，注意把握机会 🌟',
-    '今日运势尚可，避免冲动决策 💫'
-  ];
-  document.getElementById('fortuneResult').innerText =
-    fortunes[Math.floor(Math.random() * fortunes.length)];
-}
-
-// ===== 表情包生成 =====
-function generateEmoji() {
-  const text = prompt('请输入表情包文字：');
-  if (text) alert(`已生成表情包：${text}`);
-}
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    const t = Date.now() / 1000;
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+      const x = (s.x + t * 0.004 * s.z) % 2 - 1;
+      const a = 0.3 + 0.7 * Math.abs(Math.sin(s.tw + t * 1.3));
+      ctx.globalAlpha = a * (0.4 + 0.6 * s.z);
+      ctx.fillStyle = i % 9 === 0 ? '#9ae3ff' : '#fff';
+      ctx.beginPath();
+      ctx.arc((x + 1) / 2 * W, (s.y + 1) / 2 * H, s.r * (0.5 + s.z), 0, 7);
+      ctx.fill();
+    }
+    // 流星
+    for (let i = meteors.length - 1; i >= 0; i--) {
+      const m = meteors[i];
+      m.x += m.vx; m.y += m.vy; m.life -= 0.012;
+      if (m.life <= 0) { meteors.splice(i, 1); continue; }
+      const grad = ctx.createLinearGradient(m.x, m.y, m.x - m.vx * 12, m.y - m.vy * 12);
+      grad.addColorStop(0, 'rgba(255,255,255,' + m.life + ')');
+      grad.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(m.x, m.y);
+      ctx.lineTo(m.x - m.vx * 12, m.y - m.vy * 12);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
