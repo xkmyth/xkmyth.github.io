@@ -14,7 +14,7 @@
 <meta property="og:title" content="在线工具总览 · 星空生态">
 <meta property="og:description" content="160 个纯前端在线工具：编解码、文本、时间、安全、数字、开发、计算、网络、文件，全部本地运行。">
 <meta property="og:url" content="https://xkmyth.github.io/tools/">
-<meta property="og:image" content="https://xkmyth.github.io/icons/og-tools.png">
+<meta property="og:image" content="https://xkmyth.github.io/icons/og-1200x630.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -55,6 +55,10 @@
 
 <p class="lead">160 个纯前端工具，全部在浏览器本地算，不上传任何数据。上面可以直接搜，也可以按分类翻。</p>
 <p class="catalog-hint">按场景挑？看 <a href="/collections/">八组工具合集</a>。</p>
+<div class="recent-tools" id="catRecent" hidden>
+  <span class="recent-label">最近用过</span>
+  <div class="recent-chips"></div>
+</div>
 <div class="catalog-search">
   <span class="catalog-search-ico" aria-hidden="true">⌕</span>
   <input id="catSearch" type="search" placeholder="在 160 个工具里找：哈希 / json / 时间戳 / 子网…" autocomplete="off" spellcheck="false" aria-label="搜索工具">
@@ -63,7 +67,7 @@
 </div>
 <p class="catalog-none" id="catNone" hidden>没有匹配的工具 —— 换个更短的关键词，或者点「全部」看完整列表。</p>
 <div class="catalog-bar">
-  <div class="cat-chips"><button class="cat-chip cat-random" type="button" id="catRandom" title="随便挑一个工具试试">🎲 随机一个</button><button class="cat-chip active" type="button" data-cat="all">全部 <b>160</b></button><button class="cat-chip" type="button" data-cat="enc">编解码 <b>15</b></button><button class="cat-chip" type="button" data-cat="text">文本 <b>24</b></button><button class="cat-chip" type="button" data-cat="time">时间 <b>14</b></button><button class="cat-chip" type="button" data-cat="safe">安全 <b>13</b></button><button class="cat-chip" type="button" data-cat="num">数字 <b>21</b></button><button class="cat-chip" type="button" data-cat="dev">开发 <b>31</b></button><button class="cat-chip" type="button" data-cat="calc">计算 <b>18</b></button><button class="cat-chip" type="button" data-cat="net">网络 <b>14</b></button><button class="cat-chip" type="button" data-cat="file">文件 <b>10</b></button></div>
+  <div class="cat-chips"><button class="cat-chip active" type="button" data-cat="all">全部 <b>160</b></button><button class="cat-chip" type="button" data-cat="enc">编解码 <b>15</b></button><button class="cat-chip" type="button" data-cat="text">文本 <b>24</b></button><button class="cat-chip" type="button" data-cat="time">时间 <b>14</b></button><button class="cat-chip" type="button" data-cat="safe">安全 <b>13</b></button><button class="cat-chip" type="button" data-cat="num">数字 <b>21</b></button><button class="cat-chip" type="button" data-cat="dev">开发 <b>31</b></button><button class="cat-chip" type="button" data-cat="calc">计算 <b>18</b></button><button class="cat-chip" type="button" data-cat="net">网络 <b>14</b></button><button class="cat-chip" type="button" data-cat="file">文件 <b>10</b></button></div>
   <span class="catalog-count">当前显示 <b id="catCount">160</b> 个</span>
 </div>
 <div class="note">每个工具都有独立页面（点击卡片进入），页内就是工具本体，加手写说明与示例。</div>
@@ -78,6 +82,50 @@
   var clearBtn = document.getElementById('catSearchClear');
   var none = document.getElementById('catNone');
   var state = { cat: 'all', q: '' };
+  var REC_KEY = 'xk-recent-tools';
+  var recentBox = document.getElementById('catRecent');
+
+  function readRecent() {
+    try {
+      var v = JSON.parse(localStorage.getItem(REC_KEY) || '[]');
+      return Object.prototype.toString.call(v) === '[object Array]' ? v : [];
+    } catch (e) { return []; }
+  }
+
+  function saveRecent(list) {
+    try { localStorage.setItem(REC_KEY, JSON.stringify(list.slice(0, 6))); } catch (e) { }
+  }
+
+  function renderRecent() {
+    if (!recentBox) return;
+    var list = readRecent().filter(function (r) { return r && r.id && r.name; });
+    if (!list.length) { recentBox.hidden = true; return; }
+    recentBox.hidden = false;
+    var wrap = recentBox.querySelector('.recent-chips');
+    if (!wrap) return;
+    wrap.textContent = '';
+    list.forEach(function (r) {
+      var a = document.createElement('a');
+      a.className = 'recent-chip';
+      a.href = '/Timarsky/tools/' + r.id + '/';
+      a.textContent = r.name;
+      wrap.appendChild(a);
+    });
+  }
+
+  [].slice.call(document.querySelectorAll('.tool-link')).forEach(function (a) {
+    a.addEventListener('click', function () {
+      var href = a.getAttribute('href') || '';
+      var parts = href.split('/').filter(Boolean);
+      var id = parts[parts.length - 1] || '';
+      if (!id) return;
+      var label = a.querySelector('.tool-txt b') || a.querySelector('.tool-txt');
+      var name = String((label || {}).textContent || id).trim().slice(0, 24);
+      var list = readRecent().filter(function (r) { return r && r.id !== id; });
+      list.unshift({ id: id, name: name });
+      saveRecent(list);
+    });
+  });
   function apply() {
     var q = state.q.trim().toLowerCase();
     var shown = 0;
@@ -121,17 +169,8 @@
       if (e.key === '/' && tag !== 'input' && tag !== 'textarea') { e.preventDefault(); box.focus(); }
     });
   }
-
-  var rndBtn = document.getElementById('catRandom');
-  if (rndBtn) {
-    rndBtn.addEventListener('click', function () {
-      var pool = [].slice.call(document.querySelectorAll('.tool-link:not([hidden])'));
-      if (!pool.length) return;
-      var pick = pool[Math.floor(Math.random() * pool.length)];
-      window.location.href = pick.getAttribute('href');
-    });
-  }
   apply();
+  renderRecent();
 })();
 </script>
 </main>
@@ -164,6 +203,7 @@
         <a href="/software/wallpaper/">Wallpaper</a>
         <a href="/software/record/">Record</a>
         <a href="/software/clipboard/">Clipboard</a>
+        <a href="/software/data/">Data</a>
       </div>
       <div class="foot-col">
         <h4>文档</h4>
