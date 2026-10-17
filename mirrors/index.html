@@ -3,20 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
 <meta name="description" content="xmyth 生态的三条官方直链、自建镜像的四个步骤与校验要求，以及为什么不做下载器加速。">
 <title>镜像与直链 · 三条就够了 · 星空神话 xkmyth</title>
+<link rel="canonical" href="https://xkmyth.github.io/mirrors/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="xkmyth">
+<meta property="og:title" content="镜像与直链 · 三条就够了">
+<meta property="og:description" content="xmyth 生态的三条官方直链、自建镜像的四个步骤与校验要求，以及为什么不做下载器加速。">
+<meta property="og:url" content="https://xkmyth.github.io/mirrors/">
+<meta property="og:image" content="https://xkmyth.github.io/icons/og-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="镜像与直链 · 三条就够了">
+<meta name="twitter:description" content="xmyth 生态的三条官方直链、自建镜像的四个步骤与校验要求，以及为什么不做下载器加速。">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
 <link rel="preconnect" href="https://api.github.com" crossorigin>
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/sub.css">
-
-<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
-<link rel="manifest" href="/manifest.webmanifest">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><meta name="color-scheme" content="dark light">
-<link rel="canonical" href="https://xkmyth.github.io/mirrors/">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://xkmyth.github.io/"},{"@type":"ListItem","position":2,"name":"镜像与直链三条就够了","item":"https://xkmyth.github.io/mirrors/"}]},{"@type":"WebPage","name":"镜像与直链三条就够了","url":"https://xkmyth.github.io/mirrors/","description":"xmyth 生态的三条官方直链、自建镜像的四个步骤与校验要求，以及为什么不做下载器加速。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"xkmyth","url":"https://xkmyth.github.io/"},"publisher":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.github.io/","logo":"https://xkmyth.github.io/icons/icon-512.png"}}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主内容</a>
@@ -47,11 +56,11 @@
   <div class="sec-head"><h2 class="sec-title">三条可用直链</h2><p class="sec-kicker">不用记路径，认准这三条</p></div>
 
 <table class="tbl">
-  <thead scope="col"><tr><th scope="col">用途</th><th scope="col">地址</th><th scope="col">说明</th></tr></thead>
+  <thead><tr><th>用途</th><th>地址</th><th>说明</th></tr></thead>
   <tbody>
-    <tr><td>安装包（全部）</td><td><a href="https://github.com/xkmyth/xkmyth/releases/latest" target="_blank" rel="noopener noreferrer">releases/latest</a></td><td>GitHub 全球 CDN，永远指向最新正式版</td></tr>
+    <tr><td>安装包（全部）</td><td><a href="https://github.com/xkmyth/xkmyth/releases/latest">releases/latest</a></td><td>GitHub 全球 CDN，永远指向最新正式版</td></tr>
     <tr><td>单个资产</td><td><code>releases/latest/download/&lt;资产名&gt;</code></td><td>适合贴在 README 或脚本里</td></tr>
-    <tr><td>系统镜像</td><td><a href="https://xkmyth.dynv6.net:5212/" target="_blank" rel="noopener noreferrer">私有云盘</a></td><td>约 8 GB，自有服务器，速度看线路</td></tr>
+    <tr><td>系统镜像</td><td><a href="https://xkmyth.dynv6.net:5212/">私有云盘</a></td><td>约 8 GB，自有服务器，速度看线路</td></tr>
   </tbody>
 </table>
 <p class="note">凡是要求你「先关注公众号 / 先注册 / 先装下载器」的所谓镜像，都不是这里的。本站只提供上面三条。</p>
@@ -103,6 +112,7 @@
         <a href="/software/wallpaper/">Wallpaper</a>
         <a href="/software/record/">Record</a>
         <a href="/software/clipboard/">Clipboard</a>
+        <a href="/software/data/">Data</a>
       </div>
       <div class="foot-col">
         <h4>文档</h4>
@@ -122,7 +132,6 @@
         <h4>生态</h4>
         <a href="/ecosystem/">生态地图</a>
         <a href="/tools/">工具目录</a>
-        <a href="/collections/">工具合集</a>
         <a href="/Timarsky/">工具站</a>
         <a href="/Timarsky/tools/">在线工具箱</a>
         <a href="/changelog/">版本日志</a>

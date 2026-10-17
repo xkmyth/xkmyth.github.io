@@ -3,20 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
 <meta name="description" content="从零开始的四步路线：确认需求、下载校验、解压安装、接上自己的服务，附三种路线选择与自查清单。">
 <title>开始使用 · 十五分钟路线 · 星空神话 xkmyth</title>
+<link rel="canonical" href="https://xkmyth.github.io/docs/getting-started/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="xkmyth">
+<meta property="og:title" content="开始使用 · 十五分钟路线">
+<meta property="og:description" content="从零开始的四步路线：确认需求、下载校验、解压安装、接上自己的服务，附三种路线选择与自查清单。">
+<meta property="og:url" content="https://xkmyth.github.io/docs/getting-started/">
+<meta property="og:image" content="https://xkmyth.github.io/icons/og-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="开始使用 · 十五分钟路线">
+<meta name="twitter:description" content="从零开始的四步路线：确认需求、下载校验、解压安装、接上自己的服务，附三种路线选择与自查清单。">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
 <link rel="preconnect" href="https://api.github.com" crossorigin>
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/sub.css">
-
-<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
-<link rel="manifest" href="/manifest.webmanifest">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><meta name="color-scheme" content="dark light">
-<link rel="canonical" href="https://xkmyth.github.io/docs/getting-started/">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://xkmyth.github.io/"},{"@type":"ListItem","position":2,"name":"docs","item":"https://xkmyth.github.io/docs/"},{"@type":"ListItem","position":3,"name":"十五分钟从下载到跑通","item":"https://xkmyth.github.io/docs/getting-started/"}]},{"@type":"WebPage","name":"十五分钟从下载到跑通","url":"https://xkmyth.github.io/docs/getting-started/","description":"从零开始的四步路线：确认需求、下载校验、解压安装、接上自己的服务，附三种路线选择与自查清单。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"xkmyth","url":"https://xkmyth.github.io/"},"publisher":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.github.io/","logo":"https://xkmyth.github.io/icons/icon-512.png"}}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主内容</a>
@@ -49,8 +58,7 @@
 <div class="timeline">
   <div class="tl-item"><div class="tl-date">第 1 步 · 2 分钟</div>
     <div class="tl-title">确认你要什么</div>
-    <p>要浏览器就下 <a href="/xkmyth/">Downloads</a> 里的 <code>xkmyth-browser</code>；要云盘客户端就下 <code>xkmyth-cloud</code>；只要工具就去 <a href="/tools/">工具目录</a>
-        <a href="/collections/">工具合集</a>。别一次下一堆，先跑通一个。</p></div>
+    <p>要浏览器就下 <a href="/xkmyth/">Downloads</a> 里的 <code>xkmyth-browser</code>；要云盘客户端就下 <code>xkmyth-cloud</code>；只要工具就去 <a href="/tools/">工具目录</a>。别一次下一堆，先跑通一个。</p></div>
   <div class="tl-item"><div class="tl-date">第 2 步 · 3 分钟</div>
     <div class="tl-title">下载与校验</div>
     <p>从 <a href="/xkmyth/">Downloads</a> 取最新资产，记录 SHA256，按 <a href="/docs/verify/">校验与验证</a> 里对应平台的命令跑一遍。数字对得上再解压。</p></div>
@@ -68,7 +76,7 @@
   <div class="sec-head"><h2 class="sec-title">先选路线</h2><p class="sec-kicker">三种人，三条路</p></div>
 
 <table class="tbl">
-  <thead scope="col"><tr><th scope="col">你是谁</th><th scope="col">推荐路线</th><th scope="col">别做的事</th></tr></thead>
+  <thead><tr><th>你是谁</th><th>推荐路线</th><th>别做的事</th></tr></thead>
   <tbody>
     <tr><td>只想用工具，不碰下载</td><td><a href="/tools/">工具目录</a> → 挑一个用 → 收藏</td><td>别去装客户端，浏览器里已经够用</td></tr>
     <tr><td>要装浏览器 / 云盘客户端</td><td><a href="/xkmyth/">Downloads</a> → 校验 → 安装</td><td>别跳过校验，也别用来路不明的二次打包</td></tr>
@@ -117,6 +125,7 @@
         <a href="/software/wallpaper/">Wallpaper</a>
         <a href="/software/record/">Record</a>
         <a href="/software/clipboard/">Clipboard</a>
+        <a href="/software/data/">Data</a>
       </div>
       <div class="foot-col">
         <h4>文档</h4>

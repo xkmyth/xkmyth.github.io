@@ -106,7 +106,10 @@
 
     $('wSeedOut').textContent = String(seed);
     $('wSizeOut').textContent = ($('wSize').value || '').replace('x', ' × ');
-    $('wHint').textContent = '当前：' + $('wScheme').selectedOptions[0].textContent + ' · 种子 ' + seed + ' · ' + blobs + ' 个色块';
+    var sel = $('wScheme');
+    var opt = sel && sel.selectedOptions && sel.selectedOptions[0];
+    var schemeName = opt ? opt.textContent : '未选择方案';
+    $('wHint').textContent = '当前：' + schemeName + ' · 种子 ' + seed + ' · ' + blobs + ' 个色块';
   }
 
   function hexA(hex, a) {

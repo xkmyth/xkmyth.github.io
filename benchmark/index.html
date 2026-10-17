@@ -3,20 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
 <meta name="description" content="逐页体积、样式脚本开销、外部请求数，三条自测命令，以及性能上明确放弃的三件事。">
 <title>性能基线 · 体积与请求数 · 星空神话 xkmyth</title>
+<link rel="canonical" href="https://xkmyth.github.io/benchmark/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="xkmyth">
+<meta property="og:title" content="性能基线 · 体积与请求数">
+<meta property="og:description" content="逐页体积、样式脚本开销、外部请求数，三条自测命令，以及性能上明确放弃的三件事。">
+<meta property="og:url" content="https://xkmyth.github.io/benchmark/">
+<meta property="og:image" content="https://xkmyth.github.io/icons/og-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="性能基线 · 体积与请求数">
+<meta name="twitter:description" content="逐页体积、样式脚本开销、外部请求数，三条自测命令，以及性能上明确放弃的三件事。">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
 <link rel="preconnect" href="https://api.github.com" crossorigin>
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/sub.css">
-
-<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
-<link rel="manifest" href="/manifest.webmanifest">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><meta name="color-scheme" content="dark light">
-<link rel="canonical" href="https://xkmyth.github.io/benchmark/">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://xkmyth.github.io/"},{"@type":"ListItem","position":2,"name":"性能基线拿数字说话","item":"https://xkmyth.github.io/benchmark/"}]},{"@type":"WebPage","name":"性能基线拿数字说话","url":"https://xkmyth.github.io/benchmark/","description":"逐页体积、样式脚本开销、外部请求数，三条自测命令，以及性能上明确放弃的三件事。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"xkmyth","url":"https://xkmyth.github.io/"},"publisher":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.github.io/","logo":"https://xkmyth.github.io/icons/icon-512.png"}}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主内容</a>
@@ -47,7 +56,7 @@
   <div class="sec-head"><h2 class="sec-title">页面体积基线</h2><p class="sec-kicker">越小越好，这是刻意的</p></div>
 
 <table class="tbl">
-  <thead scope="col"><tr><th scope="col">页面</th><th scope="col">HTML</th><th scope="col">样式</th><th scope="col">脚本</th><th scope="col">外部请求</th></tr></thead>
+  <thead><tr><th>页面</th><th>HTML</th><th>样式</th><th>脚本</th><th>外部请求</th></tr></thead>
   <tbody>
     <tr><td>首页</td><td>约 13 KiB</td><td>style.css 8 KiB + sub.css 12 KiB</td><td>main.js 7 KiB + sub.js 7 KiB</td><td>1（Releases API）</td></tr>
     <tr><td>软件库</td><td>约 8 KiB</td><td>同上</td><td>sub.js</td><td>0</td></tr>
@@ -74,38 +83,6 @@ curl -s -o /dev/null -w "size=%{size_download} time=%{time_total}\n" https://xkm
   <div class="card"><h3>不做无限滚动列表</h3><p>工具与截图都在本地，一次性渲染；数据量变大前不引入虚拟滚动。</p></div>
   <div class="card"><h3>不做 SSR</h3><p>静态 HTML 已经是「构建期渲染」，没有服务端可做，也不需要。</p></div>
 </div>
-</section>
-<!-- benchmark-measured -->
-<section class="reveal">
-  <div class="sec-head"><h2 class="sec-title">实测体积</h2><p class="sec-kicker">脚本量的，不是估的（gzip 按 9 级压缩模拟服务器压缩结果）</p></div>
-  <div class="tbl-wrap">
-    <table class="tbl">
-      <thead><tr><th>资源</th><th>原始</th><th>gzip 后</th></tr></thead>
-      <tbody>
-        <tr><td>主站 style.css</td><td>30.2 KiB</td><td>7.8 KiB</td></tr>
-        <tr><td>主站 sub.css</td><td>26.3 KiB</td><td>6.7 KiB</td></tr>
-        <tr><td>主站 sub.js</td><td>20.1 KiB</td><td>6.7 KiB</td></tr>
-        <tr><td>主站 main.js</td><td>4.1 KiB</td><td>1.7 KiB</td></tr>
-        <tr><td>工具站 tools.css</td><td>23.8 KiB</td><td>6.1 KiB</td></tr>
-        <tr><td>工具站 tools.js</td><td>271.3 KiB</td><td>79.4 KiB</td></tr>
-        <tr><td>工具站 script.js</td><td>5.8 KiB</td><td>2.2 KiB</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="tbl-wrap" style="margin-top:18px">
-    <table class="tbl">
-      <thead><tr><th>页面 HTML</th><th>原始</th><th>gzip 后</th></tr></thead>
-      <tbody>
-        <tr><td>首页</td><td>18.4 KiB</td><td>5.8 KiB</td></tr>
-        <tr><td>工具目录</td><td>71.4 KiB</td><td>16.5 KiB</td></tr>
-        <tr><td>软件库</td><td>17.9 KiB</td><td>5.5 KiB</td></tr>
-        <tr><td>工具总览</td><td>7.5 KiB</td><td>2.8 KiB</td></tr>
-        <tr><td>某个工具详情</td><td>8.5 KiB</td><td>3.1 KiB</td></tr>
-        <tr><td>站务日志</td><td>11.2 KiB</td><td>4.6 KiB</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="note">首次访问首页的传输量 ≈ 首页 HTML + style.css + sub.css + sub.js 的 gzip 之和，其余页面复用缓存。工具站第一次打开会多下载一份 tools.js（160 个工具的定义都在里面，换来的是一次加载之后完全离线可用）。</p>
 </section>
 </main>
 
@@ -137,6 +114,7 @@ curl -s -o /dev/null -w "size=%{size_download} time=%{time_total}\n" https://xkm
         <a href="/software/wallpaper/">Wallpaper</a>
         <a href="/software/record/">Record</a>
         <a href="/software/clipboard/">Clipboard</a>
+        <a href="/software/data/">Data</a>
       </div>
       <div class="foot-col">
         <h4>文档</h4>
@@ -156,7 +134,6 @@ curl -s -o /dev/null -w "size=%{size_download} time=%{time_total}\n" https://xkm
         <h4>生态</h4>
         <a href="/ecosystem/">生态地图</a>
         <a href="/tools/">工具目录</a>
-        <a href="/collections/">工具合集</a>
         <a href="/Timarsky/">工具站</a>
         <a href="/Timarsky/tools/">在线工具箱</a>
         <a href="/changelog/">版本日志</a>

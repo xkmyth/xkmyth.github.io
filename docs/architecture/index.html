@@ -3,20 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
 <meta name="description" content="四个 GitHub Pages 仓库如何拼成生态：Releases API、Commits/Actions、localStorage 三条数据流，缓存与降级策略，以及为什么坚持无后端。">
 <title>架构说明 · 四个仓库与三条数据流 · 星空神话 xkmyth</title>
+<link rel="canonical" href="https://xkmyth.github.io/docs/architecture/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="xkmyth">
+<meta property="og:title" content="架构说明 · 四个仓库与三条数据流">
+<meta property="og:description" content="四个 GitHub Pages 仓库如何拼成生态：Releases API、Commits/Actions、localStorage 三条数据流，缓存与降级策略，以及为什么坚持无后端。">
+<meta property="og:url" content="https://xkmyth.github.io/docs/architecture/">
+<meta property="og:image" content="https://xkmyth.github.io/icons/og-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="架构说明 · 四个仓库与三条数据流">
+<meta name="twitter:description" content="四个 GitHub Pages 仓库如何拼成生态：Releases API、Commits/Actions、localStorage 三条数据流，缓存与降级策略，以及为什么坚持无后端。">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
 <link rel="preconnect" href="https://api.github.com" crossorigin>
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/sub.css">
-
-<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
-<link rel="manifest" href="/manifest.webmanifest">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><meta name="color-scheme" content="dark light">
-<link rel="canonical" href="https://xkmyth.github.io/docs/architecture/">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://xkmyth.github.io/"},{"@type":"ListItem","position":2,"name":"docs","item":"https://xkmyth.github.io/docs/"},{"@type":"ListItem","position":3,"name":"四个仓库三条数据流","item":"https://xkmyth.github.io/docs/architecture/"}]},{"@type":"WebPage","name":"四个仓库三条数据流","url":"https://xkmyth.github.io/docs/architecture/","description":"四个 GitHub Pages 仓库如何拼成生态：Releases API、Commits/Actions、localStorage 三条数据流，缓存与降级策略，以及为什么坚持无后端。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"xkmyth","url":"https://xkmyth.github.io/"},"publisher":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.github.io/","logo":"https://xkmyth.github.io/icons/icon-512.png"}}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主内容</a>
@@ -47,7 +56,7 @@
   <div class="sec-head"><h2 class="sec-title">四个仓库</h2><p class="sec-kicker">一个生态，四块积木</p></div>
 
 <table class="tbl">
-  <thead scope="col"><tr><th scope="col">仓库</th><th scope="col">职责</th><th scope="col">技术</th><th scope="col">构建</th></tr></thead>
+  <thead><tr><th>仓库</th><th>职责</th><th>技术</th><th>构建</th></tr></thead>
   <tbody>
     <tr><td><code>xkmyth/xkmyth</code></td><td>安装包发行 + Downloads 页</td><td>静态 HTML/CSS/JS + Releases API</td><td>无</td></tr>
     <tr><td><code>xkmyth/xkmyth.github.io</code></td><td>主站：文档、软件库、工具目录、状态</td><td>静态多页 + 少量 JS</td><td>无</td></tr>
@@ -69,7 +78,7 @@
   <div class="sec-head"><h2 class="sec-title">缓存与降级</h2><p class="sec-kicker">宁可显示旧数据，也不显示错误</p></div>
 
 <table class="tbl">
-  <thead scope="col"><tr><th scope="col">localStorage 键</th><th scope="col">内容</th><th scope="col">有效期</th><th scope="col">失败时</th></tr></thead>
+  <thead><tr><th>localStorage 键</th><th>内容</th><th>有效期</th><th>失败时</th></tr></thead>
   <tbody>
     <tr><td><code>xkmyth-site-releases-cache</code></td><td>首页下载卡与版本号</td><td>10 分钟</td><td>退回静态直链 + 「最新版见 Releases」</td></tr>
     <tr><td><code>xkmyth-changelog-cache</code></td><td>版本日志时间轴</td><td>10 分钟</td><td>显示一句说明 + Releases 链接</td></tr>
@@ -118,6 +127,7 @@
         <a href="/software/wallpaper/">Wallpaper</a>
         <a href="/software/record/">Record</a>
         <a href="/software/clipboard/">Clipboard</a>
+        <a href="/software/data/">Data</a>
       </div>
       <div class="foot-col">
         <h4>文档</h4>
@@ -137,7 +147,6 @@
         <h4>生态</h4>
         <a href="/ecosystem/">生态地图</a>
         <a href="/tools/">工具目录</a>
-        <a href="/collections/">工具合集</a>
         <a href="/Timarsky/">工具站</a>
         <a href="/Timarsky/tools/">在线工具箱</a>
         <a href="/changelog/">版本日志</a>
