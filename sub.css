@@ -343,3 +343,38 @@ body.light .cat-chips { background: linear-gradient(to bottom, var(--bg0) 70%, t
 .post-item .post-meta { margin-bottom: 8px; }
 body.light .post-body p { color: #263049; }
 body.light .post-body code { background: rgba(26, 35, 64, .06); border-color: rgba(26, 35, 64, .14); }
+
+
+/* ---- 工具合集 ---- */
+.tool-combo { display: flex; flex-direction: column; gap: 6px; min-height: 150px; }
+.tool-combo .combo-head { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+.tool-combo .combo-ico { font-size: 1.15rem; line-height: 1; }
+.tool-combo b { font-size: .98rem; color: var(--text, #eaf1ff); }
+.tool-combo p { margin: 0; font-size: .84rem; line-height: 1.6; color: var(--muted, #9aa8c7); }
+.tool-combo .combo-go { margin-top: auto; font-size: .78rem; color: var(--gold, #fcd34d); letter-spacing: .04em; }
+.tool-combo:hover .combo-go { color: var(--ice, #9ae3ff); }
+body.light .tool-combo b { color: #1a2340; }
+body.light .tool-combo p { color: #55648a; }
+body.light .tool-combo .combo-go { color: #b8860b; }
+
+
+/* ---- 首页 hero 规模条 ---- */
+.hero-stats {
+  display: flex; flex-wrap: wrap; gap: 10px 26px; margin: 18px 0 4px;
+  padding: 14px 0 0; border-top: 1px solid var(--line, rgba(154, 227, 255, .12));
+}
+.hero-stats > div { display: flex; align-items: baseline; gap: 6px; }
+.hero-stats b {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: clamp(20px, 3.4vw, 28px); font-weight: 700; letter-spacing: -.02em;
+  background: linear-gradient(120deg, #fcd34d, #ffe9a3 45%, #9ae3ff);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero-stats span { font-size: .82rem; color: var(--muted, #9aa8c7); }
+body.light .hero-stats { border-top-color: rgba(26, 35, 64, .12); }
+body.light .hero-stats b { background: linear-gradient(120deg, #b8860b, #d99b12 50%, #0f7490); }
+body.light .hero-stats span { color: #55648a; }
+@media (max-width: 720px) {
+  .hero-stats { gap: 8px 18px; }
+  .hero-stats span { font-size: .76rem; }
+}
