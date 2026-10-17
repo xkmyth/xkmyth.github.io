@@ -40,9 +40,62 @@
   <div class="page-head reveal">
     <p class="eyebrow">Changelog</p>
     <h1>版本 <span class="gold">日志</span></h1>
-    <p class="page-sub">每次发版自动出现在这里 —— 数据实时来自 GitHub Releases，不靠手工维护</p>
+    <p class="page-sub">上半是站点自己的更新记录，下半是下载包的版本历史 —— 后者实时读 GitHub Releases</p>
   </div>
 
+<!--site-log-->
+<section class="reveal" id="site-log">
+  <div class="sec-head"><h2 class="sec-title">站点更新</h2><p class="sec-kicker">这几轮把整站重做了一遍 —— 下面按轮记，都是真的</p></div>
+  <div class="timeline">
+  <div class="tl-item reveal">
+    <span class="tl-tag">2026-10-18</span>
+    <h3 class="tl-title">第十轮 · 修了一个线上事故</h3>
+    <p class="tl-meta">工具箱主页面的 <code>&lt;main&gt;</code> 上有两个 <code>id</code>，浏览器只认第一个，于是 <code>$('#tgrid')</code> 取到 null，139 个工具一个都不渲染。改成单 id、跳转链接同步，并把这检查写进 CI（以后重复 id 直接红灯）。顺手给工具目录页加了站内搜索、给实验室加了六个 canvas 动效演示。</p>
+  </div>
+  <div class="tl-item reveal">
+    <span class="tl-tag">2026-10-18</span>
+    <h3 class="tl-title">第九轮 · 场景化合集与富结果</h3>
+    <p class="tl-meta">新增 <a href="/collections/">八组工具合集</a>（上线前十分钟 / 写文档 / 排线上问题 / 账号密码 / 网络子网 / 钱与数 / 文本急救 / 编码转义）；FAQ 页出 FAQPage、教程页出 HowTo、工具与软件出 ItemList；站务日志补两篇长文并接上 RSS；站内所有「N 个入口」改为脚本重算。</p>
+  </div>
+  <div class="tl-item reveal">
+    <span class="tl-tag">2026-10-18</span>
+    <h3 class="tl-title">第八轮 · 变成能装的应用</h3>
+    <p class="tl-meta">全站上 PWA：manifest、service worker、离线兜底、可安装图标；190 个页面补跳转链接与主内容锚点；补 canonical / OG / Twitter 卡片；139 个工具页补手写说明、示例与相关工具。</p>
+  </div>
+  <div class="tl-item reveal">
+    <span class="tl-tag">2026-10-18</span>
+    <h3 class="tl-title">第七轮 · 每个工具都有独立页面</h3>
+    <p class="tl-meta">139 个工具各自成页（<code>/Timarsky/tools/&lt;id&gt;/</code>），页内就是真工具本体，旁边是「什么时候用 / 怎么用 / 长得什么样 / 注意 / 同类工具」；工具站 sitemap 141 条。</p>
+  </div>
+  <div class="tl-item reveal">
+    <span class="tl-tag">2026-10-18</span>
+    <h3 class="tl-title">第六轮 · 46 站与 10 个自研软件</h3>
+    <p class="tl-meta">软件库上线：保险箱、备忘录、图片压缩、记账、专注计时、代码片段、批量改名、极光壁纸、录音、剪贴板历史 —— 全部纯前端、可真用、可离线；在线工具从 30 个扩到 139 个；站点从 18 个扩到 46 个。</p>
+  </div>
+  <div class="tl-item reveal">
+    <span class="tl-tag">2026-10-17</span>
+    <h3 class="tl-title">第四、五轮 · 子站矩阵</h3>
+    <p class="tl-meta">补 Docs / Changelog / Status / Support 四个子站，加上指南、FAQ、安全、对比、路线图、品牌、社区、架构、API、术语表、归档、镜像、基准、日志、致谢、隐私、许可、媒体、联系、实验室、全站搜索、数据页。</p>
+  </div>
+  <div class="tl-item reveal">
+    <span class="tl-tag">2026-10-17</span>
+    <h3 class="tl-title">第三轮 · 工具箱 30 个工具</h3>
+    <p class="tl-meta">工具站搜索框从原生控件重做成自绘控件（快捷键、结果计数、高亮）；工具箱扩到 30 个真能算的工具；导航、页脚、主题记忆、浅色模式全站统一。</p>
+  </div>
+  <div class="tl-item reveal">
+    <span class="tl-tag">2026-10-17</span>
+    <h3 class="tl-title">第二轮 · 设计系统与协作基建</h3>
+    <p class="tl-meta">统一 tokens（深空底 + 金星 + 冰蓝）、玻璃卡片、极光层；四仓各上一套 CI（HTML 解析、本地引用、锚点、外链告警）；建立 COORDINATION.md、DECISIONS.md 与 handoff/decision/bug 三个 Issue 模板，三个 agent 靠 GitHub 痕迹协作。</p>
+  </div>
+  <div class="tl-item reveal">
+    <span class="tl-tag">2026-10-17</span>
+    <h3 class="tl-title">第一轮 · 先把版本号说对</h3>
+    <p class="tl-meta">页面写死 v4.0.2、而 Releases 只有 v1.0.0 —— 改成实时读 GitHub Releases（本地缓存 10 分钟，失败降级直链）；「下载中心」改名 Downloads；四站样式与脚本不再各写一套。</p>
+  </div>
+  </div>
+</section>
+
+<div class="sec-head" style="margin-top:46px"><h2 class="sec-title">版本发布</h2><p class="sec-kicker">下载包的版本历史，数据来自 GitHub Releases</p></div>
   <div class="timeline" id="clList">
     <div class="tl-item dim">
       <span class="tl-tag">读取中…</span>
