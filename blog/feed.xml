@@ -1,59 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-  <title>xkmyth 站务日志</title>
+  <title>星空日志 · xkmyth</title>
   <link>https://xkmyth.github.io/blog/</link>
-  <description>星空神话 xkmyth 的站务日志：为什么这么改，而不是那么改。</description>
+  <description>发布记录与工程手记：这套站点是怎么一版版长出来的。</description>
   <language>zh-CN</language>
-  <lastBuildDate>Sun, 18 Oct 2026 08:00:00 +0800</lastBuildDate>
   <atom:link href="https://xkmyth.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
+  <lastBuildDate>Sun, 18 Oct 2026 09:00:00 +0800</lastBuildDate>
   <item>
     <title>先写测试，再往一个页面里塞 139 个工具</title>
     <link>https://xkmyth.github.io/blog/tests-before-139-tools/</link>
     <guid isPermaLink="true">https://xkmyth.github.io/blog/tests-before-139-tools/</guid>
-    <pubDate>Sun, 18 Oct 2026 08:00:00 +0800</pubDate>
+    <pubDate>Sun, 18 Oct 2026 09:00:00 +0800</pubDate>
     <description>把注册段与渲染段分开测、桩对象给到刚好够用、按特征把环境噪音与真缺陷分桶，最后修的是工具而不是桩。</description>
   </item>
   <item>
     <title>PWA 不是加个 manifest 就完事</title>
     <link>https://xkmyth.github.io/blog/pwa-not-just-manifest/</link>
     <guid isPermaLink="true">https://xkmyth.github.io/blog/pwa-not-just-manifest/</guid>
-    <pubDate>Sun, 18 Oct 2026 08:00:00 +0800</pubDate>
+    <pubDate>Sun, 18 Oct 2026 09:00:00 +0800</pubDate>
     <description>manifest 的 scope 写错会装出别人的首页；缓存策略要按导航、静态资源、SW 自身分三类；skipWaiting 会刷掉用户正在写的内容。</description>
   </item>
   <item>
     <title>浅色主题不是把滤镜反过来</title>
     <link>https://xkmyth.github.io/blog/light-theme-is-not-a-filter/</link>
     <guid isPermaLink="true">https://xkmyth.github.io/blog/light-theme-is-not-a-filter/</guid>
-    <pubDate>Sun, 18 Oct 2026 08:00:00 +0800</pubDate>
+    <pubDate>Sun, 18 Oct 2026 09:00:00 +0800</pubDate>
     <description>浅色主题不是反转颜色：对比度要重新算，组件要有自己的浅色规则，工具箱这种「另写一套样式」的地方最容易漏掉主题。</description>
+  </item>
+  <item>
+    <title>被自己的收口脚本覆盖掉的 186 个关键词</title>
+    <link>https://xkmyth.github.io/blog/index-order-incident/</link>
+    <guid isPermaLink="true">https://xkmyth.github.io/blog/index-order-incident/</guid>
+    <pubDate>Sun, 18 Oct 2026 09:00:00 +0800</pubDate>
+    <description>一条命令把搜索索引里的关键词全清了，而所有测试仍然是绿的 —— 因为没人断言「关键词还在」。</description>
   </item>
   <item>
     <title>三十个工具怎么保证不是摆设</title>
     <link>https://xkmyth.github.io/blog/tools-not-decoration/</link>
     <guid isPermaLink="true">https://xkmyth.github.io/blog/tools-not-decoration/</guid>
-    <pubDate>Sat, 17 Oct 2026 08:00:00 +0800</pubDate>
+    <pubDate>Sat, 17 Oct 2026 09:00:00 +0800</pubDate>
     <description>工具箱第一版有十一个工具，其中三个有 bug：进制转换会把 1.5 当整数、颜色框每次输入都被回写吞掉、JSON 复制多带一行提示语。 现在的做法是给纯函数写用例：从 tools.js 里按大括号配对抽出真实函数，跑 2</description>
   </item>
   <item>
     <title>为什么把整个生态做成静态站</title>
     <link>https://xkmyth.github.io/blog/static-first/</link>
     <guid isPermaLink="true">https://xkmyth.github.io/blog/static-first/</guid>
-    <pubDate>Sat, 17 Oct 2026 08:00:00 +0800</pubDate>
+    <pubDate>Sat, 17 Oct 2026 09:00:00 +0800</pubDate>
     <description>最早这四个仓各写各的，样式重复三份，版本号写死在 HTML 里，Releases 上明明只有 v1.0.0，页面却写 v4.0.2。 改法很朴素：样式抽成一套 token，版本号只从 Releases API 读，读不到</description>
   </item>
   <item>
     <title>CI 抓到的一次真实事故</title>
     <link>https://xkmyth.github.io/blog/ci-gbk-incident/</link>
     <guid isPermaLink="true">https://xkmyth.github.io/blog/ci-gbk-incident/</guid>
-    <pubDate>Sat, 17 Oct 2026 08:00:00 +0800</pubDate>
+    <pubDate>Sat, 17 Oct 2026 09:00:00 +0800</pubDate>
     <description>工具站的检查工作流提交后一直不跑，Actions 里连一条 run 都没有。原因是文件被 PowerShell 写成了 GBK，GitHub 解析不出 YAML 结构，于是悄悄忽略了它。 教训写进了决策日志：仓库里的文件</description>
   </item>
   <item>
     <title>十个应用共用一条底线</title>
     <link>https://xkmyth.github.io/blog/apps-same-bottom-line/</link>
     <guid isPermaLink="true">https://xkmyth.github.io/blog/apps-same-bottom-line/</guid>
-    <pubDate>Sat, 17 Oct 2026 08:00:00 +0800</pubDate>
+    <pubDate>Sat, 17 Oct 2026 09:00:00 +0800</pubDate>
     <description>软件库的十个应用都遵守同一条底线：数据只在浏览器里、没有账号、没有埋点、断网可用。 加密类用 WebCrypto（PBKDF2 十五万轮 + AES-GCM），媒体类用 Canvas 与 MediaRecorder，记录</description>
   </item>
 </channel>
