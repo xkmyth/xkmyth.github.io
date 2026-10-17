@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="四个 GitHub Pages 仓库如何拼成生态：Releases API、Commits/Actions、localStorage 三条数据流，缓存与降级策略，以及为什么坚持无后端。">
+<title>架构说明 · 四个仓库与三条数据流 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/software/">软件库</a>
+      <a href="/tools/">工具</a>
+      <a href="/docs/">Docs</a>
+      <a href="/ecosystem/">生态</a>
+      <a href="/status/">状态</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / <a href="/docs/">文档中心</a> / 架构说明</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Docs · Architecture</p>
+    <h1>四个仓库<br>三条数据流</h1>
+    <p class="page-sub">看懂这张图，你就知道每个数字是从哪来的、断网时会发生什么。</p>
+  </div>
+<section class="reveal ">
+  <div class="sec-head"><h2 class="sec-title">四个仓库</h2><p class="sec-kicker">一个生态，四块积木</p></div>
+
+<table class="tbl">
+  <thead><tr><th>仓库</th><th>职责</th><th>技术</th><th>构建</th></tr></thead>
+  <tbody>
+    <tr><td><code>xkmyth/xkmyth</code></td><td>安装包发行 + Downloads 页</td><td>静态 HTML/CSS/JS + Releases API</td><td>无</td></tr>
+    <tr><td><code>xkmyth/xkmyth.github.io</code></td><td>主站：文档、软件库、工具目录、状态</td><td>静态多页 + 少量 JS</td><td>无</td></tr>
+    <tr><td><code>xkmyth/Timarsky</code></td><td>工具站：27 个速查模块 + 在线工具箱</td><td>单页 + 独立工具页</td><td>无</td></tr>
+    <tr><td><code>xkmyth/about</code></td><td>关于页、生态入口</td><td>静态单页</td><td>无</td></tr>
+  </tbody>
+</table>
+<p class="note">四个仓库都是 GitHub Pages 直接托管根目录，推 <code>main</code> 即上线。没有打包、没有 <code>node_modules</code>、没有构建缓存，改一行刷新就看到。</p>
+</section><section class="reveal ">
+  <div class="sec-head"><h2 class="sec-title">数据从哪来</h2><p class="sec-kicker">三条只读数据流</p></div>
+
+<div class="grid g3">
+  <div class="card"><h3>Releases API</h3><p><code>/repos/xkmyth/xkmyth/releases</code> 提供版本号、资产名、体积、下载次数与时间。Downloads、版本日志、状态页都读它。</p></div>
+  <div class="card"><h3>Commits / Actions</h3><p><code>/commits?per_page=1</code> 与 <code>/actions/runs?per_page=1</code> 只取最后一条，用来显示四仓最近活动与 CI 结果。</p></div>
+  <div class="card"><h3>本地数据</h3><p>软件库应用全部写 <code>localStorage</code>，一个应用一个前缀，互不干扰；清掉浏览器数据即归零。</p></div>
+</div>
+<p class="note warn">匿名调用 GitHub API 的额度是每 IP 每小时 60 次。状态页因此把刷新间隔压到 15 分钟、四仓并发一次取完，并只在真正拿到数据时才写缓存。</p>
+</section><section class="reveal ">
+  <div class="sec-head"><h2 class="sec-title">缓存与降级</h2><p class="sec-kicker">宁可显示旧数据，也不显示错误</p></div>
+
+<table class="tbl">
+  <thead><tr><th>localStorage 键</th><th>内容</th><th>有效期</th><th>失败时</th></tr></thead>
+  <tbody>
+    <tr><td><code>xkmyth-site-releases-cache</code></td><td>首页下载卡与版本号</td><td>10 分钟</td><td>退回静态直链 + 「最新版见 Releases」</td></tr>
+    <tr><td><code>xkmyth-changelog-cache</code></td><td>版本日志时间轴</td><td>10 分钟</td><td>显示一句说明 + Releases 链接</td></tr>
+    <tr><td><code>xkmyth-status-cache-v1</code></td><td>四仓最近提交与 CI</td><td>15 分钟</td><td>保留上次成功数据，标灰不标红</td></tr>
+    <tr><td><code>xk-theme</code> / <code>xkmyth-theme2</code></td><td>深浅色选择</td><td>长期</td><td>跟随系统</td></tr>
+    <tr><td><code>xk-vault-v1</code> 等</td><td>各应用数据</td><td>长期</td><td>不影响其他应用</td></tr>
+  </tbody>
+</table>
+</section><section class="reveal ">
+  <div class="sec-head"><h2 class="sec-title">为什么没有后端</h2><p class="sec-kicker">静态不是妥协，是设计</p></div>
+
+<div class="grid g2">
+  <div class="card"><h3>成本与寿命</h3><p>GitHub Pages 免费、全球 CDN、自带 HTTPS。没有服务器要续费，也就不会有「某天打不开」。</p></div>
+  <div class="card"><h3>隐私边界清楚</h3><p>没有后端就没有「数据在别人机器上」这回事。软件库的十个应用全部把数据留在你的浏览器里。</p></div>
+  <div class="card"><h3>可审计</h3><p>每个页面的 JS 都能直接读，没有打包混淆。怀疑哪个页面偷偷发请求，搜 <code>fetch(</code> 就行。</p></div>
+  <div class="card"><h3>代价</h3><p>不能做跨设备同步、不能做协作编辑、不能存大文件。需要这些时，请自己接 NAS 或云盘，而不是把数据交给本站。</p></div>
+</div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/software/">软件库</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+        <a href="/license/">许可</a>
+      </div>
+      <div class="foot-col">
+        <h4>软件</h4>
+        <a href="/software/vault/">Vault</a>
+        <a href="/software/notes/">Notes</a>
+        <a href="/software/compress/">Compress</a>
+        <a href="/software/ledger/">Ledger</a>
+        <a href="/software/focus/">Focus</a>
+        <a href="/software/snippets/">Snippets</a>
+        <a href="/software/rename/">Rename</a>
+        <a href="/software/wallpaper/">Wallpaper</a>
+        <a href="/software/record/">Record</a>
+        <a href="/software/clipboard/">Clipboard</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/getting-started/">开始使用</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/docs/architecture/">架构说明</a>
+        <a href="/docs/contributing/">参与开发</a>
+        <a href="/docs/api/">站点接口</a>
+        <a href="/docs/glossary/">术语表</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/ecosystem/">生态地图</a>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+        <a href="/stats/">生态数据</a>
+        <a href="/benchmark/">性能基线</a>
+        <a href="/archive/">历史归档</a>
+        <a href="/mirrors/">镜像与直链</a>
+        <a href="/lab/">实验室</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/contact/">联系</a>
+        <a href="/blog/">站务日志</a>
+        <a href="/press/">媒体资料</a>
+        <a href="/thanks/">致谢</a>
+        <a href="/privacy/">隐私</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="从零开始的四步路线：确认需求、下载校验、解压安装、接上自己的服务，附三种路线选择与自查清单。">
+<title>开始使用 · 十五分钟路线 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/software/">软件库</a>
+      <a href="/tools/">工具</a>
+      <a href="/docs/">Docs</a>
+      <a href="/ecosystem/">生态</a>
+      <a href="/status/">状态</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / <a href="/docs/">文档中心</a> / 开始使用</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Docs · Getting started</p>
+    <h1>十五分钟<br>从下载到跑通</h1>
+    <p class="page-sub">不写长文，只给四步和一张自查清单。</p>
+  </div>
+<section class="reveal ">
+  <div class="sec-head"><h2 class="sec-title">十五分钟路线</h2><p class="sec-kicker">从零到跑起来</p></div>
+
+<div class="timeline">
+  <div class="tl-item"><div class="tl-date">第 1 步 · 2 分钟</div>
+    <div class="tl-title">确认你要什么</div>
+    <p>要浏览器就下 <a href="/xkmyth/">Downloads</a> 里的 <code>xkmyth-browser</code>；要云盘客户端就下 <code>xkmyth-cloud</code>；只要工具就去 <a href="/tools/">工具目录</a>。别一次下一堆，先跑通一个。</p></div>
+  <div class="tl-item"><div class="tl-date">第 2 步 · 3 分钟</div>
+    <div class="tl-title">下载与校验</div>
+    <p>从 <a href="/xkmyth/">Downloads</a> 取最新资产，记录 SHA256，按 <a href="/docs/verify/">校验与验证</a> 里对应平台的命令跑一遍。数字对得上再解压。</p></div>
+  <div class="tl-item"><div class="tl-date">第 3 步 · 5 分钟</div>
+    <div class="tl-title">解压安装</div>
+    <p>Windows 压缩包解压到你自己的目录即可运行，不写注册表；APK 允许「安装未知来源」后安装。细节见 <a href="/docs/install/">安装详解</a>。</p></div>
+  <div class="tl-item"><div class="tl-date">第 4 步 · 5 分钟</div>
+    <div class="tl-title">接上你自己的服务</div>
+    <p>浏览器与云盘客户端都是壳，地址由你填：自建 NAS、私有云盘、任意 WebDAV/S3 都行。默认不连任何第三方服务器。</p></div>
+  <div class="tl-item"><div class="tl-date">收尾 · 30 秒</div>
+    <div class="tl-title">收藏三个入口</div>
+    <p><a href="/software/">软件库</a> 处理日常杂事、<a href="/Timarsky/tools/">在线工具箱</a> 临时救急、<a href="/status/">状态页</a> 看上线情况。</p></div>
+</div>
+</section><section class="reveal ">
+  <div class="sec-head"><h2 class="sec-title">先选路线</h2><p class="sec-kicker">三种人，三条路</p></div>
+
+<table class="tbl">
+  <thead><tr><th>你是谁</th><th>推荐路线</th><th>别做的事</th></tr></thead>
+  <tbody>
+    <tr><td>只想用工具，不碰下载</td><td><a href="/tools/">工具目录</a> → 挑一个用 → 收藏</td><td>别去装客户端，浏览器里已经够用</td></tr>
+    <tr><td>要装浏览器 / 云盘客户端</td><td><a href="/xkmyth/">Downloads</a> → 校验 → 安装</td><td>别跳过校验，也别用来路不明的二次打包</td></tr>
+    <tr><td>想自己改、自己发版</td><td><a href="/docs/contributing/">参与开发</a> → fork → PR</td><td>别直推 main，分支保护会拦你</td></tr>
+  </tbody>
+</table>
+</section><section class="reveal ">
+  <div class="sec-head"><h2 class="sec-title">自查清单</h2><p class="sec-kicker">跑完之后对一遍</p></div>
+
+<ul class="checks">
+  <li>下载的资产名和 Releases 页面上的完全一致（连大小写）。</li>
+  <li>SHA256 与你记录的一致，而不是与页面上的文字一致。</li>
+  <li>解压目录里没有多余的可执行文件，也没有杀软提示的自解压壳。</li>
+  <li>首次启动没有要求你注册账号或填手机号。</li>
+  <li>你在设置里填的上游地址是你自己的服务，不是别人的默认服务器。</li>
+  <li>关掉网络后，本地功能仍然可用（纯前端应用都满足）。</li>
+</ul>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/software/">软件库</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+        <a href="/license/">许可</a>
+      </div>
+      <div class="foot-col">
+        <h4>软件</h4>
+        <a href="/software/vault/">Vault</a>
+        <a href="/software/notes/">Notes</a>
+        <a href="/software/compress/">Compress</a>
+        <a href="/software/ledger/">Ledger</a>
+        <a href="/software/focus/">Focus</a>
+        <a href="/software/snippets/">Snippets</a>
+        <a href="/software/rename/">Rename</a>
+        <a href="/software/wallpaper/">Wallpaper</a>
+        <a href="/software/record/">Record</a>
+        <a href="/software/clipboard/">Clipboard</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/getting-started/">开始使用</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/docs/architecture/">架构说明</a>
+        <a href="/docs/contributing/">参与开发</a>
+        <a href="/docs/api/">站点接口</a>
+        <a href="/docs/glossary/">术语表</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/ecosystem/">生态地图</a>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+        <a href="/stats/">生态数据</a>
+        <a href="/benchmark/">性能基线</a>
+        <a href="/archive/">历史归档</a>
+        <a href="/mirrors/">镜像与直链</a>
+        <a href="/lab/">实验室</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/contact/">联系</a>
+        <a href="/blog/">站务日志</a>
+        <a href="/press/">媒体资料</a>
+        <a href="/thanks/">致谢</a>
+        <a href="/privacy/">隐私</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+</body>
+</html>

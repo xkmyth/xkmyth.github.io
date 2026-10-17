@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="纯前端站内搜索：读取静态索引，本地打分排序，无需后端，索引失败时退化为扫描当前页链接。">
+<title>站内搜索 · 全站索引 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/software/">软件库</a>
+      <a href="/tools/">工具</a>
+      <a href="/docs/">Docs</a>
+      <a href="/ecosystem/">生态</a>
+      <a href="/status/">状态</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / <a href="/">首页</a> / 站内搜索</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Search · 搜索</p>
+    <h1>站内搜索<br>输入即得</h1>
+    <p class="page-sub">一百多个页面，一个输入框就能找到。</p>
+  </div>
+<div class="catalog-bar reveal">
+  <div class="field grow">
+    <label for="siteSearch">搜索全站</label>
+    <input id="siteSearch" type="search" placeholder="输入关键词，例如「校验」「壁纸」「CIDR」…" autocomplete="off">
+  </div>
+  <div class="catalog-count" id="siteSearchCount">读取索引…</div>
+</div>
+<div class="list" id="siteSearchList" style="max-height:640px"></div>
+<div class="empty-hint" id="siteSearchEmpty" hidden>没有匹配结果，换个说法试试。</div>
+
+<section class="reveal">
+  <div class="sec-head"><h2 class="sec-title">搜索怎么工作</h2><p class="sec-kicker">没有后端，也没有爬虫</p></div>
+  <div class="grid g3">
+    <div class="card"><h3>索引是静态文件</h3><p><code>/search-index.json</code> 由构建脚本扫全站生成，页面加载时一次性读取。</p></div>
+    <div class="card"><h3>匹配在本地</h3><p>标题精确 100 分、前缀 80、包含 60、关键词 40、路径 30，取前 40 条。</p></div>
+    <div class="card"><h3>读不到就退化</h3><p>索引请求失败时，扫描当前页面链接，仍然能跳转。</p></div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/software/">软件库</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+        <a href="/license/">许可</a>
+      </div>
+      <div class="foot-col">
+        <h4>软件</h4>
+        <a href="/software/vault/">Vault</a>
+        <a href="/software/notes/">Notes</a>
+        <a href="/software/compress/">Compress</a>
+        <a href="/software/ledger/">Ledger</a>
+        <a href="/software/focus/">Focus</a>
+        <a href="/software/snippets/">Snippets</a>
+        <a href="/software/rename/">Rename</a>
+        <a href="/software/wallpaper/">Wallpaper</a>
+        <a href="/software/record/">Record</a>
+        <a href="/software/clipboard/">Clipboard</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/getting-started/">开始使用</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/docs/architecture/">架构说明</a>
+        <a href="/docs/contributing/">参与开发</a>
+        <a href="/docs/api/">站点接口</a>
+        <a href="/docs/glossary/">术语表</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/ecosystem/">生态地图</a>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+        <a href="/stats/">生态数据</a>
+        <a href="/benchmark/">性能基线</a>
+        <a href="/archive/">历史归档</a>
+        <a href="/mirrors/">镜像与直链</a>
+        <a href="/lab/">实验室</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/contact/">联系</a>
+        <a href="/blog/">站务日志</a>
+        <a href="/press/">媒体资料</a>
+        <a href="/thanks/">致谢</a>
+        <a href="/privacy/">隐私</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+<script src="/js/site-search.js"></script>
+</body>
+</html>

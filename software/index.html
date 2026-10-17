@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="十个纯前端自研应用：加密保险箱、Markdown 笔记、批量压图、记账、番茄钟、代码片段、批量改名、壁纸生成、录音、剪贴板历史，全部离线可用。">
+<title>软件库 · 十个自研 Web 应用 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/software/">软件库</a>
+      <a href="/tools/">工具</a>
+      <a href="/docs/">Docs</a>
+      <a href="/ecosystem/">生态</a>
+      <a href="/status/">状态</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / <a href="/">首页</a> / 软件库</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Software · 自研应用</p>
+    <h1>十个自研应用<br>打开就能用</h1>
+    <p class="page-sub">全部纯前端、零后端、零注册。数据在你的浏览器里，关掉页面也不会被谁带走。</p>
+  </div>
+<div class="catalog-bar reveal">
+  <div class="field grow">
+    <label for="swSearch">搜索应用</label>
+    <input id="swSearch" type="search" placeholder="试试「加密」「壁纸」「记账」…" autocomplete="off">
+  </div>
+  <div class="catalog-count" id="swCount">10 个应用</div>
+</div>
+
+<div class="cat-chips" id="swChips">
+    <button class="cat-chip active" type="button" data-cat="全部">全部</button>
+    <button class="cat-chip" type="button" data-cat="安全">安全</button>
+    <button class="cat-chip" type="button" data-cat="记录">记录</button>
+    <button class="cat-chip" type="button" data-cat="媒体">媒体</button>
+    <button class="cat-chip" type="button" data-cat="计算">计算</button>
+    <button class="cat-chip" type="button" data-cat="效率">效率</button>
+    <button class="cat-chip" type="button" data-cat="专注">专注</button>
+</div>
+
+<div class="site-grid" id="swGrid">
+    <a class="site-card app-card" href="/software/vault/" data-cat="安全" data-search="xk vault pbkdf2 十五万轮派生 + aes-gcm-256 加密，密文只存你自己的浏览器，5 分钟空闲自动上锁。 安全 本地加密保险箱">
+      <div class="site-head"><span class="site-ico">🔐</span>
+        <div><div class="site-name">XK Vault</div><div class="site-path">/software/vault/</div></div>
+      </div>
+      <p class="app-cat">安全 · 本地加密保险箱</p>
+      <p>PBKDF2 十五万轮派生 + AES-GCM-256 加密，密文只存你自己的浏览器，5 分钟空闲自动上锁。</p>
+      <span class="site-go">打开应用 →</span>
+    </a>
+    <a class="site-card app-card" href="/software/notes/" data-cat="记录" data-search="xk notes 边写边预览、自动保存，支持导入导出 .md，全部数据留在 localstorage。 记录 本地 markdown">
+      <div class="site-head"><span class="site-ico">📝</span>
+        <div><div class="site-name">XK Notes</div><div class="site-path">/software/notes/</div></div>
+      </div>
+      <p class="app-cat">记录 · 本地 Markdown</p>
+      <p>边写边预览、自动保存，支持导入导出 .md，全部数据留在 localStorage。</p>
+      <span class="site-go">打开应用 →</span>
+    </a>
+    <a class="site-card app-card" href="/software/compress/" data-cat="媒体" data-search="xk compress 拖进来批量压图，最长边、质量、格式随意调，逐张给出体积对比与节省率。 媒体 图片无损压缩">
+      <div class="site-head"><span class="site-ico">🗜️</span>
+        <div><div class="site-name">XK Compress</div><div class="site-path">/software/compress/</div></div>
+      </div>
+      <p class="app-cat">媒体 · 图片无损压缩</p>
+      <p>拖进来批量压图，最长边、质量、格式随意调，逐张给出体积对比与节省率。</p>
+      <span class="site-go">打开应用 →</span>
+    </a>
+    <a class="site-card app-card" href="/software/ledger/" data-cat="计算" data-search="xk ledger 收支记录、分类汇总、柱状分布、按月筛选，csv 一键导出。 计算 本地记账">
+      <div class="site-head"><span class="site-ico">📒</span>
+        <div><div class="site-name">XK Ledger</div><div class="site-path">/software/ledger/</div></div>
+      </div>
+      <p class="app-cat">计算 · 本地记账</p>
+      <p>收支记录、分类汇总、柱状分布、按月筛选，CSV 一键导出。</p>
+      <span class="site-go">打开应用 →</span>
+    </a>
+    <a class="site-card app-card" href="/software/focus/" data-cat="专注" data-search="xk focus 环形倒计时配 webaudio 合成的白噪音/棕噪音/雨声，附今日专注统计与任务清单。 专注 番茄钟 + 白噪音">
+      <div class="site-head"><span class="site-ico">⏳</span>
+        <div><div class="site-name">XK Focus</div><div class="site-path">/software/focus/</div></div>
+      </div>
+      <p class="app-cat">专注 · 番茄钟 + 白噪音</p>
+      <p>环形倒计时配 WebAudio 合成的白噪音/棕噪音/雨声，附今日专注统计与任务清单。</p>
+      <span class="site-go">打开应用 →</span>
+    </a>
+    <a class="site-card app-card" href="/software/snippets/" data-cat="记录" data-search="xk snippets 按语言与标签管理常用代码，一键复制，json 备份可随身带走。 记录 代码片段库">
+      <div class="site-head"><span class="site-ico">✂️</span>
+        <div><div class="site-name">XK Snippets</div><div class="site-path">/software/snippets/</div></div>
+      </div>
+      <p class="app-cat">记录 · 代码片段库</p>
+      <p>按语言与标签管理常用代码，一键复制，JSON 备份可随身带走。</p>
+      <span class="site-go">打开应用 →</span>
+    </a>
+    <a class="site-card app-card" href="/software/rename/" data-cat="效率" data-search="xk rename 正则替换、前后缀、编号补零、空格策略，实时预览新文件名并导出重命名脚本。 效率 批量改名">
+      <div class="site-head"><span class="site-ico">🏷️</span>
+        <div><div class="site-name">XK Rename</div><div class="site-path">/software/rename/</div></div>
+      </div>
+      <p class="app-cat">效率 · 批量改名</p>
+      <p>正则替换、前后缀、编号补零、空格策略，实时预览新文件名并导出重命名脚本。</p>
+      <span class="site-go">打开应用 →</span>
+    </a>
+    <a class="site-card app-card" href="/software/wallpaper/" data-cat="媒体" data-search="xk wallpaper 六套配色 + 可复现种子，程序化生成极光渐层壁纸，直出 2k/4k png。 媒体 渐层壁纸生成">
+      <div class="site-head"><span class="site-ico">🌌</span>
+        <div><div class="site-name">XK Wallpaper</div><div class="site-path">/software/wallpaper/</div></div>
+      </div>
+      <p class="app-cat">媒体 · 渐层壁纸生成</p>
+      <p>六套配色 + 可复现种子，程序化生成极光渐层壁纸，直出 2K/4K PNG。</p>
+      <span class="site-go">打开应用 →</span>
+    </a>
+    <a class="site-card app-card" href="/software/record/" data-cat="媒体" data-search="xk record 一键录音、试听、下载，音频只在内存与本机，刷新即清空不留痕。 媒体 浏览器录音">
+      <div class="site-head"><span class="site-ico">🎙️</span>
+        <div><div class="site-name">XK Record</div><div class="site-path">/software/record/</div></div>
+      </div>
+      <p class="app-cat">媒体 · 浏览器录音</p>
+      <p>一键录音、试听、下载，音频只在内存与本机，刷新即清空不留痕。</p>
+      <span class="site-go">打开应用 →</span>
+    </a>
+    <a class="site-card app-card" href="/software/clipboard/" data-cat="效率" data-search="xk clipboard ctrl+v 自动收录、置顶、搜索、回贴，最多 80 条，只写本机 localstorage。 效率 剪贴板历史">
+      <div class="site-head"><span class="site-ico">📋</span>
+        <div><div class="site-name">XK Clipboard</div><div class="site-path">/software/clipboard/</div></div>
+      </div>
+      <p class="app-cat">效率 · 剪贴板历史</p>
+      <p>Ctrl+V 自动收录、置顶、搜索、回贴，最多 80 条，只写本机 localStorage。</p>
+      <span class="site-go">打开应用 →</span>
+    </a>
+</div>
+<div class="empty-hint" id="swEmpty" hidden>没有匹配的应用，换个词试试。</div>
+
+<section class="reveal">
+  <div class="sec-head"><h2 class="sec-title">共同点</h2><p class="sec-kicker">十个应用，一条底线</p></div>
+  <div class="grid g4">
+    <div class="card"><h3>不收费</h3><p>没有任何付费墙、注册、试用期，打开即用。</p></div>
+    <div class="card"><h3>不联网也转</h3><p>数据全程在浏览器里，断网照样工作，只有状态类页面会读公开 API。</p></div>
+    <div class="card"><h3>不留痕</h3><p>没有账号体系，没有埋点；数据在 localStorage，清掉浏览器数据即彻底消失。</p></div>
+    <div class="card"><h3>看得懂</h3><p>每行代码都在 GitHub 上，改一行刷新就能跑，不需要构建工具。</p></div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="sec-head"><h2 class="sec-title">怎么挑</h2><p class="sec-kicker">按场景选，而不是按名字选</p></div>
+  <table class="tbl">
+    <thead><tr><th>你想要的</th><th>先去这里</th><th>为什么</th></tr></thead>
+    <tbody>
+      <tr><td>存密码、放私密笔记</td><td><a href="/software/vault/">XK Vault</a></td><td>AES-GCM 加密后再落盘，明文不进 localStorage</td></tr>
+      <tr><td>写点长文、要预览</td><td><a href="/software/notes/">XK Notes</a></td><td>Markdown 实时预览 + 自动保存 + 导出 .md</td></tr>
+      <tr><td>图片太大传不上去</td><td><a href="/software/compress/">XK Compress</a></td><td>本地 Canvas 重采样，压缩前后体积直接对比</td></tr>
+      <tr><td>记流水、看分布</td><td><a href="/software/ledger/">XK Ledger</a></td><td>分类柱状 + 按月筛选 + CSV 导出</td></tr>
+      <tr><td>专注 25 分钟</td><td><a href="/software/focus/">XK Focus</a></td><td>环形倒计时 + 合成白噪音，不依赖音频文件</td></tr>
+      <tr><td>找昨天复制的命令</td><td><a href="/software/clipboard/">XK Clipboard</a></td><td>Ctrl+V 自动收录，可置顶可搜索</td></tr>
+    </tbody>
+  </table>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/software/">软件库</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+        <a href="/license/">许可</a>
+      </div>
+      <div class="foot-col">
+        <h4>软件</h4>
+        <a href="/software/vault/">Vault</a>
+        <a href="/software/notes/">Notes</a>
+        <a href="/software/compress/">Compress</a>
+        <a href="/software/ledger/">Ledger</a>
+        <a href="/software/focus/">Focus</a>
+        <a href="/software/snippets/">Snippets</a>
+        <a href="/software/rename/">Rename</a>
+        <a href="/software/wallpaper/">Wallpaper</a>
+        <a href="/software/record/">Record</a>
+        <a href="/software/clipboard/">Clipboard</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/getting-started/">开始使用</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/docs/architecture/">架构说明</a>
+        <a href="/docs/contributing/">参与开发</a>
+        <a href="/docs/api/">站点接口</a>
+        <a href="/docs/glossary/">术语表</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/ecosystem/">生态地图</a>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+        <a href="/stats/">生态数据</a>
+        <a href="/benchmark/">性能基线</a>
+        <a href="/archive/">历史归档</a>
+        <a href="/mirrors/">镜像与直链</a>
+        <a href="/lab/">实验室</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/contact/">联系</a>
+        <a href="/blog/">站务日志</a>
+        <a href="/press/">媒体资料</a>
+        <a href="/thanks/">致谢</a>
+        <a href="/privacy/">隐私</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+<script>
+(function () {
+  'use strict';
+  var q = document.getElementById('swSearch');
+  var grid = document.getElementById('swGrid');
+  var chips = document.getElementById('swChips');
+  var count = document.getElementById('swCount');
+  var empty = document.getElementById('swEmpty');
+  if (!grid) return;
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.app-card'));
+  var state = { cat: '全部', q: '' };
+
+  function apply() {
+    var shown = 0;
+    cards.forEach(function (c) {
+      var okCat = state.cat === '全部' || c.getAttribute('data-cat') === state.cat;
+      var okQ = !state.q || (c.getAttribute('data-search') || '').indexOf(state.q) > -1;
+      var on = okCat && okQ;
+      c.hidden = !on;
+      if (on) shown++;
+    });
+    count.textContent = shown + ' 个应用';
+    empty.hidden = shown !== 0;
+  }
+  if (q) q.addEventListener('input', function () { state.q = q.value.trim().toLowerCase(); apply(); });
+  if (chips) chips.addEventListener('click', function (e) {
+    var b = e.target.closest('.cat-chip');
+    if (!b) return;
+    state.cat = b.getAttribute('data-cat');
+    Array.prototype.forEach.call(chips.querySelectorAll('.cat-chip'), function (x) {
+      x.classList.toggle('active', x === b);
+    });
+    apply();
+  });
+  apply();
+})();
+</script>
+</body>
+</html>

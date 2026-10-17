@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-app="focus">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XK Focus 专注钟 · XKMYTH</title>
+<meta name="description" content="番茄钟 + 白噪音 + 任务清单：25/45 分钟专注、环形成绩可视化、今日统计，全部本地运行。">
+<meta property="og:title" content="XK Focus 专注钟 · XKMYTH">
+<meta property="og:description" content="番茄钟 + 白噪音 + 任务清单：25/45 分钟专注、环形成绩可视化、今日统计，全部本地运行。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xkmyth.github.io/software/focus/">
+<meta name="theme-color" content="#04060f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2304060f'/%3E%3Cpath d='M16 5l3.1 7.3L27 15l-7.9 2.7L16 27l-3.1-9.3L5 15l7.9-2.7z' fill='%23fcd34d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://api.github.com">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+<link rel="stylesheet" href="/software/app.css">
+</head>
+<body>
+<div id="sky"></div>
+<canvas id="stars"></canvas>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/software/">软件库</a>
+      <a href="/tools/">工具</a>
+      <a href="/docs/">Docs</a>
+      <a href="/ecosystem/">生态</a>
+      <a href="/status/">状态</a>
+    </nav>
+  </div>
+</header>
+<main class="app-shell">
+  <div class="crumbs"><a href="/">首页</a> / <a href="/software/">软件库</a> / <span>XK Focus 专注钟</span></div>
+  <header class="app-head">
+    <div>
+      <h1 class="app-title"><span class="dot-live" aria-hidden="true"></span>XK Focus 专注钟</h1>
+      <p class="app-sub">番茄钟 + 白噪音 + 任务清单：25/45 分钟专注、环形成绩可视化、今日统计，全部本地运行。</p>
+      <div class="app-badges">
+        <span class="badge gold">番茄钟</span>
+        <span class="badge ice">白噪音</span>
+        <span class="badge mint">任务清单</span>
+        <span class="badge">离线可用</span>
+      </div>
+    </div>
+    <div class="row tight">
+      <a class="btn ghost small" href="/software/">← 软件库</a>
+      <button class="btn soft small" type="button" data-copy="https://xkmyth.github.io/software/focus/">复制链接</button>
+    </div>
+  </header>
+<div class="app-side">
+    <aside class="panel">
+  <div class="panel-h"><h2>时长</h2></div>
+  <div class="field"><label for="fPreset">预设</label>
+        <select id="fPreset">
+          <option value="25">专注 25 分钟（番茄）</option>
+          <option value="45">深度 45 分钟</option>
+          <option value="15">短专注 15 分钟</option>
+          <option value="5">休息 5 分钟</option>
+        </select></div>
+      <div class="field"><label for="fNoise">白噪音</label>
+        <select id="fNoise">
+          <option value="none">关闭</option>
+          <option value="brown">棕色噪音（低沉）</option>
+          <option value="white">白噪音（沙沙）</option>
+          <option value="rain">近似雨声</option>
+        </select></div>
+      <div class="field"><label for="fVol">音量：<b id="fVolV">0.25</b></label>
+        <input type="range" id="fVol" min="0" max="1" step="0.05" value="0.25"></div>
+      <p class="note">白噪音由 WebAudio 实时合成，不加载任何音频文件，也不联网。</p>
+</aside>
+    <aside class="panel">
+  <div class="panel-h"><h2>今日</h2></div>
+  <div class="kvline"><span>完成番茄</span><span id="fDone">0</span></div>
+      <div class="kvline"><span>专注分钟</span><span id="fMin">0</span></div>
+      <button class="tiny-btn block mt8" id="fResetStat" type="button" style="width:100%">重置今日统计</button>
+</aside>
+  </div><div class="app-main">
+    <section class="panel">
+      <div class="timer-wrap">
+        <div class="timer-holder">
+          <svg class="timer-ring" viewBox="0 0 220 220" aria-hidden="true">
+            <defs><linearGradient id="timerGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fcd34d"></stop>
+              <stop offset="100%" stop-color="#9ae3ff"></stop>
+            </linearGradient></defs>
+            <circle class="bg" cx="110" cy="110" r="96"></circle>
+            <circle class="fg" id="fRing" cx="110" cy="110" r="96" stroke-dasharray="603" stroke-dashoffset="0"></circle>
+          </svg>
+          <div class="timer-time" id="fClock">25:00</div>
+        </div>
+        <div class="row tight">
+          <button class="btn primary small" id="fStart" type="button">开始</button>
+          <button class="btn ghost small" id="fPause" type="button">暂停</button>
+          <button class="btn ghost small" id="fReset" type="button">重置</button>
+        </div>
+        <p class="note" id="fHint">按空格开始 / 暂停，Esc 重置。</p>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="panel-h"><h2>任务清单</h2><span class="hint" id="fTaskCount">0 / 0</span></div>
+      <div class="row tight mb16">
+        <input class="input grow" id="fTaskInput" placeholder="这一轮要做的事…">
+        <button class="btn soft tiny" id="fTaskAdd" type="button">添加</button>
+      </div>
+      <div class="task-list" id="fTasks"></div>
+    </section>
+  </div>
+</div>
+</main>
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/software/">软件库</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+        <a href="/license/">许可</a>
+      </div>
+      <div class="foot-col">
+        <h4>软件</h4>
+        <a href="/software/vault/">Vault</a>
+        <a href="/software/notes/">Notes</a>
+        <a href="/software/compress/">Compress</a>
+        <a href="/software/ledger/">Ledger</a>
+        <a href="/software/focus/">Focus</a>
+        <a href="/software/snippets/">Snippets</a>
+        <a href="/software/rename/">Rename</a>
+        <a href="/software/wallpaper/">Wallpaper</a>
+        <a href="/software/record/">Record</a>
+        <a href="/software/clipboard/">Clipboard</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/getting-started/">开始使用</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/docs/architecture/">架构说明</a>
+        <a href="/docs/contributing/">参与开发</a>
+        <a href="/docs/api/">站点接口</a>
+        <a href="/docs/glossary/">术语表</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/ecosystem/">生态地图</a>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+        <a href="/stats/">生态数据</a>
+        <a href="/benchmark/">性能基线</a>
+        <a href="/archive/">历史归档</a>
+        <a href="/mirrors/">镜像与直链</a>
+        <a href="/lab/">实验室</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/contact/">联系</a>
+        <a href="/blog/">站务日志</a>
+        <a href="/press/">媒体资料</a>
+        <a href="/thanks/">致谢</a>
+        <a href="/privacy/">隐私</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
