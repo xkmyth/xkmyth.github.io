@@ -9,9 +9,16 @@
 <link rel="preconnect" href="https://api.github.com" crossorigin>
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/sub.css">
+
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><meta name="color-scheme" content="dark light">
 </head>
 <body>
-<canvas id="sky"></canvas>
+<a class="skip-link" href="#main">跳到主内容</a>
+<canvas id="sky" aria-hidden="true"></canvas>
 
 <header class="nav">
   <div class="nav-inner">
@@ -27,7 +34,7 @@
   </div>
 </header>
 
-<main class="page">
+<main id="main" tabindex="-1" class="page">
   <p class="crumbs"><a href="/">首页</a> / <a href="/">首页</a> / 镜像与直链</p>
   <div class="page-head reveal">
     <p class="eyebrow">Mirrors · 直链</p>
@@ -40,9 +47,9 @@
 <table class="tbl">
   <thead><tr><th>用途</th><th>地址</th><th>说明</th></tr></thead>
   <tbody>
-    <tr><td>安装包（全部）</td><td><a href="https://github.com/xkmyth/xkmyth/releases/latest">releases/latest</a></td><td>GitHub 全球 CDN，永远指向最新正式版</td></tr>
+    <tr><td>安装包（全部）</td><td><a href="https://github.com/xkmyth/xkmyth/releases/latest" target="_blank" rel="noopener noreferrer">releases/latest</a></td><td>GitHub 全球 CDN，永远指向最新正式版</td></tr>
     <tr><td>单个资产</td><td><code>releases/latest/download/&lt;资产名&gt;</code></td><td>适合贴在 README 或脚本里</td></tr>
-    <tr><td>系统镜像</td><td><a href="https://xkmyth.dynv6.net:5212/">私有云盘</a></td><td>约 8 GB，自有服务器，速度看线路</td></tr>
+    <tr><td>系统镜像</td><td><a href="https://xkmyth.dynv6.net:5212/" target="_blank" rel="noopener noreferrer">私有云盘</a></td><td>约 8 GB，自有服务器，速度看线路</td></tr>
   </tbody>
 </table>
 <p class="note">凡是要求你「先关注公众号 / 先注册 / 先装下载器」的所谓镜像，都不是这里的。本站只提供上面三条。</p>

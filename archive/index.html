@@ -9,9 +9,16 @@
 <link rel="preconnect" href="https://api.github.com" crossorigin>
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/sub.css">
+
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><meta name="color-scheme" content="dark light">
 </head>
 <body>
-<canvas id="sky"></canvas>
+<a class="skip-link" href="#main">跳到主内容</a>
+<canvas id="sky" aria-hidden="true"></canvas>
 
 <header class="nav">
   <div class="nav-inner">
@@ -27,7 +34,7 @@
   </div>
 </header>
 
-<main class="page">
+<main id="main" tabindex="-1" class="page">
   <p class="crumbs"><a href="/">首页</a> / <a href="/">首页</a> / 历史归档</p>
   <div class="page-head reveal">
     <p class="eyebrow">Archive · 归档</p>
@@ -40,10 +47,10 @@
 <table class="tbl">
   <thead><tr><th>资产</th><th>平台</th><th>体积</th><th>直链</th></tr></thead>
   <tbody>
-    <tr><td><code>xkmyth-browser-win-x64.zip</code></td><td>Windows x64</td><td>约 144 MiB</td><td><a href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-browser-win-x64.zip">下载</a></td></tr>
-    <tr><td><code>xkmyth-cloud-win-x64.zip</code></td><td>Windows x64</td><td>约 95 MiB</td><td><a href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-cloud-win-x64.zip">下载</a></td></tr>
-    <tr><td><code>xkmyth-browser.apk</code></td><td>Android</td><td>约 105 KiB</td><td><a href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-browser.apk">下载</a></td></tr>
-    <tr><td><code>xkmyth-cloud.apk</code></td><td>Android</td><td>约 21 KiB</td><td><a href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-cloud.apk">下载</a></td></tr>
+    <tr><td><code>xkmyth-browser-win-x64.zip</code></td><td>Windows x64</td><td>约 144 MiB</td><td><a href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-browser-win-x64.zip" target="_blank" rel="noopener noreferrer">下载</a></td></tr>
+    <tr><td><code>xkmyth-cloud-win-x64.zip</code></td><td>Windows x64</td><td>约 95 MiB</td><td><a href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-cloud-win-x64.zip" target="_blank" rel="noopener noreferrer">下载</a></td></tr>
+    <tr><td><code>xkmyth-browser.apk</code></td><td>Android</td><td>约 105 KiB</td><td><a href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-browser.apk" target="_blank" rel="noopener noreferrer">下载</a></td></tr>
+    <tr><td><code>xkmyth-cloud.apk</code></td><td>Android</td><td>约 21 KiB</td><td><a href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-cloud.apk" target="_blank" rel="noopener noreferrer">下载</a></td></tr>
   </tbody>
 </table>
 <p class="note">体积为归档时的近似值，实际数字以 <a href="/xkmyth/">Downloads</a> 实时读取的为准。</p>
@@ -53,7 +60,7 @@
 <div class="card hl">
   <h3>定制系统镜像（约 8 GB）</h3>
   <p>GitHub Releases 单文件上限 2 GiB，镜像放不进去，因此改走私有云盘直链：</p>
-  <p><a class="btn soft small" href="https://xkmyth.dynv6.net:5212/">私有云盘入口 →</a></p>
+  <p><a class="btn soft small" href="https://xkmyth.dynv6.net:5212/" target="_blank" rel="noopener noreferrer">私有云盘入口 →</a></p>
   <p class="note">该服务是自有服务器，可用性不由 GitHub 保证；打不开时先把状态页和 Release 说明看完再来问。镜像不含任何激活破解。</p>
 </div>
 </section><section class="reveal ">

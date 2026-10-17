@@ -8,9 +8,16 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/sub.css">
+
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><meta name="color-scheme" content="dark light">
 </head>
 <body>
-<canvas id="sky"></canvas>
+<a class="skip-link" href="#main">跳到主内容</a>
+<canvas id="sky" aria-hidden="true"></canvas>
 
 <header class="nav">
   <div class="nav-inner">
@@ -26,7 +33,7 @@
   </div>
 </header>
 
-<main class="page">
+<main id="main" tabindex="-1" class="page">
   <p class="crumbs"><a href="/">首页</a> / Docs</p>
   <div class="page-head reveal">
     <p class="eyebrow">Documentation</p>

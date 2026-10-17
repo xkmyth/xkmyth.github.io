@@ -15,10 +15,19 @@
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/sub.css">
 <link rel="stylesheet" href="/software/app.css">
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
+<meta property="og:image" content="https://xkmyth.github.io/icons/og-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="color-scheme" content="dark light">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到主内容</a>
 <div id="sky"></div>
-<canvas id="stars"></canvas>
+<canvas id="stars" aria-hidden="true"></canvas>
 <header class="nav">
   <div class="nav-inner">
     <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
@@ -32,7 +41,7 @@
     </nav>
   </div>
 </header>
-<main class="app-shell">
+<main id="main" tabindex="-1" class="app-shell">
   <div class="crumbs"><a href="/">首页</a> / <a href="/software/">软件库</a> / <span>XK Compress 图片压缩</span></div>
   <header class="app-head">
     <div>

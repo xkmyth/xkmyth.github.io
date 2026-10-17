@@ -393,3 +393,38 @@
   /* 暴露给页面脚本 */
   window.xkmythUI = { toast: showToast, copy: copyText, palette: openPalette };
 })();
+
+
+/* ---------------- xkmyth-pwa：service worker + 安装引导 ---------------- */
+(function () {
+  if (!('serviceWorker' in navigator)) return;
+  var secure = location.protocol === 'https:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  if (!secure || /[?&]nosw=1/.test(location.search)) return;
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(function () { /* 静默失败 */ });
+  });
+  var deferred = null;
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferred = e;
+    var bar = document.querySelector('.nav-tools');
+    if (!bar || document.getElementById('pwaBtn')) return;
+    var b = document.createElement('button');
+    b.id = 'pwaBtn';
+    b.className = 'nav-btn';
+    b.type = 'button';
+    b.title = '把 xkmyth 装到桌面（离线可用）';
+    b.innerHTML = '<span aria-hidden="true">⤓</span><span class="nav-btn-txt">安装</span>';
+    b.addEventListener('click', function () {
+      if (!deferred) return;
+      deferred.prompt();
+      deferred.userChoice.then(function () { deferred = null; b.remove(); });
+    });
+    bar.insertBefore(b, bar.firstChild);
+  });
+  window.addEventListener('appinstalled', function () {
+    var b = document.getElementById('pwaBtn');
+    if (b) b.remove();
+    if (window.showToast) window.showToast('已安装到桌面，离线也能用', 'ok');
+  });
+})();
