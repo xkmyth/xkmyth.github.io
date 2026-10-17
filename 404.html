@@ -9,8 +9,15 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/sub.css">
+
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><meta name="color-scheme" content="dark light">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到主内容</a>
 <header class="nav">
   <div class="nav-inner">
     <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
@@ -25,7 +32,7 @@
   </div>
 </header>
 
-<main class="page">
+<main id="main" tabindex="-1" class="page">
   <div class="page-head">
     <p class="eyebrow">ERROR 404</p>
     <h1>这一页<span class="gold">漂走了</span></h1>
@@ -50,7 +57,7 @@
   <details class="acc" style="margin-top:26px">
     <summary>是不是找 Releases / 下载？</summary>
     <div class="acc-body">
-      <p>安装包统一在发行仓库的 Releases 页：<a href="https://github.com/xkmyth/xkmyth/releases/latest">github.com/xkmyth/xkmyth/releases</a></p>
+      <p>安装包统一在发行仓库的 Releases 页：<a href="https://github.com/xkmyth/xkmyth/releases/latest" target="_blank" rel="noopener noreferrer">github.com/xkmyth/xkmyth/releases</a></p>
       <p>下载页：<a href="/xkmyth/">/xkmyth/</a> · 版本日志：<a href="/changelog/">/changelog/</a></p>
     </div>
   </details>
@@ -132,7 +139,7 @@
   </div>
 </footer>
 
-<canvas id="sky"></canvas>
+<canvas id="sky" aria-hidden="true"></canvas>
 <div class="toast" id="toast"></div>
 <script src="/sub.js"></script>
 </body>

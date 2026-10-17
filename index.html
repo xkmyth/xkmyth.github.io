@@ -12,9 +12,20 @@
 <title>星空神话 xkmyth · 官方网站</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
 <link rel="stylesheet" href="style.css">
+
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
+<meta property="og:image" content="https://xkmyth.github.io/icons/og-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="color-scheme" content="dark light">
 </head>
 <body>
-<canvas id="sky"></canvas>
+<a class="skip-link" href="#main">跳到主内容</a>
+<canvas id="sky" aria-hidden="true"></canvas>
 
 <header class="nav">
   <div class="nav-inner">
@@ -30,7 +41,7 @@
   </div>
 </header>
 
-<section class="hero">
+<section id="main" tabindex="-1" class="hero">
   <div class="hero-aurora" aria-hidden="true"></div>
   <h1 class="hero-title">xk<span class="gold">myth</span></h1>
   <p class="hero-sub">星空神话 · 浏览器 / 云盘 / 定制系统</p>

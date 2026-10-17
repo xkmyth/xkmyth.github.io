@@ -9,9 +9,16 @@
 <link rel="preconnect" href="https://api.github.com" crossorigin>
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/sub.css">
+
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><meta name="color-scheme" content="dark light">
 </head>
 <body>
-<canvas id="sky"></canvas>
+<a class="skip-link" href="#main">跳到主内容</a>
+<canvas id="sky" aria-hidden="true"></canvas>
 
 <header class="nav">
   <div class="nav-inner">
@@ -27,7 +34,7 @@
   </div>
 </header>
 
-<main class="page">
+<main id="main" tabindex="-1" class="page">
   <p class="crumbs"><a href="/">首页</a> / Docs / 排障手册</p>
   <div class="page-head reveal">
     <p class="eyebrow">Docs · Troubleshoot</p>

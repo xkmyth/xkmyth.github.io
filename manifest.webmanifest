@@ -1,0 +1,79 @@
+{
+  "id": "/",
+  "name": "xkmyth 星空生态",
+  "short_name": "xkmyth",
+  "description": "46 个站点 · 139 个纯前端在线工具 · 10 个自研软件。浏览器、私有云盘、定制系统与效率工具，全部纯静态、零上传。",
+  "start_url": "/?utm_source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui"
+  ],
+  "orientation": "any",
+  "background_color": "#04060f",
+  "theme_color": "#04060f",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "categories": [
+    "productivity",
+    "utilities",
+    "developer"
+  ],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/icons/og-1200x630.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "xkmyth 星空生态"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "在线工具箱",
+      "short_name": "工具箱",
+      "url": "/Timarsky/tools/",
+      "description": "139 个纯前端工具"
+    },
+    {
+      "name": "软件库",
+      "short_name": "软件库",
+      "url": "/software/",
+      "description": "10 个自研 Web 应用"
+    },
+    {
+      "name": "Downloads",
+      "short_name": "下载",
+      "url": "/xkmyth/",
+      "description": "浏览器 / 云盘 / 系统镜像"
+    },
+    {
+      "name": "文档",
+      "short_name": "文档",
+      "url": "/docs/",
+      "description": "安装、校验、排错"
+    }
+  ]
+}

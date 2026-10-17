@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://xkmyth.github.io/sitemap.xml
+Sitemap: https://xkmyth.github.io/Timarsky/sitemap.xml
