@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="xkmyth 生态状态 —— 四个仓库的最近提交、CI 结论、最新版本与页面可用性，实时读取 GitHub API。">
+<title>Status · 生态状态 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/#ecosystem">生态</a>
+      <a href="/docs/">Docs</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/status/">Status</a>
+      <a href="/support/">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page wide">
+  <p class="crumbs"><a href="/">首页</a> / Status</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Status</p>
+    <h1>生态 <span class="gold">状态</span></h1>
+    <p class="page-sub">四个仓库的最近动作、CI 结论与版本 —— 每 60 秒自动刷新一次</p>
+  </div>
+
+  <div class="stat-grid" id="stGrid"></div>
+
+  <p style="margin-top:24px;text-align:center;color:var(--muted);font-size:12.5px">
+    数据来源：<code style="color:var(--ice)">api.github.com</code>（未登录额度 60 次/小时，本页做了 10 分钟缓存）
+    · <span id="stUpdated">—</span>
+    <button class="btn ghost small" id="stRefresh" style="margin-left:10px">刷新</button>
+  </p>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <p class="foot-links">
+      <a href="/">首页</a> ·
+      <a href="/docs/">Docs</a> ·
+      <a href="/changelog/">Changelog</a> ·
+      <a href="/status/">Status</a> ·
+      <a href="/support/">Support</a>
+    </p>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast"></div>
+<script src="/sub.js"></script>
+<script src="/js/status.js"></script>
+</body>
+</html>

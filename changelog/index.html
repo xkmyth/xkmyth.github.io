@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="xkmyth 版本日志 —— 每个 Release 的版本号、发布时间、安装包体积与下载次数，实时读取自 GitHub Releases。">
+<title>Changelog · 版本日志 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/#ecosystem">生态</a>
+      <a href="/docs/">Docs</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/status/">Status</a>
+      <a href="/support/">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / Changelog</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Changelog</p>
+    <h1>版本 <span class="gold">日志</span></h1>
+    <p class="page-sub">每次发版自动出现在这里 —— 数据实时来自 GitHub Releases，不靠手工维护</p>
+  </div>
+
+  <div class="timeline" id="clList">
+    <div class="tl-item dim">
+      <span class="tl-tag">读取中…</span>
+      <p class="tl-meta">正在向 api.github.com 请求版本列表</p>
+    </div>
+  </div>
+
+  <p style="margin-top:26px;text-align:center">
+    <a class="btn ghost small" href="https://github.com/xkmyth/xkmyth/releases" target="_blank" rel="noopener">在 GitHub 看全部版本 ↗</a>
+    <a class="btn primary small" href="https://xkmyth.github.io/xkmyth/" target="_blank" rel="noopener">前往 Downloads ⬇</a>
+  </p>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <p class="foot-links">
+      <a href="/">首页</a> ·
+      <a href="/docs/">Docs</a> ·
+      <a href="/changelog/">Changelog</a> ·
+      <a href="/status/">Status</a> ·
+      <a href="/support/">Support</a>
+    </p>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast"></div>
+<script src="/sub.js"></script>
+<script src="/js/changelog.js"></script>
+</body>
+</html>

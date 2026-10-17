@@ -12,71 +12,120 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: JS 语法检查
-        run: node --check main.js
+        run: |
+          for f in $(git ls-files '*.js'); do
+            echo "· $f"
+            node --check "$f"
+          done
 
-      - name: HTML 结构与本地引用检查
+      - name: HTML 结构 / 本地引用 / 锚点
         run: |
           python3 - <<'EOF'
-          import re, os, sys
+          """本地可跑的 HTML 结构与引用检查器 —— 与 CI 内嵌逻辑完全一致。
+
+          用法：python check_html.py <repo_root>
+          - 错误（锚点死链、相对路径死链、解析失败）→ 退出码 1
+          - 警告（根绝对路径但本仓不存在，通常指向兄弟 Pages 仓库）→ 只打印，不影响退出码
+          """
+          import os
+          import re
+          import sys
           from html.parser import HTMLParser
 
-          errors = []
+          SKIP_DIRS = {".git", "node_modules", ".github"}
+          SKIP_PREFIX = ("http://", "https://", "mailto:", "tel:", "data:", "javascript:")
 
-          for page in ("index.html",):
-              if not os.path.exists(page):
-                  errors.append(f"missing {page}")
-                  continue
-              text = open(page, encoding="utf-8").read()
 
-              class P(HTMLParser):
-                  def error(self, message):
-                      errors.append(f"{page}: {message}")
+          def check(root):
+              errors = []
+              warnings = []
+              pages = []
+              for dirpath, dirnames, filenames in os.walk(root):
+                  dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
+                  for fn in filenames:
+                      if fn.endswith(".html"):
+                          pages.append(os.path.join(dirpath, fn))
+              pages.sort()
 
-              p = P()
-              try:
-                  p.feed(text)
-                  p.close()
-              except Exception as e:
-                  errors.append(f"{page} parse: {e}")
+              for page in pages:
+                  rel = os.path.relpath(page, root).replace("\\", "/")
+                  text = open(page, encoding="utf-8").read()
 
-              # 本地引用必须存在
-              for m in re.finditer(r'(?:href|src)="(\./[^"#?]*|(?![a-z]+:)[^"#?/][^"#?]*)"', text):
-                  target = m.group(1).lstrip("./")
-                  if target and not os.path.exists(target):
-                      errors.append(f"{page}: dead local ref -> {target}")
+                  class P(HTMLParser):
+                      def error(self, message):
+                          errors.append(f"{rel}: parse error: {message}")
 
-          # 页内锚点必须存在
-          text = open("index.html", encoding="utf-8").read()
-          anchors = set(re.findall(r'id="([^"]+)"', text))
-          for m in re.finditer(r'href="#([^"]+)"', text):
-              if m.group(1) not in anchors:
-                  errors.append(f"index.html: dead anchor -> #{m.group(1)}")
+                  try:
+                      p = P()
+                      p.feed(text)
+                      p.close()
+                  except Exception as e:
+                      errors.append(f"{rel}: parse: {e}")
 
+                  anchors = set(re.findall(r'id="([^"]+)"', text))
+                  for m in re.finditer(r'(?:href|src)="([^"]+)"', text):
+                      target = m.group(1).strip()
+                      if not target or target.startswith(SKIP_PREFIX):
+                          continue
+                      if target.startswith("#"):
+                          name = target[1:]
+                          if name and name not in anchors:
+                              errors.append(f"{rel}: dead anchor -> {target}")
+                          continue
+                      path = target.split("#")[0].split("?")[0]
+                      if not path:
+                          continue
+                      is_root_abs = path.startswith("/")
+                      if is_root_abs:
+                          resolved = os.path.join(root, path.lstrip("/"))
+                      else:
+                          resolved = os.path.join(os.path.dirname(page), path)
+                      if resolved.endswith("/") or not os.path.splitext(resolved)[1]:
+                          candidate = os.path.join(resolved, "index.html")
+                          if os.path.exists(candidate):
+                              resolved = candidate
+                          elif resolved.endswith("/"):
+                              resolved = candidate
+                      if not os.path.exists(resolved):
+                          if is_root_abs:
+                              warnings.append(f"{rel}: sibling-site ref -> {target}")
+                          else:
+                              errors.append(f"{rel}: dead local ref -> {target}")
+
+              return pages, errors, warnings
+          pages, errors, warnings = check(os.getcwd())
+          for w in warnings:
+              print("WARN " + w)
           if errors:
               print("\n".join(errors))
+              print("--- %d 个问题 / %d 个页面 ---" % (len(errors), len(pages)))
               sys.exit(1)
-          print("html/refs OK")
+          print("checked %d page(s): html/links/anchors OK (%d 条跨站警告)" % (len(pages), len(warnings)))
           EOF
 
       - name: 外链连通性（仅警告）
         continue-on-error: true
         run: |
           python3 - <<'EOF'
-          import re, sys
-          import urllib.request, urllib.error
+          import os, re
+          import urllib.request
 
-          text = open("index.html", encoding="utf-8").read()
-          links = set(re.findall(r'href="(https?://[^"]+)"', text))
-          warn = 0
-          for url in sorted(links):
+          urls = set()
+          for dirpath, dirnames, filenames in os.walk("."):
+              dirnames[:] = [d for d in dirnames if d not in (".git", "node_modules")]
+              for fn in filenames:
+                  if fn.endswith(".html"):
+                      text = open(os.path.join(dirpath, fn), encoding="utf-8").read()
+                      urls.update(re.findall(r'href="(https?://[^"]+)"', text))
+          warns = 0
+          for url in sorted(urls):
               if "github.com" in url:
-                  continue  # GitHub 主链路，跳过
+                  continue
               try:
                   req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "xkmyth-ci"})
                   urllib.request.urlopen(req, timeout=15)
-                  print(f"OK   {url}")
               except Exception as e:
-                  warn += 1
+                  warns += 1
                   print(f"WARN {url} -> {e}")
-          print(f"external links: {len(links)}, warnings: {warn}")
+          print("external links: %d, warnings: %d" % (len(urls), warns))
           EOF
