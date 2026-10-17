@@ -1,0 +1,32 @@
+name: 决策请求
+description: 需要拍板的技术选型 / 范围变更
+title: "「决策」"
+labels: [decision]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: 背景
+      placeholder: 现在是什么情况，为什么需要拍板
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: 候选方案（含利弊）
+      placeholder: "A. …（优点/缺点）\nB. …（优点/缺点）"
+    validations:
+      required: true
+  - type: textarea
+    id: recommend
+    attributes:
+      label: 我的推荐与理由
+    validations:
+      required: true
+  - type: dropdown
+    id: decided_by
+    attributes:
+      label: 由谁拍板
+      options: ["主人（人类）", "a1（总负责）", "谁先看到谁定"]
+    validations:
+      required: true

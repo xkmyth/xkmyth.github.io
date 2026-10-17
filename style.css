@@ -1,23 +1,34 @@
+/* ============================================================
+   xkmyth 主站 · 设计系统（与发行仓库 / 工具站 / 关于页统一）
+   深空 · 金 · 冰蓝 | tokens → 组件 → 响应式 → 无障碍
+   ============================================================ */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --bg0: #060d24; --bg1: #0d1740; --bg2: #1e1b4b; --bg3: #312e81;
+  --bg0: #04060f; --bg1: #0a1226; --bg2: #101b3a; --bg3: #1a2a52;
   --gold: #fcd34d; --gold2: #f59e0b;
-  --cyan: #9ae3ff; --text: #e8eeff; --muted: #8aa3d8;
-  --card: rgba(255,255,255,.06); --line: rgba(154,227,255,.18);
+  --ice: #9ae3ff; --text: #e8eeff; --muted: #8aa3d8;
+  --card: rgba(255,255,255,.05); --card-hover: rgba(255,255,255,.09);
+  --line: rgba(255,255,255,.08); --line-ice: rgba(154,227,255,.22);
+  --radius: 18px;
 }
 html { scroll-behavior: smooth; }
 body {
-  font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+  font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
   color: var(--text); overflow-x: hidden; line-height: 1.6;
+  background: var(--bg0);
 }
 #sky {
   position: fixed; inset: 0; z-index: -1;
   background: linear-gradient(160deg, var(--bg0) 0%, var(--bg1) 45%, var(--bg2) 75%, var(--bg3) 100%);
 }
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 6px;
+}
+section[id] { scroll-margin-top: 90px; }
 
 /* ---- 导航 ---- */
 .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10;
-  background: rgba(6,13,36,.6); backdrop-filter: blur(12px);
+  background: rgba(4,6,15,.65); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line); }
 .nav-inner { max-width: 1080px; margin: 0 auto; padding: 14px 22px;
   display: flex; align-items: center; justify-content: space-between; }
@@ -29,36 +40,39 @@ nav a:hover { color: var(--gold); }
 /* ---- Hero ---- */
 .hero { min-height: 100vh; display: flex; flex-direction: column;
   align-items: center; justify-content: center; text-align: center; padding: 90px 20px 40px; }
-.hero-title { font-size: clamp(64px, 12vw, 140px); font-weight: 800; letter-spacing: 8px;
-  background: linear-gradient(120deg, #e8eeff, var(--cyan) 45%, #ffffff);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+.hero-title { font-size: clamp(60px, 11vw, 130px); font-weight: 800; letter-spacing: 8px;
+  background: linear-gradient(120deg, #e8eeff, var(--ice) 45%, #ffffff);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
   text-shadow: 0 0 60px rgba(154,227,255,.25); }
 .gold { background: linear-gradient(120deg, #fcd34d, #f59e0b);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .hero-sub { font-size: 22px; letter-spacing: 12px; color: var(--gold); margin-top: 6px; }
 .hero-desc { color: var(--muted); margin-top: 18px; font-size: 16px; max-width: 620px; }
 .hero-actions { margin-top: 34px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 .btn { display: inline-block; padding: 13px 34px; border-radius: 40px; text-decoration: none;
-  font-size: 15px; font-weight: 600; transition: transform .15s, box-shadow .15s; }
+  font-size: 15px; font-weight: 600; transition: transform .15s, box-shadow .15s, background .15s; }
 .btn:hover { transform: translateY(-2px); }
 .btn.primary { background: linear-gradient(135deg, var(--gold2), var(--gold)); color: #3b2505;
   box-shadow: 0 8px 28px rgba(245,158,11,.35); }
-.btn.ghost { border: 1px solid var(--line); color: var(--text); background: rgba(255,255,255,.06); }
+.btn.primary:hover { box-shadow: 0 12px 36px rgba(245,158,11,.5); }
+.btn.ghost { border: 1px solid var(--line-ice); color: var(--text); background: rgba(255,255,255,.06); }
+.btn.ghost:hover { background: rgba(255,255,255,.1); }
 .btn.small { padding: 9px 22px; font-size: 13px; }
 .hero-meta { margin-top: 26px; font-size: 12px; color: var(--muted); letter-spacing: 3px; }
+.hero-meta b { color: var(--ice); font-weight: 600; }
 
 /* ---- 区块 ---- */
 .section { max-width: 1080px; margin: 0 auto; padding: 90px 22px; }
-.section.alt { max-width: none; background: rgba(10,15,45,.45); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.section.alt { max-width: none; background: rgba(10,15,45,.35); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .section.alt .sec-title, .section.alt .sec-sub { text-align: center; }
 .sec-title { font-size: 34px; font-weight: 700; text-align: center; letter-spacing: 2px; }
 .sec-sub { text-align: center; color: var(--muted); margin: 10px 0 44px; font-size: 15px; }
 
 /* ---- 特性卡片 ---- */
 .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
-.feat-card { background: var(--card); border: 1px solid var(--line); border-radius: 18px;
-  padding: 26px 24px; backdrop-filter: blur(6px); transition: transform .2s, background .2s; }
-.feat-card:hover { transform: translateY(-4px); background: rgba(255,255,255,.1); }
+.feat-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 26px 24px; backdrop-filter: blur(6px); transition: transform .2s, background .2s, border-color .2s; }
+.feat-card:hover { transform: translateY(-4px); background: var(--card-hover); border-color: var(--line-ice); }
 .feat-em { font-size: 30px; }
 .feat-card h3 { margin: 12px 0 8px; font-size: 17px; }
 .feat-card p { color: var(--muted); font-size: 13.5px; }
@@ -66,24 +80,27 @@ nav a:hover { color: var(--gold); }
 /* ---- 生态卡片 ---- */
 .eco-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
 .eco-card { background: rgba(255,255,255,.07); border: 1px solid var(--line); border-radius: 22px;
-  padding: 34px 28px; text-align: center; position: relative; transition: transform .2s; }
-.eco-card:hover { transform: translateY(-5px); }
+  padding: 34px 28px; text-align: center; position: relative; transition: transform .2s, border-color .2s; }
+.eco-card:hover { transform: translateY(-5px); border-color: var(--line-ice); }
 .eco-ico { font-size: 44px; }
 .eco-card h3 { margin: 14px 0 8px; font-size: 19px; }
 .eco-card p { color: var(--muted); font-size: 13.5px; }
-.tag { display: inline-block; margin-top: 14px; font-size: 12px; color: var(--cyan);
-  border: 1px solid rgba(154,227,255,.35); padding: 3px 12px; border-radius: 20px; }
+.tag { display: inline-block; margin-top: 14px; font-size: 12px; color: var(--ice);
+  border: 1px solid rgba(154,227,255,.35); padding: 3px 12px; border-radius: 20px; background: rgba(154,227,255,.06); }
 
 /* ---- 下载 ---- */
 .dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 920px; margin: 0 auto; }
-.dl-card { background: var(--card); border: 1px solid var(--line); border-radius: 18px;
-  padding: 24px; text-align: center; }
+.dl-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 24px; text-align: center; transition: transform .2s, border-color .2s, background .2s; }
+.dl-card:hover { transform: translateY(-3px); border-color: var(--line-ice); background: var(--card-hover); }
 .dl-name { font-weight: 600; font-size: 15px; }
-.dl-desc { color: var(--muted); font-size: 12.5px; margin: 8px 0 16px; }
+.dl-desc { color: var(--muted); font-size: 12.5px; margin: 8px 0 6px; }
+.dl-meta { font-size: 12px; color: var(--ice); margin-bottom: 14px; min-height: 18px; }
+.dl-meta .dl-size { color: var(--gold); }
 
 /* ---- 安装指南 ---- */
 .guide-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; max-width: 960px; margin: 0 auto; }
-.step { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px; text-align: center; }
+.step { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; text-align: center; }
 .step b { display: flex; width: 38px; height: 38px; margin: 0 auto 12px; align-items: center; justify-content: center;
   border-radius: 50%; background: linear-gradient(135deg, var(--gold2), var(--gold)); color: #3b2505; font-size: 17px; }
 .step p { color: var(--muted); font-size: 13px; }
@@ -92,11 +109,21 @@ nav a:hover { color: var(--gold); }
 .foot { padding: 44px 22px 34px; text-align: center; border-top: 1px solid var(--line); background: rgba(4,7,18,.6); }
 .foot-brand { font-size: 18px; font-weight: 700; letter-spacing: 2px; }
 .foot p { color: var(--muted); font-size: 12.5px; margin-top: 8px; }
-.foot-links a { color: var(--cyan); text-decoration: none; margin: 0 8px; }
+.foot-links a { color: var(--ice); text-decoration: none; margin: 0 8px; }
+.foot-links a:hover { color: var(--gold); }
 .foot-copy { opacity: .7; font-size: 11.5px; }
 
+/* ---- 移动端 ---- */
 @media (max-width: 640px) {
   .hero-title { letter-spacing: 4px; }
   nav a { margin-left: 16px; font-size: 13px; }
   .section { padding: 64px 16px; }
+  .hero-sub { letter-spacing: 6px; font-size: 17px; }
+}
+
+/* ---- 无障碍：减少动态 ---- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .btn:hover, .eco-card:hover, .feat-card:hover, .dl-card:hover { transform: none; }
 }

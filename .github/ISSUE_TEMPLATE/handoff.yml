@@ -1,0 +1,43 @@
+name: 交接单
+description: Agent 之间传递工作（互相看不到，全靠这个）
+title: "「交接」"
+labels: [handoff]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        交接单 = 把你的工作状态完整递给下一个人。写清楚「已经做了什么 / 接手方要做什么 / 有什么坑」。
+        相关规则见 [COORDINATION.md](../../COORDINATION.md)。
+  - type: dropdown
+    id: from
+    attributes:
+      label: 我来自
+      options: ["a1", "a2", "a3"]
+    validations:
+      required: true
+  - type: dropdown
+    id: to
+    attributes:
+      label: 交给谁
+      options: ["a1", "a2", "a3", "主人（人类）"]
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: 已完成
+      placeholder: "- 重写了下载页样式\n- 版本号改为动态渲染"
+    validations:
+      required: true
+  - type: textarea
+    id: next
+    attributes:
+      label: 接手方需要做
+      placeholder: "- [ ] 主站 hero 版本号动态化\n- [ ] 合并 PR #12"
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: 注意事项 / 遗留问题
+      placeholder: "例：API 有 60次/小时限额，已加缓存；ISO 卡牌不能动……"

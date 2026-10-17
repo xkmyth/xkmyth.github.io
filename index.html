@@ -38,7 +38,7 @@
     <a class="btn primary" href="#download">下载生态应用</a>
     <a class="btn ghost" href="#ecosystem">了解生态</a>
   </div>
-  <div class="hero-meta">浏览器 v4.0.2 · 云盘在线 · 系统 v1.0（Win11 25H2）</div>
+  <div class="hero-meta" id="heroMeta">版本信息读取中…</div>
 </section>
 
 <section class="section" id="ecosystem">
@@ -105,31 +105,36 @@
 
 <section class="section" id="download">
   <h2 class="sec-title">立即 <span class="gold">下载</span></h2>
-  <p class="sec-sub">安装包托管于 GitHub Releases（全球 CDN）与私有云盘</p>
+  <p class="sec-sub">安装包托管于 GitHub Releases（全球 CDN）与私有云盘 · 版本与体积实时同步</p>
   <div class="dl-grid">
-    <div class="dl-card">
+    <div class="dl-card" data-asset="xkmyth-browser-win-x64.zip">
       <div class="dl-name">🧭 xkmyth 浏览器</div>
-      <div class="dl-desc">Windows 64位 · v4.0.2 · 免安装绿色版</div>
+      <div class="dl-desc">Windows 64位 · 免安装绿色版</div>
+      <div class="dl-meta">读取中…</div>
       <a class="btn small" href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-browser-win-x64.zip" target="_blank" rel="noopener">下载 ⬇</a>
     </div>
-    <div class="dl-card">
+    <div class="dl-card" data-asset="xkmyth-cloud-win-x64.zip">
       <div class="dl-name">☁️ xkmyth 云盘客户端</div>
       <div class="dl-desc">Windows 64位 · 免安装绿色版</div>
+      <div class="dl-meta">读取中…</div>
       <a class="btn small" href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-cloud-win-x64.zip" target="_blank" rel="noopener">下载 ⬇</a>
     </div>
-    <div class="dl-card">
+    <div class="dl-card" data-asset="xkmyth-browser.apk">
       <div class="dl-name">📱 xkmyth 浏览器 APK</div>
-      <div class="dl-desc">Android · v2.0.0 · 星空主页 · 可自定义快捷方式</div>
+      <div class="dl-desc">Android · 星空主页 · 可自定义快捷方式</div>
+      <div class="dl-meta">读取中…</div>
       <a class="btn small" href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-browser.apk" target="_blank" rel="noopener">下载 ⬇</a>
     </div>
-    <div class="dl-card">
+    <div class="dl-card" data-asset="xkmyth-cloud.apk">
       <div class="dl-name">📱 xkmyth 云盘 APK</div>
       <div class="dl-desc">Android · 下载进度条 · 轻量客户端</div>
+      <div class="dl-meta">读取中…</div>
       <a class="btn small" href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-cloud.apk" target="_blank" rel="noopener">下载 ⬇</a>
     </div>
     <div class="dl-card">
       <div class="dl-name">🌌 xkmyth 定制系统镜像</div>
-      <div class="dl-desc">Win11 25H2 定制 ISO · 约 8GB · 云盘直取</div>
+      <div class="dl-desc">Win11 25H2 定制 ISO · 约 8GB</div>
+      <div class="dl-meta">私有云盘直取 · IPv6 + DDNS</div>
       <a class="btn small" href="https://xkmyth.dynv6.net:5212/" target="_blank" rel="noopener">云盘获取 ↗</a>
     </div>
   </div>
@@ -155,7 +160,7 @@
       <a href="/about/">关于</a> ·
       <a href="https://xkmyth.dynv6.net:5212/" target="_blank" rel="noopener">云盘</a>
     </p>
-    <p class="foot-copy">© 2026 星空神话 xkmyth · 星空之下，万物皆可定制 · 仅供学习交流</p>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制 · 仅供学习交流</p>
   </div>
 </footer>
 
