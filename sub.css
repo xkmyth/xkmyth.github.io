@@ -303,3 +303,4 @@ pre { position: relative; }
 .cat-chips { position: sticky; top: calc(var(--nav-h) + 8px); z-index: 5; padding: 8px 0;
   background: linear-gradient(to bottom, var(--bg0) 70%, transparent); }
 body.light .cat-chips { background: linear-gradient(to bottom, var(--bg0) 70%, transparent); }
+.foot-col { min-width: 0; }
