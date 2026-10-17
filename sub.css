@@ -111,3 +111,6 @@ details.acc .acc-body code { color: var(--ice); background: rgba(154,227,255,.08
   .reveal { opacity: 1; transform: none; transition: none; }
   .dot.ok, .dot.wait { animation: none; }
 }
+
+/* 历史版本：整体淡化 */
+.tl-item.dim { opacity: .72; }
