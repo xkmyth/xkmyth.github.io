@@ -63,7 +63,7 @@
 </div>
 <p class="catalog-none" id="catNone" hidden>没有匹配的工具 —— 换个更短的关键词，或者点「全部」看完整列表。</p>
 <div class="catalog-bar">
-  <div class="cat-chips"><button class="cat-chip active" type="button" data-cat="all">全部 <b>160</b></button><button class="cat-chip" type="button" data-cat="enc">编解码 <b>15</b></button><button class="cat-chip" type="button" data-cat="text">文本 <b>24</b></button><button class="cat-chip" type="button" data-cat="time">时间 <b>14</b></button><button class="cat-chip" type="button" data-cat="safe">安全 <b>13</b></button><button class="cat-chip" type="button" data-cat="num">数字 <b>21</b></button><button class="cat-chip" type="button" data-cat="dev">开发 <b>31</b></button><button class="cat-chip" type="button" data-cat="calc">计算 <b>18</b></button><button class="cat-chip" type="button" data-cat="net">网络 <b>14</b></button><button class="cat-chip" type="button" data-cat="file">文件 <b>10</b></button></div>
+  <div class="cat-chips"><button class="cat-chip cat-random" type="button" id="catRandom" title="随便挑一个工具试试">🎲 随机一个</button><button class="cat-chip active" type="button" data-cat="all">全部 <b>160</b></button><button class="cat-chip" type="button" data-cat="enc">编解码 <b>15</b></button><button class="cat-chip" type="button" data-cat="text">文本 <b>24</b></button><button class="cat-chip" type="button" data-cat="time">时间 <b>14</b></button><button class="cat-chip" type="button" data-cat="safe">安全 <b>13</b></button><button class="cat-chip" type="button" data-cat="num">数字 <b>21</b></button><button class="cat-chip" type="button" data-cat="dev">开发 <b>31</b></button><button class="cat-chip" type="button" data-cat="calc">计算 <b>18</b></button><button class="cat-chip" type="button" data-cat="net">网络 <b>14</b></button><button class="cat-chip" type="button" data-cat="file">文件 <b>10</b></button></div>
   <span class="catalog-count">当前显示 <b id="catCount">160</b> 个</span>
 </div>
 <div class="note">每个工具都有独立页面（点击卡片进入），页内就是工具本体，加手写说明与示例。</div>
@@ -119,6 +119,16 @@
     document.addEventListener('keydown', function (e) {
       var tag = (e.target && e.target.tagName || '').toLowerCase();
       if (e.key === '/' && tag !== 'input' && tag !== 'textarea') { e.preventDefault(); box.focus(); }
+    });
+  }
+
+  var rndBtn = document.getElementById('catRandom');
+  if (rndBtn) {
+    rndBtn.addEventListener('click', function () {
+      var pool = [].slice.call(document.querySelectorAll('.tool-link:not([hidden])'));
+      if (!pool.length) return;
+      var pick = pool[Math.floor(Math.random() * pool.length)];
+      window.location.href = pick.getAttribute('href');
     });
   }
   apply();

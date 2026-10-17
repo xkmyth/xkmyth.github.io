@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="xkmyth 标识">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffeeB6"/>
+      <stop offset="1" stop-color="#eea028"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="46%" r="52%">
+      <stop offset="0" stop-color="#ffd76e" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#ffd76e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="120" cy="120" r="118" fill="#04060f"/>
+  <circle cx="120" cy="120" r="118" fill="url(#glow)"/>
+  <path d="M120 34 l25.6 52.4 57.7 8.4 -41.8 40.8 9.9 57.6 -51.4 -27.1 -51.4 27.1 9.9 -57.6 -41.8 -40.8 57.7 -8.4z"
+        fill="url(#gold)"/>
+  <path d="M120 60 l16.4 33.6 37 5.4 -26.8 26.2 6.3 36.9 -32.9 -17.4 -32.9 17.4 6.3 -36.9 -26.8 -26.2 37 -5.4z"
+        fill="#fffaf0" opacity=".18"/>
+  <circle cx="120" cy="120" r="117" fill="none" stroke="#fcd34d" stroke-opacity=".28" stroke-width="2"/>
+</svg>

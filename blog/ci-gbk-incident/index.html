@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="/sub.css">
 <link rel="canonical" href="https://xkmyth.github.io/blog/ci-gbk-incident/">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://xkmyth.github.io/"},{"@type":"ListItem","position":2,"name":"blog","item":"https://xkmyth.github.io/blog/"},{"@type":"ListItem","position":3,"name":"CI 抓到的一次真实事故","item":"https://xkmyth.github.io/blog/ci-gbk-incident/"}]},{"@type":"BlogPosting","headline":"CI 抓到的一次真实事故","url":"https://xkmyth.github.io/blog/ci-gbk-incident/","datePublished":"2026-10-17","dateModified":"2026-10-17","description":"工具站的检查工作流提交后一直不跑，Actions 里连一条 run 都没有。原因是文件被 PowerShell 写成了 GBK，GitHub 解析不出 YAML 结构，于是悄悄忽略了它。 教训写进了决策日志：仓库里的文件","author":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.github.io/","logo":"https://xkmyth.github.io/icons/icon-512.png"},"publisher":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.github.io/","logo":"https://xkmyth.github.io/icons/icon-512.png"},"inLanguage":"zh-CN","isPartOf":{"@type":"Blog","name":"xkmyth 站务日志","url":"https://xkmyth.github.io/blog/"}}]}</script>
+<link rel="alternate" type="application/rss+xml" title="星空神话 xkmyth · 站务日志" href="/blog/feed.xml">
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主内容</a>

@@ -483,3 +483,25 @@ html[data-theme="light"] .ml-ctrl input[type="text"] { background: #fff; border-
 #kbdHelp .kb-foot { color: var(--dim, #7c8aa5); font-size: 13px; margin: 0; }
 html[data-theme="light"] #kbdHelp { background: rgba(240, 244, 250, .78); }
 html[data-theme="light"] #kbdHelp .kb-box { background: #fff; border-color: #dbe3f0; color: #16203a; }
+
+/* ---- 第十三轮：长列表渲染性能（内容可见性） ---- */
+.cat-sec,
+.tool-grid .tool-link,
+.site-grid .site-card,
+.tl-item,
+#clList .tl-item {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 220px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cat-sec,
+  .tool-grid .tool-link,
+  .site-grid .site-card { content-visibility: visible; }
+}
+
+.cat-chips .cat-random {
+  border-color: color-mix(in srgb, var(--gold) 55%, transparent);
+  color: var(--gold);
+  font-weight: 600;
+}
+.cat-chips .cat-random:hover { background: color-mix(in srgb, var(--gold) 16%, transparent); }
