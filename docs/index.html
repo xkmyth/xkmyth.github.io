@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="xkmyth 生态文档 —— 各站点职责、下载与安装步骤、常见问题、校验和与私有云盘用法。">
+<title>Docs · 文档中心 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/#ecosystem">生态</a>
+      <a href="/docs/">Docs</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/status/">Status</a>
+      <a href="/support/">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / Docs</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Documentation</p>
+    <h1>文档 <span class="gold">中心</span></h1>
+    <p class="page-sub">一张图看懂整个生态：哪一站做什么、装哪个包、出问题看哪里</p>
+  </div>
+
+  <h2 class="cs-h2">生态地图</h2>
+  <div class="grid c2">
+    <div class="cs-card reveal">
+      <h3><span class="ico">🌌</span> 主站</h3>
+      <p>你现在所在的页面，负责生态总览、系统特性、下载入口与安装引导。</p>
+      <ul>
+        <li>首页：<a href="/" style="color:var(--ice)">xkmyth.github.io</a></li>
+        <li>下载：首页「Download」区块</li>
+      </ul>
+    </div>
+    <div class="cs-card reveal">
+      <h3><span class="ico">⬇️</span> Downloads</h3>
+      <p>独立的下载中心页，安装包 + 版本历史全部在页面上，版本号与体积实时读取 Releases。</p>
+      <ul>
+        <li><a href="https://xkmyth.github.io/xkmyth/" style="color:var(--ice)">xkmyth.github.io/xkmyth/</a></li>
+        <li>托管：GitHub Releases（全球 CDN）</li>
+      </ul>
+    </div>
+    <div class="cs-card reveal">
+      <h3><span class="ico">🧰</span> 工具站</h3>
+      <p>速查手册 + 在线工具箱。速查覆盖系统、CAD、Office、运维等 27 个模块，工具箱是可直接使用的转换与生成工具。</p>
+      <ul>
+        <li><a href="/Timarsky/" style="color:var(--ice)">xkmyth.github.io/Timarsky/</a></li>
+        <li>工具箱：<a href="/Timarsky/tools/" style="color:var(--ice)">/Timarsky/tools/</a></li>
+      </ul>
+    </div>
+    <div class="cs-card reveal">
+      <h3><span class="ico">👤</span> 关于</h3>
+      <p>生态五件套、仓库清单与联系方式，是理解这个项目的入口页。</p>
+      <ul>
+        <li><a href="/about/" style="color:var(--ice)">xkmyth.github.io/about/</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="cs-h2">下载与安装</h2>
+  <div class="grid c3">
+    <div class="cs-card reveal">
+      <h3><span class="ico">1️⃣</span> 挑对包</h3>
+      <p>Windows 用户取 <code>x64.zip</code>（免安装绿色版，解压即用）；Android 用户取 <code>.apk</code>；系统镜像走私有云盘。</p>
+    </div>
+    <div class="cs-card reveal">
+      <h3><span class="ico">2️⃣</span> 校验完整性</h3>
+      <p>大文件建议核对 SHA256。Windows：<code>certutil -hashfile 文件名 SHA256</code>；Linux/macOS：<code>shasum -a 256 文件名</code>。</p>
+    </div>
+    <div class="cs-card reveal">
+      <h3><span class="ico">3️⃣</span> 首次运行</h3>
+      <p>Windows 可能提示「未知发布者」，属未签名程序的正常提示；Android 安装 APK 需在系统设置里允许「安装未知来源应用」。</p>
+    </div>
+  </div>
+
+  <h2 class="cs-h2">安装定制系统</h2>
+  <div class="grid c3">
+    <div class="cs-card reveal"><h3><span class="ico">💽</span> 写盘</h3><p>下载 ISO 后用 Ventoy 直接拷进 U 盘，或用 Rufus 以 GPT / UEFI 模式写入。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">⚙️</span> 安装</h3><p>应答文件已内置，选好磁盘后全程无需交互，安装过程约 10–20 分钟。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">✨</span> 装完</h3><p>首次进桌面自动应用星空主题，浏览器与云盘客户端已预装，登录即接你自己的云。</p></div>
+  </div>
+
+  <h2 class="cs-h2">常见问题</h2>
+  <details class="acc reveal"><summary>桌面程序提示「Windows 已保护你的电脑」怎么办？</summary>
+    <div class="acc-body">这是 SmartScreen 对未签名程序的默认拦截。点「更多信息」→「仍要运行」即可；如果你愿意，也可以在本地对 exe 做一次 SHA256 校验，确认下载过程没有损坏。</div>
+  </details>
+  <details class="acc reveal"><summary>页面上的版本号和下载数为什么是「读取中…」？</summary>
+    <div class="acc-body">这些数字由浏览器实时向 <code>api.github.com</code> 请求 Releases 得到。若网络受限（比如没连上 GitHub），页面会自动降级为「最新版见 Releases」直链，不影响下载。</div>
+  </details>
+  <details class="acc reveal"><summary>绿色版和安装版有什么区别？</summary>
+    <div class="acc-body">目前 Windows 端提供的是免安装绿色版：解压到任意目录双击主程序即可，不写注册表、不占系统盘。想卸载直接删目录。</div>
+  </details>
+  <details class="acc reveal"><summary>云盘怎么用？需要注册吗？</summary>
+    <div class="acc-body">云盘是自建服务（Cloudreve），通过私有云盘地址访问，不走第三方账号体系。桌面客户端、安卓客户端与 WebDAV 三条路径任选，备份工具（如 Restic / 群晖 Hyper Backup）可直接用 WebDAV 接入。</div>
+  </details>
+  <details class="acc reveal"><summary>为什么要用 GitHub Releases 而不是网盘？</summary>
+    <div class="acc-body">GitHub Releases 自带全球 CDN、断点续传与版本归档，且下载地址永久稳定；私有云盘作为国内直连的备用通道。两边都放，谁快用谁。</div>
+  </details>
+
+  <h2 class="cs-h2">进阶</h2>
+  <div class="grid c2">
+    <div class="cs-card reveal">
+      <h3><span class="ico">🔐</span> 校验和</h3>
+      <p>发版规范要求每个 Release 附 <code>SHA256SUMS.txt</code>。拿到文件后在终端执行：</p>
+      <p style="margin-top:8px"><code>sha256sum -c SHA256SUMS.txt</code></p>
+    </div>
+    <div class="cs-card reveal">
+      <h3><span class="ico">🗂️</span> WebDAV 备份</h3>
+      <p>云盘支持 WebDAV，把备份目标指向 <code>https://你的云盘域名/webdav/</code> 即可，客户端会自动分块上传。</p>
+    </div>
+  </div>
+
+  <h2 class="cs-h2">参与协作</h2>
+  <div class="cs-card reveal">
+    <h3><span class="ico">🤝</span> 三个 agent 并行开发的约定</h3>
+    <p>每个仓库根目录都有 <code>COORDINATION.md</code>（开工三连、commit 前缀、禁入区）与 <code>docs/DECISIONS.md</code>（已决策清单）。改动一律走分支 + PR，CI 会自动校验 HTML 结构与 JS 语法。</p>
+    <p style="margin-top:10px"><a class="btn ghost small" href="https://github.com/xkmyth/xkmyth/blob/main/COORDINATION.md" target="_blank" rel="noopener">看协作规范 ↗</a>
+      <a class="btn ghost small" href="/support/">遇到问题 ↗</a></p>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <p class="foot-links">
+      <a href="/">首页</a> ·
+      <a href="/docs/">Docs</a> ·
+      <a href="/changelog/">Changelog</a> ·
+      <a href="/status/">Status</a> ·
+      <a href="/support/">Support</a>
+    </p>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast"></div>
+<script src="/sub.js"></script>
+</body>
+</html>

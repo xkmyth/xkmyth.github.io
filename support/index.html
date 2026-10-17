@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="xkmyth 生态支持与反馈 —— 问题反馈入口、Issue 模板说明、提交前自查清单。">
+<title>Support · 支持与反馈 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/#ecosystem">生态</a>
+      <a href="/docs/">Docs</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/status/">Status</a>
+      <a href="/support/">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / Support</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Support</p>
+    <h1>支持 <span class="gold">与反馈</span></h1>
+    <p class="page-sub">bug、想法、疑问都有地方放 —— 这里没有客服机器人，只有 Issue 列表</p>
+  </div>
+
+  <h2 class="cs-h2">去哪儿提</h2>
+  <div class="grid c2">
+    <div class="cs-card reveal">
+      <h3><span class="ico">🐞</span> 遇到 bug</h3>
+      <p>系统信息、复现步骤、报错截图三件套。用 bug 模板开会自动带上这些字段。</p>
+      <p style="margin-top:12px"><a class="btn ghost small" href="https://github.com/xkmyth/xkmyth/issues/new?template=bug.yml" target="_blank" rel="noopener">提 bug ↗</a></p>
+    </div>
+    <div class="cs-card reveal">
+      <h3><span class="ico">💡</span> 想要新功能</h3>
+      <p>说清「你想解决什么问题」比说「你想要什么功能」更有用 —— 方案我们可以一起想。</p>
+      <p style="margin-top:12px"><a class="btn ghost small" href="https://github.com/xkmyth/xkmyth/issues/new?template=decision.yml" target="_blank" rel="noopener">提想法 ↗</a></p>
+    </div>
+    <div class="cs-card reveal">
+      <h3><span class="ico">📝</span> 文档 / 文案问题</h3>
+      <p>错别字、过时步骤、看不懂的句子都算。直接在这个仓提 Issue，或改 Markdown 发 PR。</p>
+      <p style="margin-top:12px"><a class="btn ghost small" href="https://github.com/xkmyth/xkmyth/issues/new" target="_blank" rel="noopener">提 Issue ↗</a></p>
+    </div>
+    <div class="cs-card reveal">
+      <h3><span class="ico">🔒</span> 安全问题</h3>
+      <p>涉及凭据泄露、恶意构造的镜像等，请不要开公开 Issue，优先私下说明。</p>
+      <p style="margin-top:12px"><a class="btn ghost small" href="https://github.com/xkmyth" target="_blank" rel="noopener">联系作者 ↗</a></p>
+    </div>
+  </div>
+
+  <h2 class="cs-h2">四仓入口</h2>
+  <table class="tbl reveal">
+    <thead><tr><th>仓库</th><th>放什么</th><th>Issue 收什么</th></tr></thead>
+    <tbody>
+      <tr><td><code>xkmyth/xkmyth</code></td><td>下载中心页面、发版、协作文档、CI</td><td>安装包问题、版本号、文档纠错</td></tr>
+      <tr><td><code>xkmyth/xkmyth.github.io</code></td><td>主站、Docs、Changelog、Status、Support</td><td>官网展示、文案、链接失效</td></tr>
+      <tr><td><code>xkmyth/Timarsky</code></td><td>工具站：速查手册 + 在线工具箱</td><td>速查条目错误、工具算错</td></tr>
+      <tr><td><code>xkmyth/about</code></td><td>关于页</td><td>生态介绍、联系方式</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="cs-h2">提交前自查</h2>
+  <div class="grid c2">
+    <div class="cs-card reveal">
+      <h3><span class="ico">✅</span> 三件事</h3>
+      <ul>
+        <li>用的哪个包、哪个版本（下载中心页面上能看到）</li>
+        <li>操作系统与位数（Win11? Android 版本?）</li>
+        <li>复现步骤：点哪里、期望什么、实际什么</li>
+      </ul>
+    </div>
+    <div class="cs-card reveal">
+      <h3><span class="ico">🔎</span> 先搜一下</h3>
+      <p>同一个 bug 经常已经有人说过了。Issue 列表里搜关键词（比如「闪退」「APK」「WebDAV」），比重复提一条更快得到确认。</p>
+    </div>
+  </div>
+
+  <h2 class="cs-h2">常见疑问</h2>
+  <details class="acc reveal"><summary>提了 Issue 多久会有回应？</summary>
+    <div class="acc-body">这是个人项目，通常 1–3 天内会看一眼。带完整复现步骤的会快很多；纯「不能用」三个字的，往往只能来回问几轮。</div>
+  </details>
+  <details class="acc reveal"><summary>可以直接发 PR 吗？</summary>
+    <div class="acc-body">可以，而且欢迎。每个仓库都有 <code>COORDINATION.md</code>：从自己的分支提交，commit 前缀写清 <code>[a1]/[a2]/[a3]</code> 或说明身份，main 分支受保护、需要 PR 合并，CI 会跑 HTML 结构与 JS 语法检查。</div>
+  </details>
+  <details class="acc reveal"><summary>能自己改下载页的版本号吗？</summary>
+    <div class="acc-body">不用改 —— 版本号是从 GitHub Releases 实时读取的。发版只需要打 tag、上传资产，页面自己就更新了。</div>
+  </details>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <p class="foot-links">
+      <a href="/">首页</a> ·
+      <a href="/docs/">Docs</a> ·
+      <a href="/changelog/">Changelog</a> ·
+      <a href="/status/">Status</a> ·
+      <a href="/support/">Support</a>
+    </p>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast"></div>
+<script src="/sub.js"></script>
+</body>
+</html>
