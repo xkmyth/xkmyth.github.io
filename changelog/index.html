@@ -49,6 +49,36 @@
   <div class="timeline">
   <div class="tl-item reveal">
     <span class="tl-tag">2026-10-18</span>
+    <h3 class="tl-title">第十一轮 · 动效实验室与键盘帮助</h3>
+    <p class="tl-meta"><code>/lab/motion/</code> 六个 canvas 演示（星空、极光、粒子字、波、万花筒、引力），离屏自动暂停、单演示出错不拖垮其他；全站键盘帮助（按 <code>?</code>）与主题快捷键；表格补 <code>scope</code>、画布补 <code>role</code>。</p>
+  </div>
+
+  <div class="tl-item reveal">
+    <span class="tl-tag">2026-10-18</span>
+    <h3 class="tl-title">第十二轮 · 工具到 160 个</h3>
+    <p class="tl-meta">第三批 21 个工具上线：AES-GCM 加解密、JWT 签发、otpauth 链接、PBKDF2 轮数对比、周岁计算、工作日推算、倒计时、IPv6 子网、网络唤醒魔术包、URL 模板、位运算、字节换算、百分位、gitignore 生成、.env 转 JSON、CSV 转 INSERT、文件签名识别、base64 转文件、文本转文件、NATO 拼读、英文数字读法。每加一个工具都要同时有注册、文案、详情页三样东西。</p>
+  </div>
+
+  <div class="tl-item reveal">
+    <span class="tl-tag">2026-10-18</span>
+    <h3 class="tl-title">第十三轮 · 分区分享图、长页性能、品牌包</h3>
+    <p class="tl-meta">九个分区各出一张 1200×630 分享图，164 个页面补齐 OG 与 Twitter 卡片；长列表加 <code>content-visibility</code>，滚动更轻；工具详情页能一键复制示例；<code>/brand/</code> 提供矢量标识与品牌包（zip）；<code>/benchmark/</code> 的实测表由脚本读文件现算，不写估计值。</p>
+  </div>
+
+  <div class="tl-item reveal">
+    <span class="tl-tag">2026-10-18</span>
+    <h3 class="tl-title">第十四轮 · 浅色模式和搜索都重做了一遍</h3>
+    <p class="tl-meta">两件「不好看、但也没报错」的事：一是浅色主题下薄荷绿、玫瑰红、紫罗兰三个强调色对比度只有 1.4～1.7，等于看不清，全部换成深色系（#047857 / #be123c / #6d28d9），金色也从 #b45309 调到 #9d470a；二是工具箱原本**根本没有主题切换**，这一轮补上（与主站共用同一个 localStorage 键）。搜索侧把 160 个工具的别名、42 个页面的关键词、每个工具的说明都写进索引（218 条），打分改成多词 AND，中文补双字兜底。</p>
+  </div>
+
+  <div class="tl-item reveal">
+    <span class="tl-tag">2026-10-18</span>
+    <h3 class="tl-title">第十五轮 · 工具箱里按 / 就能跳</h3>
+    <p class="tl-meta">160 个工具详情页以前想换一个工具只能后退。这轮给工具箱加了跳转器：头部一个 <code>⌕</code>，按 <code>/</code> 或 <code>Ctrl/Cmd + K</code> 唤起，输入框加前 12 条结果，<code>↑↓</code> 选、<code>Enter</code> 开、<code>Esc</code> 关。目录页自己有搜索框，脚本检测到就自动不初始化，不会两套抢键。离线清单同步扩到 24 项，service worker 版本递增。</p>
+  </div>
+
+  <div class="tl-item reveal">
+    <span class="tl-tag">2026-10-18</span>
     <h3 class="tl-title">第十轮 · 修了一个线上事故</h3>
     <p class="tl-meta">工具箱主页面的 <code>&lt;main&gt;</code> 上有两个 <code>id</code>，浏览器只认第一个，于是 <code>$('#tgrid')</code> 取到 null，139 个工具一个都不渲染。改成单 id、跳转链接同步，并把这检查写进 CI（以后重复 id 直接红灯）。顺手给工具目录页加了站内搜索、给实验室加了六个 canvas 动效演示。</p>
   </div>
