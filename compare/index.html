@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="浏览器版与云盘版的完整对比，以及怎么选。">
+<title>Browser × Cloud · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/#ecosystem">生态</a>
+      <a href="/docs/">Docs</a>
+      <a href="/tools/">Tools</a>
+      <a href="/status/">Status</a>
+      <a href="/support/">支持</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / Compare</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Compare</p>
+    <h1>两版<span class="gold">怎么选</span></h1>
+    <p class="page-sub">同一套星空主题，差别只在「要不要动系统、文件存哪儿」。</p>
+  </div>
+
+  <p class="page-sub" style="margin-bottom:20px">两种形态，同一套星空主题。差别只在「要不要动系统」。</p>
+  <div class="cs-card reveal">
+    <table class="tbl">
+      <thead><tr><th>维度</th><th>Browser（浏览器版）</th><th>Cloud（云盘版）</th></tr></thead>
+      <tbody>
+        <tr><td>安装方式</td><td>免安装绿色版，解压即用</td><td>免安装 + 独立云盘客户端</td></tr>
+        <tr><td>平台</td><td>Windows x64 · Android</td><td>Windows x64 · Android</td></tr>
+        <tr><td>是否需要服务器</td><td>不需要</td><td>需要你自己的云盘服务（Cloudreve）</td></tr>
+        <tr><td>数据存放</td><td>本机</td><td>你自己的服务器；可 WebDAV 备份</td></tr>
+        <tr><td>典型体积</td><td>约 150 MB（Windows 包）</td><td>约 100 MB（Windows 包）</td></tr>
+        <tr><td>适合谁</td><td>只想换个顺手的浏览器</td><td>想把手上的文件、备份、多端同步收归自己</td></tr>
+        <tr><td>更新方式</td><td>重新下载解压覆盖</td><td>同上；云盘服务端独立升级</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="cs-h2">怎么选</h2>
+  <div class="grid c3">
+    <div class="cs-card reveal"><h3><span class="ico">🧭</span> 只想要个浏览器</h3><p>选 Browser。解压、双击、完了。不碰系统设置，不启服务。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">☁️</span> 文件想自己管</h3><p>选 Cloud。桌面 + 手机 + WebDAV 三端同一份数据，备份工具直接接。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">💽</span> 想连系统一起换</h3><p>走定制系统镜像：装完自动带星空主题，浏览器与云盘客户端预装。<a href="/docs/" style="color:var(--ice)">看安装说明 →</a></p></div>
+  </div>
+
+  <h2 class="cs-h2">和常见方案比</h2>
+  <div class="cs-card reveal">
+    <table class="tbl">
+      <thead><tr><th>方案</th><th>数据归属</th><th>多端同步</th><th>免安装</th></tr></thead>
+      <tbody>
+        <tr><td>商业网盘</td><td>平台方</td><td>✅</td><td>✅</td></tr>
+        <tr><td>自建 NAS 套件</td><td>自己</td><td>✅</td><td>❌（要装套件）</td></tr>
+        <tr><td><b>本生态 Cloud</b></td><td>自己</td><td>✅（桌面/手机/WebDAV）</td><td>✅（绿色版）</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:12px;opacity:.75;font-size:13px">注：这里比的是「要不要动系统」和「数据在谁手里」，不比功能数量 —— 商业方案的功能列表一定更长。</p>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+</body>
+</html>

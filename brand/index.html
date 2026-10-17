@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="色板、命名规范、标识 SVG、字体与质感约定。">
+<title>品牌素材 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/#ecosystem">生态</a>
+      <a href="/docs/">Docs</a>
+      <a href="/tools/">Tools</a>
+      <a href="/status/">Status</a>
+      <a href="/support/">支持</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / Brand</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Brand</p>
+    <h1>品牌<span class="gold">素材</span></h1>
+    <p class="page-sub">别人要引用这个项目时，直接用这一页的规范。</p>
+  </div>
+
+  <div class="grid c2">
+    <div class="cs-card reveal">
+      <h3><span class="ico">🌌</span> 底色</h3>
+      <p>深空底 <code>#04060f</code>，卡片层 <code>#0a1226</code>。所有页面从这一层开始加光。</p>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <span style="flex:1;height:34px;border-radius:10px;background:#04060f;border:1px solid rgba(255,255,255,.12)"></span>
+        <span style="flex:1;height:34px;border-radius:10px;background:#0a1226;border:1px solid rgba(255,255,255,.12)"></span>
+      </div>
+    </div>
+    <div class="cs-card reveal">
+      <h3><span class="ico">✨</span> 主色</h3>
+      <p>金色 <code>#fcd34d</code> 用于强调与主按钮，冰蓝 <code>#9ae3ff</code> 用于链接与点缀。金色只做点睛，别铺满。</p>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <span style="flex:1;height:34px;border-radius:10px;background:#fcd34d"></span>
+        <span style="flex:1;height:34px;border-radius:10px;background:#9ae3ff"></span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="cs-h2">命名与写法</h2>
+  <div class="cs-card reveal">
+    <table class="tbl">
+      <thead><tr><th>对象</th><th>写法</th><th>不要写成</th></tr></thead>
+      <tbody>
+        <tr><td>品牌</td><td>xkmyth（全小写）· 中文「星空神话」</td><td>XKmyth / Xkmyth / 星空神話</td></tr>
+        <tr><td>下载页</td><td>Downloads</td><td>下载中心 / Download Center</td></tr>
+        <tr><td>工具站</td><td>工具站（Timarsky）</td><td>工具箱（那是 /Timarsky/tools/ 的专名）</td></tr>
+        <tr><td>版本</td><td>v1.0.0（一律以 Releases 为准）</td><td>页面上手写版本号</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:12px">文案语气：短句、给结论、不堆感叹号；不确定的地方直说「不确定」。<b>不写没有依据的数字</b> —— 比如模块数、工具数，一律以页面实际内容为准。</p>
+  </div>
+
+  <h2 class="cs-h2">标识</h2>
+  <div class="cs-card reveal">
+    <p>标识是一个金色星形加一条冰蓝行星轨道环，纯 SVG、无位图。可直接复制下面这段用：</p>
+    <pre><code>&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"&gt;
+  &lt;circle cx="50" cy="45" r="16" fill="#fcd34d"/&gt;
+  &lt;path d="M50 20v50M25 45h50" stroke="#fcd34d" stroke-width="6"/&gt;
+  &lt;ellipse cx="50" cy="66" rx="26" ry="8" stroke="#9ae3ff"
+           stroke-width="3" fill="none" transform="rotate(-15 50 66)"/&gt;
+&lt;/svg&gt;</code></pre>
+  </div>
+
+  <h2 class="cs-h2">字体与质感</h2>
+  <div class="grid c3">
+    <div class="cs-card reveal"><h3><span class="ico">🔤</span> 字体</h3><p>系统 UI 字体栈优先，不加载 Web 字体（省一次网络往返）。中文按系统默认。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">🪟</span> 玻璃</h3><p>卡片 = 半透明底 + 1px 细边 + 8% 高光，圆角 16px；hover 抬升 2px。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">🎞️</span> 动效</h3><p>仅用 160–260ms 的位移/透明度；全部尊重 <code>prefers-reduced-motion</code>，切后台暂停星空。</p></div>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+</body>
+</html>

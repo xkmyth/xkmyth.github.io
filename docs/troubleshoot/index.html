@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="按症状查原因与处理：下载、Windows、Android、云盘、站点五类。">
+<title>排障手册 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/#ecosystem">生态</a>
+      <a href="/docs/">Docs</a>
+      <a href="/tools/">Tools</a>
+      <a href="/status/">Status</a>
+      <a href="/support/">支持</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / Docs / 排障手册</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Docs · Troubleshoot</p>
+    <h1>排障<span class="gold">手册</span></h1>
+    <p class="page-sub">症状 → 原因 → 处理，三步之内没解决再去提问。</p>
+  </div>
+
+  <div class="cs-card reveal">
+    <p>按「症状 → 原因 → 处理」排。三步之内没解决，再带上下文去 <a href="/support/report/">提一个问题</a>。</p>
+  </div>
+
+  <h2 class="cs-h2">下载</h2>
+  <details class="acc reveal"><summary>下载页显示「最新版见 Releases」</summary>
+    <div class="acc-body"><b>原因</b>：浏览器拿不到 GitHub API 数据（网络波动或被拦截）。<br><b>处理</b>：点那个直链去 Releases 页面手动下；页面的降级逻辑不会影响可用性。</div>
+  </details>
+  <details class="acc reveal"><summary>下到一半失败 / 速度只有几 KB</summary>
+    <div class="acc-body"><b>原因</b>：Releases 走的是国外线路，跨时段差异很大。<br><b>处理</b>：换时段或换网络重试；用支持断点续传的下载器往往比浏览器快。</div>
+  </details>
+
+  <h2 class="cs-h2">Windows</h2>
+  <details class="acc reveal"><summary>双击主程序没反应</summary>
+    <div class="acc-body"><b>原因</b>：多被安全软件拦截并已隔离，或压缩包不完整。<br><b>处理</b>：对照体积确认下载完整；把程序目录加入白名单后重新解压。</div>
+  </details>
+  <details class="acc reveal"><summary>提示「缺少 VCRUNTIME140.dll」之类</summary>
+    <div class="acc-body"><b>原因</b>：系统缺少运行库。<br><b>处理</b>：装一次微软官方的 Visual C++ 运行库（x64），重启再试。</div>
+  </details>
+  <details class="acc reveal"><summary>界面字小 / 高分屏模糊</summary>
+    <div class="acc-body"><b>原因</b>：缩放比例不是整数或系统兼容性设置不当。<br><b>处理</b>：右键主程序 → 属性 → 兼容性 → 更改高 DPI 设置，勾选「替代高 DPI 缩放行为」。</div>
+  </details>
+
+  <h2 class="cs-h2">Android</h2>
+  <details class="acc reveal"><summary>「应用未安装」</summary>
+    <div class="acc-body"><b>原因</b>：与旧版签名不一致，或空间不足。<br><b>处理</b>：先完整卸载旧版，再装新包；同时看一眼剩余空间。</div>
+  </details>
+  <details class="acc reveal"><summary>装好了但打不开 / 白屏</summary>
+    <div class="acc-body"><b>原因</b>：WebView 组件过旧。<br><b>处理</b>：在应用商店更新「Android System WebView」或 Chrome，再重开。</div>
+  </details>
+
+  <h2 class="cs-h2">云盘</h2>
+  <details class="acc reveal"><summary>一直转圈连不上</summary>
+    <div class="acc-body"><b>原因</b>：地址写错、服务未启动、或服务只在内网。<br><b>处理</b>：先在同一网络用浏览器打开该地址；外面访问需要内网穿透或 VPN。</div>
+  </details>
+  <details class="acc reveal"><summary>WebDAV 备份工具连不上</summary>
+    <div class="acc-body"><b>原因</b>：协议前缀写成了 <code>http</code> 而服务只开 <code>https</code>，或端口不是默认的 5212。<br><b>处理</b>：补齐协议与端口；路径一般要带 <code>/dav</code> 后缀。</div>
+  </details>
+
+  <h2 class="cs-h2">站点</h2>
+  <details class="acc reveal"><summary>状态页四张卡全是「读取失败」</summary>
+    <div class="acc-body"><b>原因</b>：GitHub 匿名 API 额度（60 次/小时/IP）被同一出口的其他人用光了。<br><b>处理</b>：等一段时间再刷新；页面已把刷新间隔放宽到 15 分钟来降低消耗。</div>
+  </details>
+  <details class="acc reveal"><summary>工具箱某个工具算不出结果</summary>
+    <div class="acc-body"><b>原因</b>：输入不合法（例如进制转换里写了 <code>1.5</code> 或 <code>0x1F</code>），或当前浏览器不支持 WebCrypto（需要 https 或 localhost）。<br><b>处理</b>：按提示修正输入；哈希与随机类工具请用 https 访问。</div>
+  </details>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="从挑安装包到连上自己的云，四步走完；附自查清单与三个最常见的坑。">
+<title>十分钟上手 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/#ecosystem">生态</a>
+      <a href="/docs/">Docs</a>
+      <a href="/tools/">Tools</a>
+      <a href="/status/">Status</a>
+      <a href="/support/">支持</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / Guide</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Getting Started</p>
+    <h1>十分钟<span class="gold">上手</span></h1>
+    <p class="page-sub">从下载到跑起来，只要四个动作。每一步都给出验证方式。</p>
+  </div>
+
+  <h2 class="cs-h2">这份指南适合谁</h2>
+  <div class="grid c3">
+    <div class="cs-card reveal"><h3><span class="ico">🪟</span> Windows 用户</h3><p>Windows 10 / 11，64 位。解压即用，不写注册表、不占系统盘。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">📱</span> Android 用户</h3><p>Android 8.0 及以上。APK 直装，装完登录你自己的云盘地址即可。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">💽</span> 想装系统的人</h3><p>手上有 U 盘（≥ 8 GB）和一台能进 BIOS 的机器，走「安装定制系统」那节。</p></div>
+  </div>
+
+  <h2 class="cs-h2">四步走完</h2>
+  <div class="grid c2">
+    <div class="cs-card reveal">
+      <h3><span class="ico">1️⃣</span> 挑对安装包</h3>
+      <p>下载页有四张卡：浏览器版（Windows / Android）与云盘版（Windows / Android）。</p>
+      <ul>
+        <li><b>浏览器版</b>：把星空浏览器带到你现有的系统上，装完就能用。</li>
+        <li><b>云盘版</b>：搭配自建 Cloudreve 云盘，桌面端 + 手机端 + WebDAV 三件套。</li>
+      </ul>
+      <p style="margin-top:10px"><a class="btn ghost small" href="/xkmyth/">去 Downloads ↗</a></p>
+    </div>
+    <div class="cs-card reveal">
+      <h3><span class="ico">2️⃣</span> 校验完整性</h3>
+      <p>大文件下载过程中可能被中间设备改写，装之前花 10 秒核一下 SHA256。</p>
+      <p style="margin-top:8px"><code>certutil -hashfile xkmyth-browser-win-x64.zip SHA256</code></p>
+      <p style="margin-top:10px"><a class="btn ghost small" href="/docs/verify/">校验怎么做 ↗</a></p>
+    </div>
+    <div class="cs-card reveal">
+      <h3><span class="ico">3️⃣</span> 解压 / 安装 / 首次运行</h3>
+      <p>Windows 包是免安装绿色版：解压到任意目录，双击主程序。Android 装 APK 需要在系统设置里允许「安装未知来源应用」。</p>
+      <p style="margin-top:10px">首次运行可能遇到 SmartScreen 拦截 —— 未签名程序的正常现象，点「更多信息 → 仍要运行」。</p>
+    </div>
+    <div class="cs-card reveal">
+      <h3><span class="ico">4️⃣</span> 接上你自己的云</h3>
+      <p>云盘版首次启动会让你填私有云盘地址；填完即可同步桌面与手机。备份工具（Restic / Hyper Backup 等）用 WebDAV 接入同一个地址。</p>
+      <p style="margin-top:10px"><a class="btn ghost small" href="/docs/">回文档中心 ↗</a></p>
+    </div>
+  </div>
+
+  <h2 class="cs-h2">装完自查清单</h2>
+  <div class="cs-card reveal">
+    <ul>
+      <li>✅ 主程序能正常启动，界面是深空底 + 金色点缀</li>
+      <li>✅ 下载页显示的版本号与你解压出来的版本一致（页面实时读 Releases）</li>
+      <li>✅ 云盘客户端能登录，能上传一个小文件再下载回来</li>
+      <li>✅ 手机端与桌面端能互相看到同一个目录</li>
+      <li>✅ 需要备份的话，WebDAV 地址已在备份工具里跑通过一次</li>
+    </ul>
+  </div>
+
+  <h2 class="cs-h2">三个最常见的坑</h2>
+  <details class="acc reveal"><summary>解压后双击没反应 / 被安全软件直接删掉</summary>
+    <div class="acc-body">先确认压缩包完整（对照体积），再把它加入安全软件白名单后重新解压。被拦下的文件通常已经被隔离，重新解压一次最省事。</div>
+  </details>
+  <details class="acc reveal"><summary>安卓提示「应用未安装」</summary>
+    <div class="acc-body">多半是旧版本残留签名冲突：先在设置里卸载旧版（不是覆盖安装），再装新包。空间不足也会报同样的错，看一眼剩余容量。</div>
+  </details>
+  <details class="acc reveal"><summary>云盘连不上 / 一直转圈</summary>
+    <div class="acc-body">先确认地址写对了（协议 + 域名 + 端口），再试试浏览器能否打开同一个地址。自建服务如果只在内网，出门在外需要走内网穿透或 VPN。</div>
+  </details>
+
+  <div class="cs-card reveal" style="margin-top:26px">
+    <h3><span class="ico">🧰</span> 想顺手做点事？</h3>
+    <p>工具站里放了 30 个在线小工具：时间戳、哈希、JSON、正则、JWT、子网计算、图片转 Base64……都不用装软件。</p>
+    <p style="margin-top:10px"><a class="btn ghost small" href="/tools/">看工具目录 ↗</a>
+      <a class="btn ghost small" href="/Timarsky/tools/">直接进工具箱 ↗</a></p>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+</body>
+</html>

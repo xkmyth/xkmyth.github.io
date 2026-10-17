@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Windows 绿色版、Android APK、定制系统镜像的完整安装步骤与注意点。">
+<title>安装详解 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/#ecosystem">生态</a>
+      <a href="/docs/">Docs</a>
+      <a href="/tools/">Tools</a>
+      <a href="/status/">Status</a>
+      <a href="/support/">支持</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / Docs / 安装详解</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Docs · Install</p>
+    <h1>安装<span class="gold">详解</span></h1>
+    <p class="page-sub">三个平台怎么装、卡在哪、怎么绕过去。</p>
+  </div>
+
+  <h2 class="cs-h2">Windows：绿色版三步</h2>
+  <div class="grid c3">
+    <div class="cs-card reveal"><h3><span class="ico">1️⃣</span> 解压</h3><p>下完的 <code>.zip</code> 右键「全部解压缩」到任意目录，建议路径里不要有中文和空格。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">2️⃣</span> 放行</h3><p>首次运行如果弹 SmartScreen，点「更多信息 → 仍要运行」。程序没有代码签名证书，这是正常提示。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">3️⃣</span> 建快捷方式</h3><p>对主程序右键「发送到 → 桌面快捷方式」，之后从桌面直接进。</p></div>
+  </div>
+
+  <h2 class="cs-h2">Android：跳过一次未知来源</h2>
+  <div class="cs-card reveal">
+    <ol>
+      <li>下载 <code>.apk</code> 到手机（用手机浏览器打开下载页最稳）。</li>
+      <li>在文件管理器里点开安装包，系统会提示「已禁止安装未知应用」。</li>
+      <li>按提示进入「设置 → 允许来自此来源的应用」，回到安装界面继续。</li>
+      <li>安装完成若提示「应用未安装」，先卸载旧版再装 —— 多半是签名冲突。</li>
+    </ol>
+    <p style="margin-top:12px;opacity:.8;font-size:13px">Android 8.0 及以上。装完桌面会出现带星形图标的入口。</p>
+  </div>
+
+  <h2 class="cs-h2">定制系统镜像</h2>
+  <div class="cs-card reveal">
+    <ol>
+      <li><b>准备 U 盘</b>：容量 ≥ 8 GB，写入会清空全部数据。</li>
+      <li><b>写盘</b>：用 Ventoy 或 Rufus 把镜像写进去（Ventoy 的好处是盘里可以放多个镜像）。</li>
+      <li><b>进 BIOS</b>：开机连点 F2 / F12 / Del（各家不同），把 U 盘调到启动顺序第一位。</li>
+      <li><b>安装</b>：跟随向导分区，选好目标磁盘再动手 —— 这一步出错会丢数据。</li>
+      <li><b>首次开机</b>：主题、浏览器、云盘客户端已经预装到位，登录自己的云盘地址即可。</li>
+    </ol>
+  </div>
+
+  <div class="cs-card reveal" style="margin-top:22px">
+    <h3><span class="ico">⚠️</span> 装系统前请确认</h3>
+    <ul>
+      <li>重要文件已经备份到另一块盘或云端</li>
+      <li>记下了目标磁盘的容量，别选错盘</li>
+      <li>知道怎么进 BIOS、怎么改回启动顺序</li>
+    </ul>
+  </div>
+
+  <p style="margin-top:26px;opacity:.75;font-size:13px">装完第一步建议做一次校验：<a href="/docs/verify/">校验与验证 →</a></p>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+</body>
+</html>

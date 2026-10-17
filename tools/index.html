@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="30 个在线小工具的完整目录，按用途分组，一点直达。">
+<title>工具目录 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/#ecosystem">生态</a>
+      <a href="/docs/">Docs</a>
+      <a href="/tools/">Tools</a>
+      <a href="/status/">Status</a>
+      <a href="/support/">支持</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / Tools</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Tools</p>
+    <h1>工具<span class="gold">目录</span></h1>
+    <p class="page-sub">30 个纯前端工具，本地运算、无需安装。</p>
+  </div>
+
+  <div class="cs-card reveal">
+    <p><b>30 个工具，全部在你的浏览器里算。</b>没有接口请求，没有上传，断网也能用 —— 打开页面就是全部能力。</p>
+    <p style="margin-top:10px;opacity:.8;font-size:13px">哈希与随机数走 WebCrypto；其余是纯 JS。数据不落盘、不上报，刷新页面即清空。</p>
+  </div>
+
+  <h2 class="cs-h2">编码转换 <span class="cs-h2-note">5 个 · 文本与二进制之间的来回</span></h2>
+  <div class="tool-grid reveal">
+      <a class="tool-link" href="/Timarsky/tools/#tool-b64">
+        <span class="tool-ico">🔡</span>
+        <span class="tool-txt"><b>Base64 编解码</b><small>支持 URL-safe 与无 padding 变体</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-url">
+        <span class="tool-ico">🔗</span>
+        <span class="tool-txt"><b>URL 编解码</b><small>encodeURIComponent 与解码成对使用</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-json">
+        <span class="tool-ico">🧾</span>
+        <span class="tool-txt"><b>JSON 格式化</b><small>美化 / 压缩 / 合法性校验一行看结果</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-unicode">
+        <span class="tool-ico">🔣</span>
+        <span class="tool-txt"><b>字符编码查询</b><small>码点、UTF-8 字节、HTML 实体</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-csv">
+        <span class="tool-ico">📊</span>
+        <span class="tool-txt"><b>CSV ↔ JSON</b><small>带表头的双向转换，粘进去就能用</small></span>
+        <span class="tool-go">→</span>
+      </a>
+  </div>
+
+  <h2 class="cs-h2">文本处理 <span class="cs-h2-note">5 个 · 清洗、对比、统计、大小写</span></h2>
+  <div class="tool-grid reveal">
+      <a class="tool-link" href="/Timarsky/tools/#tool-text">
+        <span class="tool-ico">📝</span>
+        <span class="tool-txt"><b>文本统计</b><small>字数、词数、行数、字节数，带动画计数</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-case">
+        <span class="tool-ico">🔠</span>
+        <span class="tool-txt"><b>命名风格转换</b><small>camel / snake / kebab / 常量 互转</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-diff">
+        <span class="tool-ico">🆚</span>
+        <span class="tool-txt"><b>文本对比</b><small>逐行差异，标出新增、删除与相同</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-letters">
+        <span class="tool-ico">🔤</span>
+        <span class="tool-txt"><b>大小写与全半角</b><small>含中英文混淆字符的常见转换</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-textclean">
+        <span class="tool-ico">🧽</span>
+        <span class="tool-txt"><b>文本清洗</b><small>去空白、去空行、去重复行、去标点</small></span>
+        <span class="tool-go">→</span>
+      </a>
+  </div>
+
+  <h2 class="cs-h2">时间日期 <span class="cs-h2-note">3 个 · 时间戳、时区、日期差、Cron</span></h2>
+  <div class="tool-grid reveal">
+      <a class="tool-link" href="/Timarsky/tools/#tool-ts">
+        <span class="tool-ico">🕒</span>
+        <span class="tool-txt"><b>时间戳转换</b><small>Unix 秒/毫秒 ↔ 本地时间，带「现在」快照</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-datecalc">
+        <span class="tool-ico">📅</span>
+        <span class="tool-txt"><b>日期计算</b><small>两日期相差天数，以及年龄换算</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-tz">
+        <span class="tool-ico">🌍</span>
+        <span class="tool-txt"><b>世界时钟</b><small>多时区实时对照，含北京时间</small></span>
+        <span class="tool-go">→</span>
+      </a>
+  </div>
+
+  <h2 class="cs-h2">安全随机 <span class="cs-h2-note">3 个 · 哈希、密码、UUID</span></h2>
+  <div class="tool-grid reveal">
+      <a class="tool-link" href="/Timarsky/tools/#tool-hash">
+        <span class="tool-ico">🔐</span>
+        <span class="tool-txt"><b>哈希计算</b><small>SHA-1 / 256 / 512，走 WebCrypto 本地算</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-pwd">
+        <span class="tool-ico">🔑</span>
+        <span class="tool-txt"><b>密码生成器</b><small>带熵值与强度条，可指定必含字符</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-uuid">
+        <span class="tool-ico">🆔</span>
+        <span class="tool-txt"><b>UUID 生成</b><small>v4 批量生成，一键复制全部</small></span>
+        <span class="tool-go">→</span>
+      </a>
+  </div>
+
+  <h2 class="cs-h2">数值颜色 <span class="cs-h2-note">3 个 · 进制、颜色、配色</span></h2>
+  <div class="tool-grid reveal">
+      <a class="tool-link" href="/Timarsky/tools/#tool-color">
+        <span class="tool-ico">🎨</span>
+        <span class="tool-txt"><b>颜色转换</b><small>HEX ↔ RGB ↔ HSL，实时预览色块</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-radix">
+        <span class="tool-ico">🔟</span>
+        <span class="tool-txt"><b>进制转换</b><small>2 / 8 / 10 / 16 互转，严格校验输入</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-palette">
+        <span class="tool-ico">🌈</span>
+        <span class="tool-txt"><b>配色生成</b><small>按主色推出一组协调的深浅色</small></span>
+        <span class="tool-go">→</span>
+      </a>
+  </div>
+
+  <h2 class="cs-h2">开发调试 <span class="cs-h2-note">4 个 · 正则、JWT、Markdown、CSV</span></h2>
+  <div class="tool-grid reveal">
+      <a class="tool-link" href="/Timarsky/tools/#tool-cron">
+        <span class="tool-ico">⏱️</span>
+        <span class="tool-txt"><b>Cron 解析</b><small>把表达式翻译成人话，并列出下次执行时间</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-regex">
+        <span class="tool-ico">🪄</span>
+        <span class="tool-txt"><b>正则测试</b><small>实时匹配、捕获组与替换预览</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-jwt">
+        <span class="tool-ico">🎫</span>
+        <span class="tool-txt"><b>JWT 解码</b><small>只解码不校验 —— 看清头部与载荷</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-markdown">
+        <span class="tool-ico">📄</span>
+        <span class="tool-txt"><b>Markdown 预览</b><small>左侧写右侧即时渲染，支持表格</small></span>
+        <span class="tool-go">→</span>
+      </a>
+  </div>
+
+  <h2 class="cs-h2">计算换算 <span class="cs-h2-note">5 个 · 单位、贷款、BMI、表达式</span></h2>
+  <div class="tool-grid reveal">
+      <a class="tool-link" href="/Timarsky/tools/#tool-unit">
+        <span class="tool-ico">📐</span>
+        <span class="tool-txt"><b>单位换算</b><small>长度 / 重量 / 温度 / 容量 / 存储</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-loan">
+        <span class="tool-ico">🏦</span>
+        <span class="tool-txt"><b>贷款计算</b><small>等额本息与等额本金，含总利息</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-bmi">
+        <span class="tool-ico">⚖️</span>
+        <span class="tool-txt"><b>BMI 计算</b><small>按身高体重算指数与区间提示</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-calc">
+        <span class="tool-ico">🧮</span>
+        <span class="tool-txt"><b>表达式计算器</b><small>带括号与常见函数的四则运算</small></span>
+        <span class="tool-go">→</span>
+      </a>
+      <a class="tool-link" href="/Timarsky/tools/#tool-random">
+        <span class="tool-ico">🎲</span>
+        <span class="tool-txt"><b>随机数生成</b><small>区间整数与小数，可批量</small></span>
+        <span class="tool-go">→</span>
+      </a>
+  </div>
+
+  <h2 class="cs-h2">网络 <span class="cs-h2-note">1 个 · 子网与 IP 计算</span></h2>
+  <div class="tool-grid reveal">
+      <a class="tool-link" href="/Timarsky/tools/#tool-cidr">
+        <span class="tool-ico">🌐</span>
+        <span class="tool-txt"><b>子网计算</b><small>掩码长度 → 网络地址、广播、可用主机数</small></span>
+        <span class="tool-go">→</span>
+      </a>
+  </div>
+
+  <h2 class="cs-h2">文件素材 <span class="cs-h2-note">1 个 · 本地文件就地处理</span></h2>
+  <div class="tool-grid reveal">
+      <a class="tool-link" href="/Timarsky/tools/#tool-img2b64">
+        <span class="tool-ico">🖼️</span>
+        <span class="tool-txt"><b>图片转 Base64</b><small>本地读文件，不出浏览器</small></span>
+        <span class="tool-go">→</span>
+      </a>
+  </div>
+
+  <div class="cs-card reveal" style="margin-top:26px">
+    <h3><span class="ico">🧭</span> 直接进工具箱</h3>
+    <p>目录页只负责找东西；真正的操作界面在工具站里，带搜索、分类筛选和键盘操作。</p>
+    <p style="margin-top:10px"><a class="btn primary small" href="/Timarsky/tools/">打开在线工具箱 ↗</a>
+      <a class="btn ghost small" href="/Timarsky/">逛工具站 ↗</a></p>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+</body>
+</html>
