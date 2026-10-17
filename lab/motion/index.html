@@ -64,7 +64,7 @@
 
 <section class="ml-item reveal">
   <div class="ml-head"><h2 class="cs-h2">1 · 星空视差 <span class="cs-h2-note">520 颗，鼠标会推开</span></h2></div>
-  <canvas data-demo="stars" class="ml-canvas" height="360" aria-label="星空粒子演示"></canvas>
+  <canvas data-demo="stars" class="ml-canvas" height="360" aria-label="星空粒子演示" role="img"></canvas>
   <div class="ml-ctrl">
     <label>粒子数 <input id="mlStarsCount" data-bind="count:count" data-demo-index="0" type="range" min="20" max="150" value="52"><b id="mlStarsCount-val">52</b></label>
     <label>速度 <input id="mlStarsSpeed" data-bind="x:speed" data-demo-index="0" type="range" min="0" max="3" step="0.1" value="1"><b id="mlStarsSpeed-val">1</b></label>
@@ -73,7 +73,7 @@
 
 <section class="ml-item reveal">
   <div class="ml-head"><h2 class="cs-h2">2 · 极光流场 <span class="cs-h2-note">value noise 驱动的 130 条线</span></h2></div>
-  <canvas data-demo="aurora" class="ml-canvas" height="340" aria-label="极光流场演示"></canvas>
+  <canvas data-demo="aurora" class="ml-canvas" height="340" aria-label="极光流场演示" role="img"></canvas>
   <div class="ml-ctrl">
     <label>线条数 <input id="mlAurLines" data-bind="x:lines" data-demo-index="1" type="range" min="30" max="220" step="10" value="130"><b id="mlAurLines-val">130</b></label>
     <label>湍流 <input id="mlAurTurb" data-bind="x:turb" data-demo-index="1" type="range" min="20" max="320" step="10" value="120"><b id="mlAurTurb-val">120</b></label>
@@ -82,7 +82,7 @@
 
 <section class="ml-item reveal">
   <div class="ml-head"><h2 class="cs-h2">3 · 粒子文字 <span class="cs-h2-note">改字重生，鼠标吹散</span></h2></div>
-  <canvas data-demo="partitext" class="ml-canvas" height="340" aria-label="粒子文字演示"></canvas>
+  <canvas data-demo="partitext" class="ml-canvas" height="340" aria-label="粒子文字演示" role="img"></canvas>
   <div class="ml-ctrl">
     <label>文字 <input id="mlText" data-bind="text:text" data-demo-index="2" type="text" value="星空" maxlength="6"></label>
     <label>吸附力 <input id="mlTextPull" data-bind="x:pull" data-demo-index="2" type="range" min="0.01" max="0.16" step="0.005" value="0.055"><b id="mlTextPull-val">0.055</b></label>
@@ -91,7 +91,7 @@
 
 <section class="ml-item reveal">
   <div class="ml-head"><h2 class="cs-h2">4 · 声波层 <span class="cs-h2-note">不碰麦克风，鼠标控制振幅</span></h2></div>
-  <canvas data-demo="waves" class="ml-canvas" height="320" aria-label="声波演示"></canvas>
+  <canvas data-demo="waves" class="ml-canvas" height="320" aria-label="声波演示" role="img"></canvas>
   <div class="ml-ctrl">
     <label>层数 <input id="mlWaveRows" data-bind="x:rows" data-demo-index="3" type="range" min="2" max="14" value="7"><b id="mlWaveRows-val">7</b></label>
     <label>振幅 <input id="mlWaveAmp" data-bind="x:amp" data-demo-index="3" type="range" min="0.2" max="2.4" step="0.1" value="1"><b id="mlWaveAmp-val">1</b></label>
@@ -100,7 +100,7 @@
 
 <section class="ml-item reveal">
   <div class="ml-head"><h2 class="cs-h2">5 · 万花筒 <span class="cs-h2-note">镜像数一变，图案就换一种活法</span></h2></div>
-  <canvas data-demo="kaleido" class="ml-canvas" height="340" aria-label="万花筒演示"></canvas>
+  <canvas data-demo="kaleido" class="ml-canvas" height="340" aria-label="万花筒演示" role="img"></canvas>
   <div class="ml-ctrl">
     <label>镜像数 <input id="mlSegs" data-bind="x:segs" data-demo-index="4" type="range" min="3" max="14" value="8"><b id="mlSegs-val">8</b></label>
   </div>
@@ -108,7 +108,7 @@
 
 <section class="ml-item reveal">
   <div class="ml-head"><h2 class="cs-h2">6 · 引力小剧场 <span class="cs-h2-note">N 体互拽，轨迹会自己绕成花</span></h2></div>
-  <canvas data-demo="nbody" class="ml-canvas" height="360" aria-label="N 体引力演示"></canvas>
+  <canvas data-demo="nbody" class="ml-canvas" height="360" aria-label="N 体引力演示" role="img"></canvas>
   <div class="ml-ctrl">
     <label>天体数 <input id="mlBodies" data-bind="x:n" data-demo-index="5" type="range" min="3" max="9" value="5"><b id="mlBodies-val">5</b></label>
     <label>引力 <input id="mlGrav" data-bind="x:g" data-demo-index="5" type="range" min="200" max="2200" step="50" value="900"><b id="mlGrav-val">900</b></label>

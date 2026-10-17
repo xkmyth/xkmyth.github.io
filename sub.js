@@ -290,8 +290,53 @@
     var typing = tag === 'input' || tag === 'textarea' || tag === 'select' || (e.target && e.target.isContentEditable);
     if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); openPalette(); return; }
     if (e.key === '/' && !typing) { e.preventDefault(); openPalette(); return; }
-    if (e.key === 'Escape' && cmdk && cmdk.classList.contains('open')) { e.preventDefault(); closePalette(); }
+    if (e.key === 'Escape') {
+      if (cmdk && cmdk.classList.contains('open')) { e.preventDefault(); closePalette(); return; }
+      if (helpBox && helpBox.classList.contains('open')) { e.preventDefault(); closeHelp(); return; }
+    }
+    if (e.key === '?' && !typing) { e.preventDefault(); openHelp(); return; }
+    if ((e.key === 't' || e.key === 'T') && !typing && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      var tb = document.getElementById('themeBtn');
+      if (tb) { e.preventDefault(); tb.click(); }
+    }
   });
+
+
+  /* ---------- 键盘帮助 ---------- */
+  var helpBox = null;
+  function openHelp() {
+    if (!helpBox) {
+      helpBox = document.createElement('div');
+      helpBox.id = 'kbdHelp';
+      helpBox.setAttribute('role', 'dialog');
+      helpBox.setAttribute('aria-modal', 'true');
+      helpBox.setAttribute('aria-label', '键盘快捷键');
+      helpBox.innerHTML =
+        '<div class="kb-box" role="document">' +
+        '<div class="kb-h">键盘快捷键</div>' +
+        '<dl class="kb-list">' +
+        '<div><dt><span class="kbd">/</span></dt><dd>全站检索</dd></div>' +
+        '<div><dt><span class="kbd">⌘K</span> <span class="kbd">Ctrl K</span></dt><dd>全站检索（同上）</dd></div>' +
+        '<div><dt><span class="kbd">T</span></dt><dd>切换深色 / 浅色</dd></div>' +
+        '<div><dt><span class="kbd">?</span></dt><dd>打开本页</dd></div>' +
+        '<div><dt><span class="kbd">Esc</span></dt><dd>关闭弹层 / 清空搜索</dd></div>' +
+        '<div><dt><span class="kbd">↑</span> <span class="kbd">↓</span> <span class="kbd">Enter</span></dt><dd>在检索结果里选择并打开</dd></div>' +
+        '</dl>' +
+        '<p class="kb-foot">这是纯键盘可达的站：导航、工具、检索、主题都能只用手完成。</p>' +
+        '</div>';
+      document.body.appendChild(helpBox);
+      helpBox.addEventListener('click', function (e) {
+        if (e.target === helpBox) closeHelp();
+      });
+    }
+    helpBox.classList.add('open');
+    var box = helpBox.querySelector('.kb-box');
+    if (box) { box.tabIndex = -1; box.focus(); }
+  }
+  function closeHelp() {
+    if (helpBox) helpBox.classList.remove('open');
+  }
+  window.xkmythHelp = openHelp;
 
   /* ---------- 6. 渐入 ---------- */
   var reveals = document.querySelectorAll('.reveal');
@@ -308,6 +353,7 @@
 
   /* ---------- 7. Toast ---------- */
   var toastEl = document.querySelector('.toast');
+  if (toastEl) { toastEl.setAttribute('role', 'status'); toastEl.setAttribute('aria-live', 'polite'); }
   var toastTimer = null;
   function showToast(msg, kind) {
     if (!toastEl) {

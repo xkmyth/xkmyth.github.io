@@ -454,3 +454,32 @@ html[data-theme="light"] .ml-ctrl input[type="text"] { background: #fff; border-
 @media (max-width: 720px) {
   .ml-ctrl input[type="range"] { width: 100px; }
 }
+
+/* ---- 可访问性第二轮 ---- */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--gold, #fcd34d);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+#kbdHelp {
+  position: fixed; inset: 0; z-index: 120; display: none;
+  align-items: center; justify-content: center;
+  background: rgba(4, 6, 15, .72); backdrop-filter: blur(6px);
+}
+#kbdHelp.open { display: flex; }
+#kbdHelp .kb-box {
+  width: min(560px, calc(100vw - 32px));
+  padding: 22px 24px; border-radius: 18px;
+  background: var(--bg-elev, #0d1426);
+  border: 1px solid var(--line2, rgba(255, 255, 255, .14));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .55);
+  color: var(--text, #e9eefb);
+}
+#kbdHelp .kb-h { font-size: 17px; font-weight: 700; margin-bottom: 14px; }
+#kbdHelp .kb-list { display: grid; gap: 10px; margin: 0 0 14px; }
+#kbdHelp .kb-list > div { display: flex; gap: 14px; align-items: baseline; }
+#kbdHelp dt { flex: none; min-width: 132px; }
+#kbdHelp dd { margin: 0; color: var(--muted, #a7b4cc); font-size: 14px; }
+#kbdHelp .kb-foot { color: var(--dim, #7c8aa5); font-size: 13px; margin: 0; }
+html[data-theme="light"] #kbdHelp { background: rgba(240, 244, 250, .78); }
+html[data-theme="light"] #kbdHelp .kb-box { background: #fff; border-color: #dbe3f0; color: #16203a; }
