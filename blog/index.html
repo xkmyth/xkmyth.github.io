@@ -15,6 +15,9 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><meta name="color-scheme" content="dark light">
+<link rel="alternate" type="application/rss+xml" title="xkmyth 站务日志" href="/blog/feed.xml">
+<link rel="canonical" href="https://xkmyth.github.io/blog/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://xkmyth.github.io/"},{"@type":"ListItem","position":2,"name":"站务日志决策比结果重要","item":"https://xkmyth.github.io/blog/"}]},{"@type":"BlogPosting","headline":"站务日志决策比结果重要","url":"https://xkmyth.github.io/blog/","datePublished":"2026-10-17","dateModified":"2026-10-17","description":"四篇站务日志：为什么做静态站、三十个工具怎么测、CI 抓到的 GBK 事故、十个应用的共同底线。","author":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.github.io/","logo":"https://xkmyth.github.io/icons/icon-512.png"},"publisher":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.github.io/","logo":"https://xkmyth.github.io/icons/icon-512.png"},"inLanguage":"zh-CN","isPartOf":{"@type":"Blog","name":"xkmyth 站务日志","url":"https://xkmyth.github.io/blog/"}}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主内容</a>
@@ -44,32 +47,32 @@
 <section class="reveal ">
   <div class="sec-head"><h2 class="sec-title">站务日志</h2><p class="sec-kicker">为什么这么改，而不是那么改</p></div>
 <div class="grid g1 post-list">
-<article class="card post-item">
+<article class="card post-item" id="post-1">
   <div class="post-meta"><span class="badge">2026-10-17</span><span class="muted">站务日志</span></div>
-  <h3>为什么把整个生态做成静态站</h3>
+  <h3><a href="/blog/static-first/">为什么把整个生态做成静态站</a></h3>
 
 <p>最早这四个仓各写各的，样式重复三份，版本号写死在 HTML 里，Releases 上明明只有 v1.0.0，页面却写 v4.0.2。</p>
 <p>改法很朴素：样式抽成一套 token，版本号只从 Releases API 读，读不到就降级成静态直链。这样一来「版本漂移」这个 bug 从结构上消失了——页面里根本没有可写死的版本号。</p>
 <p>代价是需要处理限流与断网。做法是缓存 + 降级：10 分钟内复用缓存，拿不到就显示「最新版见 Releases」，绝不让页面变空白。</p>
 </article>
-<article class="card post-item">
+<article class="card post-item" id="post-2">
   <div class="post-meta"><span class="badge">2026-10-17</span><span class="muted">站务日志</span></div>
-  <h3>三十个工具怎么保证不是摆设</h3>
+  <h3><a href="/blog/tools-not-decoration/">三十个工具怎么保证不是摆设</a></h3>
 
 <p>工具箱第一版有十一个工具，其中三个有 bug：进制转换会把 <code>1.5</code> 当整数、颜色框每次输入都被回写吞掉、JSON 复制多带一行提示语。</p>
 <p>现在的做法是给纯函数写用例：从 <code>tools.js</code> 里按大括号配对抽出真实函数，跑 22 组断言——中文与 emoji 的 Base64、URL-safe 与无 padding、进制正则要拒绝 <code>1.5</code>/<code>12abc</code>/<code>0x1F</code>、密码生成两千次都要含四类字符、UUID 一千个不许重复。</p>
 <p>工具数量的扩张必须跟着用例走，否则第 120 个工具就是第 121 个 bug。</p>
 </article>
-<article class="card post-item">
+<article class="card post-item" id="post-3">
   <div class="post-meta"><span class="badge">2026-10-17</span><span class="muted">站务日志</span></div>
-  <h3>CI 抓到的一次真实事故</h3>
+  <h3><a href="/blog/ci-gbk-incident/">CI 抓到的一次真实事故</a></h3>
 
 <p>工具站的检查工作流提交后一直不跑，Actions 里连一条 run 都没有。原因是文件被 PowerShell 写成了 GBK，GitHub 解析不出 YAML 结构，于是悄悄忽略了它。</p>
 <p>教训写进了决策日志：仓库里的文件一律 UTF-8 + LF，写文件时显式指定编码；另外，往非 <code>main</code> 分支 push 不会触发 <code>on.push.branches:[main]</code> 的工作流，要看 PR 事件。</p>
 </article>
-<article class="card post-item">
+<article class="card post-item" id="post-4">
   <div class="post-meta"><span class="badge">2026-10-17</span><span class="muted">站务日志</span></div>
-  <h3>十个应用共用一条底线</h3>
+  <h3><a href="/blog/apps-same-bottom-line/">十个应用共用一条底线</a></h3>
 
 <p>软件库的十个应用都遵守同一条底线：数据只在浏览器里、没有账号、没有埋点、断网可用。</p>
 <p>加密类用 WebCrypto（PBKDF2 十五万轮 + AES-GCM），媒体类用 Canvas 与 MediaRecorder，记录类用 localStorage 并给导出出口。不引任何第三方库——供应链少一环，审计就快一环。</p>

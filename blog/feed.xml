@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>xkmyth 站务日志</title>
+  <link>https://xkmyth.github.io/blog/</link>
+  <description>星空神话 xkmyth 的站务日志：为什么这么改，而不是那么改。</description>
+  <language>zh-CN</language>
+  <lastBuildDate>Sun, 18 Oct 2026 00:00:00 +0800</lastBuildDate>
+  <atom:link href="https://xkmyth.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
+  <item>
+    <title>为什么把整个生态做成静态站</title>
+    <link>https://xkmyth.github.io/blog/static-first/</link>
+    <guid isPermaLink="true">https://xkmyth.github.io/blog/static-first/</guid>
+    <pubDate>Sat, 17 Oct 2026 00:00:00 +0800</pubDate>
+    <description>最早这四个仓各写各的，样式重复三份，版本号写死在 HTML 里，Releases 上明明只有 v1.0.0，页面却写 v4.0.2。 改法很朴素：样式抽成一套 token，版本号只从 Releases API 读，读不到就降级成静态直链。这样一来「版本漂移」这个 bug 从结构上消失了——页面里根本没有可写死的版本号。 代价是需要处理限流与断网。做法是缓存 + 降级：10 分钟内复用缓存，拿不到就显示「最新版见 Releases」，绝不</description>
+  </item>
+  <item>
+    <title>三十个工具怎么保证不是摆设</title>
+    <link>https://xkmyth.github.io/blog/tools-not-decoration/</link>
+    <guid isPermaLink="true">https://xkmyth.github.io/blog/tools-not-decoration/</guid>
+    <pubDate>Sat, 17 Oct 2026 00:00:00 +0800</pubDate>
+    <description>工具箱第一版有十一个工具，其中三个有 bug：进制转换会把 1.5 当整数、颜色框每次输入都被回写吞掉、JSON 复制多带一行提示语。 现在的做法是给纯函数写用例：从 tools.js 里按大括号配对抽出真实函数，跑 22 组断言——中文与 emoji 的 Base64、URL-safe 与无 padding、进制正则要拒绝 1.5/12abc/0x1F、密码生成两千次都要含四类字符、UUID 一千个不许重复。 工具数量的扩张必须跟着用</description>
+  </item>
+  <item>
+    <title>CI 抓到的一次真实事故</title>
+    <link>https://xkmyth.github.io/blog/ci-gbk-incident/</link>
+    <guid isPermaLink="true">https://xkmyth.github.io/blog/ci-gbk-incident/</guid>
+    <pubDate>Sat, 17 Oct 2026 00:00:00 +0800</pubDate>
+    <description>工具站的检查工作流提交后一直不跑，Actions 里连一条 run 都没有。原因是文件被 PowerShell 写成了 GBK，GitHub 解析不出 YAML 结构，于是悄悄忽略了它。 教训写进了决策日志：仓库里的文件一律 UTF-8 + LF，写文件时显式指定编码；另外，往非 main 分支 push 不会触发 on.push.branches:[main] 的工作流，要看 PR 事件。</description>
+  </item>
+  <item>
+    <title>十个应用共用一条底线</title>
+    <link>https://xkmyth.github.io/blog/apps-same-bottom-line/</link>
+    <guid isPermaLink="true">https://xkmyth.github.io/blog/apps-same-bottom-line/</guid>
+    <pubDate>Sat, 17 Oct 2026 00:00:00 +0800</pubDate>
+    <description>软件库的十个应用都遵守同一条底线：数据只在浏览器里、没有账号、没有埋点、断网可用。 加密类用 WebCrypto（PBKDF2 十五万轮 + AES-GCM），媒体类用 Canvas 与 MediaRecorder，记录类用 localStorage 并给导出出口。不引任何第三方库——供应链少一环，审计就快一环。</description>
+  </item>
+</channel>
+</rss>
