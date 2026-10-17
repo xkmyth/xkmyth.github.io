@@ -2,7 +2,7 @@
   "id": "/",
   "name": "xkmyth 星空生态",
   "short_name": "xkmyth",
-  "description": "46 个站点 · 139 个纯前端在线工具 · 10 个自研软件。浏览器、私有云盘、定制系统与效率工具，全部纯静态、零上传。",
+  "description": "46 个站点 · 160 个纯前端在线工具 · 10 个自研软件。浏览器、私有云盘、定制系统与效率工具，全部纯静态、零上传。",
   "start_url": "/?utm_source=pwa",
   "scope": "/",
   "display": "standalone",
@@ -55,7 +55,7 @@
       "name": "在线工具箱",
       "short_name": "工具箱",
       "url": "/Timarsky/tools/",
-      "description": "139 个纯前端工具"
+      "description": "160 个纯前端工具"
     },
     {
       "name": "软件库",
