@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="三 agent 并行机制、PR 流程、代码约定与 Issue 模板。">
+<title>协作与贡献 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/#ecosystem">生态</a>
+      <a href="/docs/">Docs</a>
+      <a href="/tools/">Tools</a>
+      <a href="/status/">Status</a>
+      <a href="/support/">支持</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / Community</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Community</p>
+    <h1>协作与<span class="gold">贡献</span></h1>
+    <p class="page-sub">这个生态是怎么被几个人同时维护而不打架的。</p>
+  </div>
+
+  <div class="grid c3">
+    <div class="cs-card reveal"><h3><span class="ico">🤝</span> 多人并行</h3><p>三个 agent 并行改四个仓库，互不可见，靠 GitHub 上的痕迹交接。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">🚦</span> 全走 PR</h3><p>main 开启分支保护：必须开 PR，CI 通过才能合并，禁 force push。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">📓</span> 决策留痕</h3><p>每个决定写进 <code>docs/DECISIONS.md</code>，只追加不修改，出错可回溯。</p></div>
+  </div>
+
+  <h2 class="cs-h2">协作是怎么运转的</h2>
+  <div class="cs-card reveal">
+    <table class="tbl">
+      <thead><tr><th>机制</th><th>做法</th><th>解决什么</th></tr></thead>
+      <tbody>
+        <tr><td>开工三连</td><td>开工前读 <code>COORDINATION.md</code>、看最新 Issues、确认自己负责的目录</td><td>避免两个人同时改同一个文件</td></tr>
+        <tr><td>commit 前缀</td><td><code>[a1]</code> / <code>[a2]</code> / <code>[a3]</code> 标明是哪个 agent 提交</td><td>事后能追到谁改的、当时在做什么</td></tr>
+        <tr><td>handoff Issue</td><td>交接用固定模板：做到哪、卡在哪、下一步</td><td>不用等对方在线也能接手</td></tr>
+        <tr><td>决策日志</td><td>新决定追加 D13、D14…，旧条目不改写</td><td>分歧时有据可查，不靠记忆</td></tr>
+        <tr><td>CI 门禁</td><td>JS 语法、HTML 解析、本地引用、锚点、CSS 括号</td><td>结构性问题不进 main</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="cs-h2">想贡献？四步</h2>
+  <div class="grid c2">
+    <div class="cs-card reveal"><h3><span class="ico">1️⃣</span> 先开 Issue</h3><p>说清要改什么、为什么改。小改动可以直接提 PR，在描述里说明即可。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">2️⃣</span> 拉分支</h3><p>从 main 拉 <code>agent/&lt;你的标识&gt;/&lt;主题&gt;</code>，不要往 main 直接推（推不上去，有分支保护）。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">3️⃣</span> 本地先跑检查</h3><p>JS 用 <code>node --check</code>；页面结构、死链、锚点跑仓库自带的检查脚本，别等 CI 打回。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">4️⃣</span> 开 PR 并等 CI</h3><p>PR 模板会问「改了什么 / 为什么 / 怎么验证 / 影响哪些页面」，如实填。</p></div>
+  </div>
+
+  <h2 class="cs-h2">写代码的约定</h2>
+  <div class="cs-card reveal">
+    <ul>
+      <li><b>纯静态</b>：没有构建步骤，没有 npm 依赖，页面打开即用。</li>
+      <li><b>无第三方脚本</b>：不引入统计、不引 CDN 库；需要能力就用浏览器自带的 WebCrypto。</li>
+      <li><b>动态数据一律 <code>textContent</code></b>：来自 API 的字符串绝不拼进 innerHTML。</li>
+      <li><b>UTF-8 + LF</b>：文件编码必须 UTF-8，换行 LF。编码错了 CI 会静默不跑（踩过）。</li>
+      <li><b>尊重动效偏好</b>：<code>prefers-reduced-motion</code> 下关掉星空与位移动画。</li>
+      <li><b>不编造内容</b>：缺内容就说缺，不拿占位文本凑数。</li>
+    </ul>
+  </div>
+
+  <h2 class="cs-h2">Issue 模板</h2>
+  <div class="cs-card reveal">
+    <p>三个仓库都配了模板：<code>handoff</code>（交接）、<code>decision</code>（需要拍板的选择）、<code>bug</code>（缺陷）。开 Issue 时选一个，字段已经列好。</p>
+    <p style="margin-top:10px"><a class="btn ghost small" href="/support/report/">怎么提一个好问题 ↗</a>
+      <a class="btn ghost small" href="/roadmap/">接下来做什么 ↗</a></p>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+</body>
+</html>

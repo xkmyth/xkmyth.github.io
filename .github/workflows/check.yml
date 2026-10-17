@@ -36,9 +36,22 @@ jobs:
           SKIP_PREFIX = ("http://", "https://", "mailto:", "tel:", "data:", "javascript:")
 
 
+          def _site_root(page, fallback):
+              """页面所属站点根：最近的带 .git / .nojekyll 的祖先目录。"""
+              d = os.path.dirname(os.path.abspath(page))
+              while True:
+                  if os.path.exists(os.path.join(d, ".git")) or os.path.exists(os.path.join(d, ".nojekyll")):
+                      return d
+                  parent = os.path.dirname(d)
+                  if parent == d:
+                      return fallback
+                  d = parent
+
+
           def check(root):
               errors = []
               warnings = []
+              seen_warn = set()
               pages = []
               for dirpath, dirnames, filenames in os.walk(root):
                   dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
@@ -77,7 +90,7 @@ jobs:
                           continue
                       is_root_abs = path.startswith("/")
                       if is_root_abs:
-                          resolved = os.path.join(root, path.lstrip("/"))
+                          resolved = os.path.join(_site_root(page, root), path.lstrip("/"))
                       else:
                           resolved = os.path.join(os.path.dirname(page), path)
                       if resolved.endswith("/") or not os.path.splitext(resolved)[1]:
@@ -88,19 +101,24 @@ jobs:
                               resolved = candidate
                       if not os.path.exists(resolved):
                           if is_root_abs:
-                              warnings.append(f"{rel}: sibling-site ref -> {target}")
+                              key = (rel, target)
+                              if key not in seen_warn:
+                                  seen_warn.add(key)
+                                  warnings.append(f"{rel}: sibling-site ref -> {target}")
                           else:
                               errors.append(f"{rel}: dead local ref -> {target}")
 
               return pages, errors, warnings
           pages, errors, warnings = check(os.getcwd())
-          for w in warnings:
-              print("WARN " + w)
+          if warnings:
+              targets = sorted({w.split("sibling-site ref -> ")[-1] for w in warnings})
+              shown = ", ".join(targets[:12]) + (" ..." if len(targets) > 12 else "")
+              print("WARN 跨站绝对路径 %d 处（兄弟 Pages 仓库，仅提示）：%s" % (len(warnings), shown))
           if errors:
               print("\n".join(errors))
               print("--- %d 个问题 / %d 个页面 ---" % (len(errors), len(pages)))
               sys.exit(1)
-          print("checked %d page(s): html/links/anchors OK (%d 条跨站警告)" % (len(pages), len(warnings)))
+          print("checked %d page(s): html/links/anchors OK" % len(pages))
           EOF
 
       - name: 外链连通性（仅警告）

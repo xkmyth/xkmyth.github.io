@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="已交付、进行中、计划中三条线，不做暧昧表达。">
+<title>路线图 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/#ecosystem">生态</a>
+      <a href="/docs/">Docs</a>
+      <a href="/tools/">Tools</a>
+      <a href="/status/">Status</a>
+      <a href="/support/">支持</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / Roadmap</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Roadmap</p>
+    <h1>路线<span class="gold">图</span></h1>
+    <p class="page-sub">以仓库实际状态为准；这里滞后了说明该修文档了。</p>
+  </div>
+
+  <div class="cs-card reveal">
+    <p>三条线：<b>已交付</b>（已合并进 main 并上线）、<b>进行中</b>（已排期、有明确下一步）、<b>计划中</b>（方向明确但没排期）。不做「即将上线」式的暧昧表达。</p>
+  </div>
+
+  <h2 class="cs-h2">已交付</h2>
+  <div class="timeline reveal">
+    <div class="tl-item">
+      <span class="tl-tag">v1 · 站点改版</span>
+      <p class="tl-meta">四仓统一设计语言：深空底 + 金色点缀 + 玻璃卡片</p>
+      <div class="tl-body">Downloads / 主站 / 关于页 / 工具站全部换肤，版本号改为读 GitHub Releases，不再手写。</div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-tag">v1 · 协作基建</span>
+      <p class="tl-meta">COORDINATION.md + 决策日志 + Issue 模板 + 分支保护 + CI</p>
+      <div class="tl-body">三个 agent 并行时靠 GitHub 痕迹交接：commit 前缀、PR 模板、handoff 模板、决策只追加不修改。</div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-tag">v1 · CI 全覆盖</span>
+      <p class="tl-meta">所有 JS 语法 + 所有 HTML 解析 / 本地引用 / 锚点</p>
+      <div class="tl-body">四仓同一份 check.yml，多页检查，跨站绝对路径按警告处理不阻塞合并。</div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-tag">v2 · 子站矩阵</span>
+      <p class="tl-meta">12 个一级子站 + 4 个二级页面 + 全站地图页脚</p>
+      <div class="tl-body">Docs / Guide / FAQ / Security / Compare / Roadmap / Brand / Community / Tools / Support / Status / Changelog，以及 /docs/install/、/docs/verify/、/docs/troubleshoot/、/support/report/。</div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-tag">v2 · 在线工具箱</span>
+      <p class="tl-meta">30 个纯前端工具，分类筛选 + 搜索 + 动效</p>
+      <div class="tl-body">全部本地运算，WebCrypto 负责哈希与随机数；不请求任何第三方接口。</div>
+    </div>
+  </div>
+
+  <h2 class="cs-h2">进行中</h2>
+  <div class="grid c2">
+    <div class="cs-card reveal"><h3><span class="ico">📝</span> 发版附 SHA256SUMS</h3><p>规范已定（<a href="/docs/verify/" style="color:var(--ice)">校验与验证</a>），待下一次发版落实：每个 Release 附一个校验文件。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">🔍</span> 搜索体验</h3><p>工具站搜索框已从原生输入改成带图标、快捷键、结果计数与高亮的样式；持续打磨键盘操作。</p></div>
+  </div>
+
+  <h2 class="cs-h2">计划中</h2>
+  <div class="grid c3">
+    <div class="cs-card reveal"><h3><span class="ico">🌐</span> 自定义域名</h3><p>品牌与直链稳定性收益最大，需要配 HTTPS 与 CNAME。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">🈯</span> 中英双语</h3><p>至少 README 与本页；站点切换成本中等。</p></div>
+    <div class="cs-card reveal"><h3><span class="ico">📦</span> 内容补齐</h3><p>工具站「编程」模块内容缺失（现 27/28），补齐后恢复导航入口。</p></div>
+  </div>
+
+  <p style="margin-top:26px;opacity:.7;font-size:13px">路线图以仓库实际状态为准；这里滞后了，说明该修文档了 —— 欢迎 <a href="/support/">提一句</a>。</p>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+</body>
+</html>
