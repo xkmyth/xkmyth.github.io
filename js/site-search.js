@@ -15,14 +15,34 @@
     var t = (item.title || '').toLowerCase();
     var u = (item.url || '').toLowerCase();
     var k = (item.kw || '').toLowerCase();
-    var s = 0;
-    if (t === q) s += 100;
-    else if (t.indexOf(q) === 0) s += 80;
-    else if (t.indexOf(q) > -1) s += 60;
-    if (k.indexOf(q) > -1) s += 40;
-    if (u.indexOf(q) > -1) s += 30;
-    if (!s && subseq(t, q)) s += 12;
-    return s;
+    if (!q) return 1;
+    if (t === q) return 100;
+    if (t.indexOf(q) === 0) return 82;
+    if (t.indexOf(q) > -1) return 64;
+    if (k.indexOf(q) > -1) return 46;
+    if (u.indexOf(q) > -1) return 34;
+    var parts = q.split(/[\s,，、/]+/), multi = [];
+    for (var p = 0; p < parts.length; p++) if (parts[p].length > 1) multi.push(parts[p]);
+    if (multi.length > 1) {
+      var all = true, inTitle = 0;
+      for (var m = 0; m < multi.length; m++) {
+        var hitT = t.indexOf(multi[m]) > -1;
+        if (hitT) inTitle++;
+        if (!hitT && k.indexOf(multi[m]) === -1 && u.indexOf(multi[m]) === -1) { all = false; break; }
+      }
+      if (all) return 40 + inTitle * 6;
+    }
+    if (q.length >= 2 && /[\u4e00-\u9fa5]/.test(q)) {
+      var best = 0;
+      for (var bi = 0; bi < q.length - 1; bi++) {
+        var bi2 = q.substr(bi, 2);
+        if (t.indexOf(bi2) > -1) best = Math.max(best, 30);
+        else if (k.indexOf(bi2) > -1) best = Math.max(best, 20);
+      }
+      if (best) return best;
+    }
+    if (subseq(t, q)) return 12;
+    return 0;
   }
 
   function subseq(text, q) {

@@ -505,3 +505,9 @@ html[data-theme="light"] #kbdHelp .kb-box { background: #fff; border-color: #dbe
   font-weight: 600;
 }
 .cat-chips .cat-random:hover { background: color-mix(in srgb, var(--gold) 16%, transparent); }
+
+/* ---- 品牌素材预览 ---- */
+.brand-kit { display: flex; flex-wrap: wrap; gap: 18px; margin: 18px 0 6px; align-items: flex-end; }
+.brand-kit figure { margin: 0; text-align: center; }
+.brand-kit img { border-radius: 14px; border: 1px solid var(--line); background: #04060f; display: block; }
+.brand-kit figcaption { margin-top: 6px; font-size: 12px; color: var(--dim); font-family: var(--mono); }

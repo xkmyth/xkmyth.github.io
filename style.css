@@ -43,8 +43,8 @@ html[data-theme="light"] {
   --card: rgba(255, 255, 255, .8); --card-hover: #ffffff; --card-strong: #ffffff;
   --line: rgba(16, 26, 51, .1); --line-2: rgba(16, 26, 51, .18);
   --line-ice: rgba(14, 116, 144, .24); --line-gold: rgba(180, 83, 9, .28);
-  --ice: #0e7490; --ice2: #0284c7; --gold: #b45309; --gold2: #d97706;
-  --gold-soft: rgba(180, 83, 9, .1); --ice-soft: rgba(14, 116, 144, .08);
+  --ice: #0e7490; --ice2: #0284c7; --gold: #9d470a; --gold2: #b45309; --mint: #047857; --rose: #be123c; --violet: #6d28d9;
+  --gold-soft: rgba(157, 71, 10, .1); --ice-soft: rgba(14, 116, 144, .08); --mint-soft: rgba(4, 120, 87, .1); --rose-soft: rgba(190, 18, 60, .1); --violet-soft: rgba(109, 40, 217, .1);
   --card-shadow: 0 10px 30px rgba(16, 26, 51, .1);
   color-scheme: light;
 }

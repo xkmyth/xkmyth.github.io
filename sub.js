@@ -202,10 +202,33 @@
     var t = norm(item.title), u = norm(item.url), k = norm(item.kw);
     if (!q) return 1;
     if (t === q) return 100;
-    if (t.indexOf(q) === 0) return 80;
-    if (t.indexOf(q) > -1) return 60;
-    if (k.indexOf(q) > -1) return 40;
-    if (u.indexOf(q) > -1) return 30;
+    if (t.indexOf(q) === 0) return 82;
+    if (t.indexOf(q) > -1) return 64;
+    if (k.indexOf(q) > -1) return 46;
+    if (u.indexOf(q) > -1) return 34;
+    /* 多词：分词后每条都命中才算，标题命中越多分越高 */
+    var parts = q.split(/[\s,，、/]+/);
+    var multi = [];
+    for (var p = 0; p < parts.length; p++) if (parts[p].length > 1) multi.push(parts[p]);
+    if (multi.length > 1) {
+      var all = true, inTitle = 0;
+      for (var m = 0; m < multi.length; m++) {
+        var hitT = t.indexOf(multi[m]) > -1;
+        if (hitT) inTitle++;
+        if (!hitT && k.indexOf(multi[m]) === -1 && u.indexOf(multi[m]) === -1) { all = false; break; }
+      }
+      if (all) return 40 + inTitle * 6;
+    }
+    /* 中文长词兜底：命中任意相邻两字 */
+    if (q.length >= 2 && /[\u4e00-\u9fa5]/.test(q)) {
+      var best = 0;
+      for (var bi = 0; bi < q.length - 1; bi++) {
+        var bi2 = q.substr(bi, 2);
+        if (t.indexOf(bi2) > -1) best = Math.max(best, 30);
+        else if (k.indexOf(bi2) > -1) best = Math.max(best, 20);
+      }
+      if (best) return best;
+    }
     /* 松散匹配：q 的字符按序出现 */
     var i = 0;
     for (var j = 0; j < t.length && i < q.length; j++) if (t.charAt(j) === q.charAt(i)) i++;
