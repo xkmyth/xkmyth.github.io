@@ -17,7 +17,7 @@
 <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><meta name="color-scheme" content="dark light">
 <link rel="alternate" type="application/rss+xml" title="xkmyth 站务日志" href="/blog/feed.xml">
 <link rel="canonical" href="https://xkmyth.github.io/blog/">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://xkmyth.github.io/"},{"@type":"ListItem","position":2,"name":"站务日志决策比结果重要","item":"https://xkmyth.github.io/blog/"}]},{"@type":"BlogPosting","headline":"站务日志决策比结果重要","url":"https://xkmyth.github.io/blog/","datePublished":"2026-10-17","dateModified":"2026-10-17","description":"四篇站务日志：为什么做静态站、三十个工具怎么测、CI 抓到的 GBK 事故、十个应用的共同底线。","author":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.github.io/","logo":"https://xkmyth.github.io/icons/icon-512.png"},"publisher":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.github.io/","logo":"https://xkmyth.github.io/icons/icon-512.png"},"inLanguage":"zh-CN","isPartOf":{"@type":"Blog","name":"xkmyth 站务日志","url":"https://xkmyth.github.io/blog/"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://xkmyth.github.io/"},{"@type":"ListItem","position":2,"name":"站务日志决策比结果重要","item":"https://xkmyth.github.io/blog/"}]},{"@type":"BlogPosting","headline":"站务日志决策比结果重要","url":"https://xkmyth.github.io/blog/","datePublished":"2026-10-18","dateModified":"2026-10-18","description":"四篇站务日志：为什么做静态站、三十个工具怎么测、CI 抓到的 GBK 事故、十个应用的共同底线。","author":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.github.io/","logo":"https://xkmyth.github.io/icons/icon-512.png"},"publisher":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.github.io/","logo":"https://xkmyth.github.io/icons/icon-512.png"},"inLanguage":"zh-CN","isPartOf":{"@type":"Blog","name":"xkmyth 站务日志","url":"https://xkmyth.github.io/blog/"}}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主内容</a>
@@ -77,6 +77,18 @@
 <p>软件库的十个应用都遵守同一条底线：数据只在浏览器里、没有账号、没有埋点、断网可用。</p>
 <p>加密类用 WebCrypto（PBKDF2 十五万轮 + AES-GCM），媒体类用 Canvas 与 MediaRecorder，记录类用 localStorage 并给导出出口。不引任何第三方库——供应链少一环，审计就快一环。</p>
 </article>
+    <article class="card post-item" id="post-5">
+      <p class="post-meta"><span class="badge gold">2026-10-18</span></p>
+      <h3><a href="/blog/pwa-not-just-manifest/">PWA 不是加个 manifest 就完事</a></h3>
+      <p>给站点加 PWA 的理由很朴素：工具站 139 个页面全在浏览器里跑，手机上每次打开都要重新下载 CSS 和 JS，地铁里一断网就白屏。装上 manifest 与 service worker 之后，它可以被添加到主屏、断网也能打开、首屏直接走缓存。但真正动手才发现，能装和能用是两件事。 第一坑：s…</p>
+      <p style="margin-top:10px"><a class="btn ghost small" href="/blog/pwa-not-just-manifest/">读全文 →</a></p>
+    </article>
+    <article class="card post-item" id="post-6">
+      <p class="post-meta"><span class="badge gold">2026-10-18</span></p>
+      <h3><a href="/blog/tests-before-139-tools/">先写测试，再往一个页面里塞 139 个工具</a></h3>
+      <p>工具箱的结构很朴素：一个 tools.js，一个 TOOLS 数组，每个元素带 id / cat / name / build()，渲染循环逐个调用 build() 往网格里塞卡片。工具数量到 139 时，这个结构的问题开始显形：任何一个 build() 抛异常，后面的工具全部不渲染，而页面上没有任…</p>
+      <p style="margin-top:10px"><a class="btn ghost small" href="/blog/tests-before-139-tools/">读全文 →</a></p>
+    </article>
 </div>
 </section><section class="reveal ">
   <div class="sec-head"><h2 class="sec-title">看变更记录</h2><p class="sec-kicker">想看版本号级别的变化</p></div>
@@ -132,6 +144,7 @@
         <h4>生态</h4>
         <a href="/ecosystem/">生态地图</a>
         <a href="/tools/">工具目录</a>
+        <a href="/collections/">工具合集</a>
         <a href="/Timarsky/">工具站</a>
         <a href="/Timarsky/tools/">在线工具箱</a>
         <a href="/changelog/">版本日志</a>

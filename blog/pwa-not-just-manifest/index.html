@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
+<meta name="description" content="manifest 的 scope 写错会装出别人的首页；缓存策略要按导航、静态资源、SW 自身分三类；skipWaiting 会刷掉用户正在写的内容。">
+<title>PWA 不是加个 manifest 就完事 · 星空神话 xkmyth</title>
+<link rel="canonical" href="https://xkmyth.github.io/blog/pwa-not-just-manifest/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="xkmyth">
+<meta property="og:title" content="PWA 不是加个 manifest 就完事">
+<meta property="og:description" content="manifest 的 scope 写错会装出别人的首页；缓存策略要按导航、静态资源、SW 自身分三类；skipWaiting 会刷掉用户正在写的内容。">
+<meta property="og:url" content="https://xkmyth.github.io/blog/pwa-not-just-manifest/">
+<meta property="og:image" content="https://xkmyth.github.io/icons/og-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PWA 不是加个 manifest 就完事">
+<meta name="twitter:description" content="manifest 的 scope 写错会装出别人的首页；缓存策略要按导航、静态资源、SW 自身分三类；skipWaiting 会刷掉用户正在写的内容。">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/software/">软件库</a>
+      <a href="/tools/">工具</a>
+      <a href="/docs/">Docs</a>
+      <a href="/ecosystem/">生态</a>
+      <a href="/status/">状态</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1" class="page">
+  <p class="crumbs"><a href="/">首页</a> / <a href="/blog/">站务日志</a></p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Blog · 2026-10-18</p>
+    <h1>PWA 不是加个 manifest 就完事</h1>
+    <p class="page-sub">让一个静态站「能装、能离线」只需要一个 manifest 加一个 service worker，但要让它在手机上真的像应用，坑全在后面那几十行。</p>
+  </div>
+
+<section class="reveal">
+  <div class="post-body">
+    <p class="post-meta"><span class="badge gold">2026-10-18</span><span class="badge">站务日志</span></p>
+<p>给站点加 PWA 的理由很朴素：工具站 139 个页面全在浏览器里跑，手机上每次打开都要重新下载 CSS 和 JS，地铁里一断网就白屏。装上 manifest 与 service worker 之后，它可以被添加到主屏、断网也能打开、首屏直接走缓存。但真正动手才发现，能装和能用是两件事。</p>
+
+<h3>第一坑：scope 写错，装完打开的是别人的首页</h3>
+<p>工具站部署在 <code>/Timarsky/</code> 子路径下，它的 manifest 里 <code>start_url</code> 与 <code>scope</code> 必须都限制在子路径内，否则从主屏图标点进来会跳到 <code>xkmyth.github.io/</code> —— 用户看到的是主站首页，会以为自己装错了东西。所以工具箱单独有一份 manifest（<code>/Timarsky/tools/manifest.webmanifest</code>），主站与工具站各用自己的 scope，互不越界。</p>
+
+<h3>第二坑：一种缓存策略套全站，总有一半是错的</h3>
+<p>最初想简单点：全部 cache-first，反正静态站不会变。结果是改完样式刷新看不到效果，得手动清缓存。现在按资源分三类：</p>
+<ul>
+  <li><strong>导航请求（HTML）</strong>：network-first，带超时；拿不到就回缓存，缓存也没有就回 <code>/404.html</code>。</li>
+  <li><strong>静态资源（CSS / JS / 图标）</strong>：stale-while-revalidate —— 先用缓存让页面秒开，后台再更新。</li>
+  <li><strong>service worker 自身</strong>：<code>no-store</code>，永远从网络取，否则新版 SW 永远装不上。</li>
+</ul>
+<p>这三条加起来不到四十行，但它决定了「改完之后多久生效」这个每天都在发生的问题。</p>
+
+<h3>第三坑：更新时机比更新本身更难</h3>
+<p>新版本 SW 装好后调用 <code>skipWaiting()</code> + <code>clients.claim()</code>，页面会立刻用上新代码——听起来很棒，直到你在备忘应用里写了半屏文字，后台更新把它刷掉了。所以这里选择「等下个导航再生效」：SW 里不主动接管，用户下次打开或跳页时自然切到新版本。代价是更新晚一次点击生效，换来的是正在编辑的内容不会凭空消失。</p>
+
+<h3>离线兜底的顺序</h3>
+<p>断网时请求进来，先看缓存，再看 404 兜底页。404 页不是白屏，它写了三张可点的卡片（回首页、看工具目录、去 Releases），因为一个人看到「没网」的时候，最需要的是一条能走通的路，而不是一句报错。</p>
+
+<p>现在主站与工具站都能装、能离线，缓存的都是自家资源，没有第三方 CDN 参与 —— 这一点和「零上传」是同一条原则的两面：不依赖别人的服务器，就不用担心别人什么时候关掉它。</p>
+  </div>
+  <nav class="post-nav" aria-label="文章导航">
+    <a class="btn ghost small" href="/blog/">← 回日志列表</a>
+  </nav>
+  <div class="callout gold">
+    <p><strong>这一条对应哪份文档</strong>：工程侧的取舍记在 <a href="/roadmap/">路线图</a>，可复用的经验记在
+    <a href="/docs/">文档</a>，改动的具体版本见 <a href="/changelog/">版本日志</a>。</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/software/">软件库</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+        <a href="/license/">许可</a>
+      </div>
+      <div class="foot-col">
+        <h4>软件</h4>
+        <a href="/software/vault/">Vault</a>
+        <a href="/software/notes/">Notes</a>
+        <a href="/software/compress/">Compress</a>
+        <a href="/software/ledger/">Ledger</a>
+        <a href="/software/focus/">Focus</a>
+        <a href="/software/snippets/">Snippets</a>
+        <a href="/software/rename/">Rename</a>
+        <a href="/software/wallpaper/">Wallpaper</a>
+        <a href="/software/record/">Record</a>
+        <a href="/software/clipboard/">Clipboard</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/getting-started/">开始使用</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/docs/architecture/">架构说明</a>
+        <a href="/docs/contributing/">参与开发</a>
+        <a href="/docs/api/">站点接口</a>
+        <a href="/docs/glossary/">术语表</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/ecosystem/">生态地图</a>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+        <a href="/stats/">生态数据</a>
+        <a href="/benchmark/">性能基线</a>
+        <a href="/archive/">历史归档</a>
+        <a href="/mirrors/">镜像与直链</a>
+        <a href="/lab/">实验室</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/contact/">联系</a>
+        <a href="/blog/">站务日志</a>
+        <a href="/press/">媒体资料</a>
+        <a href="/thanks/">致谢</a>
+        <a href="/privacy/">隐私</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+</body>
+</html>

@@ -110,6 +110,22 @@ jobs:
 
               return pages, errors, warnings
           pages, errors, warnings = check(os.getcwd())
+
+          # 同一标签里出现两个 id="" 会让后一个 id 失效（典型：往 <main id="tgrid"> 里再塞 id="main"）
+          for dirpath, dirnames, files in os.walk("."):
+              dirnames[:] = [x for x in dirnames if x not in SKIP_DIRS]
+              for name in files:
+                  if not name.endswith(".html"):
+                      continue
+                  p = os.path.join(dirpath, name)
+                  try:
+                      src = open(p, encoding="utf-8").read()
+                  except Exception:
+                      continue
+                  for m in re.finditer(r"<[a-zA-Z][^>]*>", src):
+                      if m.group(0).count(' id="') > 1:
+                          errors.append("%s: duplicate id attribute -> %s"
+                                        % (os.path.relpath(p, "."), m.group(0)[:120]))
           if warnings:
               targets = sorted({w.split("sibling-site ref -> ")[-1] for w in warnings})
               shown = ", ".join(targets[:12]) + (" ..." if len(targets) > 12 else "")

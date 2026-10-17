@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
+<meta name="description" content="把 139 个在线工具按八种真实的活重新组合：上线前自检、写文档、排线上问题、账号密码、子网、算钱、文本急救、编码转义。">
+<title>工具合集 · 星空神话 xkmyth</title>
+<link rel="canonical" href="https://xkmyth.github.io/collections/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="xkmyth">
+<meta property="og:title" content="工具合集">
+<meta property="og:description" content="把 139 个在线工具按八种真实的活重新组合：上线前自检、写文档、排线上问题、账号密码、子网、算钱、文本急救、编码转义。">
+<meta property="og:url" content="https://xkmyth.github.io/collections/">
+<meta property="og:image" content="https://xkmyth.github.io/icons/og-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="工具合集">
+<meta name="twitter:description" content="把 139 个在线工具按八种真实的活重新组合：上线前自检、写文档、排线上问题、账号密码、子网、算钱、文本急救、编码转义。">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://xkmyth.github.io/"},{"@type":"ListItem","position":2,"name":"工具合集","item":"https://xkmyth.github.io/collections/"}]},{"@type":"WebPage","name":"工具合集","url":"https://xkmyth.github.io/collections/","description":"把 139 个在线工具按八种真实的活重新组合：上线前自检、写文档、排线上问题、账号密码、子网、算钱、文本急救、编码转义。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"xkmyth","url":"https://xkmyth.github.io/"},"publisher":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.github.io/","logo":"https://xkmyth.github.io/icons/icon-512.png"}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/software/">软件库</a>
+      <a href="/tools/">工具</a>
+      <a href="/docs/">Docs</a>
+      <a href="/ecosystem/">生态</a>
+      <a href="/status/">状态</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1" class="page">
+  <p class="crumbs"><a href="/">首页</a> / 工具合集</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">COLLECTIONS · 8 组</p>
+    <h1>工具<span class="gold">合集</span></h1>
+    <p class="page-sub">分类是按工具的长相分的，合集是按你今晚要干的活分的。</p>
+  </div>
+
+<div class="callout">
+  <p>139 个工具按「编码 / 文本 / 时间 / 安全 / 数字 / 开发 / 计算 / 网络 / 文件」分了九类，
+  但真正找工具的时候，人想的是「我现在要干什么」。这一页就是为了这个：八种常见的活，每种给一串已经排好顺序的工具。</p>
+</div>
+
+<section class="reveal" id="combo-1">
+  <h2 class="cs-h2">上线前十分钟</h2>
+  <p class="sec-kicker">发布之前，把配置和链接再摸一遍</p>
+  <div class="callout gold"><p>这六件事每次发版都会做一遍：JSON 有没有多余逗号、两份配置差在哪、文件哈希对外发布没有、状态码和 MIME 猜对没有。</p></div>
+  <div class="grid c3">
+        <a class="cs-card tool-combo" href="/Timarsky/tools/json/">
+          <div class="combo-head"><span class="combo-ico">🧾</span><b>JSON 美化 / 校验</b></div>
+          <p>格式化、压缩、定位语法错误，长文本也不卡</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/diff/">
+          <div class="combo-head"><span class="combo-ico">🆚</span><b>文本对比</b></div>
+          <p>逐行找差异，标出新增、删除与相同（各对比 400 行内）</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/hash/">
+          <div class="combo-head"><span class="combo-ico">#️⃣</span><b>SHA 哈希</b></div>
+          <p>SHA-1 / SHA-256 / SHA-512，走浏览器原生 crypto.subtle</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/crc32/">
+          <div class="combo-head"><span class="combo-ico">🧾</span><b>CRC32 校验</b></div>
+          <p>算文本或十六进制字节的 CRC32，跟压缩包校验值对照</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/httpstatus/">
+          <div class="combo-head"><span class="combo-ico">📟</span><b>HTTP 状态码</b></div>
+          <p>查状态码含义与常见成因，写接口排查问题时随手看</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/mime/">
+          <div class="combo-head"><span class="combo-ico">📎</span><b>MIME 类型速查</b></div>
+          <p>按扩展名查 MIME，或反查常见扩展名</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+  </div>
+</section>
+
+<section class="reveal" id="combo-2">
+  <h2 class="cs-h2">写文档与说明</h2>
+  <p class="sec-kicker">把随手记的东西变成能贴出去的样子</p>
+  <div class="callout gold"><p>文档最费劲的从来不是写，是排版：表格对齐、标题层级、导出 CSV 说明、给同事看的样例文本。</p></div>
+  <div class="grid c3">
+        <a class="cs-card tool-combo" href="/Timarsky/tools/mdtable/">
+          <div class="combo-head"><span class="combo-ico">🗂️</span><b>文本对齐转表格</b></div>
+          <p>把空格或制表符分隔的文本转成 Markdown 表格，第一行当表头</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/outline/">
+          <div class="combo-head"><span class="combo-ico">📑</span><b>Markdown 大纲</b></div>
+          <p>提取标题层级生成树状大纲，检查文档结构是否合理</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/csv2md/">
+          <div class="combo-head"><span class="combo-ico">📋</span><b>CSV 转表格</b></div>
+          <p>把 CSV 转成 Markdown 表格或对齐的文本表，自动处理引号与逗号</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/slugify/">
+          <div class="combo-head"><span class="combo-ico">🏷️</span><b>标题转 slug</b></div>
+          <p>生成 URL 友好的短名：小写、连字符、去掉标点，中文可保留或转拼音占位</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/htmlent/">
+          <div class="combo-head"><span class="combo-ico">🔡</span><b>HTML 实体转义</b></div>
+          <p>把 &amp; &lt; 与引号转成实体，避免把文本当标签执行</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/lorem/">
+          <div class="combo-head"><span class="combo-ico">📜</span><b>假文生成</b></div>
+          <p>生成占位段落，用来测排版；按句长组合，不是照搬固定模板</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+  </div>
+</section>
+
+<section class="reveal" id="combo-3">
+  <h2 class="cs-h2">排线上问题</h2>
+  <p class="sec-kicker">URL 拆开、token 解开、十六进制看一眼</p>
+  <div class="callout gold"><p>线上问题有一半在字符串里：查询参数编码、JWT 里的 claim、时间戳对不上时区、某段响应里混了不可见字符。</p></div>
+  <div class="grid c3">
+        <a class="cs-card tool-combo" href="/Timarsky/tools/urlparts/">
+          <div class="combo-head"><span class="combo-ico">🧩</span><b>URL 结构拆解</b></div>
+          <p>把一条链接拆成协议、主机、端口、路径、查询与锚点，并给出规范化结果</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/qsparse/">
+          <div class="combo-head"><span class="combo-ico">🔗</span><b>查询串解析 / 构造</b></div>
+          <p>解析 a=1&b=2 成直观列表，或把 key=value 行拼成查询串</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/jwt/">
+          <div class="combo-head"><span class="combo-ico">🎫</span><b>JWT 解码</b></div>
+          <p>只解码不校验签名，看清头部与载荷，标出过期时间</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/hexdump/">
+          <div class="combo-head"><span class="combo-ico">🧱</span><b>十六进制视图</b></div>
+          <p>按 16 字节一行给出偏移、十六进制与可打印字符，排查二进制内容用</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/unicode/">
+          <div class="combo-head"><span class="combo-ico">🔣</span><b>字符编码查询</b></div>
+          <p>码点、UTF-8 字节、HTML 实体、JS 转义一次看全</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/ts/">
+          <div class="combo-head"><span class="combo-ico">⏱️</span><b>时间戳转换</b></div>
+          <p>秒 / 毫秒 / ISO / 本地时间互转，当前时间实时跳动</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/tz/">
+          <div class="combo-head"><span class="combo-ico">🌍</span><b>世界时钟</b></div>
+          <p>多时区实时对照，含北京、纽约、伦敦、东京</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+  </div>
+</section>
+
+<section class="reveal" id="combo-4">
+  <h2 class="cs-h2">账号与密码</h2>
+  <p class="sec-kicker">生成、测量、推导 —— 全在本地</p>
+  <div class="callout gold"><p>密码不经过任何服务器：生成、算熵值、做 HMAC / PBKDF2、算 TOTP 验证码，全部在浏览器内存里完成。</p></div>
+  <div class="grid c3">
+        <a class="cs-card tool-combo" href="/Timarsky/tools/pwd/">
+          <div class="combo-head"><span class="combo-ico">🔑</span><b>密码生成器</b></div>
+          <p>长度 / 字符集可调，实时估算熵值并用强度条演示</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/passphrase/">
+          <div class="combo-head"><span class="combo-ico">📝</span><b>口令短语生成</b></div>
+          <p>用常见英文词拼出好记的口令短语，可选分隔符与是否夹数字</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/entropy/">
+          <div class="combo-head"><span class="combo-ico">📈</span><b>密码熵值</b></div>
+          <p>按字符集大小估算暴力破解所需尝试次数与耗时</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/totp/">
+          <div class="combo-head"><span class="combo-ico">🔢</span><b>TOTP 验证码</b></div>
+          <p>按 base32 密钥算 6 位动态码，附带剩余有效秒数（RFC 6238 · SHA-1）</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/hmac/">
+          <div class="combo-head"><span class="combo-ico">🔐</span><b>HMAC 签名</b></div>
+          <p>用密钥对消息做 HMAC-SHA256，输出十六进制与 base64，接口验签常用</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/policychk/">
+          <div class="combo-head"><span class="combo-ico">✅</span><b>密码规则检查</b></div>
+          <p>逐条对照常见口令策略，列出不满足项与改进建议</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+  </div>
+</section>
+
+<section class="reveal" id="combo-5">
+  <h2 class="cs-h2">网络与子网</h2>
+  <p class="sec-kicker">给一个 CIDR，把整段拆明白</p>
+  <div class="callout gold"><p>配防火墙、划 VLAN、排查「为什么这台机器连不上」时，会算网段比会背概念有用。</p></div>
+  <div class="grid c3">
+        <a class="cs-card tool-combo" href="/Timarsky/tools/cidr/">
+          <div class="combo-head"><span class="combo-ico">🌐</span><b>子网计算</b></div>
+          <p>CIDR 或 IP+掩码 → 网络地址、广播、可用主机数与范围</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/vlsm/">
+          <div class="combo-head"><span class="combo-ico">🪓</span><b>子网切分</b></div>
+          <p>把一个网段等分成若干子网，列出每个子网的可用范围</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/ipv4conv/">
+          <div class="combo-head"><span class="combo-ico">🌐</span><b>IPv4 ↔ 整数</b></div>
+          <p>点分十进制与 32 位整数互转，顺带给出二进制与反向域名写法</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/ipv6expand/">
+          <div class="combo-head"><span class="combo-ico">🌍</span><b>IPv6 展开 / 压缩</b></div>
+          <p>补全省略的零段或压回最短写法，自动识别方向</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/iprange/">
+          <div class="combo-head"><span class="combo-ico">📶</span><b>IP 连续范围</b></div>
+          <p>从起始地址加数量算出结束地址，便于批量登记或核对网段</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/portinfo/">
+          <div class="combo-head"><span class="combo-ico">🔌</span><b>端口速查</b></div>
+          <p>输入端口号查常见用途，或反查某服务用哪个端口</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/macfmt/">
+          <div class="combo-head"><span class="combo-ico">🖧</span><b>MAC 地址格式化</b></div>
+          <p>统一成冒号、横线、点分或 Cisco 写法，识别单播与本地管理位</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+  </div>
+</section>
+
+<section class="reveal" id="combo-6">
+  <h2 class="cs-h2">钱与数</h2>
+  <p class="sec-kicker">报价、分成、复利、房贷</p>
+  <div class="callout gold"><p>算钱最怕口径不一致：含税不含税、单利复利、按月还是按年。每个工具都把口径写在结果里。</p></div>
+  <div class="grid c3">
+        <a class="cs-card tool-combo" href="/Timarsky/tools/percent/">
+          <div class="combo-head"><span class="combo-ico">％</span><b>百分比计算</b></div>
+          <p>三种最常见的百分比问法：占比、按比例取数、增减率</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/compound/">
+          <div class="combo-head"><span class="combo-ico">📈</span><b>复利计算</b></div>
+          <p>本金、年利率、年限与复利频率，算出终值与利息</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/loanrate/">
+          <div class="combo-head"><span class="combo-ico">🏦</span><b>等额本息贷款</b></div>
+          <p>按月供公式算月供、总利息与还款总额，可对比不同年限</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/profit/">
+          <div class="combo-head"><span class="combo-ico">💹</span><b>利润率与加价</b></div>
+          <p>成本售价之间的利润、利润率与加价率换算，避免两个概念混用</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/unitcost/">
+          <div class="combo-head"><span class="combo-ico">🧾</span><b>单位价格比较</b></div>
+          <p>两个包装的价格与规格比出每单位价格，告诉你哪个划算</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/rmbcap/">
+          <div class="combo-head"><span class="combo-ico">💴</span><b>人民币大写</b></div>
+          <p>金额转财务大写，处理零角零分、万位与亿位进位</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/tip/">
+          <div class="combo-head"><span class="combo-ico">🍽️</span><b>小费与分账</b></div>
+          <p>按账单、小费比例与人数算出总价与每人应付</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+  </div>
+</section>
+
+<section class="reveal" id="combo-7">
+  <h2 class="cs-h2">文本急救</h2>
+  <p class="sec-kicker">从别处粘来的一坨文本，收拾干净</p>
+  <div class="callout gold"><p>去重、排序、去尾随空格、去零宽字符、批量替换 —— 这些活的共同点是「手工做会出错」。</p></div>
+  <div class="grid c3">
+        <a class="cs-card tool-combo" href="/Timarsky/tools/dedupe/">
+          <div class="combo-head"><span class="combo-ico">🧹</span><b>行去重</b></div>
+          <p>按行去重、保留首次出现顺序，顺手可以裁掉空行</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/sortlines/">
+          <div class="combo-head"><span class="combo-ico">🔤</span><b>行排序</b></div>
+          <p>按字典序、长度或倒序排列，可选去重</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/trimlines/">
+          <div class="combo-head"><span class="combo-ico">✂️</span><b>清理行首尾空白</b></div>
+          <p>统一裁掉多余空格与制表符，可选折叠连续空行</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/stripzero/">
+          <div class="combo-head"><span class="combo-ico">🧽</span><b>清理不可见字符</b></div>
+          <p>清掉零宽空格、BOM、方向控制符等看不见但会捣乱的字符</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/textclean/">
+          <div class="combo-head"><span class="combo-ico">🧽</span><b>文本清洗</b></div>
+          <p>去空行、去重复、合并空格、去标点，一键输出干净文本</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/findrep/">
+          <div class="combo-head"><span class="combo-ico">🔍</span><b>查找替换</b></div>
+          <p>普通替换或正则替换，支持分组引用 $1、全局与忽略大小写</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/cap/">
+          <div class="combo-head"><span class="combo-ico">🅰️</span><b>大小写转换</b></div>
+          <p>句首大写、每词首字母大写、全大写或全小写，四种一次到位</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+  </div>
+</section>
+
+<section class="reveal" id="combo-8">
+  <h2 class="cs-h2">编码与转义</h2>
+  <p class="sec-kicker">一段字符到底被谁改写过了</p>
+  <div class="callout gold"><p>同一个「你好」在 Base32、URL 编码、Unicode 转义、JS 字符串里长得完全不同，转一圈就能定位是哪一层出的问题。</p></div>
+  <div class="grid c3">
+        <a class="cs-card tool-combo" href="/Timarsky/tools/b64/">
+          <div class="combo-head"><span class="combo-ico">🔐</span><b>Base64 编解码</b></div>
+          <p>支持中文与 emoji（UTF-8 安全），非 Latin-1 也不炸</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/base32/">
+          <div class="combo-head"><span class="combo-ico">🅱️</span><b>Base32 编解码</b></div>
+          <p>RFC 4648 Base32，常用于密钥与一次性口令的书写格式</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/url/">
+          <div class="combo-head"><span class="combo-ico">🔗</span><b>URL 编解码</b></div>
+          <p>encodeURIComponent / decodeURIComponent，一眼看出转义结果</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/unicode/">
+          <div class="combo-head"><span class="combo-ico">🔣</span><b>字符编码查询</b></div>
+          <p>码点、UTF-8 字节、HTML 实体、JS 转义一次看全</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/uniesc/">
+          <div class="combo-head"><span class="combo-ico">🈚</span><b>Unicode 转义</b></div>
+          <p>中文等非 ASCII 转成 \\uXXXX（含代理对），也能还原回来</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+        <a class="cs-card tool-combo" href="/Timarsky/tools/jsstr/">
+          <div class="combo-head"><span class="combo-ico">⌨️</span><b>JS 字符串转义</b></div>
+          <p>生成可安全塞进单引号字符串的文本，或把转义序列还原</p>
+          <span class="combo-go">打开 →</span>
+        </a>
+  </div>
+</section>
+
+<section class="reveal">
+  <h2 class="cs-h2">这些合集怎么来的</h2>
+  <div class="cs-card">
+    <ul>
+      <li>不是按分类硬凑，是按「一次真实的动手顺序」排的 —— 先做哪一步、再看哪一步。</li>
+      <li>每个工具都能单独打开，也都能在同一页里连续用：结果可以直接复制到下一个工具。</li>
+      <li>全部在浏览器本地运行，断网也能用；输入不会离开这台机器。</li>
+    </ul>
+    <p style="margin-top:12px"><a class="btn ghost small" href="/tools/">看完整目录 ↗</a>
+    <a class="btn ghost small" href="/Timarsky/tools/">直接打开工具箱 ↗</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/software/">软件库</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+        <a href="/license/">许可</a>
+      </div>
+      <div class="foot-col">
+        <h4>软件</h4>
+        <a href="/software/vault/">Vault</a>
+        <a href="/software/notes/">Notes</a>
+        <a href="/software/compress/">Compress</a>
+        <a href="/software/ledger/">Ledger</a>
+        <a href="/software/focus/">Focus</a>
+        <a href="/software/snippets/">Snippets</a>
+        <a href="/software/rename/">Rename</a>
+        <a href="/software/wallpaper/">Wallpaper</a>
+        <a href="/software/record/">Record</a>
+        <a href="/software/clipboard/">Clipboard</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/getting-started/">开始使用</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/docs/architecture/">架构说明</a>
+        <a href="/docs/contributing/">参与开发</a>
+        <a href="/docs/api/">站点接口</a>
+        <a href="/docs/glossary/">术语表</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/ecosystem/">生态地图</a>
+        <a href="/tools/">工具目录</a>
+        <a href="/collections/">工具合集</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+        <a href="/stats/">生态数据</a>
+        <a href="/benchmark/">性能基线</a>
+        <a href="/archive/">历史归档</a>
+        <a href="/mirrors/">镜像与直链</a>
+        <a href="/lab/">实验室</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/contact/">联系</a>
+        <a href="/blog/">站务日志</a>
+        <a href="/press/">媒体资料</a>
+        <a href="/thanks/">致谢</a>
+        <a href="/privacy/">隐私</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+</body>
+</html>
