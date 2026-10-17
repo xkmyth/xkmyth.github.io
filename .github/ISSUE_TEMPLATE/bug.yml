@@ -1,0 +1,17 @@
+name: 问题反馈
+description: 报 bug / 提需求（主人专用入口）
+title: "「问题」"
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: 发生了什么
+      placeholder: 越具体越好：哪个页面、什么操作、期望什么、实际什么
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: 环境
+      placeholder: 浏览器/系统/网络环境（如：Edge 桌面版 / Android 12 / 校园网）
