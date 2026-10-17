@@ -527,3 +527,8 @@ input[type="checkbox"], input[type="radio"] { accent-color: #f59e0b; width: 15px
   body { background: #fff; color: #000; }
   .card, .feat-card, .panel { border-color: #ccc; background: #fff; }
 }
+
+/* ---- 极光层与紧凑 Hero ---- */
+.hero { isolation: isolate; overflow: hidden; }
+.hero.compact { min-height: auto; padding: calc(var(--nav-h) + 54px) 22px 46px; }
+.hero.compact .hero-title { font-size: clamp(38px, 7vw, 78px); }
