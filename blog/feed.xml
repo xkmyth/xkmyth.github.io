@@ -22,6 +22,13 @@
     <description>manifest 的 scope 写错会装出别人的首页；缓存策略要按导航、静态资源、SW 自身分三类；skipWaiting 会刷掉用户正在写的内容。</description>
   </item>
   <item>
+    <title>浅色主题不是把滤镜反过来</title>
+    <link>https://xkmyth.github.io/blog/light-theme-is-not-a-filter/</link>
+    <guid isPermaLink="true">https://xkmyth.github.io/blog/light-theme-is-not-a-filter/</guid>
+    <pubDate>Sun, 18 Oct 2026 08:00:00 +0800</pubDate>
+    <description>浅色主题不是反转颜色：对比度要重新算，组件要有自己的浅色规则，工具箱这种「另写一套样式」的地方最容易漏掉主题。</description>
+  </item>
+  <item>
     <title>三十个工具怎么保证不是摆设</title>
     <link>https://xkmyth.github.io/blog/tools-not-decoration/</link>
     <guid isPermaLink="true">https://xkmyth.github.io/blog/tools-not-decoration/</guid>
