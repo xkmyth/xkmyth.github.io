@@ -95,8 +95,9 @@
     if (!btn) return;
     var sel = btn.getAttribute('data-copy');
     var text = '';
-    var node = sel && document.querySelector(sel);
-    if (node) { text = node.value !== undefined && node.tagName !== 'DIV' ? node.value : node.textContent; }
+    var node = null;
+    if (sel) { try { node = document.querySelector(sel); } catch (e) { node = null; } }
+    if (node) { text = ('value' in node) ? node.value : node.textContent; }
     if (!text) { text = btn.getAttribute('data-copy-text') || ''; }
     if (!text) return;
     var done = function () { window.showToast('已复制到剪贴板'); };

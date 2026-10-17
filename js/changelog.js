@@ -73,7 +73,8 @@
       if (rel.body && rel.body.trim()) {
         var body = document.createElement('div');
         body.className = 'tl-body';
-        body.textContent = rel.body.trim();
+        var rawBody = rel.body.trim();
+        body.textContent = rawBody.length > 480 ? rawBody.slice(0, 480).replace(/\s+$/, '') + ' …' : rawBody;
         item.appendChild(body);
       }
 

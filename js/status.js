@@ -1,4 +1,6 @@
-// 生态状态：四仓最近提交 / CI 结论 / 最新版本，10 分钟缓存 + 60 秒静默刷新
+// 生态状态：四仓最近提交 / CI 结论 / 最新版本
+// 额度策略：未登录 api.github.com 是 60 次/小时/IP，一轮 4 仓 × 3 接口 = 12 次
+// 故自动刷新间隔 15 分钟（48 次/小时），与缓存 TTL 对齐；点「刷新」按需拉取。
 (function () {
   'use strict';
   var REPOS = [
@@ -8,10 +10,14 @@
     { id: 'xkmyth/about', name: '关于页', url: 'https://xkmyth.github.io/about/', icon: '👤' }
   ];
   var KEY = 'xkmyth-status-cache-v1';
-  var TTL = 10 * 60 * 1000;
+  var TTL = 15 * 60 * 1000;
+  var REFRESH_MS = 15 * 60 * 1000;
   var grid = document.getElementById('stGrid');
   var updatedEl = document.getElementById('stUpdated');
   if (!grid) return;
+
+  var busy = false;
+  var lastSig = '';
 
   function fmtDate(iso) {
     if (!iso) return '—';
@@ -103,14 +109,22 @@
     return wrap;
   }
 
+  function stamp(fromCache) {
+    if (!updatedEl) return;
+    updatedEl.textContent = (fromCache ? '缓存数据 · ' : '已更新 · ') + new Date().toLocaleTimeString();
+  }
+
   function paint(data, fromCache) {
+    var sig = JSON.stringify(data);
+    if (sig === lastSig) { stamp(fromCache); return; }   // 数据没变就不重建，避免每轮重播渐入
+    lastSig = sig;
     grid.textContent = '';
     data.forEach(function (d) { grid.appendChild(card(d)); });
     var items = grid.querySelectorAll('.reveal');
     Array.prototype.forEach.call(items, function (el, i) {
       setTimeout(function () { el.classList.add('in'); }, i * 70);
     });
-    updatedEl.textContent = (fromCache ? '缓存数据 · ' : '已更新 · ') + new Date().toLocaleTimeString();
+    stamp(fromCache);
   }
 
   function readCache() {
@@ -126,25 +140,43 @@
     try { localStorage.setItem(KEY, JSON.stringify({ t: Date.now(), d: d })); } catch (e) {}
   }
 
-  function refresh(cacheOk) {
-    if (cacheOk) {
-      var c = readCache();
-      if (c) { paint(c, true); return; }
-    }
+  function hasData(data) {
+    return (data || []).some(function (d) { return d.commitSha || d.relTag || d.ciName; });
+  }
+
+  function fetchAll() {
+    if (busy) return;
+    busy = true;
     Promise.all(REPOS.map(load)).then(function (data) {
-      writeCache(data);
-      paint(data, false);
+      busy = false;
+      // 只在真的拿到东西时写缓存，避免把 403/限流的降级结果粘住 15 分钟
+      if (hasData(data)) { writeCache(data); paint(data, false); }
+      else if (lastSig === '') { paint(data, false); }
     }).catch(function () {
-      paint(REPOS.map(function (r) {
-        return { id: r.id, name: r.name, url: r.url, icon: r.icon, ciState: 'unknown' };
-      }), false);
+      busy = false;
+      if (lastSig === '') {
+        paint(REPOS.map(function (r) {
+          return { id: r.id, name: r.name, url: r.url, icon: r.icon, ciState: 'unknown' };
+        }), false);
+      }
       if (window.showToast) window.showToast('GitHub API 暂时不可达，稍后再试');
     });
   }
 
+  function refresh(useCache) {
+    if (useCache) {
+      var c = readCache();
+      if (c) { paint(c, true); fetchAll(); return; }   // 先渲染缓存，再静默更新
+    }
+    fetchAll();
+  }
+
   var btn = document.getElementById('stRefresh');
-  if (btn) btn.addEventListener('click', function () { refresh(false); if (window.showToast) window.showToast('正在重新读取…'); });
+  if (btn) btn.addEventListener('click', function () {
+    refresh(false);
+    if (window.showToast) window.showToast('正在重新读取…');
+  });
 
   refresh(true);
-  setInterval(function () { if (!document.hidden) refresh(false); }, 60000);
+  setInterval(function () { if (!document.hidden) fetchAll(); }, REFRESH_MS);
 })();
