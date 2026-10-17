@@ -82,12 +82,12 @@ curl -s -o /dev/null -w "size=%{size_download} time=%{time_total}\n" https://xkm
     <table class="tbl">
       <thead><tr><th>资源</th><th>原始</th><th>gzip 后</th></tr></thead>
       <tbody>
-        <tr><td>主站 style.css</td><td>30.0 KiB</td><td>7.8 KiB</td></tr>
+        <tr><td>主站 style.css</td><td>30.2 KiB</td><td>7.8 KiB</td></tr>
         <tr><td>主站 sub.css</td><td>26.3 KiB</td><td>6.7 KiB</td></tr>
-        <tr><td>主站 sub.js</td><td>19.1 KiB</td><td>6.3 KiB</td></tr>
+        <tr><td>主站 sub.js</td><td>20.1 KiB</td><td>6.7 KiB</td></tr>
         <tr><td>主站 main.js</td><td>4.1 KiB</td><td>1.7 KiB</td></tr>
-        <tr><td>工具站 tools.css</td><td>19.6 KiB</td><td>5.3 KiB</td></tr>
-        <tr><td>工具站 tools.js</td><td>265.7 KiB</td><td>77.8 KiB</td></tr>
+        <tr><td>工具站 tools.css</td><td>23.8 KiB</td><td>6.1 KiB</td></tr>
+        <tr><td>工具站 tools.js</td><td>271.3 KiB</td><td>79.4 KiB</td></tr>
         <tr><td>工具站 script.js</td><td>5.8 KiB</td><td>2.2 KiB</td></tr>
       </tbody>
     </table>
@@ -99,15 +99,14 @@ curl -s -o /dev/null -w "size=%{size_download} time=%{time_total}\n" https://xkm
         <tr><td>首页</td><td>18.4 KiB</td><td>5.8 KiB</td></tr>
         <tr><td>工具目录</td><td>71.4 KiB</td><td>16.5 KiB</td></tr>
         <tr><td>软件库</td><td>17.9 KiB</td><td>5.5 KiB</td></tr>
-        <tr><td>工具总览</td><td>7.4 KiB</td><td>2.7 KiB</td></tr>
-        <tr><td>某个工具详情</td><td>8.3 KiB</td><td>3.0 KiB</td></tr>
+        <tr><td>工具总览</td><td>7.5 KiB</td><td>2.8 KiB</td></tr>
+        <tr><td>某个工具详情</td><td>8.5 KiB</td><td>3.1 KiB</td></tr>
         <tr><td>站务日志</td><td>11.2 KiB</td><td>4.6 KiB</td></tr>
       </tbody>
     </table>
   </div>
   <p class="note">首次访问首页的传输量 ≈ 首页 HTML + style.css + sub.css + sub.js 的 gzip 之和，其余页面复用缓存。工具站第一次打开会多下载一份 tools.js（160 个工具的定义都在里面，换来的是一次加载之后完全离线可用）。</p>
 </section>
-
 </main>
 
 <footer class="foot">

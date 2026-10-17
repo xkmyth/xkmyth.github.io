@@ -2,12 +2,13 @@
    策略：导航请求 network-first（断网回缓存，再断回 404 页）
          静态资源 stale-while-revalidate（先给缓存，后台刷新）
          跨域与写请求一律放行，不缓存 search-index 之外的动态接口 */
-const VER = 'xkmyth-2026-10-18';
+const VER = 'xkmyth-2026-10-18b';
 const CORE = [
   '/', '/404.html', '/style.css', '/sub.css', '/sub.js', '/main.js',
   '/manifest.webmanifest', '/search-index.json',
   '/icons/icon-192.png', '/icons/icon-512.png',
   '/tools/', '/software/', '/software/app.css', '/docs/',
+  '/collections/', '/brand/', '/lab/motion/', '/benchmark/',
   '/Timarsky/', '/Timarsky/tools/', '/Timarsky/style.css',
   '/Timarsky/tools/tools.css', '/Timarsky/tools/tools.js'
 ];
