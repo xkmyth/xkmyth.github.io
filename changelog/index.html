@@ -16,6 +16,18 @@
 <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><meta name="color-scheme" content="dark light">
 <link rel="canonical" href="https://xkmyth.github.io/changelog/">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://xkmyth.github.io/"},{"@type":"ListItem","position":2,"name":"版本 日志","item":"https://xkmyth.github.io/changelog/"}]},{"@type":"WebPage","name":"版本 日志","url":"https://xkmyth.github.io/changelog/","description":"xkmyth 版本日志 —— 每个 Release 的版本号、发布时间、安装包体积与下载次数，实时读取自 GitHub Releases。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"xkmyth","url":"https://xkmyth.github.io/"},"publisher":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.github.io/","logo":"https://xkmyth.github.io/icons/icon-512.png"}}]}</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="星空神话 xkmyth">
+<meta property="og:title" content="Changelog · 版本日志 · 星空神话 xkmyth">
+<meta property="og:description" content="xkmyth 版本日志 —— 每个 Release 的版本号、发布时间、安装包体积与下载次数，实时读取自 GitHub Releases。">
+<meta property="og:url" content="https://xkmyth.github.io/changelog/">
+<meta property="og:image" content="https://xkmyth.github.io/icons/og-changelog.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Changelog · 版本日志 · 星空神话 xkmyth">
+<meta name="twitter:description" content="xkmyth 版本日志 —— 每个 Release 的版本号、发布时间、安装包体积与下载次数，实时读取自 GitHub Releases。">
+<meta name="twitter:image" content="https://xkmyth.github.io/icons/og-changelog.png">
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主内容</a>
@@ -92,7 +104,7 @@
   <div class="tl-item reveal">
     <span class="tl-tag">2026-10-18</span>
     <h3 class="tl-title">第十轮 · 修了一个线上事故</h3>
-    <p class="tl-meta">工具箱主页面的 <code>&lt;main&gt;</code> 上有两个 <code>id</code>，浏览器只认第一个，于是 <code>$('#tgrid')</code> 取到 null，139 个工具一个都不渲染。改成单 id、跳转链接同步，并把这检查写进 CI（以后重复 id 直接红灯）。顺手给工具目录页加了站内搜索、给实验室加了六个 canvas 动效演示。</p>
+    <p class="tl-meta">工具箱主页面的 <code>&lt;main&gt;</code> 上有两个 <code>id</code>，浏览器只认第一个，于是 <code>$('#tgrid')</code> 取到 null，160 个工具一个都不渲染。改成单 id、跳转链接同步，并把这检查写进 CI（以后重复 id 直接红灯）。顺手给工具目录页加了站内搜索、给实验室加了六个 canvas 动效演示。</p>
   </div>
   <div class="tl-item reveal">
     <span class="tl-tag">2026-10-18</span>
@@ -102,12 +114,12 @@
   <div class="tl-item reveal">
     <span class="tl-tag">2026-10-18</span>
     <h3 class="tl-title">第八轮 · 变成能装的应用</h3>
-    <p class="tl-meta">全站上 PWA：manifest、service worker、离线兜底、可安装图标；190 个页面补跳转链接与主内容锚点；补 canonical / OG / Twitter 卡片；139 个工具页补手写说明、示例与相关工具。</p>
+    <p class="tl-meta">全站上 PWA：manifest、service worker、离线兜底、可安装图标；190 个页面补跳转链接与主内容锚点；补 canonical / OG / Twitter 卡片；160 个工具页补手写说明、示例与相关工具。</p>
   </div>
   <div class="tl-item reveal">
     <span class="tl-tag">2026-10-18</span>
     <h3 class="tl-title">第七轮 · 每个工具都有独立页面</h3>
-    <p class="tl-meta">139 个工具各自成页（<code>/Timarsky/tools/&lt;id&gt;/</code>），页内就是真工具本体，旁边是「什么时候用 / 怎么用 / 长得什么样 / 注意 / 同类工具」；工具站 sitemap 141 条。</p>
+    <p class="tl-meta">160 个工具各自成页（<code>/Timarsky/tools/&lt;id&gt;/</code>），页内就是真工具本体，旁边是「什么时候用 / 怎么用 / 长得什么样 / 注意 / 同类工具」；工具站 sitemap 141 条。</p>
   </div>
   <div class="tl-item reveal">
     <span class="tl-tag">2026-10-18</span>

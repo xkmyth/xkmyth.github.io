@@ -7,18 +7,18 @@
 <meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
 <meta name="description" content="把注册段与渲染段分开测、桩对象给到刚好够用、按特征把环境噪音与真缺陷分桶，最后修的是工具而不是桩。">
-<title>先写测试，再往一个页面里塞 139 个工具 · 星空神话 xkmyth</title>
+<title>先写测试，再往一个页面里塞 160 个工具 · 星空神话 xkmyth</title>
 <link rel="canonical" href="https://xkmyth.github.io/blog/tests-before-139-tools/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="xkmyth">
-<meta property="og:title" content="先写测试，再往一个页面里塞 139 个工具">
+<meta property="og:title" content="先写测试，再往一个页面里塞 160 个工具">
 <meta property="og:description" content="把注册段与渲染段分开测、桩对象给到刚好够用、按特征把环境噪音与真缺陷分桶，最后修的是工具而不是桩。">
 <meta property="og:url" content="https://xkmyth.github.io/blog/tests-before-139-tools/">
 <meta property="og:image" content="https://xkmyth.github.io/icons/og-1200x630.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="先写测试，再往一个页面里塞 139 个工具">
+<meta name="twitter:title" content="先写测试，再往一个页面里塞 160 个工具">
 <meta name="twitter:description" content="把注册段与渲染段分开测、桩对象给到刚好够用、按特征把环境噪音与真缺陷分桶，最后修的是工具而不是桩。">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/sub.css">
 <link rel="alternate" type="application/rss+xml" title="星空神话 xkmyth · 站务日志" href="/blog/feed.xml">
+<meta name="twitter:image" content="https://xkmyth.github.io/icons/og-blog.png">
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主内容</a>
@@ -50,8 +51,8 @@
   <p class="crumbs"><a href="/">首页</a> / <a href="/blog/">站务日志</a></p>
   <div class="page-head reveal">
     <p class="eyebrow">Blog · 2026-10-18</p>
-    <h1>先写测试，再往一个页面里塞 139 个工具</h1>
-    <p class="page-sub">把 139 个工具堆进同一个页面，最大的风险不是某个工具算错，而是一个工具初始化失败，把后面一百多个一起拖下水。</p>
+    <h1>先写测试，再往一个页面里塞 160 个工具</h1>
+    <p class="page-sub">把 160 个工具堆进同一个页面，最大的风险不是某个工具算错，而是一个工具初始化失败，把后面一百多个一起拖下水。</p>
   </div>
 
 <section class="reveal">
@@ -60,20 +61,20 @@
 <p>工具箱的结构很朴素：一个 <code>tools.js</code>，一个 <code>TOOLS</code> 数组，每个元素带 <code>id / cat / name / build()</code>，渲染循环逐个调用 <code>build()</code> 往网格里塞卡片。工具数量到 139 时，这个结构的问题开始显形：任何一个 <code>build()</code> 抛异常，后面的工具全部不渲染，而页面上没有任何提示 —— 用户只会看到「少了几个工具」。</p>
 
 <h3>第一步：把注册和渲染分开测</h3>
-<p>浏览器里跑测试成本太高，所以用了最土的办法：Node 里用 <code>vm</code> 加一套桩对象跑 <code>tools.js</code>。但整个文件跑不起来 —— 渲染段依赖真实布局（<code>canvas</code> 尺寸、<code>IntersectionObserver</code>、<code>scrollIntoView</code>）。于是把源码从 <code>/* ---------------- 渲染 ---------------- */</code> 处截断，只求值注册段，再补一行把 <code>TOOLS</code> 导出。这样能验证「139 个工具全部注册成功、分类齐全、id 唯一」。</p>
+<p>浏览器里跑测试成本太高，所以用了最土的办法：Node 里用 <code>vm</code> 加一套桩对象跑 <code>tools.js</code>。但整个文件跑不起来 —— 渲染段依赖真实布局（<code>canvas</code> 尺寸、<code>IntersectionObserver</code>、<code>scrollIntoView</code>）。于是把源码从 <code>/* ---------------- 渲染 ---------------- */</code> 处截断，只求值注册段，再补一行把 <code>TOOLS</code> 导出。这样能验证「160 个工具全部注册成功、分类齐全、id 唯一」。</p>
 
 <h3>第二步：桩要够真，但不必真</h3>
 <p>桩元素给 <code>classList</code>、<code>dataset</code>、<code>appendChild</code>、<code>querySelector</code>，<code>getContext()</code> 返回一个 Proxy —— 任何画布方法都返回 <code>{}</code>，<code>measureText</code> 返回 <code>{ width: 10 }</code>。够让工具跑完初始化，又不需要真浏览器。</p>
 
 <h3>第三步：把错误分桶，别被环境噪音淹掉</h3>
 <p>头几轮跑出来一堆 <em>Cannot convert undefined or null to object</em>、<em>is not a function</em>，全当缺陷处理会跑偏。于是加了一条规则：命中「桩环境受限」特征（null 转换、方法缺失、未定义变量）就归类为环境问题，其余才算真缺陷。这条规则立刻让问题数从 40+ 降到 3。剩下三条里有一条是真的：单位换算工具在 <code>&lt;select&gt;</code> 取不到值时直接 <code>Object.keys(undefined)</code> 崩了 —— 浏览器里只要默认选项存在就不会触发，但它确实不够健壮。</p>
-<p>这里定了一条原则：<strong>桩不够真是代码不健壮的信号，修工具，不修桩</strong>。于是改成 <code>UNITS[catEl.value] || UNITS.len</code>，并给 <code>from</code> 一个兜底。改完这一处，139 个工具全部通过，环境受限 0 个、真实问题 0 处。</p>
+<p>这里定了一条原则：<strong>桩不够真是代码不健壮的信号，修工具，不修桩</strong>。于是改成 <code>UNITS[catEl.value] || UNITS.len</code>，并给 <code>from</code> 一个兜底。改完这一处，160 个工具全部通过，环境受限 0 个、真实问题 0 处。</p>
 
 <h3>第四步：单工具页要单独验</h3>
 <p>详情页用 <code>&lt;html data-tool="vlsm"&gt;</code> 让渲染循环只放行一个工具，逻辑很短但容易写错：<code>ONLY</code> 为空时（工具箱主页面）必须不拦截。所以又写了一个小测试，把 <code>data-tool</code> 桩成目标 id，断言「只渲染一张卡、卡 id 正确、没有抛错」，覆盖 9 个代表性工具（加密、时间、计算、表格、语音、子网、权限、图片、TOTP），9/9 通过。</p>
 
 <h3>为什么值得花这些时间</h3>
-<p>139 个工具是「广度」，但用户对站点的信任来自「点哪个都能用」。一次白屏或一个静默消失的工具，破坏的信任远大于多做的三十个工具带来的好感。测试不能保证每个工具算得对，但能保证没有工具因为别人的错误而消失 —— 这在一个人维护 139 个工具的时候，是最要紧的一条底线。</p>
+<p>160 个工具是「广度」，但用户对站点的信任来自「点哪个都能用」。一次白屏或一个静默消失的工具，破坏的信任远大于多做的三十个工具带来的好感。测试不能保证每个工具算得对，但能保证没有工具因为别人的错误而消失 —— 这在一个人维护 160 个工具的时候，是最要紧的一条底线。</p>
 <p class="dim"><em>补记：写完这篇之后工具箱从 139 个涨到 160 个，加的还是同一套流程 —— 先写注册函数，再进桩环境跑一遍单工具模式。标题保留当时的样子。</em></p>
   </div>
   <nav class="post-nav" aria-label="文章导航">
