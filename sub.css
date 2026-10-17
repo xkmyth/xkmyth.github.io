@@ -114,3 +114,15 @@ details.acc .acc-body code { color: var(--ice); background: rgba(154,227,255,.08
 
 /* 历史版本：整体淡化 */
 .tl-item.dim { opacity: .72; }
+
+/* 代码块复制按钮 */
+pre { position: relative; }
+.code-copy {
+  position: absolute; top: 8px; right: 8px;
+  padding: 3px 10px; font-size: 12px; cursor: pointer;
+  border-radius: 999px; border: 1px solid var(--line);
+  background: rgba(10, 18, 38, .8); color: var(--ice);
+  transition: background .18s ease, color .18s ease, border-color .18s ease;
+}
+.code-copy:hover { background: rgba(154, 227, 255, .16); border-color: var(--ice); }
+.code-copy:active { transform: translateY(1px); }

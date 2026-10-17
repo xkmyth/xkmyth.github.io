@@ -110,4 +110,17 @@
       document.body.removeChild(ta);
     }
   });
+  /* ---- 代码块自动复制按钮 ---- */
+  Array.prototype.forEach.call(document.querySelectorAll('pre > code'), function (code, i) {
+    var pre = code.parentNode;
+    if (pre.querySelector('.code-copy')) return;
+    if (!code.id) code.id = 'code-' + i;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'code-copy';
+    b.textContent = '复制';
+    b.setAttribute('data-copy', '#' + code.id);
+    pre.appendChild(b);
+  });
+
 })();
