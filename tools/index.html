@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="30 个在线小工具的完整目录，按用途分组，一点直达。">
-<title>工具目录 · 星空神话 xkmyth</title>
+<meta name="description" content="139 个纯前端在线工具：编解码、文本、时间、安全、数字、开发、计算、网络、文件，全部本地运行。">
+<title>在线工具总览 · 星空生态 · 星空神话 xkmyth</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
 <link rel="preconnect" href="https://api.github.com" crossorigin>
 <link rel="stylesheet" href="/style.css">
@@ -18,221 +18,54 @@
     <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
     <nav>
       <a href="/">首页</a>
-      <a href="/#ecosystem">生态</a>
+      <a href="/software/">软件库</a>
+      <a href="/tools/">工具</a>
       <a href="/docs/">Docs</a>
-      <a href="/tools/">Tools</a>
-      <a href="/status/">Status</a>
-      <a href="/support/">支持</a>
+      <a href="/ecosystem/">生态</a>
+      <a href="/status/">状态</a>
     </nav>
   </div>
 </header>
 
 <main class="page">
-  <p class="crumbs"><a href="/">首页</a> / Tools</p>
+  <p class="crumbs"><a href="/">首页</a> / 工具</p>
   <div class="page-head reveal">
-    <p class="eyebrow">Tools</p>
-    <h1>工具<span class="gold">目录</span></h1>
-    <p class="page-sub">30 个纯前端工具，本地运算、无需安装。</p>
+    <p class="eyebrow">TOOLS</p>
+    <h1>全部在线工具</h1>
+    <p class="page-sub">一个入口挑工具，30 秒找到能用的那个。</p>
   </div>
 
-  <div class="cs-card reveal">
-    <p><b>30 个工具，全部在你的浏览器里算。</b>没有接口请求，没有上传，断网也能用 —— 打开页面就是全部能力。</p>
-    <p style="margin-top:10px;opacity:.8;font-size:13px">哈希与随机数走 WebCrypto；其余是纯 JS。数据不落盘、不上报，刷新页面即清空。</p>
-  </div>
-
-  <h2 class="cs-h2">编码转换 <span class="cs-h2-note">5 个 · 文本与二进制之间的来回</span></h2>
-  <div class="tool-grid reveal">
-      <a class="tool-link" href="/Timarsky/tools/#tool-b64">
-        <span class="tool-ico">🔡</span>
-        <span class="tool-txt"><b>Base64 编解码</b><small>支持 URL-safe 与无 padding 变体</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-url">
-        <span class="tool-ico">🔗</span>
-        <span class="tool-txt"><b>URL 编解码</b><small>encodeURIComponent 与解码成对使用</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-json">
-        <span class="tool-ico">🧾</span>
-        <span class="tool-txt"><b>JSON 格式化</b><small>美化 / 压缩 / 合法性校验一行看结果</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-unicode">
-        <span class="tool-ico">🔣</span>
-        <span class="tool-txt"><b>字符编码查询</b><small>码点、UTF-8 字节、HTML 实体</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-csv">
-        <span class="tool-ico">📊</span>
-        <span class="tool-txt"><b>CSV ↔ JSON</b><small>带表头的双向转换，粘进去就能用</small></span>
-        <span class="tool-go">→</span>
-      </a>
-  </div>
-
-  <h2 class="cs-h2">文本处理 <span class="cs-h2-note">5 个 · 清洗、对比、统计、大小写</span></h2>
-  <div class="tool-grid reveal">
-      <a class="tool-link" href="/Timarsky/tools/#tool-text">
-        <span class="tool-ico">📝</span>
-        <span class="tool-txt"><b>文本统计</b><small>字数、词数、行数、字节数，带动画计数</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-case">
-        <span class="tool-ico">🔠</span>
-        <span class="tool-txt"><b>命名风格转换</b><small>camel / snake / kebab / 常量 互转</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-diff">
-        <span class="tool-ico">🆚</span>
-        <span class="tool-txt"><b>文本对比</b><small>逐行差异，标出新增、删除与相同</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-letters">
-        <span class="tool-ico">🔤</span>
-        <span class="tool-txt"><b>大小写与全半角</b><small>含中英文混淆字符的常见转换</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-textclean">
-        <span class="tool-ico">🧽</span>
-        <span class="tool-txt"><b>文本清洗</b><small>去空白、去空行、去重复行、去标点</small></span>
-        <span class="tool-go">→</span>
-      </a>
-  </div>
-
-  <h2 class="cs-h2">时间日期 <span class="cs-h2-note">3 个 · 时间戳、时区、日期差、Cron</span></h2>
-  <div class="tool-grid reveal">
-      <a class="tool-link" href="/Timarsky/tools/#tool-ts">
-        <span class="tool-ico">🕒</span>
-        <span class="tool-txt"><b>时间戳转换</b><small>Unix 秒/毫秒 ↔ 本地时间，带「现在」快照</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-datecalc">
-        <span class="tool-ico">📅</span>
-        <span class="tool-txt"><b>日期计算</b><small>两日期相差天数，以及年龄换算</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-tz">
-        <span class="tool-ico">🌍</span>
-        <span class="tool-txt"><b>世界时钟</b><small>多时区实时对照，含北京时间</small></span>
-        <span class="tool-go">→</span>
-      </a>
-  </div>
-
-  <h2 class="cs-h2">安全随机 <span class="cs-h2-note">3 个 · 哈希、密码、UUID</span></h2>
-  <div class="tool-grid reveal">
-      <a class="tool-link" href="/Timarsky/tools/#tool-hash">
-        <span class="tool-ico">🔐</span>
-        <span class="tool-txt"><b>哈希计算</b><small>SHA-1 / 256 / 512，走 WebCrypto 本地算</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-pwd">
-        <span class="tool-ico">🔑</span>
-        <span class="tool-txt"><b>密码生成器</b><small>带熵值与强度条，可指定必含字符</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-uuid">
-        <span class="tool-ico">🆔</span>
-        <span class="tool-txt"><b>UUID 生成</b><small>v4 批量生成，一键复制全部</small></span>
-        <span class="tool-go">→</span>
-      </a>
-  </div>
-
-  <h2 class="cs-h2">数值颜色 <span class="cs-h2-note">3 个 · 进制、颜色、配色</span></h2>
-  <div class="tool-grid reveal">
-      <a class="tool-link" href="/Timarsky/tools/#tool-color">
-        <span class="tool-ico">🎨</span>
-        <span class="tool-txt"><b>颜色转换</b><small>HEX ↔ RGB ↔ HSL，实时预览色块</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-radix">
-        <span class="tool-ico">🔟</span>
-        <span class="tool-txt"><b>进制转换</b><small>2 / 8 / 10 / 16 互转，严格校验输入</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-palette">
-        <span class="tool-ico">🌈</span>
-        <span class="tool-txt"><b>配色生成</b><small>按主色推出一组协调的深浅色</small></span>
-        <span class="tool-go">→</span>
-      </a>
-  </div>
-
-  <h2 class="cs-h2">开发调试 <span class="cs-h2-note">4 个 · 正则、JWT、Markdown、CSV</span></h2>
-  <div class="tool-grid reveal">
-      <a class="tool-link" href="/Timarsky/tools/#tool-cron">
-        <span class="tool-ico">⏱️</span>
-        <span class="tool-txt"><b>Cron 解析</b><small>把表达式翻译成人话，并列出下次执行时间</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-regex">
-        <span class="tool-ico">🪄</span>
-        <span class="tool-txt"><b>正则测试</b><small>实时匹配、捕获组与替换预览</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-jwt">
-        <span class="tool-ico">🎫</span>
-        <span class="tool-txt"><b>JWT 解码</b><small>只解码不校验 —— 看清头部与载荷</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-markdown">
-        <span class="tool-ico">📄</span>
-        <span class="tool-txt"><b>Markdown 预览</b><small>左侧写右侧即时渲染，支持表格</small></span>
-        <span class="tool-go">→</span>
-      </a>
-  </div>
-
-  <h2 class="cs-h2">计算换算 <span class="cs-h2-note">5 个 · 单位、贷款、BMI、表达式</span></h2>
-  <div class="tool-grid reveal">
-      <a class="tool-link" href="/Timarsky/tools/#tool-unit">
-        <span class="tool-ico">📐</span>
-        <span class="tool-txt"><b>单位换算</b><small>长度 / 重量 / 温度 / 容量 / 存储</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-loan">
-        <span class="tool-ico">🏦</span>
-        <span class="tool-txt"><b>贷款计算</b><small>等额本息与等额本金，含总利息</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-bmi">
-        <span class="tool-ico">⚖️</span>
-        <span class="tool-txt"><b>BMI 计算</b><small>按身高体重算指数与区间提示</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-calc">
-        <span class="tool-ico">🧮</span>
-        <span class="tool-txt"><b>表达式计算器</b><small>带括号与常见函数的四则运算</small></span>
-        <span class="tool-go">→</span>
-      </a>
-      <a class="tool-link" href="/Timarsky/tools/#tool-random">
-        <span class="tool-ico">🎲</span>
-        <span class="tool-txt"><b>随机数生成</b><small>区间整数与小数，可批量</small></span>
-        <span class="tool-go">→</span>
-      </a>
-  </div>
-
-  <h2 class="cs-h2">网络 <span class="cs-h2-note">1 个 · 子网与 IP 计算</span></h2>
-  <div class="tool-grid reveal">
-      <a class="tool-link" href="/Timarsky/tools/#tool-cidr">
-        <span class="tool-ico">🌐</span>
-        <span class="tool-txt"><b>子网计算</b><small>掩码长度 → 网络地址、广播、可用主机数</small></span>
-        <span class="tool-go">→</span>
-      </a>
-  </div>
-
-  <h2 class="cs-h2">文件素材 <span class="cs-h2-note">1 个 · 本地文件就地处理</span></h2>
-  <div class="tool-grid reveal">
-      <a class="tool-link" href="/Timarsky/tools/#tool-img2b64">
-        <span class="tool-ico">🖼️</span>
-        <span class="tool-txt"><b>图片转 Base64</b><small>本地读文件，不出浏览器</small></span>
-        <span class="tool-go">→</span>
-      </a>
-  </div>
-
-  <div class="cs-card reveal" style="margin-top:26px">
-    <h3><span class="ico">🧭</span> 直接进工具箱</h3>
-    <p>目录页只负责找东西；真正的操作界面在工具站里，带搜索、分类筛选和键盘操作。</p>
-    <p style="margin-top:10px"><a class="btn primary small" href="/Timarsky/tools/">打开在线工具箱 ↗</a>
-      <a class="btn ghost small" href="/Timarsky/">逛工具站 ↗</a></p>
-  </div>
-
+<p class="lead">139 个纯前端工具，全部在浏览器本地算，不上传任何数据。挑一个直接用，也可以从工具箱里按分类筛。</p>
+<div class="catalog-bar">
+  <div class="cat-chips"><button class="cat-chip active" type="button" data-cat="all">全部 <b>139</b></button><button class="cat-chip" type="button" data-cat="enc">编解码 <b>15</b></button><button class="cat-chip" type="button" data-cat="text">文本 <b>22</b></button><button class="cat-chip" type="button" data-cat="time">时间 <b>11</b></button><button class="cat-chip" type="button" data-cat="safe">安全 <b>9</b></button><button class="cat-chip" type="button" data-cat="num">数字 <b>18</b></button><button class="cat-chip" type="button" data-cat="dev">开发 <b>27</b></button><button class="cat-chip" type="button" data-cat="calc">计算 <b>18</b></button><button class="cat-chip" type="button" data-cat="net">网络 <b>11</b></button><button class="cat-chip" type="button" data-cat="file">文件 <b>8</b></button></div>
+  <span class="catalog-count">当前显示 <b id="catCount">139</b> 个</span>
+</div>
+<div class="note">工具箱入口在 <a href="/Timarsky/tools/">星空工具箱</a>，每个工具都有独立的 <code>#tool-id</code> 锚点，方便直接分享。</div>
+<section class="cat-sec" data-cat="enc" id="cat-enc"><h2 class="cs-h2">编解码 <span class="cs-h2-note">15 个</span></h2><div class="tool-grid"><a class="tool-link" href="/Timarsky/tools/#tool-b64" data-cat="enc"><span class="tool-ico">🔐</span><span class="tool-txt"><b>Base64 编解码</b><i>支持中文与 emoji（UTF-8 安全），非 Latin-1 也不炸</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-url" data-cat="enc"><span class="tool-ico">🔗</span><span class="tool-txt"><b>URL 编解码</b><i>encodeURIComponent / decodeURIComponent，一眼看出转义结果</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-json" data-cat="enc"><span class="tool-ico">🧾</span><span class="tool-txt"><b>JSON 美化 / 校验</b><i>格式化、压缩、定位语法错误，长文本也不卡</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-unicode" data-cat="enc"><span class="tool-ico">🔣</span><span class="tool-txt"><b>字符编码查询</b><i>码点、UTF-8 字节、HTML 实体、JS 转义一次看全</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-csv" data-cat="enc"><span class="tool-ico">📊</span><span class="tool-txt"><b>CSV ↔ JSON</b><i>带表头的双向转换，粘表格数据直接变 JSON</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-base32" data-cat="enc"><span class="tool-ico">🅱️</span><span class="tool-txt"><b>Base32 编解码</b><i>RFC 4648 Base32，常用于密钥与一次性口令的书写格式</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-rot13" data-cat="enc"><span class="tool-ico">🔄</span><span class="tool-txt"><b>ROT13 / 凯撒位移</b><i>字母整体位移，负数即反向；13 是最经典的自我对称值</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-morse" data-cat="enc"><span class="tool-ico">📡</span><span class="tool-txt"><b>摩尔斯电码</b><i>字母数字与常用符号的国际摩尔斯编码互转，字母间空格、单词间斜杠</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-htmlent" data-cat="enc"><span class="tool-ico">🔡</span><span class="tool-txt"><b>HTML 实体转义</b><i>把 &amp; &lt; 与引号转成实体，避免把文本当标签执行</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-jsstr" data-cat="enc"><span class="tool-ico">⌨️</span><span class="tool-txt"><b>JS 字符串转义</b><i>生成可安全塞进单引号字符串的文本，或把转义序列还原</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-uniesc" data-cat="enc"><span class="tool-ico">🈚</span><span class="tool-txt"><b>Unicode 转义</b><i>中文等非 ASCII 转成 \\uXXXX（含代理对），也能还原回来</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-hexdump" data-cat="enc"><span class="tool-ico">🧱</span><span class="tool-txt"><b>十六进制视图</b><i>按 16 字节一行给出偏移、十六进制与可打印字符，排查二进制内容用</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-asciicodes" data-cat="enc"><span class="tool-ico">🔢</span><span class="tool-txt"><b>字符码点对照</b><i>逐字符给出 U+ 码点、十进制、UTF-8 字节，排查乱码与宽度问题时用</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-binary" data-cat="enc"><span class="tool-ico">💾</span><span class="tool-txt"><b>文本 ↔ 二进制</b><i>UTF-8 字节与 0/1 位串互转，按 8 位一组并忽略空格</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-qsparse" data-cat="enc"><span class="tool-ico">🔗</span><span class="tool-txt"><b>查询串解析 / 构造</b><i>解析 a=1&b=2 成直观列表，或把 key=value 行拼成查询串</i></span><span class="tool-go">→</span></a></div></section><section class="cat-sec" data-cat="text" id="cat-text"><h2 class="cs-h2">文本 <span class="cs-h2-note">22 个</span></h2><div class="tool-grid"><a class="tool-link" href="/Timarsky/tools/#tool-text" data-cat="text"><span class="tool-ico">🔤</span><span class="tool-txt"><b>文本统计</b><i>字符、词数、行数、UTF-8 字节，边打边算带动画</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-case" data-cat="text"><span class="tool-ico">🔀</span><span class="tool-txt"><b>命名风格转换</b><i>camel / snake / kebab / Pascal / CONSTANT 一键互转</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-diff" data-cat="text"><span class="tool-ico">🆚</span><span class="tool-txt"><b>文本对比</b><i>逐行找差异，标出新增、删除与相同（各对比 400 行内）</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-letters" data-cat="text"><span class="tool-ico">🔤</span><span class="tool-txt"><b>大小写与全半角</b><i>全角↔半角、大写/小写/首字母、反转与去空格</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-textclean" data-cat="text"><span class="tool-ico">🧽</span><span class="tool-txt"><b>文本清洗</b><i>去空行、去重复、合并空格、去标点，一键输出干净文本</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-dedupe" data-cat="text"><span class="tool-ico">🧹</span><span class="tool-txt"><b>行去重</b><i>按行去重、保留首次出现顺序，顺手可以裁掉空行</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-sortlines" data-cat="text"><span class="tool-ico">🔤</span><span class="tool-txt"><b>行排序</b><i>按字典序、长度或倒序排列，可选去重</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-reverse" data-cat="text"><span class="tool-ico">↩️</span><span class="tool-txt"><b>倒序</b><i>整体反转字符，或只把行顺序倒过来</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-trimlines" data-cat="text"><span class="tool-ico">✂️</span><span class="tool-txt"><b>清理行首尾空白</b><i>统一裁掉多余空格与制表符，可选折叠连续空行</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-wrap" data-cat="text"><span class="tool-ico">📏</span><span class="tool-txt"><b>定宽折行</b><i>按字符宽度插入换行，中文按两个宽度计算，适合把长文塞进窄栏</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-slugify" data-cat="text"><span class="tool-ico">🏷️</span><span class="tool-txt"><b>标题转 slug</b><i>生成 URL 友好的短名：小写、连字符、去掉标点，中文可保留或转拼音占位</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-lorem" data-cat="text"><span class="tool-ico">📜</span><span class="tool-txt"><b>假文生成</b><i>生成占位段落，用来测排版；按句长组合，不是照搬固定模板</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-cap" data-cat="text"><span class="tool-ico">🅰️</span><span class="tool-txt"><b>大小写转换</b><i>句首大写、每词首字母大写、全大写或全小写，四种一次到位</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-findrep" data-cat="text"><span class="tool-ico">🔍</span><span class="tool-txt"><b>查找替换</b><i>普通替换或正则替换，支持分组引用 $1、全局与忽略大小写</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-wordfreq" data-cat="text"><span class="tool-ico">📊</span><span class="tool-txt"><b>词频统计</b><i>按词统计出现次数并排序，中英文混排都能数</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-charfreq" data-cat="text"><span class="tool-ico">🔠</span><span class="tool-txt"><b>字符频次</b><i>逐字符统计，含空白与标点，用来找异常字符或不可见符号</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-linestat" data-cat="text"><span class="tool-ico">🧮</span><span class="tool-txt"><b>文本统计</b><i>行数、非空行、词数、字符数、UTF-8 字节与估算阅读时长</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-stripzero" data-cat="text"><span class="tool-ico">🧽</span><span class="tool-txt"><b>清理不可见字符</b><i>清掉零宽空格、BOM、方向控制符等看不见但会捣乱的字符</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-numbering" data-cat="text"><span class="tool-ico">🔟</span><span class="tool-txt"><b>加 / 去行号</b><i>给每行加序号（可选补零宽度），或把开头的序号去掉</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-mdtable" data-cat="text"><span class="tool-ico">🗂️</span><span class="tool-txt"><b>文本对齐转表格</b><i>把空格或制表符分隔的文本转成 Markdown 表格，第一行当表头</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-outline" data-cat="text"><span class="tool-ico">📑</span><span class="tool-txt"><b>Markdown 大纲</b><i>提取标题层级生成树状大纲，检查文档结构是否合理</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-tts" data-cat="text"><span class="tool-ico">🔊</span><span class="tool-txt"><b>文本朗读</b><i>调用系统语音朗读文本，可选语速与音调，纯本地不上传</i></span><span class="tool-go">→</span></a></div></section><section class="cat-sec" data-cat="time" id="cat-time"><h2 class="cs-h2">时间 <span class="cs-h2-note">11 个</span></h2><div class="tool-grid"><a class="tool-link" href="/Timarsky/tools/#tool-ts" data-cat="time"><span class="tool-ico">⏱️</span><span class="tool-txt"><b>时间戳转换</b><i>秒 / 毫秒 / ISO / 本地时间互转，当前时间实时跳动</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-datecalc" data-cat="time"><span class="tool-ico">📅</span><span class="tool-txt"><b>日期计算</b><i>两日期相差多少天，或按生日算精确年龄</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-tz" data-cat="time"><span class="tool-ico">🌍</span><span class="tool-txt"><b>世界时钟</b><i>多时区实时对照，含北京、纽约、伦敦、东京</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-date2ts" data-cat="time"><span class="tool-ico">📅</span><span class="tool-txt"><b>日期 ↔ 时间戳</b><i>本地或 UTC 互转，输入支持 2026-10-17 23:00:00 与 ISO 8601</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-weeknum" data-cat="time"><span class="tool-ico">🗓️</span><span class="tool-txt"><b>ISO 周数</b><i>按 ISO 8601 算第几周与星期几，含该周起止日期</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-dateadd" data-cat="time"><span class="tool-ico">➕</span><span class="tool-txt"><b>日期加减</b><i>在指定日期上加/减天数、周数或月数，给出结果与星期</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-duration" data-cat="time"><span class="tool-ico">⏱️</span><span class="tool-txt"><b>时长换算</b><i>秒数拆成天/时/分/秒，附带毫秒、分钟与工时估算</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-leapyear" data-cat="time"><span class="tool-ico">🌗</span><span class="tool-txt"><b>闰年与月天数</b><i>判断闰年并列出十二个月的天数，附该年总天数</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-calgen" data-cat="time"><span class="tool-ico">📆</span><span class="tool-txt"><b>月历生成</b><i>生成指定年月的文本月历，周一起始，标注今天</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-tsbatch" data-cat="time"><span class="tool-ico">🔢</span><span class="tool-txt"><b>批量时间戳</b><i>每行一个时间戳，批量转成日期；十位按秒、十三位按毫秒自动识别</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-srt" data-cat="time"><span class="tool-ico">🎬</span><span class="tool-txt"><b>字幕时间轴</b><i>SRT 字幕整体平移或缩放时间，改帧率、对齐配音都用得到</i></span><span class="tool-go">→</span></a></div></section><section class="cat-sec" data-cat="safe" id="cat-safe"><h2 class="cs-h2">安全 <span class="cs-h2-note">9 个</span></h2><div class="tool-grid"><a class="tool-link" href="/Timarsky/tools/#tool-hash" data-cat="safe"><span class="tool-ico">#️⃣</span><span class="tool-txt"><b>SHA 哈希</b><i>SHA-1 / SHA-256 / SHA-512，走浏览器原生 crypto.subtle</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-pwd" data-cat="safe"><span class="tool-ico">🔑</span><span class="tool-txt"><b>密码生成器</b><i>长度 / 字符集可调，实时估算熵值并用强度条演示</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-uuid" data-cat="safe"><span class="tool-ico">🆔</span><span class="tool-txt"><b>UUID 生成器</b><i>v4 随机 UUID，可批量生成并一键复制全部</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-hmac" data-cat="safe"><span class="tool-ico">🔐</span><span class="tool-txt"><b>HMAC 签名</b><i>用密钥对消息做 HMAC-SHA256，输出十六进制与 base64，接口验签常用</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-pbkdf2" data-cat="safe"><span class="tool-ico">🧂</span><span class="tool-txt"><b>PBKDF2 派生密钥</b><i>把口令派生成定长密钥（默认 SHA-256 · 32 字节），迭代次数可调</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-totp" data-cat="safe"><span class="tool-ico">🔢</span><span class="tool-txt"><b>TOTP 验证码</b><i>按 base32 密钥算 6 位动态码，附带剩余有效秒数（RFC 6238 · SHA-1）</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-passphrase" data-cat="safe"><span class="tool-ico">📝</span><span class="tool-txt"><b>口令短语生成</b><i>用常见英文词拼出好记的口令短语，可选分隔符与是否夹数字</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-entropy" data-cat="safe"><span class="tool-ico">📈</span><span class="tool-txt"><b>密码熵值</b><i>按字符集大小估算暴力破解所需尝试次数与耗时</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-policychk" data-cat="safe"><span class="tool-ico">✅</span><span class="tool-txt"><b>密码规则检查</b><i>逐条对照常见口令策略，列出不满足项与改进建议</i></span><span class="tool-go">→</span></a></div></section><section class="cat-sec" data-cat="num" id="cat-num"><h2 class="cs-h2">数字 <span class="cs-h2-note">18 个</span></h2><div class="tool-grid"><a class="tool-link" href="/Timarsky/tools/#tool-color" data-cat="num"><span class="tool-ico">🎨</span><span class="tool-txt"><b>颜色转换</b><i>HEX / RGB / HSL 互转，色块渐变预览</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-radix" data-cat="num"><span class="tool-ico">🔢</span><span class="tool-txt"><b>进制转换</b><i>2 / 8 / 10 / 16 进制实时联动，支持负号</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-palette" data-cat="num"><span class="tool-ico">🌈</span><span class="tool-txt"><b>配色生成</b><i>从一个主色推出一组深浅与互补色，点色块即复制</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-prime" data-cat="num"><span class="tool-ico">🧮</span><span class="tool-txt"><b>素数判断</b><i>用 Miller–Rabin 快速判定，给出邻近素数、位长与因数提示</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-gcd" data-cat="num"><span class="tool-ico">🔗</span><span class="tool-txt"><b>最大公约 / 最小公倍</b><i>两个整数求 gcd 与 lcm，顺带给出质因数分解</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-factor" data-cat="num"><span class="tool-ico">➗</span><span class="tool-txt"><b>质因数分解</b><i>分解成质因数连乘形式，给出指数写法与约数个数</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-roman" data-cat="num"><span class="tool-ico">🏛️</span><span class="tool-txt"><b>罗马数字</b><i>1–3999 的整数与罗马数字互转，自动识别方向</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-numwords" data-cat="num"><span class="tool-ico">🔊</span><span class="tool-txt"><b>数字转读法</b><i>整数转中文或英文读法，处理万/亿与进位</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-scinot" data-cat="num"><span class="tool-ico">🔬</span><span class="tool-txt"><b>科学计数法</b><i>普通数字与 a × 10^b 形式互转，也能解析 1e-6 与 2.5E+3</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-popcount" data-cat="num"><span class="tool-ico">🧷</span><span class="tool-txt"><b>二进制与位运算</b><i>把整数拆成 32 位视图，给出 1 的个数、位移与常用掩码结果</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-roundto" data-cat="num"><span class="tool-ico">🔄</span><span class="tool-txt"><b>四舍五入与取整</b><i>按指定小数位与规则取整，直观看到四种取整方式的差别</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-frac" data-cat="num"><span class="tool-ico">½</span><span class="tool-txt"><b>小数转分数</b><i>用连分数找出最佳分数近似，给出最简形式与误差</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-ratio" data-cat="num"><span class="tool-ico">⚖️</span><span class="tool-txt"><b>比例化简</b><i>两数比化简为最简整数比，同时给出小数与百分比</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-modpow" data-cat="num"><span class="tool-ico">🔢</span><span class="tool-txt"><b>模幂运算</b><i>用 BigInt 快速算 a^b mod m，加密与哈希算法的核心步骤</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-floatfmt" data-cat="num"><span class="tool-ico">🌊</span><span class="tool-txt"><b>浮点精度观察</b><i>看 0.1+0.2 这类误差的真实值，以及各精度格式化结果</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-bigint" data-cat="num"><span class="tool-ico">🧮</span><span class="tool-txt"><b>大整数运算</b><i>超出安全整数也能算：加减乘除与取余，用 BigInt 精确计算</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-contrast" data-cat="num"><span class="tool-ico">🌗</span><span class="tool-txt"><b>颜色对比度</b><i>算前后景 WCAG 对比度，判断是否达到 AA / AAA 标准</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-gradient" data-cat="num"><span class="tool-ico">🌈</span><span class="tool-txt"><b>渐变生成</b><i>两色之间插出多档色阶，直接给出 CSS 线性渐变代码</i></span><span class="tool-go">→</span></a></div></section><section class="cat-sec" data-cat="dev" id="cat-dev"><h2 class="cs-h2">开发 <span class="cs-h2-note">27 个</span></h2><div class="tool-grid"><a class="tool-link" href="/Timarsky/tools/#tool-markdown" data-cat="dev"><span class="tool-ico">📄</span><span class="tool-txt"><b>Markdown 预览</b><i>左边写右边渲染：标题、列表、表格、代码块、引用</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-regex" data-cat="dev"><span class="tool-ico">🪄</span><span class="tool-txt"><b>正则测试</b><i>实时匹配、捕获组、替换预览，语法错误给出原因</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-cron" data-cat="dev"><span class="tool-ico">⏱️</span><span class="tool-txt"><b>Cron 解析</b><i>把 5 段表达式翻译成人话，并算出接下来 5 次执行时间</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-jwt" data-cat="dev"><span class="tool-ico">🎫</span><span class="tool-txt"><b>JWT 解码</b><i>只解码不校验签名，看清头部与载荷，标出过期时间</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-jsonflat" data-cat="dev"><span class="tool-ico">🪜</span><span class="tool-txt"><b>JSON 扁平化</b><i>把嵌套对象压成点号路径列表，方便对照字段或导入表格</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-jsonesc" data-cat="dev"><span class="tool-ico">🔀</span><span class="tool-txt"><b>JSON 字符串转义</b><i>一键生成带转义的 JSON 字符串，或还原成可读文本</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-sqlfmt" data-cat="dev"><span class="tool-ico">🗄️</span><span class="tool-txt"><b>SQL 美化</b><i>关键字大写并换行缩进，长查询读起来顺眼很多</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-xmlfmt" data-cat="dev"><span class="tool-ico">📐</span><span class="tool-txt"><b>XML / HTML 缩进</b><i>把挤成一行的标记文本按层级缩进，自闭合与注释都照顾到</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-yaml2json" data-cat="dev"><span class="tool-ico">🧾</span><span class="tool-txt"><b>YAML 转 JSON</b><i>支持常见子集：键值、嵌套缩进、短横线列表、行内注释</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-curl2fetch" data-cat="dev"><span class="tool-ico">🌐</span><span class="tool-txt"><b>curl 转 fetch</b><i>把复制来的 curl 命令翻成 JS fetch 代码，请求头与数据体都保留</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-mime" data-cat="dev"><span class="tool-ico">📎</span><span class="tool-txt"><b>MIME 类型速查</b><i>按扩展名查 MIME，或反查常见扩展名</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-httpstatus" data-cat="dev"><span class="tool-ico">📟</span><span class="tool-txt"><b>HTTP 状态码</b><i>查状态码含义与常见成因，写接口排查问题时随手看</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-csstidy" data-cat="dev"><span class="tool-ico">🎨</span><span class="tool-txt"><b>CSS 美化</b><i>压缩版样式表按括号层级展开，顺手补缩进与空行</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-striphtml" data-cat="dev"><span class="tool-ico">🧼</span><span class="tool-txt"><b>去 HTML 标签</b><i>抽出纯文本，可选保留换行与解码实体，复制网页正文时用</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-jsbeautify" data-cat="dev"><span class="tool-ico">🪄</span><span class="tool-txt"><b>JS 基础缩进</b><i>压缩代码按大括号与圆括号缩进，够读就行，取代不了 prettier</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-sortjson" data-cat="dev"><span class="tool-ico">🔤</span><span class="tool-txt"><b>JSON 键排序</b><i>递归按字母序排列对象键，便于比对两份配置的差异</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-jsonminify" data-cat="dev"><span class="tool-ico">🗜️</span><span class="tool-txt"><b>JSON 压缩</b><i>去掉所有空白，给出压缩前后体积与节省比例</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-regexexplain" data-cat="dev"><span class="tool-ico">🧠</span><span class="tool-txt"><b>正则拆解</b><i>逐段解释正则的含义，并给出匹配预览，看别人的规则不再头大</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-globmatch" data-cat="dev"><span class="tool-ico">🎯</span><span class="tool-txt"><b>通配符匹配</b><i>用 * 与 ? 测试路径是否命中规则，和 .gitignore 语义一致</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-chmod" data-cat="dev"><span class="tool-ico">🔑</span><span class="tool-txt"><b>文件权限换算</b><i>rwx 与八进制数字互转，也支持 suid/sgid 位与 chmod 命令生成</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-luhn" data-cat="dev"><span class="tool-ico">🔢</span><span class="tool-txt"><b>Luhn 校验位</b><i>银行卡号的模 10 校验，也能补算出正确校验位</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-idcard" data-cat="dev"><span class="tool-ico">🪪</span><span class="tool-txt"><b>身份证解析</b><i>解析 18 位身份证的地区码、生日、性别与校验位（纯本地计算）</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-crc32" data-cat="dev"><span class="tool-ico">🧾</span><span class="tool-txt"><b>CRC32 校验</b><i>算文本或十六进制字节的 CRC32，跟压缩包校验值对照</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-jsonpath" data-cat="dev"><span class="tool-ico">🧭</span><span class="tool-txt"><b>JSON 路径取值</b><i>用点号或方括号路径直接取出嵌套字段，不用写代码</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-sqlparam" data-cat="dev"><span class="tool-ico">🔁</span><span class="tool-txt"><b>SQL 占位符转换</b><i>在 ?、$1、%s、:name 之间互转，换数据库驱动时省事</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-shellquote" data-cat="dev"><span class="tool-ico">🐚</span><span class="tool-txt"><b>Shell 参数转义</b><i>给含空格与特殊符号的参数加上安全引号，避免命令注入</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-gitshort" data-cat="dev"><span class="tool-ico">🌿</span><span class="tool-txt"><b>Git 命令速查</b><i>按关键词找常用 git 命令，含撤销、冲突、日志等高频场景</i></span><span class="tool-go">→</span></a></div></section><section class="cat-sec" data-cat="calc" id="cat-calc"><h2 class="cs-h2">计算 <span class="cs-h2-note">18 个</span></h2><div class="tool-grid"><a class="tool-link" href="/Timarsky/tools/#tool-unit" data-cat="calc"><span class="tool-ico">📐</span><span class="tool-txt"><b>单位换算</b><i>长度 / 质量 / 温度 / 容量 / 数据存储，一次看全对照</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-random" data-cat="calc"><span class="tool-ico">🎲</span><span class="tool-txt"><b>随机数生成</b><i>区间内随机整数/小数，批量一次出，用 WebCrypto</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-loan" data-cat="calc"><span class="tool-ico">🏦</span><span class="tool-txt"><b>贷款计算</b><i>等额本息与等额本金对比，含月供、总利息</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-bmi" data-cat="calc"><span class="tool-ico">⚖️</span><span class="tool-txt"><b>BMI 计算</b><i>身高体重算指数，给出区间与健康体重范围</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-calc" data-cat="calc"><span class="tool-ico">🧮</span><span class="tool-txt"><b>表达式计算</b><i>带括号与函数的四则运算，支持 pi / e / sqrt / log</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-percent" data-cat="calc"><span class="tool-ico">％</span><span class="tool-txt"><b>百分比计算</b><i>三种最常见的百分比问法：占比、按比例取数、增减率</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-tip" data-cat="calc"><span class="tool-ico">🍽️</span><span class="tool-txt"><b>小费与分账</b><i>按账单、小费比例与人数算出总价与每人应付</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-discount" data-cat="calc"><span class="tool-ico">🏷️</span><span class="tool-txt"><b>折扣计算</b><i>折后价、优惠额与等效折扣率，支持先打折再满减</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-avg" data-cat="calc"><span class="tool-ico">📊</span><span class="tool-txt"><b>平均数与总和</b><i>一行一个数字，给出总和、均值、极值与超出均值的数据</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-median" data-cat="calc"><span class="tool-ico">📐</span><span class="tool-txt"><b>中位数与分位</b><i>排序后取中位数、四分位与 P90，判断分布是否偏斜</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-stddev" data-cat="calc"><span class="tool-ico">📉</span><span class="tool-txt"><b>方差与标准差</b><i>同时给出总体与样本标准差，附变异系数</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-compound" data-cat="calc"><span class="tool-ico">📈</span><span class="tool-txt"><b>复利计算</b><i>本金、年利率、年限与复利频率，算出终值与利息</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-loanrate" data-cat="calc"><span class="tool-ico">🏦</span><span class="tool-txt"><b>等额本息贷款</b><i>按月供公式算月供、总利息与还款总额，可对比不同年限</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-profit" data-cat="calc"><span class="tool-ico">💹</span><span class="tool-txt"><b>利润率与加价</b><i>成本售价之间的利润、利润率与加价率换算，避免两个概念混用</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-unitcost" data-cat="calc"><span class="tool-ico">🧾</span><span class="tool-txt"><b>单位价格比较</b><i>两个包装的价格与规格比出每单位价格，告诉你哪个划算</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-rent" data-cat="calc"><span class="tool-ico">🏠</span><span class="tool-txt"><b>房租水电分摊</b><i>按房间面积或人数分摊房租与水电，给出每人明细</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-calorie" data-cat="calc"><span class="tool-ico">🍎</span><span class="tool-txt"><b>每日热量估算</b><i>Mifflin–St Jeor 公式算基础代谢，乘活动系数得到每日消耗</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-rmbcap" data-cat="calc"><span class="tool-ico">💴</span><span class="tool-txt"><b>人民币大写</b><i>金额转财务大写，处理零角零分、万位与亿位进位</i></span><span class="tool-go">→</span></a></div></section><section class="cat-sec" data-cat="net" id="cat-net"><h2 class="cs-h2">网络 <span class="cs-h2-note">11 个</span></h2><div class="tool-grid"><a class="tool-link" href="/Timarsky/tools/#tool-cidr" data-cat="net"><span class="tool-ico">🌐</span><span class="tool-txt"><b>子网计算</b><i>CIDR 或 IP+掩码 → 网络地址、广播、可用主机数与范围</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-ipv4conv" data-cat="net"><span class="tool-ico">🌐</span><span class="tool-txt"><b>IPv4 ↔ 整数</b><i>点分十进制与 32 位整数互转，顺带给出二进制与反向域名写法</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-ipv6expand" data-cat="net"><span class="tool-ico">🌍</span><span class="tool-txt"><b>IPv6 展开 / 压缩</b><i>补全省略的零段或压回最短写法，自动识别方向</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-macfmt" data-cat="net"><span class="tool-ico">🖧</span><span class="tool-txt"><b>MAC 地址格式化</b><i>统一成冒号、横线、点分或 Cisco 写法，识别单播与本地管理位</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-iprange" data-cat="net"><span class="tool-ico">📶</span><span class="tool-txt"><b>IP 连续范围</b><i>从起始地址加数量算出结束地址，便于批量登记或核对网段</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-privateip" data-cat="net"><span class="tool-ico">🏠</span><span class="tool-txt"><b>内网地址判断</b><i>判断 IPv4/IPv6 是否属于私有、保留、回环或运营商级 NAT 段</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-portinfo" data-cat="net"><span class="tool-ico">🔌</span><span class="tool-txt"><b>端口速查</b><i>输入端口号查常见用途，或反查某服务用哪个端口</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-urlparts" data-cat="net"><span class="tool-ico">🧩</span><span class="tool-txt"><b>URL 结构拆解</b><i>把一条链接拆成协议、主机、端口、路径、查询与锚点，并给出规范化结果</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-ua" data-cat="net"><span class="tool-ico">🕵️</span><span class="tool-txt"><b>UA 解析</b><i>从 User-Agent 粗判浏览器、内核、系统与设备类型</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-speed" data-cat="net"><span class="tool-ico">🚀</span><span class="tool-txt"><b>下载耗时估算</b><i>按文件体积与带宽估下载时间，也给出 150 MB 大包的对照</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-vlsm" data-cat="net"><span class="tool-ico">🪓</span><span class="tool-txt"><b>子网切分</b><i>把一个网段等分成若干子网，列出每个子网的可用范围</i></span><span class="tool-go">→</span></a></div></section><section class="cat-sec" data-cat="file" id="cat-file"><h2 class="cs-h2">文件 <span class="cs-h2-note">8 个</span></h2><div class="tool-grid"><a class="tool-link" href="/Timarsky/tools/#tool-img2b64" data-cat="file"><span class="tool-ico">🖼️</span><span class="tool-txt"><b>图片转 Base64</b><i>本地读图生成 Data URI，文件不出浏览器</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-filehash" data-cat="file"><span class="tool-ico">🔎</span><span class="tool-txt"><b>文件哈希</b><i>选本地文件算 SHA-256/1/512，与下载页公布的校验值对照用</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-fileinfo" data-cat="file"><span class="tool-ico">📄</span><span class="tool-txt"><b>文件信息</b><i>看文件的真实类型、大小、修改时间与扩展名推测的 MIME</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-text2file" data-cat="file"><span class="tool-ico">💾</span><span class="tool-txt"><b>文本存成文件</b><i>把文本按指定文件名与类型存到本地，纯浏览器下载，不上传</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-datauri" data-cat="file"><span class="tool-ico">🖼️</span><span class="tool-txt"><b>文本转 data URI</b><i>把文本编码成可直接塞进 src/href 的 data URI，省掉一次请求</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-svguri" data-cat="file"><span class="tool-ico">🎨</span><span class="tool-txt"><b>SVG 转 data URI</b><i>把内联 SVG 压成 data URI，favicon 与占位图常用</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-csv2md" data-cat="file"><span class="tool-ico">📋</span><span class="tool-txt"><b>CSV 转表格</b><i>把 CSV 转成 Markdown 表格或对齐的文本表，自动处理引号与逗号</i></span><span class="tool-go">→</span></a><a class="tool-link" href="/Timarsky/tools/#tool-avatar" data-cat="file"><span class="tool-ico">🙂</span><span class="tool-txt"><b>首字母头像</b><i>把名字生成 SVG 头像 data URI，配色由名字决定，稳定不重复</i></span><span class="tool-go">→</span></a></div></section>
+<script>
+(function () {
+  var chips = document.querySelectorAll('.cat-chip');
+  var secs = [].slice.call(document.querySelectorAll('.cat-sec'));
+  var counter = document.getElementById('catCount');
+  function apply(cat) {
+    var shown = 0;
+    secs.forEach(function (sec) {
+      var on = cat === 'all' || sec.getAttribute('data-cat') === cat;
+      sec.hidden = !on;
+      if (on) shown += sec.querySelectorAll('.tool-link').length;
+    });
+    if (counter) counter.textContent = shown;
+  }
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      chips.forEach(function (x) { x.classList.remove('active'); });
+      c.classList.add('active');
+      apply(c.getAttribute('data-cat'));
+    });
+  });
+  apply('all');
+})();
+</script>
 </main>
 
 <footer class="foot">
@@ -243,34 +76,65 @@
       <div class="foot-col">
         <h4>产品</h4>
         <a href="/">首页</a>
+        <a href="/software/">软件库</a>
+        <a href="/xkmyth/">Downloads</a>
         <a href="/compare/">Browser × Cloud</a>
         <a href="/security/">安全与校验</a>
         <a href="/roadmap/">路线图</a>
         <a href="/brand/">品牌素材</a>
+        <a href="/license/">许可</a>
+      </div>
+      <div class="foot-col">
+        <h4>软件</h4>
+        <a href="/software/vault/">Vault</a>
+        <a href="/software/notes/">Notes</a>
+        <a href="/software/compress/">Compress</a>
+        <a href="/software/ledger/">Ledger</a>
+        <a href="/software/focus/">Focus</a>
+        <a href="/software/snippets/">Snippets</a>
+        <a href="/software/rename/">Rename</a>
+        <a href="/software/wallpaper/">Wallpaper</a>
+        <a href="/software/record/">Record</a>
+        <a href="/software/clipboard/">Clipboard</a>
       </div>
       <div class="foot-col">
         <h4>文档</h4>
         <a href="/docs/">文档中心</a>
         <a href="/guide/">十分钟上手</a>
+        <a href="/docs/getting-started/">开始使用</a>
         <a href="/docs/install/">安装详解</a>
         <a href="/docs/verify/">校验与验证</a>
         <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/docs/architecture/">架构说明</a>
+        <a href="/docs/contributing/">参与开发</a>
+        <a href="/docs/api/">站点接口</a>
+        <a href="/docs/glossary/">术语表</a>
         <a href="/faq/">常见问题</a>
       </div>
       <div class="foot-col">
         <h4>生态</h4>
+        <a href="/ecosystem/">生态地图</a>
         <a href="/tools/">工具目录</a>
         <a href="/Timarsky/">工具站</a>
         <a href="/Timarsky/tools/">在线工具箱</a>
-        <a href="/xkmyth/">Downloads</a>
         <a href="/changelog/">版本日志</a>
         <a href="/status/">生态状态</a>
+        <a href="/stats/">生态数据</a>
+        <a href="/benchmark/">性能基线</a>
+        <a href="/archive/">历史归档</a>
+        <a href="/mirrors/">镜像与直链</a>
+        <a href="/lab/">实验室</a>
       </div>
       <div class="foot-col">
         <h4>参与</h4>
         <a href="/community/">协作与贡献</a>
         <a href="/support/">支持与反馈</a>
         <a href="/support/report/">怎么提问题</a>
+        <a href="/contact/">联系</a>
+        <a href="/blog/">站务日志</a>
+        <a href="/press/">媒体资料</a>
+        <a href="/thanks/">致谢</a>
+        <a href="/privacy/">隐私</a>
         <a href="/about/">关于</a>
       </div>
     </div>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="逐页体积、样式脚本开销、外部请求数，三条自测命令，以及性能上明确放弃的三件事。">
+<title>性能基线 · 体积与请求数 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/software/">软件库</a>
+      <a href="/tools/">工具</a>
+      <a href="/docs/">Docs</a>
+      <a href="/ecosystem/">生态</a>
+      <a href="/status/">状态</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumbs"><a href="/">首页</a> / <a href="/">首页</a> / 性能基线</p>
+  <div class="page-head reveal">
+    <p class="eyebrow">Benchmark · 基线</p>
+    <h1>性能基线<br>拿数字说话</h1>
+    <p class="page-sub">「感觉挺快」不算结论，跑一遍请求数再说。</p>
+  </div>
+<section class="reveal ">
+  <div class="sec-head"><h2 class="sec-title">页面体积基线</h2><p class="sec-kicker">越小越好，这是刻意的</p></div>
+
+<table class="tbl">
+  <thead><tr><th>页面</th><th>HTML</th><th>样式</th><th>脚本</th><th>外部请求</th></tr></thead>
+  <tbody>
+    <tr><td>首页</td><td>约 13 KiB</td><td>style.css 8 KiB + sub.css 12 KiB</td><td>main.js 7 KiB + sub.js 7 KiB</td><td>1（Releases API）</td></tr>
+    <tr><td>软件库</td><td>约 8 KiB</td><td>同上</td><td>sub.js</td><td>0</td></tr>
+    <tr><td>单个应用</td><td>约 5 KiB</td><td>同上 + app.css 5 KiB</td><td>app.js 5–9 KiB</td><td>0</td></tr>
+    <tr><td>在线工具箱</td><td>约 4 KiB</td><td>tools.css</td><td>tools.js 约 60 KiB</td><td>0</td></tr>
+    <tr><td>状态页</td><td>约 4 KiB</td><td>同上</td><td>js/status.js 7 KiB</td><td>12（四仓各三次，15 分钟一次）</td></tr>
+  </tbody>
+</table>
+<p class="note">没有字体文件、没有图标库、没有框架。图标用 emoji 与内联 SVG，字体用系统字体栈。</p>
+</section><section class="reveal ">
+  <div class="sec-head"><h2 class="sec-title">怎么自己测</h2><p class="sec-kicker">三条命令，别信感觉</p></div>
+
+<pre class="code"><code># 1. 体积与请求数
+curl -s -o /dev/null -w "size=%{size_download} time=%{time_total}\n" https://xkmyth.github.io/
+
+# 2. 打开 DevTools → Network → 勾选 Disable cache → 刷新，看 Transfer 总量
+# 3. Lighthouse（移动端 + 桌面端各跑一次），重点看 TBT 与 CLS</code></pre>
+<p>这套站点的目标是：首屏请求数 ≤ 6、传输 ≤ 60 KiB、CLS 接近 0。达不到就说明有人往页面里塞了多余的东西。</p>
+</section><section class="reveal ">
+  <div class="sec-head"><h2 class="sec-title">性能上的取舍</h2><p class="sec-kicker">明确知道放弃了什么</p></div>
+
+<div class="grid g3">
+  <div class="card"><h3>不做视觉重特效</h3><p>星空是 canvas，只在可见时绘制，DPR 上限 2，切后台立刻停。</p></div>
+  <div class="card"><h3>不做无限滚动列表</h3><p>工具与截图都在本地，一次性渲染；数据量变大前不引入虚拟滚动。</p></div>
+  <div class="card"><h3>不做 SSR</h3><p>静态 HTML 已经是「构建期渲染」，没有服务端可做，也不需要。</p></div>
+</div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/software/">软件库</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+        <a href="/license/">许可</a>
+      </div>
+      <div class="foot-col">
+        <h4>软件</h4>
+        <a href="/software/vault/">Vault</a>
+        <a href="/software/notes/">Notes</a>
+        <a href="/software/compress/">Compress</a>
+        <a href="/software/ledger/">Ledger</a>
+        <a href="/software/focus/">Focus</a>
+        <a href="/software/snippets/">Snippets</a>
+        <a href="/software/rename/">Rename</a>
+        <a href="/software/wallpaper/">Wallpaper</a>
+        <a href="/software/record/">Record</a>
+        <a href="/software/clipboard/">Clipboard</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/getting-started/">开始使用</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/docs/architecture/">架构说明</a>
+        <a href="/docs/contributing/">参与开发</a>
+        <a href="/docs/api/">站点接口</a>
+        <a href="/docs/glossary/">术语表</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/ecosystem/">生态地图</a>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+        <a href="/stats/">生态数据</a>
+        <a href="/benchmark/">性能基线</a>
+        <a href="/archive/">历史归档</a>
+        <a href="/mirrors/">镜像与直链</a>
+        <a href="/lab/">实验室</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/contact/">联系</a>
+        <a href="/blog/">站务日志</a>
+        <a href="/press/">媒体资料</a>
+        <a href="/thanks/">致谢</a>
+        <a href="/privacy/">隐私</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+</body>
+</html>

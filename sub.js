@@ -1,16 +1,42 @@
-// 主站子页面通用脚本：星空背景 + 年份 + 滚动渐入 + Toast + 复制
+/* ============================================================
+   xkmyth 全站脚本 v2 —— 星空 / 主题 / 命令面板 / 滚动进度 / 渐入 / Toast
+   被所有页面引用：<script src="/sub.js"></script>
+   1) 星空背景（DPR≤2，后台暂停，减少动效时静止）
+   2) 深浅色主题（localStorage 记忆，跟随系统）
+   3) 全局命令面板 ⌘K / Ctrl+K / `/`：页面 + 工具 + 文档统一检索
+   4) 顶部阅读进度条、.reveal 渐入、代码块复制、Toast、年份
+   ============================================================ */
 (function () {
   'use strict';
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- 星空 ---- */
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var docEl = document.documentElement;
+
+  /* ---------- 0. 主题（尽早应用，避免闪白） ---------- */
+  var THEME_KEY = 'xkmyth-theme2';
+  function savedTheme() {
+    try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; }
+  }
+  function applyTheme(t) {
+    if (t === 'light') docEl.setAttribute('data-theme', 'light');
+    else docEl.removeAttribute('data-theme');
+    var btn = document.getElementById('themeBtn');
+    if (btn) {
+      btn.textContent = t === 'light' ? '☾' : '☀';
+      btn.setAttribute('aria-label', t === 'light' ? '切换到深色模式' : '切换到浅色模式');
+      btn.setAttribute('title', t === 'light' ? '切换到深色模式' : '切换到浅色模式');
+    }
+  }
+  var stored = savedTheme();
+  var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  applyTheme(stored || (prefersLight ? 'light' : 'dark'));
+
+  /* ---------- 1. 星空 ---------- */
   var canvas = document.getElementById('sky');
-  if (canvas && canvas.getContext) {
+  if (canvas && canvas.getContext && !canvas.dataset.owner) {
     var ctx = canvas.getContext('2d');
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var stars = [];
-    var raf = null;
-    var W = 0, H = 0;
+    var stars = [], raf = null, W = 0, H = 0;
 
     function resize() {
       W = window.innerWidth; H = window.innerHeight;
@@ -31,7 +57,6 @@
         });
       }
     }
-
     function draw() {
       ctx.clearRect(0, 0, W, H);
       for (var i = 0; i < stars.length; i++) {
@@ -45,28 +70,235 @@
       }
       raf = requestAnimationFrame(draw);
     }
-
     function start() { if (!raf && !reduce) raf = requestAnimationFrame(draw); }
     function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
 
     resize();
     if (reduce) { draw(); stop(); } else { start(); }
-    window.addEventListener('resize', function () { stop(); resize(); start(); });
+    window.addEventListener('resize', function () { stop(); resize(); start(); }, { passive: true });
     document.addEventListener('visibilitychange', function () {
-      if (document.hidden) { stop(); } else { start(); }
+      if (document.hidden) stop(); else start();
     });
   }
 
-  /* ---- 年份 ---- */
+  /* ---------- 2. 年份 ---------- */
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  /* ---- 滚动渐入 ---- */
+  /* ---------- 3. 滚动进度条 ---------- */
+  var bar = document.getElementById('scrollBar');
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'scrollBar';
+    document.body.appendChild(bar);
+  }
+  var progTick = false;
+  function updateProgress() {
+    var h = docEl.scrollHeight - window.innerHeight;
+    var p = h > 0 ? (window.scrollY / h) * 100 : 0;
+    bar.style.width = Math.max(0, Math.min(100, p)).toFixed(2) + '%';
+    progTick = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!progTick) { progTick = true; requestAnimationFrame(updateProgress); }
+  }, { passive: true });
+  updateProgress();
+
+  /* ---------- 4. 导航增强：主题按钮 + 检索按钮 ---------- */
+  var navInner = document.querySelector('.nav-inner') || document.querySelector('.nav');
+  if (navInner && !document.getElementById('themeBtn')) {
+    var tools = document.createElement('div');
+    tools.className = 'nav-tools';
+
+    var cmdkBtn = document.createElement('button');
+    cmdkBtn.type = 'button';
+    cmdkBtn.className = 'nav-btn';
+    cmdkBtn.id = 'cmdkBtn';
+    cmdkBtn.setAttribute('aria-label', '打开全站检索');
+    cmdkBtn.innerHTML = '<span aria-hidden="true">⌕</span><span class="kbd">⌘K</span>';
+    cmdkBtn.addEventListener('click', function () { openPalette(); });
+
+    var themeBtn = document.createElement('button');
+    themeBtn.type = 'button';
+    themeBtn.className = 'nav-btn';
+    themeBtn.id = 'themeBtn';
+    themeBtn.addEventListener('click', function () {
+      var next = docEl.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+      applyTheme(next);
+    });
+
+    tools.appendChild(cmdkBtn);
+    tools.appendChild(themeBtn);
+    navInner.appendChild(tools);
+  }
+
+  /* ---------- 5. 命令面板 ---------- */
+  var INDEX_URL = '/search-index.json';
+  var index = [], indexState = 0, lastFocus = null;
+  var cmdk = null, inputEl = null, listEl = null, sel = 0, view = [];
+
+  function norm(s) { return String(s || '').toLowerCase(); }
+
+  function buildPalette() {
+    if (cmdk) return;
+    cmdk = document.createElement('div');
+    cmdk.id = 'cmdk';
+    cmdk.setAttribute('role', 'dialog');
+    cmdk.setAttribute('aria-modal', 'true');
+    cmdk.setAttribute('aria-label', '全站检索');
+    cmdk.innerHTML =
+      '<div class="scrim" data-close="1"></div>' +
+      '<div class="box">' +
+        '<input class="cmdk-input" id="cmdkInput" type="search" autocomplete="off" spellcheck="false" ' +
+          'placeholder="搜索页面、工具、文档…（↑↓ 选择，Enter 打开，Esc 关闭）">' +
+        '<div class="cmdk-list" id="cmdkList" role="listbox"></div>' +
+        '<div class="cmdk-foot"><span><span class="kbd">↑</span><span class="kbd">↓</span> 选择</span>' +
+        '<span><span class="kbd">Enter</span> 打开</span><span><span class="kbd">Esc</span> 关闭</span></div>' +
+      '</div>';
+    document.body.appendChild(cmdk);
+    inputEl = cmdk.querySelector('#cmdkInput');
+    listEl = cmdk.querySelector('#cmdkList');
+    inputEl.addEventListener('input', function () { renderPalette(inputEl.value); });
+    cmdk.addEventListener('click', function (e) {
+      if (e.target && e.target.getAttribute && e.target.getAttribute('data-close')) closePalette();
+    });
+    cmdk.addEventListener('keydown', onPaletteKey);
+  }
+
+  function loadIndex(cb) {
+    if (index.length) { cb(); return; }
+    if (indexState === 2) { cb(); return; }
+    fetch(INDEX_URL, { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (data) {
+        index = Array.isArray(data.items) ? data.items : [];
+        indexState = 1;
+        cb();
+      })
+      .catch(function () {
+        indexState = 2;
+        index = fallbackIndex();
+        cb();
+      });
+  }
+
+  /* 索引不可用时，退化到「扫描当前页链接」 */
+  function fallbackIndex() {
+    var out = [], seen = {};
+    var links = document.querySelectorAll('a[href]');
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i];
+      var href = a.getAttribute('href') || '';
+      if (!href || href.charAt(0) === '#' || /^(https?:|mailto:|javascript:)/.test(href)) continue;
+      if (seen[href]) continue;
+      seen[href] = 1;
+      out.push({ title: (a.textContent || href).replace(/\s+/g, ' ').trim().slice(0, 60), url: href, kind: '页面', kw: '', icon: '›' });
+    }
+    return out;
+  }
+
+  function score(item, q) {
+    var t = norm(item.title), u = norm(item.url), k = norm(item.kw);
+    if (!q) return 1;
+    if (t === q) return 100;
+    if (t.indexOf(q) === 0) return 80;
+    if (t.indexOf(q) > -1) return 60;
+    if (k.indexOf(q) > -1) return 40;
+    if (u.indexOf(q) > -1) return 30;
+    /* 松散匹配：q 的字符按序出现 */
+    var i = 0;
+    for (var j = 0; j < t.length && i < q.length; j++) if (t.charAt(j) === q.charAt(i)) i++;
+    return i === q.length ? 12 : 0;
+  }
+
+  function renderPalette(q) {
+    q = norm(q).trim();
+    var scored = [];
+    for (var i = 0; i < index.length; i++) {
+      var s = score(index[i], q);
+      if (s > 0) scored.push({ it: index[i], s: s });
+    }
+    scored.sort(function (a, b) { return b.s - a.s; });
+    view = scored.slice(0, 40).map(function (x) { return x.it; });
+    sel = 0;
+    listEl.innerHTML = '';
+    if (!view.length) {
+      var empty = document.createElement('div');
+      empty.className = 'cmdk-empty';
+      empty.textContent = q ? ('没有匹配「' + q + '」，试试 tools / docs / 软件名') : '输入关键词开始检索';
+      listEl.appendChild(empty);
+      return;
+    }
+    view.forEach(function (it, idx) {
+      var row = document.createElement('a');
+      row.className = 'cmdk-item';
+      row.href = it.url;
+      row.setAttribute('role', 'option');
+      row.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
+      var ico = document.createElement('span');
+      ico.setAttribute('aria-hidden', 'true');
+      ico.textContent = it.icon || '›';
+      var label = document.createElement('span');
+      label.textContent = it.title || it.url;
+      var kind = document.createElement('span');
+      kind.className = 'cmdk-kind';
+      kind.textContent = it.kind || '页面';
+      row.appendChild(ico); row.appendChild(label); row.appendChild(kind);
+      listEl.appendChild(row);
+    });
+  }
+
+  function moveSel(delta) {
+    var rows = listEl.querySelectorAll('.cmdk-item');
+    if (!rows.length) return;
+    if (rows[sel]) rows[sel].setAttribute('aria-selected', 'false');
+    sel = (sel + delta + rows.length) % rows.length;
+    rows[sel].setAttribute('aria-selected', 'true');
+    if (rows[sel].scrollIntoView) rows[sel].scrollIntoView({ block: 'nearest' });
+  }
+
+  function onPaletteKey(e) {
+    if (e.key === 'ArrowDown') { e.preventDefault(); moveSel(1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); moveSel(-1); }
+    else if (e.key === 'Enter') {
+      var rows = listEl.querySelectorAll('.cmdk-item');
+      if (rows[sel]) { e.preventDefault(); window.location.href = rows[sel].getAttribute('href'); }
+    } else if (e.key === 'Escape') { e.preventDefault(); closePalette(); }
+  }
+
+  function openPalette(prefill) {
+    buildPalette();
+    lastFocus = document.activeElement;
+    cmdk.classList.add('open');
+    inputEl.value = prefill || '';
+    loadIndex(function () {
+      renderPalette(inputEl.value);
+      inputEl.focus();
+      if (prefill) inputEl.select();
+    });
+  }
+
+  function closePalette() {
+    if (!cmdk) return;
+    cmdk.classList.remove('open');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.addEventListener('keydown', function (e) {
+    var tag = ((e.target && e.target.tagName) || '').toLowerCase();
+    var typing = tag === 'input' || tag === 'textarea' || tag === 'select' || (e.target && e.target.isContentEditable);
+    if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); openPalette(); return; }
+    if (e.key === '/' && !typing) { e.preventDefault(); openPalette(); return; }
+    if (e.key === 'Escape' && cmdk && cmdk.classList.contains('open')) { e.preventDefault(); closePalette(); }
+  });
+
+  /* ---------- 6. 渐入 ---------- */
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && !reduce) {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
       });
     }, { rootMargin: '0px 0px -60px 0px', threshold: 0.05 });
     Array.prototype.forEach.call(reveals, function (el) { io.observe(el); });
@@ -74,53 +306,90 @@
     Array.prototype.forEach.call(reveals, function (el) { el.classList.add('in'); });
   }
 
-  /* ---- Toast ---- */
+  /* ---------- 7. Toast ---------- */
   var toastEl = document.querySelector('.toast');
   var toastTimer = null;
-  window.showToast = function (msg) {
+  function showToast(msg, kind) {
     if (!toastEl) {
       toastEl = document.createElement('div');
       toastEl.className = 'toast';
       document.body.appendChild(toastEl);
     }
-    toastEl.textContent = msg;
+    toastEl.className = 'toast' + (kind ? ' ' + kind : '');
+    toastEl.textContent = String(msg || '');
+    void toastEl.offsetWidth; /* 强制回流，连续调用时动画重播 */
     toastEl.classList.add('show');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 1800);
-  };
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 1900);
+  }
+  window.showToast = showToast;
 
-  /* ---- 复制（按钮 data-copy 指向目标元素或文本） ---- */
-  document.addEventListener('click', function (ev) {
-    var btn = ev.target.closest('[data-copy]');
-    if (!btn) return;
-    var sel = btn.getAttribute('data-copy');
-    var text = '';
-    var node = null;
-    if (sel) { try { node = document.querySelector(sel); } catch (e) { node = null; } }
-    if (node) { text = ('value' in node) ? node.value : node.textContent; }
-    if (!text) { text = btn.getAttribute('data-copy-text') || ''; }
-    if (!text) return;
-    var done = function () { window.showToast('已复制到剪贴板'); };
+  /* ---------- 8. 复制 ---------- */
+  function copyText(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done, function () { window.showToast('复制失败，请手动选择'); });
-    } else {
-      var ta = document.createElement('textarea');
-      ta.value = text; document.body.appendChild(ta); ta.select();
-      try { document.execCommand('copy'); done(); } catch (e) { window.showToast('复制失败，请手动选择'); }
-      document.body.removeChild(ta);
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        ok ? resolve() : reject(new Error('execCommand failed'));
+      } catch (err) { reject(err); }
+    });
+  }
+
+  /* data-copy 委托：点击带 data-copy 的元素复制其值（或指向的元素内容） */
+  document.addEventListener('click', function (e) {
+    var node = e.target;
+    while (node && node !== document.body) {
+      if (node.hasAttribute && node.hasAttribute('data-copy')) break;
+      node = node.parentNode;
+    }
+    if (!node || node === document.body || !node.hasAttribute || !node.hasAttribute('data-copy')) return;
+    var spec = node.getAttribute('data-copy') || '';
+    var text = spec;
+    if (spec.charAt(0) === '#' || spec.charAt(0) === '.') {
+      var target = null;
+      try { target = document.querySelector(spec); } catch (err) { target = null; }
+      text = target ? (('value' in target) ? target.value : target.textContent) : '';
+    }
+    if (!text) { showToast('没有可复制的内容', 'bad'); return; }
+    copyText(text).then(function () {
+      showToast('已复制', 'ok');
+      node.classList.add('copied');
+      setTimeout(function () { node.classList.remove('copied'); }, 1200);
+    }).catch(function () { showToast('复制失败，请手动选择', 'bad'); });
+  });
+
+  /* ---------- 9. 代码块复制按钮 ---------- */
+  var codes = document.querySelectorAll('pre > code');
+  Array.prototype.forEach.call(codes, function (code, i) {
+    var pre = code.parentNode;
+    if (!pre || pre.querySelector('.code-copy')) return;
+    if (!code.id) code.id = 'code-' + i;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'code-copy';
+    btn.setAttribute('data-copy', '#' + code.id);
+    btn.textContent = '复制';
+    pre.appendChild(btn);
+  });
+
+  /* ---------- 10. 外链统一加固 ---------- */
+  var anchors = document.querySelectorAll('a[href^="http"]');
+  Array.prototype.forEach.call(anchors, function (a) {
+    if (!a.getAttribute('target')) {
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
     }
   });
-  /* ---- 代码块自动复制按钮 ---- */
-  Array.prototype.forEach.call(document.querySelectorAll('pre > code'), function (code, i) {
-    var pre = code.parentNode;
-    if (pre.querySelector('.code-copy')) return;
-    if (!code.id) code.id = 'code-' + i;
-    var b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'code-copy';
-    b.textContent = '复制';
-    b.setAttribute('data-copy', '#' + code.id);
-    pre.appendChild(b);
-  });
 
+  /* 暴露给页面脚本 */
+  window.xkmythUI = { toast: showToast, copy: copyText, palette: openPalette };
 })();

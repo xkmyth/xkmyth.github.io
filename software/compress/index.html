@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-app="compress">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XK Compress 图片压缩 · XKMYTH</title>
+<meta name="description" content="批量压缩图片：Canvas 本地重采样，输出 WebP/JPEG/PNG，体积实时对比，图片绝不上传。">
+<meta property="og:title" content="XK Compress 图片压缩 · XKMYTH">
+<meta property="og:description" content="批量压缩图片：Canvas 本地重采样，输出 WebP/JPEG/PNG，体积实时对比，图片绝不上传。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xkmyth.github.io/software/compress/">
+<meta name="theme-color" content="#04060f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2304060f'/%3E%3Cpath d='M16 5l3.1 7.3L27 15l-7.9 2.7L16 27l-3.1-9.3L5 15l7.9-2.7z' fill='%23fcd34d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://api.github.com">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+<link rel="stylesheet" href="/software/app.css">
+</head>
+<body>
+<div id="sky"></div>
+<canvas id="stars"></canvas>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/software/">软件库</a>
+      <a href="/tools/">工具</a>
+      <a href="/docs/">Docs</a>
+      <a href="/ecosystem/">生态</a>
+      <a href="/status/">状态</a>
+    </nav>
+  </div>
+</header>
+<main class="app-shell">
+  <div class="crumbs"><a href="/">首页</a> / <a href="/software/">软件库</a> / <span>XK Compress 图片压缩</span></div>
+  <header class="app-head">
+    <div>
+      <h1 class="app-title"><span class="dot-live" aria-hidden="true"></span>XK Compress 图片压缩</h1>
+      <p class="app-sub">批量压缩图片：Canvas 本地重采样，输出 WebP/JPEG/PNG，体积实时对比，图片绝不上传。</p>
+      <div class="app-badges">
+        <span class="badge gold">批量</span>
+        <span class="badge ice">本地处理</span>
+        <span class="badge mint">WebP</span>
+        <span class="badge">零上传</span>
+      </div>
+    </div>
+    <div class="row tight">
+      <a class="btn ghost small" href="/software/">← 软件库</a>
+      <button class="btn soft small" type="button" data-copy="https://xkmyth.github.io/software/compress/">复制链接</button>
+    </div>
+  </header>
+<div class="app-side">
+    <aside class="panel">
+  <div class="panel-h"><h2>参数</h2></div>
+  <div class="field"><label for="cMax">最长边（像素）：<b id="cMaxV">1920</b></label>
+        <input type="range" id="cMax" min="480" max="4096" step="80" value="1920"></div>
+      <div class="field"><label for="cQ">质量：<b id="cQV">0.82</b></label>
+        <input type="range" id="cQ" min="0.3" max="0.95" step="0.01" value="0.82"></div>
+      <div class="field"><label for="cFmt">输出格式</label>
+        <select id="cFmt"><option value="image/webp">WebP（推荐，体积最小）</option>
+        <option value="image/jpeg">JPEG（兼容性最好）</option>
+        <option value="image/png">PNG（无损，体积大）</option></select></div>
+      <button class="btn primary small block" id="cRun" type="button">开始压缩</button>
+      <button class="btn ghost small block mt8" id="cDownAll" type="button">全部下载</button>
+      <button class="tiny-btn block mt8" id="cClear" type="button" style="width:100%">清空队列</button>
+</aside>
+    <aside class="panel">
+  <div class="panel-h"><h2>说明</h2></div>
+  <p class="note">所有处理都在你自己的设备上用 Canvas 完成，图片不会上传到任何服务器。原始文件不会被修改，压缩结果另存为 <span class="mono">.webp/.jpg/.png</span>。</p>
+      <div class="kvline"><span>队列</span><span id="cCount">0 张</span></div>
+      <div class="kvline"><span>已节省</span><span id="cSaved">0 B</span></div>
+</aside>
+  </div><div class="app-main">
+    <section class="panel">
+      <div class="drop-zone" id="cDrop">
+        <b>拖入图片，或点击选择</b>
+        <span>支持 JPG / PNG / WebP / GIF（首帧）· 可多选 · 全程本地处理</span>
+        <input type="file" id="cFile" accept="image/*" multiple hidden>
+      </div>
+      <div class="img-grid mt16" id="cGrid"></div>
+    </section>
+  </div>
+</div>
+</main>
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/software/">软件库</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+        <a href="/license/">许可</a>
+      </div>
+      <div class="foot-col">
+        <h4>软件</h4>
+        <a href="/software/vault/">Vault</a>
+        <a href="/software/notes/">Notes</a>
+        <a href="/software/compress/">Compress</a>
+        <a href="/software/ledger/">Ledger</a>
+        <a href="/software/focus/">Focus</a>
+        <a href="/software/snippets/">Snippets</a>
+        <a href="/software/rename/">Rename</a>
+        <a href="/software/wallpaper/">Wallpaper</a>
+        <a href="/software/record/">Record</a>
+        <a href="/software/clipboard/">Clipboard</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/getting-started/">开始使用</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/docs/architecture/">架构说明</a>
+        <a href="/docs/contributing/">参与开发</a>
+        <a href="/docs/api/">站点接口</a>
+        <a href="/docs/glossary/">术语表</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/ecosystem/">生态地图</a>
+        <a href="/tools/">工具目录</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+        <a href="/stats/">生态数据</a>
+        <a href="/benchmark/">性能基线</a>
+        <a href="/archive/">历史归档</a>
+        <a href="/mirrors/">镜像与直链</a>
+        <a href="/lab/">实验室</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/contact/">联系</a>
+        <a href="/blog/">站务日志</a>
+        <a href="/press/">媒体资料</a>
+        <a href="/thanks/">致谢</a>
+        <a href="/privacy/">隐私</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+<script src="/sub.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
