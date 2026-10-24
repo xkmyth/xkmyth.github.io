@@ -48,6 +48,57 @@ a.feat-card h3{margin-top:0}
 @media (max-width:560px){.foot-map{grid-template-columns:1fr 1fr}}
 @media print{.skip-link{display:none}}
 
+/* ================= 动效层（首页） ================= */
+
+/* 1. 首屏分步入场 */
+@keyframes heroIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.hero-sub { animation: heroIn .85s var(--ease) .10s both; }
+.hero-actions { animation: heroIn .85s var(--ease) .20s both; }
+.hero-stats { animation: heroIn .85s var(--ease) .30s both; }
+.hero-meta { animation: heroIn .85s var(--ease) .40s both; }
+
+/* 2. 标题：冷色流光 + 金字呼吸 */
+@keyframes titleFlow { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+.hero-title {
+  background-size: 200% 100%;
+  animation: heroIn .9s var(--ease) both, titleFlow 16s 1.2s ease-in-out infinite;
+}
+@keyframes goldBreath {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(252, 211, 77, .18)); }
+  50% { filter: drop-shadow(0 0 20px rgba(252, 211, 77, .52)); }
+}
+.hero-title .gold { animation: goldBreath 6s ease-in-out infinite; }
+
+/* 3. 按钮光扫 */
+.btn { position: relative; overflow: hidden; }
+.btn::after {
+  content: ""; position: absolute; top: 0; left: 0; width: 55%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .38), transparent);
+  transform: translateX(-220%) skewX(-14deg); pointer-events: none;
+}
+.btn:hover::after { animation: sheen .9s var(--ease); }
+@keyframes sheen { to { transform: translateX(340%) skewX(-14deg); } }
+
+/* 4. 卡片：图标上浮 + 徽标点亮 */
+.feat-em, .eco-ico { transition: transform var(--mid), filter var(--mid); display: inline-block; }
+.feat-card:hover .feat-em, .eco-card:hover .eco-ico {
+  transform: translateY(-4px) scale(1.1);
+  filter: drop-shadow(0 6px 16px rgba(154, 227, 255, .35));
+}
+.feat-card:hover .badge { color: var(--gold); border-color: var(--line-gold); background: var(--gold-soft); }
+.feat-card:hover h3 { color: var(--gold); }
+.feat-card h3 { transition: color var(--mid); }
+
+/* 5. 渐入：交错用的过渡曲线再柔一点 */
+.reveal { transition: opacity .55s var(--ease), transform .55s var(--ease); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-sub, .hero-actions, .hero-stats, .hero-meta, .hero-title, .hero-title .gold {
+    animation: none !important; opacity: 1 !important; transform: none !important; filter: none;
+  }
+  .btn::after { display: none; }
+}
+
 </style>
 </head>
 <body>
@@ -231,6 +282,42 @@ a.feat-card h3{margin-top:0}
 
 <script src="main.js"></script>
 <div class="toast" id="toast"></div>
+<script>
+/* 首页专用：卡片交错入场 + 首屏数字滚动（必须排在 sub.js 之前，让它的 IntersectionObserver 能接管） */
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var groups = document.querySelectorAll('.feat-grid, .eco-grid, .dl-grid');
+  for (var g = 0; g < groups.length; g++) {
+    var kids = groups[g].children;
+    for (var i = 0; i < kids.length; i++) {
+      kids[i].classList.add('reveal');
+      if (!reduce) kids[i].style.transitionDelay = Math.min(i * 55, 440) + 'ms';
+    }
+  }
+  var extra = document.querySelectorAll('.sec-title, .more-row');
+  for (var e = 0; e < extra.length; e++) extra[e].classList.add('reveal');
+
+  if (reduce) return;
+  setTimeout(function () {
+    var nums = document.querySelectorAll('.hero-stats b');
+    for (var n = 0; n < nums.length; n++) {
+      (function (el) {
+        var target = parseInt(el.textContent, 10);
+        if (!target || target < 2) return;
+        var t0 = null;
+        function step(ts) {
+          if (t0 === null) t0 = ts;
+          var p = Math.min((ts - t0) / 1100, 1);
+          var ease = 1 - Math.pow(1 - p, 3);
+          el.textContent = String(Math.round(target * ease));
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      })(nums[n]);
+    }
+  }, 700);
+})();
+</script>
 <script src="/sub.js"></script>
 </body>
 </html>
