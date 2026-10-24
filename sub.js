@@ -31,12 +31,14 @@
   var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
   applyTheme(stored || (prefersLight ? 'light' : 'dark'));
 
-  /* ---------- 1. 星空 ---------- */
+    /* ---------- 1. 星空（三层视差 + 缓慢漂移 + 偶尔流星） ---------- */
   var canvas = document.getElementById('sky');
   if (canvas && canvas.getContext && !canvas.dataset.owner) {
     var ctx = canvas.getContext('2d');
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var stars = [], raf = null, W = 0, H = 0;
+    var stars = [], meteors = [], raf = null, W = 0, H = 0;
+    var mx = 0, my = 0, tmx = 0, tmy = 0;          /* 指针视差（当前 / 目标） */
+    var meteorGap = 5500, lastMeteor = 0, lastT = 0;
 
     function resize() {
       W = window.innerWidth; H = window.innerHeight;
@@ -45,40 +47,128 @@
       canvas.style.width = W + 'px';
       canvas.style.height = H + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var count = Math.min(220, Math.round((W * H) / 11000));
+      var count = Math.min(230, Math.round((W * H) / 10500));
       stars = [];
       for (var i = 0; i < count; i++) {
+        var z = Math.pow(Math.random(), 1.6);        /* 偏远景：多数星小且慢 */
         stars.push({
           x: Math.random() * W, y: Math.random() * H,
-          r: Math.random() * 1.5 + 0.3,
-          a: Math.random() * 0.6 + 0.2,
-          s: Math.random() * 0.012 + 0.004,
-          hue: Math.random() < 0.25 ? '252,211,77' : (Math.random() < 0.5 ? '154,227,255' : '232,238,255')
+          r: (0.4 + Math.random() * 1.1) * (0.55 + z * 0.95),
+          a: Math.random() * 6.2832,
+          s: 0.004 + Math.random() * 0.012,          /* 闪烁速度 */
+          v: 0.010 + z * 0.075,                      /* 上升速度 */
+          z: z,
+          hue: Math.random() < 0.22 ? '252,211,77' : (Math.random() < 0.5 ? '154,227,255' : '232,238,255'),
+          halo: Math.random() < 0.14
         });
       }
     }
-    function draw() {
+
+    function spawnMeteor() {
+      var fromLeft = Math.random() < 0.55;
+      meteors.push({
+        x: fromLeft ? -70 : W + 70,
+        y: Math.random() * H * 0.55 - 40,
+        vx: (fromLeft ? 1 : -1) * (0.30 + Math.random() * 0.22),
+        vy: 0.16 + Math.random() * 0.12,
+        t: 0, ttl: 1500 + Math.random() * 900,
+        len: 110 + Math.random() * 90,
+        hue: Math.random() < 0.45 ? '252,211,77' : '154,227,255'
+      });
+    }
+
+    function drawStatic() {
       ctx.clearRect(0, 0, W, H);
       for (var i = 0; i < stars.length; i++) {
         var st = stars[i];
-        st.a += st.s;
-        var alpha = 0.25 + Math.abs(Math.sin(st.a)) * 0.65;
         ctx.beginPath();
-        ctx.fillStyle = 'rgba(' + st.hue + ',' + alpha.toFixed(3) + ')';
-        ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + st.hue + ',' + (0.22 + st.z * 0.5).toFixed(3) + ')';
+        ctx.arc(st.x, st.y, st.r, 0, 6.2832);
         ctx.fill();
       }
-      raf = requestAnimationFrame(draw);
     }
-    function start() { if (!raf && !reduce) raf = requestAnimationFrame(draw); }
+
+    function frame(t) {
+      var dt = lastT ? Math.min(t - lastT, 48) : 16.7;
+      lastT = t;
+      var k = dt / 16.7;
+
+      mx += (tmx - mx) * 0.045 * k;
+      my += (tmy - my) * 0.045 * k;
+
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < stars.length; i++) {
+        var st = stars[i];
+        st.a += st.s * k;
+        st.y -= st.v * k;
+        if (st.y < -6) { st.y = H + 6; st.x = Math.random() * W; }
+        var alpha = 0.16 + Math.abs(Math.sin(st.a)) * 0.62;
+        var x = st.x + mx * st.z * 20, y = st.y + my * st.z * 14;
+        if (st.halo) {
+          ctx.beginPath();
+          ctx.fillStyle = 'rgba(' + st.hue + ',' + (alpha * 0.1).toFixed(3) + ')';
+          ctx.arc(x, y, st.r * 3.6, 0, 6.2832);
+          ctx.fill();
+        }
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(' + st.hue + ',' + alpha.toFixed(3) + ')';
+        ctx.arc(x, y, st.r, 0, 6.2832);
+        ctx.fill();
+      }
+
+      if (t - lastMeteor > meteorGap && meteors.length < 2) {
+        spawnMeteor();
+        lastMeteor = t;
+        meteorGap = 7000 + Math.random() * 8000;
+      }
+      for (var m = meteors.length - 1; m >= 0; m--) {
+        var me = meteors[m];
+        me.t += dt;
+        var p = me.t / me.ttl;
+        if (p >= 1) { meteors.splice(m, 1); continue; }
+        me.x += me.vx * dt; me.y += me.vy * dt;
+        var fade = Math.sin(Math.PI * p) * 0.9;
+        var ex = me.x - me.vx * me.len, ey = me.y - me.vy * me.len;
+        var gd = ctx.createLinearGradient(me.x, me.y, ex, ey);
+        gd.addColorStop(0, 'rgba(' + me.hue + ',' + (fade * 0.95).toFixed(3) + ')');
+        gd.addColorStop(1, 'rgba(' + me.hue + ',0)');
+        ctx.strokeStyle = gd;
+        ctx.lineWidth = 1.7;
+        ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(me.x, me.y); ctx.lineTo(ex, ey); ctx.stroke();
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(255,255,255,' + (fade * 0.9).toFixed(3) + ')';
+        ctx.arc(me.x, me.y, 1.6, 0, 6.2832); ctx.fill();
+      }
+
+      raf = requestAnimationFrame(frame);
+    }
+
+    function start() { if (!raf && !reduce) { lastT = 0; raf = requestAnimationFrame(frame); } }
     function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
 
     resize();
-    if (reduce) { draw(); stop(); } else { start(); }
-    window.addEventListener('resize', function () { stop(); resize(); start(); }, { passive: true });
+    canvas.style.transition = 'opacity 1.4s ease';
+    if (reduce) {
+      canvas.style.opacity = '1';
+      drawStatic();
+    } else {
+      canvas.style.opacity = '0';
+      start();
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { canvas.style.opacity = '1'; });
+      });
+    }
+    window.addEventListener('resize', function () {
+      stop(); resize(); if (reduce) { drawStatic(); } else { start(); }
+    }, { passive: true });
     document.addEventListener('visibilitychange', function () {
-      if (document.hidden) stop(); else start();
+      if (document.hidden) { stop(); } else { start(); }
     });
+    window.addEventListener('pointermove', function (e) {
+      tmx = (e.clientX / (W || 1)) * 2 - 1;
+      tmy = (e.clientY / (H || 1)) * 2 - 1;
+    }, { passive: true });
   }
 
   /* ---------- 2. 年份 ---------- */
@@ -131,6 +221,8 @@
     tools.appendChild(cmdkBtn);
     tools.appendChild(themeBtn);
     navInner.appendChild(tools);
+    /* 按钮是后插入的，重放一次主题，把图标 / aria-label 补上（否则是个空按钮） */
+    applyTheme(docEl.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
   }
 
   /* ---------- 5. 命令面板 ---------- */
