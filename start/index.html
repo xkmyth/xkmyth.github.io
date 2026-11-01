@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>常用网站中转站 · 星空神话 xkmyth</title>
+<meta name="description" content="164 个常用网站已分好类备好，搜索、购物、视频、音乐、社交、学习、开发、云服务、办公、生活、游戏、软件下载一站直达；支持自己添加、删除、导入导出，数据只存在本机浏览器。">
+<meta name="theme-color" content="#04060f">
+<meta name="author" content="xkmyth">
+<link rel="canonical" href="https://xkmyth.qd.je/start/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="常用网站中转站 · 星空神话 xkmyth">
+<meta property="og:description" content="164 个常用网站分好类备好，支持自己添加，数据只存在本机。">
+<meta property="og:url" content="https://xkmyth.qd.je/start/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/start/start.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/" aria-label="星空神话 xkmyth 首页"><span class="brand-star">★</span> xkmyth</a>
+    <nav class="nav-links" aria-label="主导航">
+      <a href="/">介绍</a>
+      <a href="/#core">三大件</a>
+      <a href="/#features">特色</a>
+      <a href="/start/" aria-current="page">中转站</a>
+      <a href="/#sitemap">地图</a>
+      <a href="/docs/">文档</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1" class="sf-wrap">
+
+  <div class="sf-head">
+    <p class="sf-kicker">中转站 · 常用网站直达</p>
+    <h1 class="sf-title">常用网站，<span class="gold">一站中转</span></h1>
+    <p class="sf-sub">
+      已经按用途分好类填满了。想加自己的就加，想删就删 —— 数据只存在你这台设备的浏览器里，
+      没有账号，也不会上传到任何地方。
+    </p>
+  </div>
+
+  <div class="sf-searchbox">
+    <span class="mag" aria-hidden="true">🔍</span>
+    <input id="sfQ" type="search" placeholder="搜站点名或网址…  例如 淘宝 / github / 云盘" autocomplete="off" spellcheck="false" aria-label="搜索站点">
+  </div>
+  <p class="sf-hint">按 <kbd>/</kbd> 聚焦搜索 · <kbd>Enter</kbd> 打开第一个匹配 · <kbd>Esc</kbd> 清空</p>
+
+  <div class="sf-chips" id="sfChips" role="tablist" aria-label="分类筛选"></div>
+
+  <div class="sf-bar">
+    <span class="sf-count" id="sfCount"></span>
+    <span class="grow"></span>
+    <button class="btn primary" id="sfAdd" type="button">+ 添加网站</button>
+    <button class="btn ghost" id="sfExport" type="button">导出</button>
+    <button class="btn ghost" id="sfImport" type="button">导入</button>
+    <button class="btn ghost" id="sfReset" type="button">恢复默认</button>
+  </div>
+
+  <div id="sfList" aria-live="polite"></div>
+
+  <p class="sf-foot">
+    共预装 <b id="sfPresetTotal">0</b> 个常用网站，分 <b id="sfCatTotal">0</b> 类。<br>
+    自定义站点与隐藏记录保存在本机 <code>localStorage</code>；换设备时用「导出」拿一份 JSON，再「导入」即可。<br>
+    提示：图标取自各站 <code>/favicon.ico</code>，个别站点防盗链时会显示首字母，不影响点击。<br>
+    ← 回 <a href="/">星空神话首页</a> · 去 <a href="/tools/">在线工具</a> · 去 <a href="/sitemap.xml">sitemap</a>
+  </p>
+
+</main>
+
+<dialog class="sf-dlg" id="sfDlg">
+  <form method="dialog" id="sfForm">
+    <h3 id="sfDlgTitle">添加网站</h3>
+    <p class="sf-err" id="sfErr">名称和网址都要填，网址要 http(s) 开头。</p>
+    <label class="sf-field"><span>名称</span><input id="sfName" maxlength="24" placeholder="例如：我的博客" required></label>
+    <label class="sf-field"><span>网址</span><input id="sfUrl" maxlength="300" placeholder="https://" inputmode="url" required></label>
+    <label class="sf-field"><span>分类</span><select id="sfCat"></select></label>
+    <label class="sf-field"><span>说明（可不填）</span><input id="sfDesc" maxlength="30" placeholder="一句话备注"></label>
+    <div class="sf-dlg-btns">
+      <button class="btn ghost" value="cancel" type="submit" formnovalidate>取消</button>
+      <button class="btn primary" value="save" type="submit" id="sfSave">保存</button>
+    </div>
+  </form>
+</dialog>
+
+<input type="file" id="sfFile" accept="application/json,.json" hidden>
+
+<script src="/sub.js" defer></script>
+<script src="/start/sites.js" defer></script>
+<script src="/start/start.js" defer></script>
+</body>
+</html>
