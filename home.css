@@ -503,3 +503,122 @@
   .hx-feat-go { transition: none !important; }
   .hx-feat:hover { transform: none; }
 }
+
+/* ===== 三大件（浏览器 / 云盘 / 系统） ===== */
+.hx-core{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.hx-core-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  padding:26px 24px 22px;
+  border-radius:calc(var(--radius,18px) + 2px);
+  border:1px solid var(--line,rgba(255,255,255,.12));
+  background:var(--card,rgba(255,255,255,.05));
+  overflow:hidden;
+  transition:transform .35s var(--ease,ease),border-color .35s var(--ease,ease),box-shadow .35s var(--ease,ease);
+}
+.hx-core-card::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold,#ffd479),transparent);
+  opacity:.55;
+  transition:opacity .35s var(--ease,ease);
+}
+.hx-core-card:hover{
+  transform:translateY(-5px);
+  border-color:var(--line-gold,rgba(255,212,121,.42));
+  box-shadow:0 22px 46px -22px rgba(0,0,0,.65);
+}
+.hx-core-card:hover::before{opacity:1}
+.hx-core-ico{
+  font-size:30px;
+  line-height:1;
+  transition:transform .35s var(--ease,ease);
+}
+.hx-core-card:hover .hx-core-ico{transform:scale(1.12) rotate(-4deg)}
+.hx-core-card h3{margin:0;font-size:20px;letter-spacing:-.01em}
+.hx-core-card p{margin:0;color:var(--muted,#9fb0d0);font-size:14px;line-height:1.68}
+.hx-core-btns{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:auto;
+  padding-top:15px;
+}
+.hx-core-btns .btn{
+  flex:1 1 0;
+  min-width:110px;
+  justify-content:center;
+  text-align:center;
+  padding:10px 14px;
+  font-size:13px;
+  white-space:nowrap;
+}
+.hx-core-meta{margin:0;font-size:12px;color:var(--dim,#6b7a99)}
+
+/* ===== 中转站横幅 ===== */
+.hx-portal{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:26px;
+  margin:42px 0 0;
+  padding:30px 32px;
+  border-radius:calc(var(--radius,18px) + 6px);
+  border:1px solid var(--line-gold,rgba(255,212,121,.3));
+  background:
+    radial-gradient(120% 160% at 0% 0%,rgba(255,212,121,.1),transparent 55%),
+    var(--card,rgba(255,255,255,.05));
+  overflow:hidden;
+}
+.hx-portal-txt{min-width:0}
+.hx-portal h2{margin:0 0 9px;font-size:clamp(21px,2.4vw,26px);letter-spacing:-.01em}
+.hx-portal p{
+  margin:0;
+  max-width:66ch;
+  color:var(--muted,#9fb0d0);
+  font-size:14.5px;
+  line-height:1.75;
+}
+.btn.big{
+  padding:14px 26px;
+  font-size:15px;
+  white-space:nowrap;
+  flex:0 0 auto;
+}
+
+@media (max-width:980px){
+  .hx-core{grid-template-columns:1fr}
+  .hx-core-card{padding:22px 20px 18px}
+  .hx-portal{flex-direction:column;align-items:stretch;gap:18px;padding:26px 22px;margin-top:34px}
+  .hx-portal .btn.big{width:100%;text-align:center}
+}
+
+@media (max-width:720px){
+  /* 导航项多了，窄屏横向滑动而不是换行（用 .nav .nav-links 压过 style.css 的 .nav nav 权重） */
+  .nav .nav-links{
+    overflow-x:auto;
+    flex-wrap:nowrap;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    max-width:100%;
+  }
+  .nav .nav-links::-webkit-scrollbar{display:none}
+  .nav .nav-links a{white-space:nowrap}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hx-core-card,.hx-core-card:hover{transform:none;transition:none}
+  .hx-core-card:hover .hx-core-ico{transform:none}
+}
