@@ -41,8 +41,10 @@
     <a class="brand" href="/" aria-label="星空神话 xkmyth 首页"><span class="brand-star">★</span> xkmyth</a>
     <nav class="nav-links" aria-label="主导航">
       <a href="#intro">介绍</a>
+      <a href="#core">三大件</a>
       <a href="#features">特色</a>
-      <a href="#sitemap">导航</a>
+      <a href="/start/">中转站</a>
+      <a href="#sitemap">地图</a>
       <a href="/docs/">文档</a>
     </nav>
   </div>
@@ -67,12 +69,69 @@
     <ul class="hx-stats" aria-label="站点规模">
       <li><b>11</b><span>自研应用</span></li>
       <li><b>160</b><span>在线工具</span></li>
-      <li><b>56</b><span>页面</span></li>
+      <li><b>57</b><span>页面</span></li>
       <li><b>4</b><span>开源仓库</span></li>
     </ul>
   </section>
 
-  <!-- ② 特色功能 -->
+  <!-- ② 三大件：浏览器 / 云盘 / 系统 -->
+  <section class="hx-sec" id="core">
+    <div class="hx-head">
+      <h2>三件 <span class="gold">装在自己电脑上</span> 的东西</h2>
+      <p>不是网页套壳 —— 有本地文件，装完断网也能跑。</p>
+    </div>
+    <ul class="hx-core">
+
+      <li class="hx-core-card reveal">
+        <span class="hx-core-ico" aria-hidden="true">🧭</span>
+        <h3>星空浏览器</h3>
+        <p>Electron 内核，多标签、广告拦截、划词翻译。新标签页不是空白页，是这片星空。</p>
+        <div class="hx-core-btns">
+          <a class="btn primary" href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-browser-win-x64.zip">Windows 版</a>
+          <a class="btn ghost" href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-browser.apk">安卓 .apk</a>
+        </div>
+        <p class="hx-core-meta">免安装绿色版 · 解压即用</p>
+      </li>
+
+      <li class="hx-core-card reveal">
+        <span class="hx-core-ico" aria-hidden="true">☁️</span>
+        <h3>星空云盘</h3>
+        <p>Cloudreve 内核，文件只存在自己硬盘上。WebDAV 能挂成系统盘，手机 IPv6 直连。</p>
+        <div class="hx-core-btns">
+          <a class="btn primary" href="https://xkmyth.dynv6.net:5212/" rel="noopener">打开云盘</a>
+          <a class="btn ghost" href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-cloud-win-x64.zip">客户端</a>
+        </div>
+        <p class="hx-core-meta">8 GB 系统镜像也放这儿</p>
+      </li>
+
+      <li class="hx-core-card reveal">
+        <span class="hx-core-ico" aria-hidden="true">🌌</span>
+        <h3>定制系统</h3>
+        <p>Win11 25H2 底座：星海深空主题、双账户模式、OEM 品牌注入、无人值守安装。</p>
+        <div class="hx-core-btns">
+          <a class="btn primary" href="/docs/install/">安装指南</a>
+          <a class="btn ghost" href="https://xkmyth.dynv6.net:5212/" rel="noopener">镜像下载</a>
+        </div>
+        <p class="hx-core-meta">ISO 体积超限，走云盘</p>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- 中转站入口 -->
+  <section class="hx-portal reveal" id="portal">
+    <div class="hx-portal-txt">
+      <h2>常用网站 <span class="gold">中转站</span></h2>
+      <p>
+        <b>164</b> 个常用网站已经分好类填好了 —— 搜索 · 购物 · 视频 · 音乐 · 社交 · 资讯 · 学习 ·
+        开发 · 云服务 · 办公 · 生活 · 游戏 · 软件下载。不够的可以自己加，不想要的删掉或折叠，
+        全存在你自己浏览器里，不联网、不上传。
+      </p>
+    </div>
+    <a class="btn primary big" href="/start/">打开中转站 →</a>
+  </section>
+
+  <!-- ③ 特色功能 -->
   <section class="hx-sec" id="features">
     <div class="hx-head">
       <h2>六个值得一提的 <span class="gold">地方</span></h2>
@@ -135,15 +194,16 @@
   <section class="hx-sec alt" id="sitemap">
     <div class="hx-head">
       <h2>网站 <span class="gold">地图</span></h2>
-      <p>全站 56 个页面，按用途分成六类，没有一页是凑数的。</p>
+      <p>全站 57 个页面，按用途分成六类，没有一页是凑数的。</p>
     </div>
 
     <div class="hx-map">
 
       <div class="hx-group reveal">
-        <h3><span aria-hidden="true">🧩</span> 产品与软件 <span class="cnt">13</span></h3>
-        <p class="gdesc">十一个自研应用 + 生态全景</p>
+        <h3><span aria-hidden="true">🧩</span> 产品与软件 <span class="cnt">14</span></h3>
+        <p class="gdesc">十一个自研应用 + 中转站 + 生态全景</p>
         <ul class="hx-links">
+          <li><a href="/start/"><i class="dot"></i>星空中转站<span class="path">/start/</span></a></li>
           <li><a href="/software/"><i class="dot"></i>软件库<span class="path">/software/</span></a></li>
           <li><a href="/software/vault/"><i class="dot"></i>XK Vault 保险箱<span class="path">vault</span></a></li>
           <li><a href="/software/notes/"><i class="dot"></i>XK Notes 笔记<span class="path">notes</span></a></li>
