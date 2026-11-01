@@ -532,3 +532,44 @@ input[type="checkbox"], input[type="radio"] { accent-color: #f59e0b; width: 15px
 .hero { isolation: isolate; overflow: hidden; }
 .hero.compact { min-height: auto; padding: calc(var(--nav-h) + 54px) 22px 46px; }
 .hero.compact .hero-title { font-size: clamp(38px, 7vw, 78px); }
+
+/* ---------- 16. 导航折叠（手机 / 窄屏） ---------- */
+.nav-burger {
+  display: none; flex-direction: column; align-items: center; justify-content: center; gap: 4.5px;
+  width: 40px; height: 36px; padding: 0; cursor: pointer; flex: 0 0 auto;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-pill);
+  transition: border-color var(--fast), background var(--fast);
+}
+.nav-burger:hover { border-color: var(--line-ice); background: var(--card-hover); }
+.nav-burger span {
+  display: block; width: 16px; height: 1.6px; border-radius: 2px; background: var(--muted);
+  transition: transform var(--fast), opacity var(--fast), background var(--fast);
+}
+.nav-burger[aria-expanded="true"] span { background: var(--gold); }
+.nav-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.1px) rotate(45deg); }
+.nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.1px) rotate(-45deg); }
+
+@media (max-width: 900px) {
+  .nav-inner { flex-wrap: nowrap; gap: 10px; }
+  .nav-burger { display: flex; }
+  .nav-tools { margin-left: auto; gap: 6px; }
+  .nav-btn { padding: 7px 10px; }
+  .nav-btn kbd, .nav-btn-txt { display: none; }
+  .nav .nav-links, .nav nav {
+    position: absolute; top: 100%; left: 0; right: 0; z-index: 2;
+    display: none; flex-direction: column; align-items: stretch; justify-content: flex-start;
+    flex-wrap: nowrap; gap: 2px; padding: 10px 14px 14px;
+    background: color-mix(in srgb, var(--bg0) 96%, transparent);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, .55);
+    max-height: calc(100vh - var(--nav-h)); overflow-y: auto;
+  }
+  @supports not (background: color-mix(in srgb, red 50%, blue)) {
+    .nav .nav-links, .nav nav { background: rgba(4, 6, 15, .97); }
+  }
+  html[data-theme="light"] .nav .nav-links,
+  html[data-theme="light"] .nav nav { background: rgba(246, 248, 255, .98); }
+  .nav.nav-open .nav-links, .nav.nav-open nav { display: flex; }
+  .nav .nav-links a, .nav nav a { font-size: 14px; padding: 11px 12px; border-radius: 10px; }
+}

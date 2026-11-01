@@ -225,6 +225,58 @@
     applyTheme(docEl.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
   }
 
+  /* ---------- 4.1 导航折叠（手机 / 窄屏）+ 当前栏目高亮 ---------- */
+  (function navShell() {
+    var header = document.querySelector('.nav');
+    var inner = document.querySelector('.nav-inner');
+    var nav = document.querySelector('.nav .nav-links') || document.querySelector('.nav nav');
+    if (header && inner && nav) {
+      if (!nav.id) nav.id = 'mainNav';
+      var burger = document.createElement('button');
+      burger.type = 'button';
+      burger.className = 'nav-burger';
+      burger.id = 'navBurger';
+      burger.setAttribute('aria-label', '展开导航菜单');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-controls', nav.id);
+      burger.innerHTML = '<span></span><span></span><span></span>';
+      inner.appendChild(burger);
+
+      var setOpen = function (open) {
+        if (open) header.classList.add('nav-open'); else header.classList.remove('nav-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.setAttribute('aria-label', open ? '收起导航菜单' : '展开导航菜单');
+      };
+      burger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        setOpen(!header.classList.contains('nav-open'));
+      });
+      nav.addEventListener('click', function (e) {
+        if (e.target && e.target.closest && e.target.closest('a')) setOpen(false);
+      });
+      document.addEventListener('click', function (e) {
+        if (header.classList.contains('nav-open') && !header.contains(e.target)) setOpen(false);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') setOpen(false);
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 900) setOpen(false);
+      });
+    }
+
+    /* 当前栏目点亮 */
+    var here = location.pathname.replace(/\/index\.html$/, '/');
+    var links = document.querySelectorAll('.nav .nav-links a, .nav nav a');
+    for (var i = 0; i < links.length; i++) {
+      var href = links[i].getAttribute('href') || '';
+      if (href.charAt(0) !== '/' || href.indexOf('#') >= 0) continue;
+      var target = href.replace(/\/index\.html$/, '/');
+      var hit = target === '/' ? here === '/' : (here === target || here.indexOf(target) === 0);
+      if (hit) { links[i].setAttribute('aria-current', 'page'); break; }
+    }
+  })();
+
   /* ---------- 5. 命令面板 ---------- */
   var INDEX_URL = '/search-index.json';
   var index = [], indexState = 0, lastFocus = null;
