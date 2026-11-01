@@ -153,7 +153,7 @@
 
   function init() {
     load();
-    if (!notes.length) notes.push({ title: '欢迎使用 XK Notes', body: '# 你好\n\n这是一份**本地**笔记，数据只存在这个浏览器里。\n\n- 左边列表切换、搜索\n- 右侧编辑，1.2 秒自动保存\n- 支持 `代码`、> 引用、- 列表、[链接](https://xkmyth.github.io/)\n\n```\n代码块也会高亮保留原文\n```', updated: nowText() });
+    if (!notes.length) notes.push({ title: '欢迎使用 XK Notes', body: '# 你好\n\n这是一份**本地**笔记，数据只存在这个浏览器里。\n\n- 左边列表切换、搜索\n- 右侧编辑，1.2 秒自动保存\n- 支持 `代码`、> 引用、- 列表、[链接](https://xkmyth.cc.cd/)\n\n```\n代码块也会高亮保留原文\n```', updated: nowText() });
     open(0);
     $('nNew').addEventListener('click', add);
     $('nDel').addEventListener('click', del);

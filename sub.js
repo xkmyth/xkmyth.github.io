@@ -641,3 +641,145 @@
     if (window.showToast) window.showToast('已安装到桌面，离线也能用', 'ok');
   });
 })();
+
+/* ============================================================
+   第六节（追加）：页内目录 / 回到顶部 / 卡片光晕
+   全站共用（本文件被 59 个页面加载），纯增量，无依赖。
+   ============================================================ */
+(function () {
+  'use strict';
+  var docEl = document.documentElement;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hoverable = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+
+  /* ---------- 1. 页内目录（≥3 个 h2 才生成，≥1200px 才显示） ---------- */
+  function buildToc() {
+    if (docEl.hasAttribute('data-notoc')) return;
+    var main = document.getElementById('main') || document.querySelector('main') || document.body;
+    var all = Array.prototype.slice.call(main.querySelectorAll('h2'));
+    var hs = all.filter(function (h) {
+      if (h.closest('.nav') || h.closest('.foot')) return false;
+      return (h.textContent || '').trim().length > 1;
+    });
+    if (hs.length < 3) return;
+
+    var seen = {};
+    var items = hs.map(function (h) {
+      var txt = (h.textContent || '').replace(/\s+/g, ' ').trim();
+      if (!h.id) {
+        var base = txt.toLowerCase().replace(/[\s\u3000]+/g, '-')
+          .replace(/[^\w\u4e00-\u9fa5-]/g, '').replace(/-+/g, '-').replace(/^-|-$/g, '') || 'sec';
+        var id = base, n = 1;
+        while (seen[id] || document.getElementById(id)) { id = base + '-' + (n++); }
+        h.id = id;
+      }
+      seen[h.id] = 1;
+      h.classList.add('toc-anchor');
+      return { h: h, txt: txt.length > 26 ? txt.slice(0, 25) + '…' : txt };
+    });
+
+    var box = document.createElement('aside');
+    box.className = 'toc-float';
+    box.id = 'tocFloat';
+    box.setAttribute('aria-label', '页内目录');
+    var cap = document.createElement('div');
+    cap.className = 'toc-cap';
+    cap.textContent = '本页目录';
+    box.appendChild(cap);
+    var nav = document.createElement('nav');
+    items.forEach(function (it) {
+      var a = document.createElement('a');
+      a.className = 'toc-link';
+      a.href = '#' + it.h.id;
+      a.setAttribute('data-t', it.h.id);
+      a.textContent = it.txt;
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        it.h.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        if (history.replaceState) history.replaceState(null, '', '#' + it.h.id);
+      });
+      nav.appendChild(a);
+    });
+    box.appendChild(nav);
+    document.body.appendChild(box);
+
+    var links = nav.querySelectorAll('.toc-link');
+    function setActive(id) {
+      for (var i = 0; i < links.length; i++) {
+        if (links[i].getAttribute('data-t') === id) links[i].classList.add('on');
+        else links[i].classList.remove('on');
+      }
+    }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        var best = null;
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          if (!best || e.intersectionRatio > best.intersectionRatio) best = e;
+        });
+        if (best) setActive(best.target.id);
+      }, { rootMargin: '-84px 0px -68% 0px', threshold: [0, 0.15, 0.5, 1] });
+      items.forEach(function (it) { io.observe(it.h); });
+    }
+    function vis() {
+      var y = window.pageYOffset || window.scrollY || 0;
+      box.classList.toggle('show', y > 200 && window.innerWidth >= 1200);
+    }
+    window.addEventListener('scroll', vis, { passive: true });
+    window.addEventListener('resize', vis);
+    vis();
+  }
+
+  /* ---------- 2. 回到顶部 ---------- */
+  function buildTop() {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'to-top';
+    b.id = 'toTop';
+    b.setAttribute('aria-label', '回到顶部');
+    b.setAttribute('title', '回到顶部');
+    b.innerHTML = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V6"/><path d="M5 13l7-7 7 7"/></svg>';
+    document.body.appendChild(b);
+    b.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+    function vis() {
+      var y = window.pageYOffset || window.scrollY || 0;
+      b.classList.toggle('show', y > 680);
+    }
+    window.addEventListener('scroll', vis, { passive: true });
+    vis();
+  }
+
+  /* ---------- 3. 卡片指针光晕（仅鼠标设备 + 未开减弱动效） ---------- */
+  function glow() {
+    if (!hoverable || reduce) return;
+    var sel = '[class*="card"],[class*="tile"]';
+    var els = document.querySelectorAll(sel);
+    for (var i = 0; i < els.length; i++) els[i].classList.add('glowable');
+    var raf = null, pend = null;
+    document.addEventListener('pointermove', function (e) {
+      var t = e.target;
+      var el = t && t.closest ? t.closest('.glowable') : null;
+      if (!el) return;
+      pend = { el: el, x: e.clientX, y: e.clientY };
+      if (raf) return;
+      raf = requestAnimationFrame(function () {
+        raf = null;
+        if (!pend) return;
+        var r = pend.el.getBoundingClientRect();
+        pend.el.style.setProperty('--mx', (pend.x - r.left) + 'px');
+        pend.el.style.setProperty('--my', (pend.y - r.top) + 'px');
+      });
+    }, { passive: true });
+  }
+
+  function boot() {
+    try { buildToc(); } catch (e) { }
+    try { buildTop(); } catch (e) { }
+    try { glow(); } catch (e) { }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+

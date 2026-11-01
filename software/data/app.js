@@ -164,7 +164,7 @@
   function exportAll() {
     var rows = keys();
     if (!rows.length) { toast('还没有可导出的数据', 'bad'); return; }
-    var out = { site: 'https://xkmyth.github.io', exportedAt: new Date().toISOString(), keys: {} };
+    var out = { site: 'https://xkmyth.cc.cd', exportedAt: new Date().toISOString(), keys: {} };
     rows.forEach(function (r) { out.keys[r.key] = r.value; });
     download('xk-my-data-' + today() + '.json', JSON.stringify(out, null, 2));
     line('已导出 ' + rows.length + ' 个键，共 ' + size(rows.reduce(function (s, r) { return s + r.size; }, 0)));
