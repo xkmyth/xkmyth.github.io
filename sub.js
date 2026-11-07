@@ -904,9 +904,9 @@
       document.head.appendChild(s0);
     } else plug();
     function plug() {
-      if (document.querySelector('script[src="/js/ai.js"]')) return;
+      if (document.querySelector('script[src^="/js/ai.js"]')) return;
       var sc = document.createElement('script');
-      sc.src = '/js/ai.js'; sc.async = true; sc.defer = true;
+      sc.src = '/js/ai.js?v=6'; sc.async = true; sc.defer = true;
       sc.onerror = function () { };
       document.body.appendChild(sc);
     }
