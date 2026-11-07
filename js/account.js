@@ -44,9 +44,17 @@
     return (h && typeof h === 'object') ? h : {};
   }
   function saveHist(h) { write(K_HIST, h); }
+  // 内置云端（publishable key 是公开密钥，放前端安全；真正的门是每个账号的密码派生凭据）
+  var DFLT = {
+    endpoint: 'https://bjmyukjviazgnathjyyq.supabase.co',
+    key: 'sb_publishable_hq05xWJQ_RLOW6VovD381Q_0ycPahqG'
+  };
   function syncConf() {
     var s = read(K_SYNC, {});
-    return (s && typeof s === 'object') ? s : {};
+    if (!s || typeof s !== 'object') s = {};
+    if (!s.endpoint) s.endpoint = DFLT.endpoint;
+    if (!s.key) s.key = DFLT.key;
+    return s;
   }
 
   function cloudReady() { var c = syncConf(); return !!(c.endpoint && c.key); }
@@ -264,6 +272,7 @@
           saveDb(d3);
           throw new Error('云端已经有这个用户名，但密码不一样。如果那是你的号，直接用「登录」——同一个密码就能把数据接回来。');
         }
+        autoSync();
         return nu;
       });
     });
@@ -291,6 +300,7 @@
           d2.session = { name: name, at: Date.now() };
           saveDb(d2);
           log('account', '从云端认回账号');
+          autoSync();
           return d2.users[name];
         });
       }).catch(function (e) {
@@ -313,6 +323,7 @@
       saveDb(d2);
       log('account', '登录');
       bindCloud(u2);
+      autoSync();
       return u2;
     });
   }
@@ -419,7 +430,7 @@
     if (o.sync && !syncConf().endpoint) write(K_SYNC, o.sync);
     return { users: added, events: evAdd };
   }
-  function syncNow() {
+  function syncNow(quiet) {
     var u = current();
     if (!u) return Promise.reject(new Error('先登录'));
     var c = syncConf();
@@ -432,10 +443,16 @@
       var h = histAll(); h[u.name] = merged; saveHist(h);
       var d = db(), uu = d.users[u.name];
       if (uu) { uu.cloudAdmin = !!res.admin; saveDb(d); }
-      log('sync', '云端同步完成（' + merged.length + ' 条）');
+      if (!quiet) log('sync', '云端同步完成（' + merged.length + ' 条）');
       renderHist(); renderUser();
       return merged.length;
     });
+  }
+  // 静默同步：登录后 / 打开页面后自己跑，失败不打扰
+  function autoSync() {
+    var u = current();
+    if (!u || !cloudReady()) return;
+    setTimeout(function () { syncNow(true).catch(function () { }); }, 400);
   }
 
   /* ---------------- 页面渲染 ---------------- */
@@ -660,6 +677,7 @@
 
   function boot() {
     if (!$('accGuest')) return;
+    autoSync();
     ui.tabs = Array.prototype.slice.call(document.querySelectorAll('#accTabs .pill'));
 
     /* 登录 / 注册 */
@@ -675,6 +693,7 @@
         renderAll(); setTab('hist');
         toast('注册成功，欢迎加入', 'ok');
         log('account', '首次进入账号页');
+        autoSync();
       }).catch(function (ex) { err(box, ex.message); });
     });
 
@@ -687,6 +706,7 @@
         logForm.reset();
         renderAll(); setTab('hist');
         toast('登录成功', 'ok');
+        autoSync();
       }).catch(function (ex) { err(box, ex.message); });
     });
 
@@ -822,7 +842,7 @@
 
   /* ---------------- 对外 ---------------- */
   window.XKAccount = {
-    cloudReady: cloudReady, bindCloud: bindCloud, renderCloudUsers: renderCloudUsers, syncAuthOf: syncAuthOf,
+    cloudReady: cloudReady, bindCloud: bindCloud, renderCloudUsers: renderCloudUsers, syncAuthOf: syncAuthOf, autoSync: autoSync,
     v: 1,
     user: current,
     tier: tierOf,
