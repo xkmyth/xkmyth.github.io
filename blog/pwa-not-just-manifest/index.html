@@ -8,13 +8,13 @@
 <meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
 <meta name="description" content="manifest 的 scope 写错会装出别人的首页；缓存策略要按导航、静态资源、SW 自身分三类；skipWaiting 会刷掉用户正在写的内容。">
 <title>PWA 不是加个 manifest 就完事 · 星空神话 xkmyth</title>
-<link rel="canonical" href="https://xkmyth.cc.cd/blog/pwa-not-just-manifest/">
+<link rel="canonical" href="https://xkmyth.dpdns.org/blog/pwa-not-just-manifest/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="xkmyth">
 <meta property="og:title" content="PWA 不是加个 manifest 就完事">
 <meta property="og:description" content="manifest 的 scope 写错会装出别人的首页；缓存策略要按导航、静态资源、SW 自身分三类；skipWaiting 会刷掉用户正在写的内容。">
-<meta property="og:url" content="https://xkmyth.cc.cd/blog/pwa-not-just-manifest/">
-<meta property="og:image" content="https://xkmyth.cc.cd/icons/og-1200x630.png">
+<meta property="og:url" content="https://xkmyth.dpdns.org/blog/pwa-not-just-manifest/">
+<meta property="og:image" content="https://xkmyth.dpdns.org/icons/og-1200x630.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/sub.css">
 <link rel="alternate" type="application/rss+xml" title="星空神话 xkmyth · 站务日志" href="/blog/feed.xml">
-<meta name="twitter:image" content="https://xkmyth.cc.cd/icons/og-blog.png">
+<meta name="twitter:image" content="https://xkmyth.dpdns.org/icons/og-blog.png">
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主内容</a>
@@ -61,7 +61,7 @@
 <p>给站点加 PWA 的理由很朴素：工具站 139 个页面全在浏览器里跑，手机上每次打开都要重新下载 CSS 和 JS，地铁里一断网就白屏。装上 manifest 与 service worker 之后，它可以被添加到主屏、断网也能打开、首屏直接走缓存。但真正动手才发现，能装和能用是两件事。</p>
 
 <h3>第一坑：scope 写错，装完打开的是别人的首页</h3>
-<p>工具站部署在 <code>/Timarsky/</code> 子路径下，它的 manifest 里 <code>start_url</code> 与 <code>scope</code> 必须都限制在子路径内，否则从主屏图标点进来会跳到 <code>xkmyth.cc.cd/</code> —— 用户看到的是主站首页，会以为自己装错了东西。所以工具箱单独有一份 manifest（<code>/Timarsky/tools/manifest.webmanifest</code>），主站与工具站各用自己的 scope，互不越界。</p>
+<p>工具站部署在 <code>/Timarsky/</code> 子路径下，它的 manifest 里 <code>start_url</code> 与 <code>scope</code> 必须都限制在子路径内，否则从主屏图标点进来会跳到 <code>xkmyth.dpdns.org/</code> —— 用户看到的是主站首页，会以为自己装错了东西。所以工具箱单独有一份 manifest（<code>/Timarsky/tools/manifest.webmanifest</code>），主站与工具站各用自己的 scope，互不越界。</p>
 
 <h3>第二坑：一种缓存策略套全站，总有一半是错的</h3>
 <p>最初想简单点：全部 cache-first，反正静态站不会变。结果是改完样式刷新看不到效果，得手动清缓存。现在按资源分三类：</p>

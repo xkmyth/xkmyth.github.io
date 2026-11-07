@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://xkmyth.cc.cd/sitemap.xml
-Sitemap: https://xkmyth.cc.cd/Timarsky/sitemap.xml
+Sitemap: https://xkmyth.dpdns.org/sitemap.xml
+Sitemap: https://xkmyth.dpdns.org/Timarsky/sitemap.xml

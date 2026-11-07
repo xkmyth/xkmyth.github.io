@@ -8,13 +8,13 @@
 <meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
 <meta name="description" content="逐页体积、样式脚本开销、外部请求数，三条自测命令，以及性能上明确放弃的三件事。">
 <title>性能基线 · 体积与请求数 · 星空神话 xkmyth</title>
-<link rel="canonical" href="https://xkmyth.cc.cd/benchmark/">
+<link rel="canonical" href="https://xkmyth.dpdns.org/benchmark/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="xkmyth">
 <meta property="og:title" content="性能基线 · 体积与请求数">
 <meta property="og:description" content="逐页体积、样式脚本开销、外部请求数，三条自测命令，以及性能上明确放弃的三件事。">
-<meta property="og:url" content="https://xkmyth.cc.cd/benchmark/">
-<meta property="og:image" content="https://xkmyth.cc.cd/icons/og-1200x630.png">
+<meta property="og:url" content="https://xkmyth.dpdns.org/benchmark/">
+<meta property="og:image" content="https://xkmyth.dpdns.org/icons/og-1200x630.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://api.github.com" crossorigin>
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/sub.css">
-<meta name="twitter:image" content="https://xkmyth.cc.cd/icons/og-1200x630.png">
+<meta name="twitter:image" content="https://xkmyth.dpdns.org/icons/og-1200x630.png">
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主内容</a>
@@ -71,7 +71,7 @@
   <div class="sec-head"><h2 class="sec-title">怎么自己测</h2><p class="sec-kicker">三条命令，别信感觉</p></div>
 
 <pre class="code"><code># 1. 体积与请求数
-curl -s -o /dev/null -w "size=%{size_download} time=%{time_total}\n" https://xkmyth.cc.cd/
+curl -s -o /dev/null -w "size=%{size_download} time=%{time_total}\n" https://xkmyth.dpdns.org/
 
 # 2. 打开 DevTools → Network → 勾选 Disable cache → 刷新，看 Transfer 总量
 # 3. Lighthouse（移动端 + 桌面端各跑一次），重点看 TBT 与 CLS</code></pre>

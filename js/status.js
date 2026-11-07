@@ -4,10 +4,10 @@
 (function () {
   'use strict';
   var REPOS = [
-    { id: 'xkmyth/xkmyth', name: 'Downloads', url: 'https://xkmyth.cc.cd/xkmyth/', icon: '⬇️' },
-    { id: 'xkmyth/xkmyth.github.io', name: '主站', url: 'https://xkmyth.cc.cd/', icon: '🌌' },
-    { id: 'xkmyth/Timarsky', name: '工具站', url: 'https://xkmyth.cc.cd/Timarsky/', icon: '🧰' },
-    { id: 'xkmyth/about', name: '关于页', url: 'https://xkmyth.cc.cd/about/', icon: '👤' }
+    { id: 'xkmyth/xkmyth', name: 'Downloads', url: 'https://xkmyth.dpdns.org/xkmyth/', icon: '⬇️' },
+    { id: 'xkmyth/xkmyth.github.io', name: '主站', url: 'https://xkmyth.dpdns.org/', icon: '🌌' },
+    { id: 'xkmyth/Timarsky', name: '工具站', url: 'https://xkmyth.dpdns.org/Timarsky/', icon: '🧰' },
+    { id: 'xkmyth/about', name: '关于页', url: 'https://xkmyth.dpdns.org/about/', icon: '👤' }
   ];
   var KEY = 'xkmyth-status-cache-v1';
   var TTL = 15 * 60 * 1000;
