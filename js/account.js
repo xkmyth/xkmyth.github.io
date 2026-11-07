@@ -51,14 +51,33 @@
 
   function cloudReady() { var c = syncConf(); return !!(c.endpoint && c.key); }
   function authHash(u) {
-    var raw = u.name + ':' + u.hash;
+    if (u && u.syncAuth && /^[0-9a-f]{64}$/.test(u.syncAuth)) return Promise.resolve(u.syncAuth);
+    var raw = (u && u.name) + ':' + (u && u.hash);
     if (window.crypto && crypto.subtle && crypto.subtle.digest) {
       return crypto.subtle.digest('SHA-256', new TextEncoder().encode(raw))
         .then(function (b) { return toHex(new Uint8Array(b)); });
     }
     return Promise.resolve(weakHash(raw));
   }
-  function rpc(payload) {
+  // 云凭据 = PBKDF2(密码, 'xkmyth-sync|用户名', 6 万次)
+  // 只由「用户名 + 密码」决定，跟本机盐无关 —— 所以换设备打同一个密码就能认回账号。
+  function syncAuthOf(name, pass) {
+    var salt = toHex(new TextEncoder().encode('xkmyth-sync|' + name));
+    return hashPass(pass, salt, 60000).then(function (a) {
+      if (!/^[0-9a-f]{64}$/.test(a)) a = (a + a + a + a + a).slice(0, 64);
+      return a;
+    });
+  }
+  function rpc(payload, retried) {
+    return rpcOnce(payload).catch(function (e) {
+      var netErr = /Failed to fetch|NetworkError|network|fetch/i.test(e && e.message || '');
+      if (!retried && netErr) {
+        return new Promise(function (r) { setTimeout(r, 800); }).then(function () { return rpc(payload, true); });
+      }
+      throw e;
+    });
+  }
+  function rpcOnce(payload) {
     var c = syncConf(), S = String.fromCharCode(66, 101, 97, 114, 101, 114, 32);
     if (!c.endpoint) return Promise.reject(new Error('还没填同步服务地址'));
     if (!c.key) return Promise.reject(new Error('还没填云端密钥'));
@@ -91,7 +110,8 @@
   function bindCloud(u) {
     if (!cloudReady() || !u) return Promise.resolve(false);
     return authHash(u).then(function (a) { return rpc({ op: 'bind', user: u.name, auth: a }); })
-      .then(function () { return true; }).catch(function () { return false; });
+      .then(function () { return true; })
+      .catch(function (e) { return /云端校验失败/.test(e.message) ? 'auth' : false; });
   }
 
   /* ---------------- 加密 ---------------- */
@@ -213,7 +233,8 @@
     if (d.users[name]) return Promise.reject(new Error('这个用户名已经有人用了'));
     var isFirst = Object.keys(d.users).length === 0;
     var salt = rnd(16);
-    return hashPass(pass, salt, ITER).then(function (hash) {
+    return Promise.all([hashPass(pass, salt, ITER), syncAuthOf(name, pass)]).then(function (rr) {
+      var hash = rr[0], sa = rr[1];
       var d2 = db();
       if (d2.users[name]) throw new Error('这个用户名已经有人用了');
       d2.users[name] = {
@@ -221,6 +242,7 @@
         name: name,
         salt: salt,
         hash: hash,
+        syncAuth: sa,
         iter: ITER,
         role: Object.keys(d2.users).length === 0 ? 'admin' : 'user',
         tierManual: 0,
@@ -234,8 +256,16 @@
       if (isFirst) log('account', '成为本站第一个账号（站长）');
       else log('account', '注册账号');
       var nu = d2.users[name];
-      bindCloud(nu);
-      return nu;
+      return bindCloud(nu).then(function (r) {
+        if (r === 'auth') {
+          var d3 = db();
+          delete d3.users[name];
+          if (d3.session && d3.session.name === name) d3.session = null;
+          saveDb(d3);
+          throw new Error('云端已经有这个用户名，但密码不一样。如果那是你的号，直接用「登录」——同一个密码就能把数据接回来。');
+        }
+        return nu;
+      });
     });
   }
 
@@ -243,11 +273,37 @@
     name = (name || '').trim();
     var d = db();
     var u = d.users[name];
-    if (!u) return Promise.reject(new Error('没有这个账号'));
+    if (!u) {
+      if (!cloudReady()) return Promise.reject(new Error('没有这个账号'));
+      // 这台设备没登录过：拿密码去云端认领
+      return syncAuthOf(name, pass).then(function (sa) {
+        return rpc({ op: 'bind', user: name, auth: sa }).then(function () { return sa; });
+      }).then(function (sa) {
+        var salt = rnd(16);
+        return hashPass(pass, salt, ITER).then(function (hash) {
+          var d2 = db();
+          if (d2.users[name]) throw new Error('这个用户名已经有人用了');
+          d2.users[name] = {
+            id: 'u_' + rnd(6), name: name, salt: salt, hash: hash, iter: ITER,
+            role: 'user', tierManual: 0, createdAt: Date.now(), lastLogin: Date.now(),
+            logins: 1, seen: [today()], syncAuth: sa
+          };
+          d2.session = { name: name, at: Date.now() };
+          saveDb(d2);
+          log('account', '从云端认回账号');
+          return d2.users[name];
+        });
+      }).catch(function (e) {
+        throw /云端校验失败/.test(e.message) ? new Error('本机没这个账号，云端密码也不对') : e;
+      });
+    }
     return hashPass(pass, u.salt, u.iter || ITER).then(function (h) {
       if (h !== u.hash) throw new Error('密码不对');
+      return syncAuthOf(name, pass);
+    }).then(function (sa) {
       var d2 = db();
       var u2 = d2.users[name];
+      u2.syncAuth = sa;
       u2.logins = (u2.logins || 0) + 1;
       u2.lastLogin = Date.now();
       var s = seen(u2); var t = today();
@@ -766,7 +822,7 @@
 
   /* ---------------- 对外 ---------------- */
   window.XKAccount = {
-    cloudReady: cloudReady, bindCloud: bindCloud, renderCloudUsers: renderCloudUsers,
+    cloudReady: cloudReady, bindCloud: bindCloud, renderCloudUsers: renderCloudUsers, syncAuthOf: syncAuthOf,
     v: 1,
     user: current,
     tier: tierOf,

@@ -166,6 +166,7 @@
             <label for="syncKey">云端密钥（publishable / anon key）</label>
             <input class="input" id="syncKey" placeholder="sb_publishable_…  （公开密钥，只读用，放进页面无妨）" autocomplete="off">
           </div>
+          <p class="hint" id="syncHint">换设备时：用同一个用户名 + 密码直接「登录」，云端历史会自动接回来。密码本身不上传，上传的是用它算出来的凭据（PBKDF2，6 万次）。</p>
           <div class="row">
             <button class="btn soft" type="button" id="syncSave">保存地址</button>
             <button class="btn primary" type="button" id="syncNow">立即同步</button>
