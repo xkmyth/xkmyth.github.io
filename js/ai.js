@@ -267,6 +267,25 @@
     state.msgs.push(m); save(); renderMsgs();
   }
 
+  function askPoll(c, history) {
+    return rpc({ op: 'ask', user: c.user, auth: c.auth, messages: history, system: SYS, kind: 'chat' }).then(function (j) {
+      if (!j.rid) throw new Error('没拿到请求号');
+      var tries = 0;
+      return new Promise(function (resolve, reject) {
+        (function loop() {
+          tries++;
+          rpc({ op: 'poll', user: c.user, auth: c.auth, rid: j.rid }).then(function (r) {
+            if (r && r.pending) {
+              if (tries > 80) return reject(new Error('模型想太久没回，重发一次试试'));
+              return setTimeout(loop, 900);
+            }
+            resolve(r);
+          }).catch(reject);
+        })();
+      });
+    });
+  }
+
   function submit() {
     var v = inputEl.value.trim();
     if (!v) return;
@@ -285,11 +304,11 @@
 
     var history = state.msgs.slice(-12).map(function (m) { return { role: m.role, content: m.content }; });
     ctx().then(function (c) {
-      return rpc({ op: 'chat', user: c.user, auth: c.auth, messages: history, system: SYS, kind: 'chat' });
+      return askPoll(c, history);
     }).then(function (j) {
       var files = parseFiles(j.text || '');
       push('assistant', j.text || '', files.length ? { files: files } : null);
-      if (j.usage && j.usage.total_tokens) footEl.textContent = '这次 ' + j.usage.total_tokens + ' tokens · ' + (j.ms / 1000).toFixed(1) + 's';
+      if (j.usage && j.usage.total_tokens) footEl.textContent = '这次 ' + j.usage.total_tokens + ' tokens';
     }).catch(function (e) {
       push('assistant', '⚠️ ' + (e && e.message ? e.message : '出错了'));
     }).then(function () {
