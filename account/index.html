@@ -55,29 +55,10 @@
 
   <!-- ============ 未登录 ============ -->
   <div id="accGuest" hidden>
-    <div class="grid g2">
-      <form class="card pad-lg acc-form" id="accReg" autocomplete="on">
-        <h3>注册新账号</h3>
-        <p>用户名 3–20 位（中英文、数字、下划线、连字符），密码至少 8 位。注册即得 <b>T1</b>。</p>
-        <div class="field">
-          <label for="regName">用户名</label>
-          <input class="input" id="regName" name="username" autocomplete="username" maxlength="20" required>
-        </div>
-        <div class="field">
-          <label for="regPass">密码</label>
-          <input class="input" id="regPass" name="new-password" type="password" autocomplete="new-password" minlength="8" required>
-        </div>
-        <div class="field">
-          <label for="regPass2">确认密码</label>
-          <input class="input" id="regPass2" type="password" autocomplete="new-password" minlength="8" required>
-        </div>
-        <button class="btn primary block" type="submit">创建账号</button>
-        <p class="out" id="regOut" role="status"></p>
-      </form>
-
-      <form class="card pad-lg acc-form" id="accLogin">
+    <div class="acc-authw">
+<form class="card pad-lg acc-form" id="accLogin">
         <h3>登录</h3>
-        <p>在同一台设备上注册过的账号，这里直接登录。换设备请用「同步」里的导出 / 导入。</p>
+        <p>用户名 + 密码就行，换设备打同样的密码也能认回来。第一次来？点下面注册。</p>
         <div class="field">
           <label for="logName">用户名</label>
           <input class="input" id="logName" autocomplete="username" required>
@@ -112,6 +93,27 @@
         </details>
 
         <p style="margin-top:14px"><a href="#tiers" class="acc-lnk">看看等级怎么算 →</a></p>
+              <p class="acc-alt"><button type="button" id="accToReg">还没有账号？注册一个 →</button></p>
+      </form>
+
+<form class="card pad-lg acc-form" id="accReg" hidden autocomplete="on">
+        <h3>注册新账号</h3>
+        <p>用户名 3–20 位（中英文、数字、下划线、连字符），密码至少 8 位。注册即得 <b>T1</b>。</p>
+        <div class="field">
+          <label for="regName">用户名</label>
+          <input class="input" id="regName" name="username" autocomplete="username" maxlength="20" required>
+        </div>
+        <div class="field">
+          <label for="regPass">密码</label>
+          <input class="input" id="regPass" name="new-password" type="password" autocomplete="new-password" minlength="8" required>
+        </div>
+        <div class="field">
+          <label for="regPass2">确认密码</label>
+          <input class="input" id="regPass2" type="password" autocomplete="new-password" minlength="8" required>
+        </div>
+        <button class="btn primary block" type="submit">创建账号</button>
+        <p class="out" id="regOut" role="status"></p>
+              <p class="acc-alt"><button type="button" id="accToLog">← 我已经有账号，回到登录</button></p>
       </form>
     </div>
 

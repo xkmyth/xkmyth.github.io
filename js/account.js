@@ -720,8 +720,13 @@
       }).catch(function (ex) { err(box, ex.message); });
     });
 
+    var toReg = $('accToReg'), toLog = $('accToLog');
+    if (toReg) toReg.addEventListener('click', function () { showAuth('reg'); });
+    if (toLog) toLog.addEventListener('click', function () { showAuth('log'); });
+    showAuth('log');
+
     var out = $('accOut');
-    if (out) out.addEventListener('click', function () {
+    if (out) out.addEventListener('click', function () { setTimeout(function () { showAuth('log'); }, 120);
       logout(); renderAll();
       toast('已退出登录');
     });
@@ -891,8 +896,23 @@
   function apiRaw(p) { return rpc(p); }
   function myName() { var u = current(); return u ? u.name : ''; }
 
+  function ctx() {
+    var u = current();
+    if (!u) return Promise.reject(new Error('先登录'));
+    return authHash(u).then(function (h) { return { user: u.name, auth: h }; });
+  }
+
+  function showAuth(which) {
+    var r = $('accReg'), l = $('accLogin');
+    if (!r || !l) return;
+    r.hidden = which !== 'reg';
+    l.hidden = which === 'reg';
+    var f = which === 'reg' ? $('regName') : $('logName');
+    if (f) setTimeout(function () { try { f.focus(); } catch (e) { } }, 50);
+  }
+
   window.XKAccount = {
-    api: api, apiRaw: apiRaw, myName: myName, changePass: changePass, adoptPass: adoptPass,
+    api: api, apiRaw: apiRaw, ctx: ctx, showAuth: showAuth, myName: myName, changePass: changePass, adoptPass: adoptPass,
     cloudReady: cloudReady, bindCloud: bindCloud, renderCloudUsers: renderCloudUsers, syncAuthOf: syncAuthOf, autoSync: autoSync,
     v: 1,
     conf: function () { var c = syncConf(); return { endpoint: c.endpoint, key: c.key, ref: (c.endpoint || '').replace(/^https:\/\//, '').split('.')[0] }; },

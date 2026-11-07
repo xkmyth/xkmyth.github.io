@@ -888,3 +888,29 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
   else build();
 })();
+
+/* ============================================================
+   第十节：星空 AI 气泡（全站）
+   ============================================================ */
+(function () {
+  'use strict';
+  function boot() {
+    if (window.__xkAiBoot) return;
+    window.__xkAiBoot = 1;
+    if (!window.XKAccount) {
+      var s0 = document.createElement('script');
+      s0.src = '/js/account.js'; s0.async = true;
+      s0.onload = function () { plug(); };
+      document.head.appendChild(s0);
+    } else plug();
+    function plug() {
+      if (document.querySelector('script[src="/js/ai.js"]')) return;
+      var sc = document.createElement('script');
+      sc.src = '/js/ai.js'; sc.async = true; sc.defer = true;
+      sc.onerror = function () { };
+      document.body.appendChild(sc);
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
