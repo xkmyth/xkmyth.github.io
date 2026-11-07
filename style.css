@@ -928,3 +928,61 @@ body { overflow-x: clip; }
 
 .acc-cloud { margin-top: 16px; }
 .acc-cloud .badge { margin-left: 6px; vertical-align: 1px; }
+
+
+/* ===================== 第八节：资料 / 站长工具 / 论坛 ===================== */
+.chk { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); margin-top: 6px; cursor: pointer; }
+.chk input { accent-color: var(--gold2); width: 16px; height: 16px; }
+.sep { border: 0; border-top: 1px solid var(--line); margin: 18px 0 14px; }
+.tiny-in { max-width: 130px; padding: 7px 10px; font-size: 13px; height: auto; }
+.acc-forgot { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; }
+.acc-forgot summary { cursor: pointer; color: var(--ice); font-size: 14px; font-weight: 600; }
+.acc-forgot[open] summary { margin-bottom: 10px; }
+.acc-forgot .field { margin-top: 10px; }
+.acc-forgot .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.acc-tools { margin-top: 16px; }
+.acc-acts2 { display: flex; gap: 4px; flex-wrap: wrap; }
+.acc-conf { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 14px; }
+.acc-conf h4 { font-size: 14px; }
+.acc-conf .field { margin-top: 8px; max-width: 420px; }
+.acc-conf .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+.fm-guest, .fm-compose { margin-bottom: 18px; }
+.fm-who { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 14px; }
+.fm-ava {
+  width: 34px; height: 34px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  background: var(--gold-soft); border: 1px solid var(--line-gold); color: var(--gold); font-weight: 700; font-size: 14px;
+  flex: 0 0 auto; cursor: pointer;
+}
+.fm-ava.big { width: 54px; height: 54px; font-size: 20px; cursor: default; }
+.fm-ta { width: 100%; resize: vertical; min-height: 90px; line-height: 1.6; font-family: var(--font); }
+.fm-replyto { font-size: 13px; color: var(--ice); margin: 8px 0; }
+.fm-count { margin-left: auto; font-size: 12px; color: var(--dim); font-variant-numeric: tabular-nums; }
+.fm-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 26px 0 12px; }
+.fm-title { margin: 0; font-size: 18px; }
+.fm-list { display: flex; flex-direction: column; gap: 12px; }
+.fm-post {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px 18px; transition: border-color var(--mid), background var(--mid);
+}
+.fm-post:hover { background: var(--card-hover); border-color: var(--line-2); }
+.fm-post.pinned { border-color: var(--line-gold); box-shadow: var(--glow-gold); }
+.fm-head { display: flex; align-items: center; gap: 10px; }
+.fm-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 14px; }
+.fm-meta b { cursor: pointer; }
+.fm-meta b:hover { color: var(--ice); }
+.fm-time { color: var(--dim); font-size: 12px; margin-left: 4px; }
+.fm-body { margin: 10px 0 12px; line-height: 1.75; word-break: break-word; white-space: normal; }
+.fm-acts { display: flex; gap: 6px; flex-wrap: wrap; }
+.fm-kid { margin-left: 26px; border-left: 2px solid var(--line-ice); padding-left: 14px; margin-top: 10px; }
+.fm-more { text-align: center; margin: 18px 0 8px; }
+.fm-modal { position: fixed; inset: 0; background: rgba(4, 6, 15, .62); backdrop-filter: blur(4px); z-index: 90; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.fm-modal[hidden] { display: none; }
+.fm-modal-box { position: relative; width: min(420px, 100%); }
+.fm-x { position: absolute; top: 10px; right: 12px; background: none; border: 0; color: var(--muted); font-size: 22px; cursor: pointer; line-height: 1; }
+.fm-prof { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.fm-bio { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+@media (max-width: 640px) {
+  .fm-kid { margin-left: 10px; padding-left: 10px; }
+  .fm-post { padding: 14px; }
+}

@@ -88,6 +88,29 @@
         </div>
         <button class="btn primary block" type="submit">登录</button>
         <p class="out" id="logOut" role="status"></p>
+        <details class="acc-forgot" id="accForgot">
+          <summary>忘记密码？用邮箱重置</summary>
+          <p class="hint">要先在「资料」里绑定并验证过邮箱。</p>
+          <div class="field">
+            <label for="fgName">用户名</label>
+            <input class="input" id="fgName" placeholder="你的用户名" autocomplete="username">
+          </div>
+          <div class="field">
+            <label for="fgMail">验证过的邮箱</label>
+            <input class="input" id="fgMail" type="email" placeholder="you@example.com" autocomplete="email">
+          </div>
+          <div class="row">
+            <button class="btn soft tiny" type="button" id="fgSend">发验证码</button>
+            <input class="input tiny-in" id="fgCode" placeholder="6 位验证码" inputmode="numeric" autocomplete="one-time-code">
+          </div>
+          <div class="field">
+            <label for="fgPass">新密码</label>
+            <input class="input" id="fgPass" type="password" autocomplete="new-password">
+          </div>
+          <button class="btn primary block" type="button" id="fgGo">重置密码</button>
+          <p class="out" id="fgOut" role="status"></p>
+        </details>
+
         <p style="margin-top:14px"><a href="#tiers" class="acc-lnk">看看等级怎么算 →</a></p>
       </form>
     </div>
@@ -120,6 +143,7 @@
     <div class="pill-row acc-tabs" id="accTabs" role="tablist">
       <button class="pill active" type="button" data-tab="hist" role="tab">历史记录</button>
       <button class="pill" type="button" data-tab="sync" role="tab">同步</button>
+      <button class="pill" type="button" data-tab="profile" role="tab">资料</button>
       <button class="pill" type="button" data-tab="admin" role="tab" id="accTabAdmin" hidden>管理</button>
       <button class="pill" type="button" data-tab="tiers" role="tab">等级说明</button>
     </div>
@@ -157,24 +181,69 @@
         </div>
         <div class="card pad-lg">
           <h3>跨设备同步（云端）</h3>
-          <p>填上同步服务地址就能自动双向合并；没填时用上面的导出 / 导入手搬。协议：<b>GET</b> 取、<b>POST</b> 合并。</p>
-          <div class="field">
-            <label for="syncEp">同步服务地址</label>
-            <input class="input" id="syncEp" placeholder="https://<项目ref>.supabase.co" autocomplete="off">
-          </div>
-                    <div class="field">
-            <label for="syncKey">云端密钥（publishable / anon key）</label>
-            <input class="input" id="syncKey" placeholder="sb_publishable_…  （公开密钥，只读用，放进页面无妨）" autocomplete="off">
+          <p>云端<b>已内置</b>，不用你填任何地址或密钥。登录后自动双向合并；换设备只用用户名 + 密码。</p>
+          <div class="kvline"><span>云端服务</span><span id="syncEpText">已内置</span></div>
+          <div class="kvline"><span>连接状态</span><span id="syncKeyState">已就绪</span></div>
+          <div hidden>
+            <input id="syncEp" autocomplete="off">
+            <input id="syncKey" autocomplete="off">
           </div>
           <p class="hint" id="syncHint">换设备时：用同一个用户名 + 密码直接「登录」，云端历史会自动接回来。密码本身不上传，上传的是用它算出来的凭据（PBKDF2，6 万次）。</p>
           <div class="row">
-            <button class="btn soft" type="button" id="syncSave">保存地址</button>
             <button class="btn primary" type="button" id="syncNow">立即同步</button>
+            <a class="btn ghost" href="/forum/">去论坛看看</a>
           </div>
           <p class="out" id="syncCloudOut" role="status"></p>
         </div>
       </div>
       <div class="note" id="syncStat" style="margin-top:16px"></div>
+    </div>
+
+    <div class="acc-tab" id="tab-profile" hidden>
+      <div class="grid g2">
+        <div class="card pad-lg">
+          <h3>我的名片</h3>
+          <p>论坛里别人能看到这些。不想被看就把「公开名片」关掉。</p>
+          <div class="field">
+            <label for="pfAva">头像（一个字符 / emoji）</label>
+            <input class="input" id="pfAva" maxlength="4" placeholder="🐉">
+          </div>
+          <div class="field">
+            <label for="pfBio">一句话简介</label>
+            <input class="input" id="pfBio" maxlength="200" placeholder="喜欢折腾的人">
+          </div>
+          <label class="chk"><input type="checkbox" id="pfPub" checked> 公开名片（别人可以在论坛点开看你）</label>
+          <div class="row" style="margin-top:12px">
+            <button class="btn primary" type="button" id="pfSave">保存名片</button>
+            <span class="out" id="pfOut" role="status"></span>
+          </div>
+        </div>
+        <div class="card pad-lg">
+          <h3>邮箱与密码</h3>
+          <div class="kvline"><span>邮箱</span><span id="emCur">未绑定</span></div>
+          <div class="field" style="margin-top:10px">
+            <label for="emAddr">换绑邮箱</label>
+            <input class="input" id="emAddr" type="email" placeholder="you@example.com">
+          </div>
+          <div class="row">
+            <button class="btn soft tiny" type="button" id="emSend">发验证码</button>
+            <input class="input tiny-in" id="emCode" placeholder="6 位验证码" inputmode="numeric">
+            <button class="btn soft tiny" type="button" id="emOk">验证</button>
+          </div>
+          <p class="hint" id="emHint">验证过邮箱才能用它找回密码。</p>
+          <hr class="sep">
+          <div class="field">
+            <label for="pwOld">当前密码</label>
+            <input class="input" id="pwOld" type="password" autocomplete="current-password">
+          </div>
+          <div class="field">
+            <label for="pwNew">新密码</label>
+            <input class="input" id="pwNew" type="password" autocomplete="new-password">
+          </div>
+          <button class="btn primary" type="button" id="pwGo">改密码</button>
+          <p class="out" id="pwOut" role="status"></p>
+        </div>
+      </div>
     </div>
 
     <div class="acc-tab" id="tab-admin" hidden>
@@ -187,6 +256,7 @@
             <tbody id="adminBody"></tbody>
           </table>
         </div>
+        <div id="adminTools" class="acc-tools"></div>
         <div id="adminCloud" class="acc-cloud"></div>
         <p class="out" id="adminOut" role="status"></p>
       </div>
@@ -198,7 +268,10 @@
         <div class="row" style="margin-top:12px">
           <button class="btn tiny ghost" type="button" id="adminRecalc">重算全站等级</button>
           <button class="btn tiny ghost" type="button" id="adminWipeHist">清空全部历史</button>
+          <button class="btn tiny ghost" type="button" id="adminPurge">清空论坛</button>
         </div>
+        <div class="acc-conf" id="adminConf"></div>
+        <p class="out" id="adminOut2" role="status"></p>
       </div>
     </div>
 
@@ -254,6 +327,7 @@
 
 <div class="toast" id="toast"></div>
 <script src="/js/account.js"></script>
+<script src="/js/account-plus.js"></script>
 <script src="/sub.js"></script>
 </body>
 </html>

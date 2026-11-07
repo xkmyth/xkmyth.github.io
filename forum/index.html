@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="xkmyth 论坛 —— 登录后可以发帖、回帖、点赞，点开别人的名片看他的等级、简介和活跃天数。">
+<title>论坛 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><meta name="color-scheme" content="dark light">
+<link rel="canonical" href="https://xkmyth.dpdns.org/forum/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="星空神话 xkmyth">
+<meta property="og:title" content="论坛 · 星空神话 xkmyth">
+<meta property="og:description" content="发帖、回帖、点赞，点开名片看等级与简介。">
+<meta property="og:url" content="https://xkmyth.dpdns.org/forum/">
+<meta property="og:image" content="https://xkmyth.dpdns.org/icons/og-docs.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav class="nav-links" id="mainNav" aria-label="主导航">
+      <a href="/">首页</a>
+      <a href="/forum/">论坛</a>
+      <a href="/software/">软件库</a>
+      <a href="/start/">中转站</a>
+      <a href="/account/">账号</a>
+      <a href="/docs/">文档</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<section class="section narrow">
+  <header class="hero compact">
+    <p class="eyebrow">FORUM · 论坛</p>
+    <h1 class="hero-title">星语 <span class="gold">论坛</span></h1>
+    <p class="hero-sub">登录后发帖 · 点名字看名片 · 站长可以置顶和删帖</p>
+  </header>
+
+  <div class="card pad-lg fm-guest" id="fmGuest" hidden>
+    <h3>先登录，才能发言</h3>
+    <p>论坛用本站账号，不用另外注册。密码只在本机校验，云端存的是派生凭据。</p>
+    <a class="btn primary" href="/account/">去登录 / 注册</a>
+  </div>
+
+  <div class="card pad-lg fm-compose" id="fmCompose" hidden>
+    <div class="fm-who"><span class="fm-ava" id="fmMyAva">我</span><b id="fmMyName">—</b><span class="acc-tier" id="fmMyTier">T1</span></div>
+    <textarea class="input fm-ta" id="fmText" maxlength="2000" rows="4" placeholder="说点什么…（1–2000 字）"></textarea>
+    <div class="fm-replyto" id="fmReplyTo" hidden></div>
+    <div class="row">
+      <button class="btn primary" type="button" id="fmSend">发布</button>
+      <button class="btn ghost" type="button" id="fmCancel" hidden>取消回复</button>
+      <span class="fm-count" id="fmCount">0 / 2000</span>
+      <span class="out" id="fmOut" role="status"></span>
+    </div>
+  </div>
+
+  <div class="fm-bar">
+    <h2 class="fm-title">大家的留言</h2>
+    <button class="btn tiny ghost" type="button" id="fmRefresh">刷新</button>
+  </div>
+  <div id="fmList" class="fm-list"></div>
+  <div class="fm-more"><button class="btn ghost" type="button" id="fmMore" hidden>加载更多</button></div>
+  <p class="hint" id="fmZero" hidden>还没有人发言。做第一个吧。</p>
+</section>
+</main>
+
+<div class="fm-modal" id="fmModal" hidden>
+  <div class="fm-modal-box card pad-lg" role="dialog" aria-modal="true" aria-labelledby="fmModalName">
+    <button class="fm-x" type="button" id="fmModalX" aria-label="关闭">×</button>
+    <div class="fm-prof">
+      <span class="fm-ava big" id="fmModalAva">?</span>
+      <div>
+        <b id="fmModalName">—</b>
+        <span class="acc-tier" id="fmModalTier">T1</span>
+        <span class="badge rose" id="fmModalAdmin" hidden>ADMIN</span>
+        <p class="fm-bio" id="fmModalBio"></p>
+      </div>
+    </div>
+    <div class="kvline"><span>加入于</span><span id="fmModalJoin">—</span></div>
+    <div class="kvline"><span>活跃天数</span><span id="fmModalDays">—</span></div>
+    <div class="kvline"><span>发帖</span><span id="fmModalPosts">—</span></div>
+    <div class="kvline"><span>最近出现</span><span id="fmModalLast">—</span></div>
+    <p class="out" id="fmModalOut" role="status"></p>
+  </div>
+</div>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-map">
+      <div><h4>生态</h4>
+        <a href="/">首页</a>
+        <a href="/forum/">论坛</a>
+        <a href="/start/">中转站</a>
+        <a href="/account/">账号</a>
+      </div>
+      <div><h4>资源</h4>
+        <a href="/docs/">文档</a>
+        <a href="/guide/">上手指南</a>
+        <a href="/faq/">常见问题</a>
+        <a href="/status/">状态</a>
+      </div>
+      <div><h4>其他</h4>
+        <a href="/changelog/">更新日志</a>
+        <a href="/privacy/">隐私</a>
+        <a href="/contact/">联系</a>
+        <a href="/support/">Support</a>
+      </div>
+    </div>
+    <p class="foot-copy">? <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/js/account.js"></script>
+<script src="/sub.js"></script>
+<script src="/forum/forum.js"></script>
+</body>
+</html>

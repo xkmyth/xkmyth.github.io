@@ -801,7 +801,21 @@
     document.head.appendChild(s);
   }
 
+  // 导航里补一个「论坛」入口（全站统一，只插一次）
+  function forumLink() {
+    var lyn = document.getElementById('mainNav');
+    if (!lyn || lyn.querySelector('[data-navx="forum"]')) return;
+    var a = document.createElement('a');
+    a.href = '/forum/';
+    a.textContent = '论坛';
+    a.setAttribute('data-navx', 'forum');
+    var last = lyn.querySelector('a[href="/docs/"]');
+    if (last && last.nextSibling) lyn.insertBefore(a, last.nextSibling);
+    else lyn.appendChild(a);
+  }
+
   function chip() {
+    forumLink();
     if (!window.XKAccount) return;
     var inner = document.querySelector('.nav-inner');
     if (!inner || document.getElementById('navAcc')) return;

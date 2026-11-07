@@ -841,7 +841,48 @@
   }
 
   /* ---------------- 对外 ---------------- */
+  // 改密码：本地盐/哈希 + 云端凭据一起换（任何设备都能用新密码登回来）
+  function changePass(oldPass, newPass) {
+    var u = current();
+    if (!u) return Promise.reject(new Error('先登录'));
+    return hashPass(oldPass, u.salt, u.iter || ITER).then(function (hh) {
+      if (hh !== u.hash) throw new Error('当前密码不对');
+      var salt = rnd(16);
+      return Promise.all([hashPass(newPass, salt, ITER), syncAuthOf(u.name, newPass)]).then(function (rr) {
+        return authHash(u).then(function (a) {
+          return rpc({ op: 'set_pass', user: u.name, auth: a, newauth: rr[1] });
+        }).then(function () {
+          var d = db(), uu = d.users[u.name];
+          if (uu) { uu.salt = salt; uu.hash = rr[0]; uu.iter = ITER; uu.syncAuth = rr[1]; saveDb(d); }
+          return true;
+        });
+      });
+    });
+  }
+  // 重置成功后同步本机：本机有这号就换掉本地盐/哈希
+  function adoptPass(name, newPass) {
+    var d = db(), uu = d.users[name];
+    if (!uu) return Promise.resolve(false);
+    var salt = rnd(16);
+    return Promise.all([hashPass(newPass, salt, ITER), syncAuthOf(name, newPass)]).then(function (rr) {
+      uu.salt = salt; uu.hash = rr[0]; uu.iter = ITER; uu.syncAuth = rr[1];
+      saveDb(d); return true;
+    });
+  }
+
+  // 对外：带鉴权的云端调用（论坛 / 资料 / 站长操作都走这里）
+  function api(op, extra) {
+    var u = current();
+    if (!u) return Promise.reject(new Error('先登录'));
+    return authHash(u).then(function (a) {
+      return rpc(Object.assign({ op: op, user: u.name, auth: a }, extra || {}));
+    });
+  }
+  function apiRaw(p) { return rpc(p); }
+  function myName() { var u = current(); return u ? u.name : ''; }
+
   window.XKAccount = {
+    api: api, apiRaw: apiRaw, myName: myName, changePass: changePass, adoptPass: adoptPass,
     cloudReady: cloudReady, bindCloud: bindCloud, renderCloudUsers: renderCloudUsers, syncAuthOf: syncAuthOf, autoSync: autoSync,
     v: 1,
     user: current,
