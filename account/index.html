@@ -160,7 +160,11 @@
           <p>填上同步服务地址就能自动双向合并；没填时用上面的导出 / 导入手搬。协议：<b>GET</b> 取、<b>POST</b> 合并。</p>
           <div class="field">
             <label for="syncEp">同步服务地址</label>
-            <input class="input" id="syncEp" placeholder="https://your-worker.example.com/xkmyth-sync" autocomplete="off">
+            <input class="input" id="syncEp" placeholder="https://<项目ref>.supabase.co" autocomplete="off">
+          </div>
+                    <div class="field">
+            <label for="syncKey">云端密钥（publishable / anon key）</label>
+            <input class="input" id="syncKey" placeholder="sb_publishable_…  （公开密钥，只读用，放进页面无妨）" autocomplete="off">
           </div>
           <div class="row">
             <button class="btn soft" type="button" id="syncSave">保存地址</button>
@@ -182,6 +186,7 @@
             <tbody id="adminBody"></tbody>
           </table>
         </div>
+        <div id="adminCloud" class="acc-cloud"></div>
         <p class="out" id="adminOut" role="status"></p>
       </div>
       <div class="card pad-lg" style="margin-top:16px">

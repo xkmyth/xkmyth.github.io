@@ -49,6 +49,51 @@
     return (s && typeof s === 'object') ? s : {};
   }
 
+  function cloudReady() { var c = syncConf(); return !!(c.endpoint && c.key); }
+  function authHash(u) {
+    var raw = u.name + ':' + u.hash;
+    if (window.crypto && crypto.subtle && crypto.subtle.digest) {
+      return crypto.subtle.digest('SHA-256', new TextEncoder().encode(raw))
+        .then(function (b) { return toHex(new Uint8Array(b)); });
+    }
+    return Promise.resolve(weakHash(raw));
+  }
+  function rpc(payload) {
+    var c = syncConf(), S = String.fromCharCode(66, 101, 97, 114, 101, 114, 32);
+    if (!c.endpoint) return Promise.reject(new Error('还没填同步服务地址'));
+    if (!c.key) return Promise.reject(new Error('还没填云端密钥'));
+    var ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 12000) : null;
+    var hdr = { 'Content-Type': 'application/json', Accept: 'application/json', apikey: c.key };
+    hdr.Authorization = S + c.key;
+    return fetch(c.endpoint.replace(/\/+$/, '') + '/rest/v1/rpc/xk_api', {
+      method: 'POST', headers: hdr, body: JSON.stringify({ p: payload }),
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (r) {
+      if (timer) clearTimeout(timer);
+      return r.text().then(function (t) {
+        var j = null; try { j = JSON.parse(t); } catch (e) { }
+        if (!r.ok) throw new Error('云端 ' + r.status + (j && (j.message || j.hint) ? '：' + (j.message || j.hint) : ''));
+        if (!j || typeof j !== 'object') throw new Error('云端响应不是 JSON');
+        if (j.ok === false) {
+          throw new Error(j.err === 'auth' ? '云端校验失败（密码在本机之外被改过？）'
+            : j.err === 'not_admin' ? '云端没有管理员权限'
+              : j.err === 'no_user' ? '云端还没这个账号，先在当前设备点一次同步'
+                : '云端错误：' + (j.err || '未知'));
+        }
+        return j;
+      });
+    }).catch(function (e) {
+      if (timer) clearTimeout(timer);
+      throw new Error(e.name === 'AbortError' ? '云端超时（12 秒）' : (e.message || '同步失败'));
+    });
+  }
+  function bindCloud(u) {
+    if (!cloudReady() || !u) return Promise.resolve(false);
+    return authHash(u).then(function (a) { return rpc({ op: 'bind', user: u.name, auth: a }); })
+      .then(function () { return true; }).catch(function () { return false; });
+  }
+
   /* ---------------- 加密 ---------------- */
   function toHex(u8) {
     var s = '';
@@ -188,7 +233,9 @@
       saveDb(d2);
       if (isFirst) log('account', '成为本站第一个账号（站长）');
       else log('account', '注册账号');
-      return d2.users[name];
+      var nu = d2.users[name];
+      bindCloud(nu);
+      return nu;
     });
   }
 
@@ -209,6 +256,7 @@
       d2.session = { name: name, at: Date.now() };
       saveDb(d2);
       log('account', '登录');
+      bindCloud(u2);
       return u2;
     });
   }
@@ -317,33 +365,20 @@
   }
   function syncNow() {
     var u = current();
-    var conf = syncConf();
-    var ep = (conf.endpoint || '').replace(/\/+$/, '');
     if (!u) return Promise.reject(new Error('先登录'));
-    if (!ep) return Promise.reject(new Error('还没填同步服务地址'));
-    var ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
-    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 10000) : null;
-    return fetch(ep + '/state?user=' + encodeURIComponent(u.name), {
-      method: 'GET', headers: { Accept: 'application/json' }, signal: ctrl ? ctrl.signal : undefined
-    }).then(function (r) {
-      if (!r.ok) throw new Error('取云端数据失败 HTTP ' + r.status);
-      return r.json();
-    }).then(function (remote) {
-      var local = histOf(u.name);
-      var merged = mergeHist(local, (remote && remote.hist) || []);
+    var c = syncConf();
+    if (!c.endpoint) return Promise.reject(new Error('还没填同步服务地址'));
+    if (!c.key) return Promise.reject(new Error('还没填云端密钥（publishable key）'));
+    return authHash(u).then(function (a) {
+      return rpc({ op: 'merge', user: u.name, auth: a, hist: histOf(u.name), logins: u.logins || 0, seen: seen(u) });
+    }).then(function (res) {
+      var merged = mergeHist(histOf(u.name), res.hist || []);
       var h = histAll(); h[u.name] = merged; saveHist(h);
-      var body = JSON.stringify({ user: u.name, hist: merged, tier: tierOf(u), logins: u.logins || 0, seen: seen(u) });
-      return fetch(ep + '/merge', {
-        method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: body
-      });
-    }).then(function (r) {
-      if (timer) clearTimeout(timer);
-      if (!r.ok) throw new Error('写云端失败 HTTP ' + r.status);
-      log('sync', '云端同步完成');
-      return histOf(u.name).length;
-    }).catch(function (e) {
-      if (timer) clearTimeout(timer);
-      throw new Error(e.name === 'AbortError' ? '云端超时（10 秒）' : (e.message || '同步失败'));
+      var d = db(), uu = d.users[u.name];
+      if (uu) { uu.cloudAdmin = !!res.admin; saveDb(d); }
+      log('sync', '云端同步完成（' + merged.length + ' 条）');
+      renderHist(); renderUser();
+      return merged.length;
     });
   }
 
@@ -437,6 +472,44 @@
     var u = current();
     if (!u || u.role !== 'admin') return;
     var d = db(), h = histAll();
+    var cl = $('adminCloud');
+    if (cl && !cl.getAttribute('data-wired')) {
+      cl.setAttribute('data-wired', '1');
+      cl.addEventListener('change', function (e) {
+        var t = e.target; if (!t || !t.getAttribute('data-cl')) return;
+        var u0 = current(), nm = t.getAttribute('data-cl'), v = parseInt(t.value, 10) || 0;
+        authHash(u0).then(function (a) { return rpc({ op: 'admin_tier', user: u0.name, auth: a, target: nm, val: v }); })
+          .then(function () { ok($('adminOut'), '云端已把 ' + nm + ' 设为 ' + (v ? 'T' + v : '自动等级')); })
+          .catch(function (e2) { err($('adminOut'), e2.message); });
+      });
+      cl.addEventListener('click', function (e) {
+        var b = e.target && e.target.closest ? e.target.closest('[data-clw]') : null;
+        if (!b) return;
+        var u0 = current(), nm = b.getAttribute('data-clw');
+        authHash(u0).then(function (a) { return rpc({ op: 'admin_wipe', user: u0.name, auth: a, target: nm }); })
+          .then(function () { ok($('adminOut'), '云端已清空 ' + nm + ' 的历史'); renderCloudUsers(); })
+          .catch(function (e2) { err($('adminOut'), e2.message); });
+      });
+    }
+    var cl = $('adminCloud');
+    if (cl && !cl.getAttribute('data-wired')) {
+      cl.setAttribute('data-wired', '1');
+      cl.addEventListener('change', function (e) {
+        var t = e.target; if (!t || !t.getAttribute('data-cl')) return;
+        var u0 = current(), nm = t.getAttribute('data-cl'), v = parseInt(t.value, 10) || 0;
+        authHash(u0).then(function (a) { return rpc({ op: 'admin_tier', user: u0.name, auth: a, target: nm, val: v }); })
+          .then(function () { ok($('adminOut'), '云端已把 ' + nm + ' 设为 ' + (v ? 'T' + v : '自动等级')); })
+          .catch(function (e2) { err($('adminOut'), e2.message); });
+      });
+      cl.addEventListener('click', function (e) {
+        var b = e.target && e.target.closest ? e.target.closest('[data-clw]') : null;
+        if (!b) return;
+        var u0 = current(), nm = b.getAttribute('data-clw');
+        authHash(u0).then(function (a) { return rpc({ op: 'admin_wipe', user: u0.name, auth: a, target: nm }); })
+          .then(function () { ok($('adminOut'), '云端已清空 ' + nm + ' 的历史'); renderCloudUsers(); })
+          .catch(function (e2) { err($('adminOut'), e2.message); });
+      });
+    }
     var body = $('adminBody');
     if (!body) return;
     var names = Object.keys(d.users).sort(function (a, b) {
@@ -463,6 +536,35 @@
     var by = 0;
     try { by = (localStorage.getItem(K_ACCT) || '').length + (localStorage.getItem(K_HIST) || '').length; } catch (e) { }
     var bt = $('adminBytes'); if (bt) bt.textContent = (by / 1024).toFixed(1) + ' KB';
+    renderCloudUsers();
+  }
+
+  function renderCloudUsers() {
+    var box = $('adminCloud');
+    if (!box) return;
+    var u = current();
+    if (!u || u.role !== 'admin') { box.innerHTML = ''; return; }
+    if (!cloudReady()) {
+      box.innerHTML = '<p class="hint">云端还没接：账号目前只在这台设备的浏览器里。填好「同步服务地址 + 云端密钥」后，这里会列出所有设备注册过的账号。</p>';
+      return;
+    }
+    box.innerHTML = '<p class="hint">正在读取云端账号…</p>';
+    authHash(u).then(function (a) { return rpc({ op: 'admin_list', user: u.name, auth: a }); }).then(function (res) {
+      var us = res.users || [];
+      if (!us.length) { box.innerHTML = '<p class="hint">云端还没有账号。点「立即同步」把当前账号推上去。</p>'; return; }
+      box.innerHTML = '<h4 style="margin:0 0 10px">云端账号 <span class="badge ice">' + us.length + '</span></h4><div class="tbl-wrap"><table class="tbl"><thead><tr><th>账号</th><th>等级</th><th>登录</th><th>记录</th><th>最近更新</th><th>操作</th></tr></thead><tbody>' +
+        us.map(function (x) {
+          return '<tr><td><b>' + esc(x.user) + '</b>' + (x.admin ? ' <span class="badge rose">ADMIN</span>' : '') + '</td>' +
+            '<td><select class="input acc-mini" data-cl="' + esc(x.user) + '">' + [0, 1, 2, 3, 4, 5].map(function (k2) {
+              return '<option value="' + k2 + '"' + ((x.tier || 0) === k2 ? ' selected' : '') + '>' + (k2 ? 'T' + k2 : '自动') + '</option>';
+            }).join('') + '</select></td>' +
+            '<td>' + (x.logins || 0) + '</td><td>' + (x.hist || 0) + '</td>' +
+            '<td>' + (x.updated ? ago(Date.parse(x.updated)) : '—') + '</td>' +
+            '<td><button class="btn tiny ghost" data-clw="' + esc(x.user) + '">清历史</button></td></tr>';
+        }).join('') + '</tbody></table></div>';
+    }).catch(function (e) {
+      box.innerHTML = '<p class="out err">读云端账号失败：' + esc(e.message) + '</p>';
+    });
   }
 
   function renderSyncStat() {
@@ -472,12 +574,14 @@
     var conf = syncConf();
     var ep = $('syncEp');
     if (ep && !ep.value) ep.value = conf.endpoint || '';
+    var kk = $('syncKey'); if (kk && !kk.value) kk.value = conf.key || '';
+    var kk = $('syncKey'); if (kk && !kk.value) kk.value = conf.key || '';
     var h = histAll(), tot = 0;
     Object.keys(h).forEach(function (k) { tot += (h[k] || []).length; });
-    box.className = conf.endpoint ? 'note ok' : 'note';
-    box.innerHTML = conf.endpoint
+    box.className = (conf.endpoint && conf.key) ? 'note ok' : 'note';
+    box.innerHTML = (conf.endpoint && conf.key)
       ? '云端地址已配置：<b>' + esc(conf.endpoint) + '</b>　当前账号 ' + esc(u ? u.name : '—') + ' 有 <b>' + histOf(u ? u.name : '').length + '</b> 条记录，本机总计 ' + tot + ' 条。'
-      : '还没配置云端地址。现在可用「导出 / 导入」手动搬数据；等接上同步服务后，这里会自动双向合并。';
+      : (conf.endpoint ? '地址已填，还差云端密钥（publishable key）——填上就能跨设备同步。' : '还没配置云端地址。现在可用「导出 / 导入」手动搬数据；接上 Supabase 后这里会自动双向合并。');
   }
 
   function renderAll() {
@@ -592,11 +696,12 @@
     var sv = $('syncSave');
     if (sv) sv.addEventListener('click', function () {
       var v = ($('syncEp').value || '').trim();
+      var k = ($('syncKey').value || '').trim();
       var c = syncConf();
-      c.endpoint = v;
+      c.endpoint = v; c.key = k;
       write(K_SYNC, c);
       renderSyncStat();
-      ok($('syncCloudOut'), v ? '地址已保存' : '已清空地址');
+      ok($('syncCloudOut'), v ? (k ? '地址与密钥已保存' : '地址已保存，还差密钥') : '已清空地址');
     });
     var sn = $('syncNow');
     if (sn) sn.addEventListener('click', function () {
@@ -661,6 +766,7 @@
 
   /* ---------------- 对外 ---------------- */
   window.XKAccount = {
+    cloudReady: cloudReady, bindCloud: bindCloud, renderCloudUsers: renderCloudUsers,
     v: 1,
     user: current,
     tier: tierOf,
