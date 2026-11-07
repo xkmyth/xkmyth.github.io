@@ -986,3 +986,59 @@ body { overflow-x: clip; }
   .fm-kid { margin-left: 10px; padding-left: 10px; }
   .fm-post { padding: 14px; }
 }
+
+/* ===== 第九节：论坛加料（板块 / 排序 / 搜索 / 通知 / 帖子卡） ===== */
+.fm-stats { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+.fm-stat { display: inline-flex; align-items: baseline; gap: 6px; font-size: 12px; color: var(--muted);
+  border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 5px 12px; }
+.fm-stat b { color: var(--gold); font-size: 15px; font-variant-numeric: tabular-nums; }
+.fm-tools { margin-bottom: 16px; display: flex; flex-direction: column; gap: 12px; }
+.fm-tools-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.fm-search-w { display: flex; align-items: center; gap: 8px; flex: 1 1 220px; min-width: 0; color: var(--dim); }
+.fm-search { width: 100%; }
+.fm-sorts { flex-wrap: wrap; }
+.fm-cats { display: flex; gap: 6px; flex-wrap: wrap; }
+.fm-chip { font: inherit; font-size: 13px; color: var(--muted); background: transparent;
+  border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; cursor: pointer;
+  transition: color .18s, border-color .18s, background .18s; display: inline-flex; align-items: center; gap: 6px; }
+.fm-chip:hover { color: var(--ice); border-color: var(--line-ice); }
+.fm-chip.on { color: var(--gold); border-color: var(--line-gold); background: var(--gold-soft); }
+.fm-chip em { font-style: normal; font-size: 11px; color: var(--dim); font-variant-numeric: tabular-nums; }
+.fm-notif { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--muted);
+  border: 1px solid var(--line-ice); background: var(--ice-soft); border-radius: var(--radius);
+  padding: 10px 14px; margin-bottom: 14px; }
+.fm-notif em { font-style: normal; color: var(--dim); }
+.fm-notif-dot { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px;
+  border-radius: 999px; background: var(--gold); color: #1a1206; font-size: 12px; font-weight: 700; }
+.fm-phead { display: flex; align-items: center; gap: 10px; }
+.fm-pmeta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 14px; min-width: 0; }
+.fm-pmeta b { cursor: pointer; }
+.fm-pmeta b:hover { color: var(--ice); }
+.fm-ptime { color: var(--dim); font-size: 12px; }
+.fm-cat { font-style: normal; color: var(--ice); }
+.fm-ptitle { margin: 10px 0 4px; font-size: 17px; line-height: 1.45; cursor: pointer; }
+.fm-ptitle:hover { color: var(--gold); }
+.fm-act { font: inherit; font-size: 12.5px; color: var(--muted); background: transparent;
+  border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; cursor: pointer;
+  transition: color .18s, border-color .18s, background .18s; }
+.fm-act b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.fm-act:hover { color: var(--ice); border-color: var(--line-ice); background: var(--ice-soft); }
+.fm-act.on { color: var(--rose); border-color: rgba(253, 164, 175, .35); background: rgba(253, 164, 175, .1); }
+.fm-act.warn:hover { color: var(--rose); border-color: rgba(253, 164, 175, .35); background: rgba(253, 164, 175, .1); }
+.fm-views { font-size: 12px; color: var(--dim); padding: 4px 2px; }
+.fm-kids { margin-top: 10px; }
+.fm-kid { border-left: 2px solid var(--line-ice); padding-left: 12px; margin: 10px 0 0; }
+.fm-kid .fm-body { margin: 6px 0 8px; font-size: 14px; }
+.fm-x2 { background: none; border: 0; color: var(--dim); font-size: 16px; cursor: pointer; line-height: 1; }
+.fm-composer-top { gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+.fm-title-in { flex: 1 1 260px; min-width: 0; }
+.fm-ava[role="button"] { cursor: pointer; }
+.fm-post .fm-body code { background: var(--bg-elev); border: 1px solid var(--line); border-radius: 6px; padding: 1px 5px; font-size: .92em; }
+.fm-post .fm-body a { color: var(--ice); text-decoration: underline; text-underline-offset: 2px; }
+@media (max-width: 640px) {
+  .fm-stats { gap: 6px; }
+  .fm-stat { font-size: 11px; padding: 4px 10px; }
+  .fm-search-w { flex: 1 1 100%; }
+  .fm-ptitle { font-size: 16px; }
+  .fm-kid { margin-left: 4px; padding-left: 8px; }
+}

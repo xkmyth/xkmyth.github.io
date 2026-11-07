@@ -436,8 +436,18 @@
     var c = syncConf();
     if (!c.endpoint) return Promise.reject(new Error('还没填同步服务地址'));
     if (!c.key) return Promise.reject(new Error('还没填云端密钥（publishable key）'));
-    return authHash(u).then(function (a) {
+    function doMerge(a) {
       return rpc({ op: 'merge', user: u.name, auth: a, hist: histOf(u.name), logins: u.logins || 0, seen: seen(u) });
+    }
+    return authHash(u).then(function (a) {
+      // 云端被清空过（或这台设备从没推上去）时，先补一次 bind 再合并
+      return doMerge(a).catch(function (e) {
+        if (!/还没这个账号/.test(e.message || '')) throw e;
+        return bindCloud(u).then(function (r) {
+          if (r === 'auth') throw new Error('云端已经有这个用户名，但密码不一样');
+          return doMerge(a);
+        });
+      });
     }).then(function (res) {
       var merged = mergeHist(histOf(u.name), res.hist || []);
       var h = histAll(); h[u.name] = merged; saveHist(h);

@@ -116,12 +116,35 @@
   }
 
   /* ---------------- 站长工具 ---------------- */
-  var TIERS = ['自动', 'T1 新星', 'T2 常客', 'T3 熟客', 'T4 资深', 'T5 元老'];
+
+  // 云端没有本人记录时（表被清空 / 换库）：给一个「重建云端身份」按钮
+  function cloudFix(box, msg) {
+    if (!box) return;
+    box.innerHTML = '<p class="out err" role="status">' + msg + '</p>' +
+      '<p class="hint">你的账号现在只存在这台设备的浏览器里（云端表被清空过时会这样）。' +
+      '重建一次就能把身份补回云端，第一次补回去的账号是站长。</p>' +
+      '<button class="btn tiny" type="button" id="admFix">重建云端身份</button>';
+    var btn = $('admFix');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      btn.disabled = true; btn.textContent = '正在重建…';
+      A.bindCloud(A.user()).then(function (r) {
+        if (r === 'auth') throw { err: 'auth' };
+        return A.syncNow(true).catch(function () { });
+      }).then(function () { return A.api('admin_list'); }).then(function (r) {
+        if (r.ok === false) throw r;
+        loadAdmin();
+        ok($('adminOut2'), '云端身份已重建');
+      }).catch(function (e) { cloudFix(box, emsg(e)); });
+    });
+  }
+
+    var TIERS = ['自动', 'T1 新星', 'T2 常客', 'T3 熟客', 'T4 资深', 'T5 元老'];
   function loadAdmin() {
     var box = $('adminTools');
     if (!box) return;
     A.api('admin_list').then(function (r) {
-      if (r.ok === false) { box.innerHTML = '<p class="hint">' + emsg(r) + '</p>'; return; }
+      if (r.ok === false) { if (r.err === 'no_user' || r.err === 'not_admin' || r.err === 'auth') cloudFix(box, emsg(r)); else box.innerHTML = '<p class="hint">' + emsg(r) + '</p>'; return; }
       var me = A.myName();
       var rows = (r.users || []).map(function (u) {
         var mine = (u.user === me);
@@ -190,7 +213,10 @@
           });
         });
       });
-    }).catch(function (e) { box.innerHTML = '<p class="hint">' + emsg(e) + '</p>'; });
+    }).catch(function (e) {
+      if (e && (e.err === 'no_user' || e.err === 'not_admin' || e.err === 'auth' || /还没这个账号|管理员权限/.test(e.message || ''))) cloudFix(box, emsg(e));
+      else box.innerHTML = '<p class="hint">' + emsg(e) + '</p>';
+    });
 
     var pg = $('adminPurge');
     if (pg && !pg._b) pg._b = (pg.addEventListener('click', function () {
