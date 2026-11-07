@@ -783,3 +783,69 @@
   else boot();
 })();
 
+/* ============================================================
+   第七节：账号系统（全站注入脚本 + 导航入口 + 访问记录）
+   ============================================================ */
+(function () {
+  'use strict';
+  if (window.__xkAccBoot) return;
+  window.__xkAccBoot = 1;
+
+  function ensure(cb) {
+    if (window.XKAccount) return cb();
+    var s = document.createElement('script');
+    s.src = '/js/account.js';
+    s.async = true;
+    s.onload = function () { cb(); };
+    s.onerror = function () { };
+    document.head.appendChild(s);
+  }
+
+  function chip() {
+    if (!window.XKAccount) return;
+    var inner = document.querySelector('.nav-inner');
+    if (!inner || document.getElementById('navAcc')) return;
+    var u = window.XKAccount.user();
+    var a = document.createElement('a');
+    a.id = 'navAcc';
+    a.className = 'nav-acc';
+    a.href = '/account/';
+    if (u) {
+      var t = window.XKAccount.tier(u);
+      var ini = String(u.name).slice(0, 1).toUpperCase();
+      a.innerHTML = '<i class="nav-acc-ava t' + t + '">' + ini + '</i><span id="navAccTxt">T' + t + '</span>';
+      a.title = u.name + ' · T' + t + ' · ' + window.XKAccount.tierName(t);
+    } else {
+      a.innerHTML = '<span id="navAccTxt">登录</span>';
+      a.title = '账号 · 直接注册即可用';
+    }
+    var burger = inner.querySelector('.nav-burger');
+    if (burger) inner.insertBefore(a, burger);
+    else inner.appendChild(a);
+  }
+
+  function searchHook() {
+    if (window.__xkSearchHook) return;
+    window.__xkSearchHook = 1;
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter') return;
+      var el = document.activeElement;
+      if (!el || !el.classList || !el.classList.contains('cmdk-input')) return;
+      var q = (el.value || '').trim();
+      if (q && window.XKAccount) {
+        try { window.XKAccount.log('search', q); } catch (err) { }
+      }
+    }, true);
+  }
+
+  function run() {
+    ensure(function () {
+      try { chip(); } catch (e) { }
+      try { window.XKAccount.visit(location.pathname, document.title); } catch (e) { }
+      try { searchHook(); } catch (e) { }
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+  else run();
+})();

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="xkmyth 账号系统 —— 直接注册即可用，T1–T5 五级成长、访问历史记录、跨设备同步，站长另有 admin 管理面板。">
+<title>账号 · 星空神话 xkmyth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><meta name="color-scheme" content="dark light">
+<link rel="canonical" href="https://xkmyth.cc.cd/account/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://xkmyth.cc.cd/"},{"@type":"ListItem","position":2,"name":"账号","item":"https://xkmyth.cc.cd/account/"}]},{"@type":"WebPage","name":"账号","url":"https://xkmyth.cc.cd/account/","description":"xkmyth 账号系统 —— 直接注册即可用，T1–T5 五级成长、访问历史记录、跨设备同步。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"xkmyth","url":"https://xkmyth.cc.cd/"},"publisher":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.cc.cd/","logo":"https://xkmyth.cc.cd/icons/icon-512.png"}}]}</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="星空神话 xkmyth">
+<meta property="og:title" content="账号 · 星空神话 xkmyth">
+<meta property="og:description" content="直接注册即可用，T1–T5 五级成长、访问历史记录、跨设备同步，站长另有 admin 管理面板。">
+<meta property="og:url" content="https://xkmyth.cc.cd/account/">
+<meta property="og:image" content="https://xkmyth.cc.cd/icons/og-docs.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="账号 · 星空神话 xkmyth">
+<meta name="twitter:description" content="直接注册即可用，T1–T5 五级成长、访问历史记录、跨设备同步。">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav class="nav-links" id="mainNav" aria-label="主导航">
+      <a href="/">首页</a>
+      <a href="/#core">三大件</a>
+      <a href="/software/">软件库</a>
+      <a href="/start/">中转站</a>
+      <a href="/#sitemap">地图</a>
+      <a href="/docs/">文档</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<section class="section narrow">
+
+  <header class="hero compact">
+    <p class="eyebrow">ACCOUNT · 账号</p>
+    <h1 class="hero-title">账号 <span class="gold">系统</span></h1>
+    <p class="hero-sub">直接注册就能用 · <b class="ice">T1–T5</b> 五级成长 · 访问历史 · 跨设备同步</p>
+  </header>
+
+  <!-- ============ 未登录 ============ -->
+  <div id="accGuest" hidden>
+    <div class="grid g2">
+      <form class="card pad-lg acc-form" id="accReg" autocomplete="on">
+        <h3>注册新账号</h3>
+        <p>用户名 3–20 位（中英文、数字、下划线、连字符），密码至少 8 位。注册即得 <b>T1</b>。</p>
+        <div class="field">
+          <label for="regName">用户名</label>
+          <input class="input" id="regName" name="username" autocomplete="username" maxlength="20" required>
+        </div>
+        <div class="field">
+          <label for="regPass">密码</label>
+          <input class="input" id="regPass" name="new-password" type="password" autocomplete="new-password" minlength="8" required>
+        </div>
+        <div class="field">
+          <label for="regPass2">确认密码</label>
+          <input class="input" id="regPass2" type="password" autocomplete="new-password" minlength="8" required>
+        </div>
+        <button class="btn primary block" type="submit">创建账号</button>
+        <p class="out" id="regOut" role="status"></p>
+      </form>
+
+      <form class="card pad-lg acc-form" id="accLogin">
+        <h3>登录</h3>
+        <p>在同一台设备上注册过的账号，这里直接登录。换设备请用「同步」里的导出 / 导入。</p>
+        <div class="field">
+          <label for="logName">用户名</label>
+          <input class="input" id="logName" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label for="logPass">密码</label>
+          <input class="input" id="logPass" type="password" autocomplete="current-password" required>
+        </div>
+        <button class="btn primary block" type="submit">登录</button>
+        <p class="out" id="logOut" role="status"></p>
+        <p style="margin-top:14px"><a href="#tiers" class="acc-lnk">看看等级怎么算 →</a></p>
+      </form>
+    </div>
+
+    <div class="note" id="accNote" style="margin-top:18px"></div>
+  </div>
+
+  <!-- ============ 已登录 ============ -->
+  <div id="accUser" hidden>
+    <div class="card pad-lg acc-profile">
+      <div class="acc-ava" id="accAva" aria-hidden="true">星</div>
+      <div class="acc-info">
+        <div class="acc-top">
+          <b id="accName">—</b>
+          <span class="acc-tier" id="accTier">T1</span>
+          <span class="badge rose" id="accAdminBadge" hidden>ADMIN</span>
+        </div>
+        <div class="acc-prog-row">
+          <div class="progress"><i id="accProg" style="width:0"></i></div>
+          <span id="accNext">—</span>
+        </div>
+        <div class="acc-stats" id="accStats"></div>
+      </div>
+      <div class="acc-acts">
+        <a class="btn small ghost" href="/start/">中转站</a>
+        <button class="btn small" id="accOut" type="button">退出登录</button>
+      </div>
+    </div>
+
+    <div class="pill-row acc-tabs" id="accTabs" role="tablist">
+      <button class="pill active" type="button" data-tab="hist" role="tab">历史记录</button>
+      <button class="pill" type="button" data-tab="sync" role="tab">同步</button>
+      <button class="pill" type="button" data-tab="admin" role="tab" id="accTabAdmin" hidden>管理</button>
+      <button class="pill" type="button" data-tab="tiers" role="tab">等级说明</button>
+    </div>
+
+    <div class="acc-tab" id="tab-hist">
+      <div class="acc-toolbar">
+        <div class="pill-row acc-filters" id="histFilters">
+          <button class="pill active" type="button" data-k="all">全部</button>
+          <button class="pill" type="button" data-k="visit">浏览</button>
+          <button class="pill" type="button" data-k="search">搜索</button>
+          <button class="pill" type="button" data-k="start">中转站</button>
+          <button class="pill" type="button" data-k="sync">同步</button>
+          <button class="pill" type="button" data-k="account">账号</button>
+        </div>
+        <div class="acc-toolbar-r">
+          <button class="btn tiny ghost" type="button" id="histExport">导出 JSON</button>
+          <button class="btn tiny ghost" type="button" id="histClear">清空</button>
+        </div>
+      </div>
+      <p class="hint" id="histZero" hidden>还没有记录。去逛逛站点，回来就有了。</p>
+      <ol class="acc-hist" id="histList"></ol>
+    </div>
+
+    <div class="acc-tab" id="tab-sync" hidden>
+      <div class="grid g2">
+        <div class="card pad-lg">
+          <h3>备份搬家</h3>
+          <p>本地账号和历史都在这台设备的浏览器里。换设备、换浏览器、清缓存前，先导出一份。</p>
+          <div class="row">
+            <button class="btn primary" type="button" id="syncExport">导出全部数据</button>
+            <button class="btn ghost" type="button" id="syncImport">导入备份</button>
+            <input type="file" id="syncFile" accept="application/json,.json" hidden>
+          </div>
+          <p class="out" id="syncOut" role="status"></p>
+        </div>
+        <div class="card pad-lg">
+          <h3>跨设备同步（云端）</h3>
+          <p>填上同步服务地址就能自动双向合并；没填时用上面的导出 / 导入手搬。协议：<b>GET</b> 取、<b>POST</b> 合并。</p>
+          <div class="field">
+            <label for="syncEp">同步服务地址</label>
+            <input class="input" id="syncEp" placeholder="https://your-worker.example.com/xkmyth-sync" autocomplete="off">
+          </div>
+          <div class="row">
+            <button class="btn soft" type="button" id="syncSave">保存地址</button>
+            <button class="btn primary" type="button" id="syncNow">立即同步</button>
+          </div>
+          <p class="out" id="syncCloudOut" role="status"></p>
+        </div>
+      </div>
+      <div class="note" id="syncStat" style="margin-top:16px"></div>
+    </div>
+
+    <div class="acc-tab" id="tab-admin" hidden>
+      <div class="card pad-lg">
+        <h3>账号管理 <span class="badge rose">ADMIN</span></h3>
+        <p>本机上所有注册账号。可以改等级、清历史、删账号。</p>
+        <div class="tbl-wrap">
+          <table class="tbl" id="adminTbl">
+            <thead><tr><th>账号</th><th>等级</th><th>活跃天数</th><th>记录</th><th>最近登录</th><th>操作</th></tr></thead>
+            <tbody id="adminBody"></tbody>
+          </table>
+        </div>
+        <p class="out" id="adminOut" role="status"></p>
+      </div>
+      <div class="card pad-lg" style="margin-top:16px">
+        <h3>站点数据</h3>
+        <div class="kvline"><span>账号总数</span><span id="adminUsers">—</span></div>
+        <div class="kvline"><span>历史记录总数</span><span id="adminEvents">—</span></div>
+        <div class="kvline"><span>占用存储</span><span id="adminBytes">—</span></div>
+        <div class="row" style="margin-top:12px">
+          <button class="btn tiny ghost" type="button" id="adminRecalc">重算全站等级</button>
+          <button class="btn tiny ghost" type="button" id="adminWipeHist">清空全部历史</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-tab" id="tab-tiers" hidden>
+      <div class="card pad-lg">
+        <h3 id="tiers">等级规则</h3>
+        <p>等级不看钱、不看订阅，只看你在这儿的活跃：<b>活跃天数</b> 与 <b>历史记录条数</b> 同时满足就升级，自动算。</p>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>等级</th><th>名称</th><th>条件</th><th>徽章</th></tr></thead>
+            <tbody>
+              <tr><td>T1</td><td>新星</td><td>注册即得</td><td><span class="acc-tier t1">T1</span></td></tr>
+              <tr><td>T2</td><td>常客</td><td>活跃 ≥ 3 天 且 记录 ≥ 15 条</td><td><span class="acc-tier t2">T2</span></td></tr>
+              <tr><td>T3</td><td>熟客</td><td>活跃 ≥ 10 天 且 记录 ≥ 60 条</td><td><span class="acc-tier t3">T3</span></td></tr>
+              <tr><td>T4</td><td>资深</td><td>活跃 ≥ 25 天 且 记录 ≥ 150 条</td><td><span class="acc-tier t4">T4</span></td></tr>
+              <tr><td>T5</td><td>元老</td><td>活跃 ≥ 60 天 且 记录 ≥ 400 条</td><td><span class="acc-tier t5">T5</span></td></tr>
+              <tr><td>—</td><td>站长</td><td>本机第一个注册的账号</td><td><span class="badge rose">ADMIN</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:14px">站长可以手动指定任何账号的等级（在「管理」里），自动计算会跳过手动指定的账号。</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-map">
+      <div><h4>生态</h4>
+        <a href="/">首页</a>
+        <a href="/start/">中转站</a>
+        <a href="/software/">软件库</a>
+        <a href="/ecosystem/">生态地图</a>
+      </div>
+      <div><h4>资源</h4>
+        <a href="/docs/">文档</a>
+        <a href="/guide/">上手指南</a>
+        <a href="/faq/">常见问题</a>
+        <a href="/status/">状态</a>
+      </div>
+      <div><h4>其他</h4>
+        <a href="/changelog/">更新日志</a>
+        <a href="/privacy/">隐私</a>
+        <a href="/contact/">联系</a>
+        <a href="/support/">Support</a>
+      </div>
+    </div>
+    <p class="foot-copy">? <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/js/account.js"></script>
+<script src="/sub.js"></script>
+</body>
+</html>
