@@ -21,7 +21,10 @@
     auth: '云端校验失败，请重新登录', no_user: '云端没有这个账号', not_admin: '你不是站长',
     bad_param: '参数不对', bad_body: '内容长度不对（1–2000 字）', banned: '你的账号已被封禁', self: '不能对站长自己动手',
     bad_email: '邮箱格式不对', bad_code: '验证码不对', code_expired: '验证码过期了，重新发一次',
-    no_mail: '这个邮箱没有绑定过本站账号', private: '对方的名片是私密的', name: '邮箱对应的账号和用户名不一致'
+    no_mail: '这个邮箱没有绑定过本站账号', private: '对方的名片是私密的', name: '邮箱对应的账号和用户名不一致',
+    no_perm: '你的身份不能在这个板块发帖', slow: '发得太快了，歇一会儿再发', dup: '这句你刚说过，换个说法',
+    locked: '这个帖子被锁了，只能看不能回', bad_imgs: '图片太多或地址不对（最多 4 张）',
+    not_mod: '需要版主以上', maint: '站点正在维护，只有站长能进', bad_param2: '参数不对'
   };
   function emsg(e) { return ERR[e && e.err] || (e && (e.message || e.err)) || '出错了'; }
 
@@ -260,14 +263,106 @@
     }
   }
 
+  /* ---------------- 权限模式 ---------------- */
+  var CAPS = [
+    ['post', '发帖', '会员即可'], ['reply', '回复', '会员即可'], ['report', '举报', '会员即可'],
+    ['modqueue', '处理举报队列', '版主'], ['lock', '锁帖', '版主'], ['delany', '删除他人帖子', '版主'],
+    ['pin', '置顶', '站长'], ['feature', '加精华', '站长'], ['role', '设置角色', '站长'], ['maint', '维护模式', '站长']
+  ];
+  var ROLE_CN = { user: '会员', mod: '版主', admin: '站长' };
+  function esc2(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+  function loadPerm() {
+    var me = $('permMe');
+    if (!me) return;
+    if (!A.myName()) { me.innerHTML = '<span class="hint">登录后才能看权限。</span>'; return; }
+    A.api('perm').then(function (r) {
+      var role = r.role || 'user';
+      me.innerHTML = '<span class="perm-role ' + role + '">' + ROLE_CN[role] + '</span>' +
+        '<span class="hint">' + esc2(A.myName()) +
+        (r.banned ? ' · 已被封禁' : '') + (r.maint ? ' · 站点维护中' : '') + '</span>';
+      var tb = $('permCaps');
+      if (tb) tb.innerHTML = CAPS.map(function (c) {
+        var yes = !!(r.caps && r.caps[c[0]]);
+        return '<tr><td>' + c[1] + '</td><td>' + (yes ? '<span class="badge mint">允许</span>' : '<span class="badge">不允许</span>') +
+          '</td><td class="hint">' + c[2] + '</td></tr>';
+      }).join('');
+      var ms = $('maintState');
+      if (ms) { ms.textContent = r.maint ? '维护中' : '正常运行'; ms.className = 'badge' + (r.maint ? ' rose' : ' mint'); }
+      if (r.admin) loadRoles(); else if ($('permRoles')) $('permRoles').innerHTML = '<span class="hint">只有站长能设置角色。你可以在这里看到自己的能力清单。</span>';
+      loadBoardsPerm();
+      if (window.XKDev && window.XKDev.isOn && window.XKDev.isOn()) window.XKDev.paint();
+    }).catch(function (e) { me.innerHTML = '<span class="out err">' + emsg(e) + '</span>'; });
+  }
+
+  function loadRoles() {
+    var box = $('permRoles');
+    if (!box) return;
+    A.api('admin_list').then(function (r) {
+      var users = r.users || [];
+      if (!users.length) { box.innerHTML = '<span class="hint">还没有别的账号。</span>'; return; }
+      box.innerHTML = users.map(function (u) {
+        var mine = u.user === A.myName();
+        return '<div class="perm-row' + (mine ? ' mine' : '') + '">' +
+          '<b>' + esc2(u.user) + '</b>' +
+          '<span class="hint">' + (u.posts || 0) + ' 帖 · ' + (u.replies || 0) + ' 回</span>' +
+          '<select class="input tiny-in" data-role-for="' + esc2(u.user) + '"' + (mine ? ' disabled' : '') + '>' +
+          ['user', 'mod', 'admin'].map(function (v) {
+            return '<option value="' + v + '"' + (u.role === v ? ' selected' : '') + '>' + ROLE_CN[v] + '</option>';
+          }).join('') + '</select>' +
+          '<button class="btn tiny" type="button" data-role-save="' + esc2(u.user) + '"' + (mine ? ' disabled' : '') + '>保存</button>' +
+          (mine ? '<span class="badge gold">你</span>' : '') +
+          '</div>';
+      }).join('');
+    }).catch(function (e) {
+      box.innerHTML = '<span class="out err">' + emsg(e) + '</span>';
+    });
+  }
+
+  function loadBoardsPerm() {
+    var tb = $('permBoards');
+    if (!tb) return;
+    A.api('boards').then(function (r) {
+      tb.innerHTML = (r.boards || []).map(function (b) {
+        var who = b.need === 'admin' ? '仅站长' : b.need === 'mod' ? '版主以上' : '登录会员';
+        return '<tr><td>' + esc2(b.name) + '</td><td><span class="badge' + (b.need === 'admin' ? ' rose' : b.need === 'mod' ? ' ice' : ' mint') + '">' + who + '</span></td><td>' + (b.n || 0) + '</td></tr>';
+      }).join('');
+    }).catch(function () { });
+  }
+
+  function bindPerm() {
+    var box = $('permRoles');
+    if (box) box.addEventListener('click', function (ev) {
+      var btn = ev.target.closest ? ev.target.closest('[data-role-save]') : null;
+      if (!btn) return;
+      var name = btn.getAttribute('data-role-save');
+      var sel = box.querySelector('[data-role-for="' + name + '"]');
+      if (!sel) return;
+      btn.disabled = true;
+      A.api('set_role', { target: name, val: sel.value }).then(function (r) {
+        ok($('permOut'), '已把 ' + name + ' 设为' + ROLE_CN[r.role] );
+        loadPerm(); loadRoles();
+      }).catch(function (e) { bad($('permOut'), emsg(e)); btn.disabled = false; });
+    });
+    if ($('maintOn')) $('maintOn').addEventListener('click', function () {
+      A.api('maint_set', { val: true }).then(function () { ok($('maintOut'), '维护模式已打开'); loadPerm(); })
+        .catch(function (e) { bad($('maintOut'), emsg(e)); });
+    });
+    if ($('maintOff')) $('maintOff').addEventListener('click', function () {
+      A.api('maint_set', { val: false }).then(function () { ok($('maintOut'), '维护模式已关闭'); loadPerm(); })
+        .catch(function (e) { bad($('maintOut'), emsg(e)); });
+    });
+  }
+
   /* ---------------- 挂载 ---------------- */
   function hook() {
-    bindProfile(); bindForgot();
+    bindProfile(); bindForgot(); bindPerm();
     var tabs = document.querySelectorAll('#accTabs .pill');
     tabs.forEach(function (b) {
       b.addEventListener('click', function () {
         var t = b.getAttribute('data-tab');
         if (t === 'profile') loadProfile();
+        if (t === 'perm') loadPerm();
         if (t === 'admin') loadAdmin();
       });
     });
@@ -275,5 +370,5 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', hook);
   else hook();
-  window.XKAccountPlus = { reload: function () { loadProfile(); loadAdmin(); }, fmt: fmt };
+  window.XKAccountPlus = { reload: function () { loadProfile(); loadAdmin(); loadPerm(); }, fmt: fmt, perm: loadPerm };
 })();

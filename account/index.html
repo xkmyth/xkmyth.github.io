@@ -144,6 +144,8 @@
       <button class="pill active" type="button" data-tab="hist" role="tab">历史记录</button>
       <button class="pill" type="button" data-tab="sync" role="tab">同步</button>
       <button class="pill" type="button" data-tab="profile" role="tab">资料</button>
+      <button class="pill" type="button" data-tab="perm" role="tab">权限</button>
+      <button class="pill" type="button" data-tab="dev" role="tab">开发</button>
       <button class="pill" type="button" data-tab="admin" role="tab" id="accTabAdmin" hidden>管理</button>
       <button class="pill" type="button" data-tab="tiers" role="tab">等级说明</button>
     </div>
@@ -275,6 +277,85 @@
       </div>
     </div>
 
+    <div class="acc-tab" id="tab-perm" hidden>
+      <div class="card pad-lg">
+        <h3>我的权限</h3>
+        <p>权限分三档：<b>会员</b>（看帖发帖）→ <b>版主</b>（删帖、锁帖、处理举报）→ <b>站长</b>（改一切）。</p>
+        <div id="permMe" class="perm-me"></div>
+        <div class="tbl-wrap" style="margin-top:12px">
+          <table class="tbl">
+            <thead><tr><th>能力</th><th>允许</th><th>说明</th></tr></thead>
+            <tbody id="permCaps"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card pad-lg" style="margin-top:16px">
+        <h3>角色设置 <span class="badge rose">站长</span></h3>
+        <p>选一个账号改成会员 / 版主 / 站长。改完立即生效，对方刷新页面就能看到新按钮。</p>
+        <div id="permRoles" class="perm-roles">登录并成为站长后可设置。</div>
+        <p class="out" id="permOut" role="status"></p>
+      </div>
+      <div class="card pad-lg" style="margin-top:16px">
+        <h3>板块权限</h3>
+        <p>「公告」只有站长能发，「站务」版主以上能发，其余登录即可。</p>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>板块</th><th>谁能发帖</th><th>帖子数</th></tr></thead>
+            <tbody id="permBoards"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card pad-lg" style="margin-top:16px">
+        <h3>维护模式</h3>
+        <p>打开后除站长外都不能看论坛、不能发帖，页面会显示维护提示。</p>
+        <div class="row">
+          <button class="btn tiny" type="button" id="maintOn">打开维护模式</button>
+          <button class="btn tiny ghost" type="button" id="maintOff">关闭</button>
+          <span class="badge" id="maintState">未知</span>
+        </div>
+        <p class="out" id="maintOut" role="status"></p>
+      </div>
+    </div>
+
+    <div class="acc-tab" id="tab-dev" hidden>
+      <div class="card pad-lg">
+        <h3>开发者模式</h3>
+        <p>打开后页面右下角会出现 DEV 角标，可以看接口调用、身份探针、原始回包。只影响这台浏览器。</p>
+        <div class="row">
+          <button class="btn tiny" type="button" id="devToggle">开启开发者模式</button>
+          <span class="badge" id="devState">关闭</span>
+        </div>
+        <div class="kvline"><span>Endpoint</span><span id="devEp">—</span></div>
+        <div class="kvline"><span>Key</span><span id="devKey">—</span></div>
+        <div class="kvline"><span>Schema</span><span id="devSchema">v4</span></div>
+      </div>
+      <div class="card pad-lg" style="margin-top:16px">
+        <h3>身份探针</h3>
+        <pre class="dev-pre" id="devId">—</pre>
+        <div class="row">
+          <button class="btn tiny ghost" type="button" id="devReload">重新读取</button>
+          <button class="btn tiny ghost" type="button" id="devCopy">复制身份 JSON</button>
+        </div>
+      </div>
+      <div class="card pad-lg" style="margin-top:16px">
+        <h3>接口日志</h3>
+        <div class="row">
+          <button class="btn tiny ghost" type="button" id="devClear">清空日志</button>
+          <span class="hint" id="devCount">0 条</span>
+        </div>
+        <div class="dev-log" id="devLog">还没有调用。</div>
+      </div>
+      <div class="card pad-lg" style="margin-top:16px">
+        <h3>常用工具</h3>
+        <div class="row">
+          <button class="btn tiny ghost" type="button" id="devSync">强制同步</button>
+          <button class="btn tiny ghost" type="button" id="devFix">重建云端身份</button>
+          <button class="btn tiny ghost" type="button" id="devPurge">清本机缓存</button>
+        </div>
+        <p class="out" id="devOut" role="status"></p>
+      </div>
+    </div>
+
     <div class="acc-tab" id="tab-tiers" hidden>
       <div class="card pad-lg">
         <h3 id="tiers">等级规则</h3>
@@ -328,6 +409,7 @@
 <div class="toast" id="toast"></div>
 <script src="/js/account.js"></script>
 <script src="/js/account-plus.js"></script>
+<script src="/js/dev.js"></script>
 <script src="/sub.js"></script>
 </body>
 </html>

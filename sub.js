@@ -863,3 +863,28 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
   else run();
 })();
+/* ---- 手机底部 Tab ---- */
+(function () {
+  if (window.__xkTab) return;
+  window.__xkTab = 1;
+  function build() {
+    if (document.querySelector('.xk-tabbar')) return;
+    var items = [
+      ['/', '\u2302', '\u9996\u9875'],
+      ['/forum/', '\u2709', '\u8bba\u575b'],
+      ['/start/', '\u2733', '\u4e2d\u8f6c\u7ad9'],
+      ['/account/', '\u263A', '\u8d26\u53f7']
+    ];
+    var path = location.pathname;
+    var nav = document.createElement('nav');
+    nav.className = 'xk-tabbar';
+    nav.setAttribute('aria-label', '\u624b\u673a\u5bfc\u822a');
+    nav.innerHTML = items.map(function (it) {
+      var on = it[0] === '/' ? (path === '/' || path === '/index.html') : path.indexOf(it[0]) === 0;
+      return '<a href="' + it[0] + '"' + (on ? ' class="on" aria-current="page"' : '') + '><b aria-hidden="true">' + it[1] + '</b>' + it[2] + '</a>';
+    }).join('');
+    document.body.appendChild(nav);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();

@@ -679,7 +679,7 @@
   function setTab(name) {
     if (!ui.tabs) return;
     ui.tabs.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-tab') === name); });
-    ['hist', 'sync', 'admin', 'tiers'].forEach(function (k) {
+    ['hist', 'sync', 'profile', 'perm', 'dev', 'admin', 'tiers'].forEach(function (k) {
       var el = $('tab-' + k);
       if (el) el.hidden = k !== name;
     });
@@ -895,6 +895,8 @@
     api: api, apiRaw: apiRaw, myName: myName, changePass: changePass, adoptPass: adoptPass,
     cloudReady: cloudReady, bindCloud: bindCloud, renderCloudUsers: renderCloudUsers, syncAuthOf: syncAuthOf, autoSync: autoSync,
     v: 1,
+    conf: function () { var c = syncConf(); return { endpoint: c.endpoint, key: c.key, ref: (c.endpoint || '').replace(/^https:\/\//, '').split('.')[0] }; },
+    perm: function () { return api('perm').catch(function () { return null; }); },
     user: current,
     tier: tierOf,
     tierName: function (t) { return tierInfo(t).name; },
