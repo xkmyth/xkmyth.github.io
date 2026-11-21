@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
+<meta name="description" content="星空工具箱：JSON 格式化、Base64、URL 编解码、时间戳、颜色对比度、图片压缩、PNG 转 ICO、Hash、随机密码、正则测试、Markdown 预览、进制转换。全部纯前端，数据不出浏览器。">
+<title>工具箱 · 12 个在线小工具 · 星空神话 xkmyth</title>
+<link rel="canonical" href="https://xkmyth.dpdns.org/kit/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="xkmyth">
+<meta property="og:title" content="工具箱 · 12 个在线小工具">
+<meta property="og:description" content="JSON / Base64 / URL / 时间戳 / 颜色 / 图片压缩 / ICO / Hash / 密码 / 正则 / Markdown / 进制，全部本地运行。">
+<meta property="og:url" content="https://xkmyth.dpdns.org/kit/">
+<meta property="og:image" content="https://xkmyth.dpdns.org/icons/og-1200x630.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav class="nav-links" id="mainNav" aria-label="主导航">
+      <a href="/">首页</a>
+      <a href="/#core">三大件</a>
+      <a href="/software/">软件库</a>
+      <a href="/tools/">工具总览</a>
+      <a href="/kit/">快速工具</a>
+      <a href="/plugins/">插件市场</a>
+      <a href="/start/">中转站</a>
+      <a href="/forum/">论坛</a>
+      <a href="/account/">账号</a>
+      <a href="/docs/">文档</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <section class="page-head">
+    <p class="eyebrow">TOOLBOX · 12 个工具</p>
+    <h1>要用的都在这一页</h1>
+    <p class="lede">所有计算都在你的浏览器里跑，一个字节都不上传。<kbd>⌘K</kbd>/<kbd>Ctrl K</kbd> 也能直接搜到这里的每一个工具。</p>
+  </section>
+
+  <div class="tl-wrap">
+    <aside class="tl-nav" id="tlNav" aria-label="工具列表"></aside>
+    <section class="tl-panel" id="tlPanel" aria-live="polite"></section>
+  </div>
+
+  <section class="tl-foot">
+    <h2>为什么放在网页里</h2>
+    <p>因为这些事一次就够了：改个 JSON、压一张图、算个对比度。装个软件为了一次操作不值当，而在线网站又要上传你的文件。这一页把十二个高频动作压成一个本地页面，断网也能用（PWA 已缓存）。</p>
+    <p class="tl-tip">提示：图片压缩和 PNG→ICO 用的是 canvas，完全在内存里跑，原图不会离开这台设备。</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>© 2026 xkmyth · <a href="/docs/">文档</a> · <a href="/forum/">论坛</a> · <a href="/account/">账号</a> · <a href="/software/">软件库</a></p>
+  </div>
+</footer>
+
+<script src="/sub.js"></script>
+<script src="/js/tools.js"></script>
+</body>
+</html>

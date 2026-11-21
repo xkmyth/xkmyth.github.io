@@ -271,6 +271,8 @@
   T.push({ id: 'md', name: 'Markdown 预览', icon: 'M↓', desc: '边写边看，支持表格与代码块',
     render: function (box) {
       var a = area('# 标题\n\n- 列表项\n- **粗体** 和 *斜体*\n\n> 引用\n\n[链接](https://xkmyth.dpdns.org)', 12);
+      var mdDemo = '# 标题' + String.fromCharCode(10,10) + '- 列表项' + String.fromCharCode(10) + '- **粗体** 和 *斜体*' + String.fromCharCode(10,10) + '> 引用' + String.fromCharCode(10,10) + '[链接](https://xkmyth.dpdns.org)';
+      a.value = mdDemo;
       var o = el('div', 'tl-md');
       box.appendChild(a); box.appendChild(o);
       a.addEventListener('input', function () { o.innerHTML = md(a.value); });
@@ -348,6 +350,13 @@
     var idx = Math.max(0, T.findIndex(function (x) { return x.id === hash; }));
     nav.children[idx].click();
   }
+  window.addEventListener('hashchange', function () {
+    var h = (location.hash.match(/t=([a-z0-9]+)/) || [])[1];
+    if (!h) return;
+    var i = T.findIndex(function (x) { return x.id === h; });
+    var nav = document.getElementById('tlNav');
+    if (i >= 0 && nav && nav.children[i]) nav.children[i].click();
+  });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
   window.XKTools = { list: T };
 })();
