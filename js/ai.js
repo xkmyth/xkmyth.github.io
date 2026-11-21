@@ -202,6 +202,8 @@
       inputEl.style.height = Math.min(inputEl.scrollHeight, 132) + 'px';
     });
     listEl.addEventListener('click', function (e) {
+      var pb = e.target.closest('[data-pub]');
+      if (pb) { var pidx = +pb.dataset.pub; if (state.msgs[pidx]) publishPlugin(state.msgs[pidx]); return; }
       var b = e.target.closest('[data-dl]');
       if (!b) return;
       var idx = +b.dataset.dl, files = state.msgs[idx] && state.msgs[idx].files;
@@ -254,11 +256,48 @@
         var dl = el('button', 'ai-dlbtn', '⬇ 下载 .zip');
         dl.type = 'button'; dl.dataset.dl = i; dl.dataset.name = 'xkmyth-plugin';
         bar.appendChild(dl);
+        var pb = el('button', 'ai-dlbtn ai-pubtn', '⬆ 发布到市场');
+        pb.type = 'button'; pb.dataset.pub = i;
+        bar.appendChild(pb);
         row.appendChild(bar);
       }
       listEl.appendChild(row);
     });
     listEl.scrollTop = listEl.scrollHeight;
+  }
+
+  function plug(payload) {
+    return conf().then(function (c) {
+      var B = String.fromCharCode(66, 101, 97, 114, 101, 114, 32);
+      return fetch(c.endpoint + '/rest/v1/rpc/xk_plug', {
+        method: 'POST',
+        headers: { apikey: c.key, Authorization: B + c.key, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p: payload })
+      }).then(function (r) { return r.json(); });
+    });
+  }
+
+  function publishPlugin(m) {
+    conf().then(function (c) {
+      var name = prompt('插件名字（2-60 字）', '我的星空插件');
+      if (!name) return;
+      var summary = prompt('一句话简介', '') || '';
+      var tags = (prompt('标签，逗号分隔', '') || '').split(/[,，]/).map(function (x) { return x.trim(); }).filter(Boolean).slice(0, 5);
+      var manifest = null;
+      (m.files || []).forEach(function (f) { if (/manifest.json$/i.test(f.name)) { try { manifest = JSON.parse(f.data); } catch (e) {} } });
+      footEl.textContent = '正在发布…';
+      plug({ op: 'publish', user: c.user, auth: c.auth, name: name, summary: summary, tags: tags, manifest: manifest, files: m.files, code: (m.files[0] || {}).data || '' })
+        .then(function (j) {
+          if (j.ok) { footEl.textContent = '已发布到插件市场'; toast('已发布，去 /plugins/ 看看', 'ok'); }
+          else footEl.textContent = '发布失败：' + (j.err || '未知');
+        })
+        .catch(function (e) { footEl.textContent = '发布失败：' + e.message; });
+    }).catch(function () { footEl.textContent = '先登录账号再发布'; });
+  }
+
+  function pop(txt) {
+    var d = el('div', 'ai-toast', h(txt));
+    panel.appendChild(d); setTimeout(function () { d.remove(); }, 2600);
   }
 
   function push(role, content, extra) {

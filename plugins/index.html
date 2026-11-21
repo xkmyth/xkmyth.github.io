@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
+<meta name="description" content="星空插件市场：站内 AI 生成的浏览器扩展在这里发布、下载、评分。每个插件都是标准 MV3 zip，解压即可加载。">
+<title>插件市场 · 站内 AI 造的扩展都在这 · 星空神话 xkmyth</title>
+<link rel="canonical" href="https://xkmyth.dpdns.org/plugins/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="xkmyth">
+<meta property="og:title" content="插件市场 · 站内 AI 造的扩展">
+<meta property="og:description" content="让 AI 给你写一个浏览器扩展，一键发布到这里，别人下载就能装。">
+<meta property="og:url" content="https://xkmyth.dpdns.org/plugins/">
+<meta property="og:image" content="https://xkmyth.dpdns.org/icons/og-1200x630.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/sub.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav class="nav-links" id="mainNav" aria-label="主导航">
+      <a href="/">首页</a>
+      <a href="/#core">三大件</a>
+      <a href="/software/">软件库</a>
+      <a href="/tools/">工具箱</a>
+      <a href="/plugins/">插件市场</a>
+      <a href="/start/">中转站</a>
+      <a href="/forum/">论坛</a>
+      <a href="/account/">账号</a>
+      <a href="/docs/">文档</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <section class="page-head">
+    <p class="eyebrow">PLUGIN MARKET</p>
+    <h1>AI 造的插件，放在这里给所有人用</h1>
+    <p class="lede">右下角那个小龙能直接写浏览器扩展。写好之后点「发布到市场」，别人打开这一页就能下载——每个都是标准 MV3 包，解压后「加载已解压的扩展」即可。</p>
+  </section>
+
+  <div class="plug-bar">
+    <input id="plugSearch" class="plug-search" type="search" placeholder="搜插件名、简介、作者…" autocomplete="off">
+    <div class="plug-tags" id="plugTags"></div>
+  </div>
+
+  <section class="plug-grid" id="plugList"></section>
+
+  <section class="plug-how">
+    <h2>怎么做一个</h2>
+    <ol>
+      <li>点右下角 🐉，选「做个插件」，一句话说清你要什么（例：把所有网页背景改成深空蓝）。</li>
+      <li>它会把 <code>manifest.json</code> 和脚本按文件吐出来，面板上直接能下 .zip。</li>
+      <li>登录账号后点「发布到市场」——简介、标签填一下，立刻出现在这一页。</li>
+      <li>别人点开卡片能看到源码、下载、点 ★。你自己也能随时删。</li>
+    </ol>
+    <p class="tl-tip">插件代码是纯文本存在云端，开源式的，谁都能看、能改、能再发一份。</p>
+  </section>
+</main>
+
+<div class="plug-modal" id="plugModal" role="dialog" aria-modal="true" aria-label="插件详情">
+  <div class="plug-panel">
+    <button type="button" class="plug-x" aria-label="关闭">✕</button>
+    <h2 id="plugTitle">插件</h2>
+    <p class="plug-by" id="plugBy"></p>
+    <p class="plug-desc" id="plugDesc"></p>
+    <div class="plug-actions">
+      <button type="button" class="tl-btn" id="plugDl">⬇ 下载 .zip</button>
+      <button type="button" class="tl-btn" id="plugStar">★ 点个赞</button>
+    </div>
+    <h3 class="plug-h3">文件</h3>
+    <pre class="plug-pre" id="plugFiles"></pre>
+    <h3 class="plug-h3">代码预览</h3>
+    <pre class="plug-pre" id="plugCode"></pre>
+  </div>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>© 2026 xkmyth · <a href="/tools/">工具箱</a> · <a href="/forum/">论坛</a> · <a href="/account/">账号</a></p>
+  </div>
+</footer>
+
+<script src="/sub.js"></script>
+<script src="/js/account.js"></script>
+<script src="/js/ai.js"></script>
+<script src="/js/plugins.js"></script>
+</body>
+</html>
