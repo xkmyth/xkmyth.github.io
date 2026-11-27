@@ -1,49 +1,34 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<script>
-const oldDomains = [
-  "xkmyth.qd.je",
-  "xkmyth.cc.cd",
-  "xkmyth.bbroot.com",
-  "xkmyth.xyz.ci",
-  "xkmyth.cc.ci",
-];
-const target = "https://xkmyth.dpdns.org";
-if (oldDomains.includes(location.hostname)) {
-  location.replace(target + location.pathname + location.search);
-}
-</script>
-<meta name="msvalidate.01" content="87ADBF4FF3FE07E71F11A2E7DCE61D61" />
-<meta name="baidu-site-verification" content="codeva-MhQWKm4cNe" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="星空神话 xkmyth —— 你的浏览器 · 你的云盘 · 你的系统。一套完全属于你自己的数字星空：xkmyth 浏览器、私有云盘与深度定制 Win11 系统。">
 <meta name="keywords" content="xkmyth,星空神话,浏览器,私有云盘,Cloudreve,Win11定制系统,ISO,安卓">
 <meta property="og:title" content="星空神话 xkmyth · 官方网站">
 <meta property="og:description" content="一套完全属于你自己的数字星空：浏览器 · 云盘 · 定制系统">
-<meta property="og:url" content="https://xkmyth.dpdns.org/">
+<meta property="og:url" content="https://xkmyth.github.io/">
 <title>星空神话 xkmyth · 官方网站</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='45' r='16' fill='%23fcd34d'/><path d='M50 20v50M25 45h50' stroke='%23fcd34d' stroke-width='6'/><ellipse cx='50' cy='66' rx='26' ry='8' stroke='%239ae3ff' stroke-width='3' fill='none' transform='rotate(-15 50 66)'/></svg>">
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="home.css">
 
 <meta name="theme-color" content="#04060f" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
-<meta property="og:image" content="https://xkmyth.dpdns.org/icons/og-1200x630.png">
+<meta property="og:image" content="https://xkmyth.github.io/icons/og-1200x630.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image"><meta name="color-scheme" content="dark light">
-<link rel="canonical" href="https://xkmyth.dpdns.org/">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"xkmyth","url":"https://xkmyth.dpdns.org/","description":"星空神话 xkmyth —— 你的浏览器 · 你的云盘 · 你的系统。一套完全属于你自己的数字星空：xkmyth 浏览器、私有云盘与深度定制 Win11 系统。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"xkmyth","url":"https://xkmyth.dpdns.org/"},"publisher":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.dpdns.org/","logo":"https://xkmyth.dpdns.org/icons/icon-512.png"}}]}</script>
+<link rel="canonical" href="https://xkmyth.github.io/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"xkmyth","url":"https://xkmyth.github.io/","description":"星空神话 xkmyth —— 你的浏览器 · 你的云盘 · 你的系统。一套完全属于你自己的数字星空：xkmyth 浏览器、私有云盘与深度定制 Win11 系统。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"xkmyth","url":"https://xkmyth.github.io/"},"publisher":{"@type":"Organization","name":"xkmyth","url":"https://xkmyth.github.io/","logo":"https://xkmyth.github.io/icons/icon-512.png"}}]}</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="星空神话 xkmyth">
 <meta name="twitter:title" content="星空神话 xkmyth · 官方网站">
 <meta name="twitter:description" content="星空神话 xkmyth —— 你的浏览器 · 你的云盘 · 你的系统。一套完全属于你自己的数字星空：xkmyth 浏览器、私有云盘与深度定制 Win11 系统。">
-<meta name="twitter:image" content="https://xkmyth.dpdns.org/icons/og-1200x630.png">
+<meta name="twitter:image" content="https://xkmyth.github.io/icons/og-1200x630.png">
+  <script src="/js/ai.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主内容</a>
@@ -51,309 +36,416 @@ if (oldDomains.includes(location.hostname)) {
 
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="/" aria-label="星空神话 xkmyth 首页"><span class="brand-star">★</span> xkmyth</a>
-    <nav class="nav-links" id="mainNav" aria-label="主导航">
+    <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
+    <nav>
       <a href="/">首页</a>
-      <a href="/#core">三大件</a>
       <a href="/software/">软件库</a>
-      <a href="/tools/">工具箱</a>
-      <a href="/kit/">快速工具</a>
-      <a href="/plugins/">插件市场</a>
-      <a href="/start/">中转站</a>
-      <a href="/#sitemap">地图</a>
-      <a href="/newtab/">新标签页</a>
-      <a href="/docs/">文档</a>
+      <a href="/tools/">工具</a>
+      <a href="/docs/">Docs</a>
+      <a href="/ecosystem/">生态</a>
+      <a href="/status/">状态</a>
     </nav>
   </div>
 </header>
 
-<main id="main" tabindex="-1">
+<section id="main" tabindex="-1" class="hero">
+  <div class="hero-aurora" aria-hidden="true"></div>
+  <h1 class="hero-title">xk<span class="gold">myth</span></h1>
+  <p class="hero-sub">星空神话 · 浏览器 / 云盘 / 定制系统</p>
+  <p class="hero-desc">不是一台电脑的标签，而是一整套属于你的数字星空 —— 干净好用的浏览器、只属于你的私有云盘，外加一台深度定制的系统</p>
+  <div class="hero-actions">
+    <a class="btn primary" href="#download">下载生态应用</a>
+    <a class="btn ghost" href="#ecosystem">了解生态</a>
+  </div>
+  <div class="hero-stats" aria-label="站点规模">
+    <div><b>58</b><span>个站点</span></div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>11</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>11</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>11</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>11</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>11</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>11</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>11</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>10</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>10</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>10</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>10</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>10</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>10</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>10</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>10</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>10</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>160</b><span>个在线工具</span></div>
+    <div><b>10</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>139</b><span>个在线工具</span></div>
+    <div><b>10</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+    <div><b>139</b><span>个在线工具</span></div>
+    <div><b>10</b><span>个自研软件</span></div>
+    <div><b>4</b><span>个开源仓库</span></div>
+  </div>
+  <div class="hero-meta" id="heroMeta">版本信息读取中…</div>
+</section>
 
-  <!-- ① 介绍 -->
-  <section class="hx-hero" id="intro">
-    <div class="hero-aurora" aria-hidden="true"></div>
-    <p class="hx-kicker">你的浏览器 · 你的云盘 · 你的系统</p>
-    <h1 class="hero-title">xk<span class="gold">myth</span></h1>
-    <p class="hx-tagline">一个完全属于自己的数字生态</p>
-    <p class="hx-lead">
-      四个仓库、一套配色、<b>零后端</b>。浏览器、私有云盘、定制系统与 <b>160 个在线工具</b>，
-      全部跑在自己的机器和静态页上 —— 没有账号体系，没有埋点，数据存在哪、发去哪，你说了算。
-    </p>
-    <div class="hx-actions">
-      <a class="btn primary" href="#features">看看特色功能</a>
-      <a class="btn ghost" href="#sitemap">打开网站地图</a>
+<section class="section" id="ecosystem">
+  <h2 class="sec-title">xkmyth <span class="gold">生态</span></h2>
+  <p class="sec-sub">三件套，组合成你的私人数字空间</p>
+  <div class="eco-grid">
+    <div class="eco-card">
+      <div class="eco-ico">🧭</div>
+      <h3>xkmyth 浏览器</h3>
+      <p>Electron 内核 · 星空 UI · 无边框多标签 · 广告拦截 · 一键翻译 · 主页快捷方式自定义 · 全局快捷键，网页里按 Ctrl+T 一样新建标签</p>
+      <span class="tag">Windows · Android</span>
     </div>
-    <ul class="hx-stats" aria-label="站点规模">
-      <li><b>11</b><span>自研应用</span></li>
-      <li><b>160</b><span>在线工具</span></li>
-      <li><b>57</b><span>页面</span></li>
-      <li><b>4</b><span>开源仓库</span></li>
-    </ul>
-  </section>
-
-  <!-- ② 三大件：浏览器 / 云盘 / 系统 -->
-  <section class="hx-sec" id="core">
-    <div class="hx-head">
-      <h2>三件 <span class="gold">装在自己电脑上</span> 的东西</h2>
-      <p>不是网页套壳 —— 有本地文件，装完断网也能跑。</p>
+    <div class="eco-card">
+      <div class="eco-ico">☁️</div>
+      <h3>xkmyth 云盘</h3>
+      <p>你自己的私有云盘 · 双端客户端带下载进度 · WebDAV 备份 · 手机浏览器零安装直连 · 数据只在你手里</p>
+      <span class="tag">在线服务 · HTTPS</span>
     </div>
-    <ul class="hx-core">
-
-      <li class="hx-core-card reveal">
-        <span class="hx-core-ico" aria-hidden="true">🧭</span>
-        <h3>星空浏览器</h3>
-        <p>Electron 内核，多标签、广告拦截、划词翻译。新标签页不是空白页，是这片星空。</p>
-        <div class="hx-core-btns">
-          <a class="btn primary" href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-browser-win-x64.zip">Windows 版</a>
-          <a class="btn ghost" href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-browser.apk">安卓 .apk</a>
-        </div>
-        <p class="hx-core-meta">免安装绿色版 · 解压即用</p>
-      </li>
-
-      <li class="hx-core-card reveal">
-        <span class="hx-core-ico" aria-hidden="true">☁️</span>
-        <h3>星空云盘</h3>
-        <p>Cloudreve 内核，文件只存在自己硬盘上。WebDAV 能挂成系统盘，手机 IPv6 直连。</p>
-        <div class="hx-core-btns">
-          <a class="btn primary" href="https://xkmyth.dynv6.net:5212/" rel="noopener">打开云盘</a>
-          <a class="btn ghost" href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-cloud-win-x64.zip">客户端</a>
-        </div>
-        <p class="hx-core-meta">8 GB 系统镜像也放这儿</p>
-      </li>
-
-      <li class="hx-core-card reveal">
-        <span class="hx-core-ico" aria-hidden="true">🌌</span>
-        <h3>定制系统</h3>
-        <p>Win11 25H2 底座：星海深空主题、双账户模式、OEM 品牌注入、无人值守安装。</p>
-        <div class="hx-core-btns">
-          <a class="btn primary" href="/docs/install/">安装指南</a>
-          <a class="btn ghost" href="https://xkmyth.dynv6.net:5212/" rel="noopener">镜像下载</a>
-        </div>
-        <p class="hx-core-meta">ISO 体积超限，走云盘</p>
-      </li>
-
-    </ul>
-  </section>
-
-  <!-- 中转站入口 -->
-  <section class="hx-portal reveal" id="portal">
-    <div class="hx-portal-txt">
-      <h2>常用网站 <span class="gold">中转站</span></h2>
-      <p>
-        <b>164</b> 个常用网站已经分好类填好了 —— 搜索 · 购物 · 视频 · 音乐 · 社交 · 资讯 · 学习 ·
-        开发 · 云服务 · 办公 · 生活 · 游戏 · 软件下载。不够的可以自己加，不想要的删掉或折叠，
-        全存在你自己浏览器里，不联网、不上传。
-      </p>
+    <div class="eco-card">
+      <div class="eco-ico">🌌</div>
+      <h3>xkmyth 定制系统</h3>
+      <p>基于 Windows 11 25H2 深度定制镜像：星空主题、去 TPM 限制、生态预装 —— 装上即融入整个 xkmyth 生态</p>
+      <span class="tag">v1.0 · ISO</span>
     </div>
-    <a class="btn primary big" href="/start/">打开中转站 →</a>
-  </section>
+  </div>
+</section>
 
-  <!-- ③ 特色功能 -->
-  <section class="hx-sec" id="features">
-    <div class="hx-head">
-      <h2>六个值得一提的 <span class="gold">地方</span></h2>
-      <p>不是功能清单，是这个生态真正在跑的东西。</p>
+<section class="section alt" id="system">
+  <h2 class="sec-title">定制系统 · 生态的 <span class="gold">底座</span></h2>
+  <p class="sec-sub">生态里的系统，系统里的生态 —— 一台装好即开即用的星空电脑</p>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-em">🌌</div>
+      <h3>星海深空主题</h3>
+      <p>4K 星云壁纸 · 深空配色 · 系统级主题注入，登录、桌面、锁屏浑然一体</p>
     </div>
-    <ul class="hx-feats">
-
-      <li class="hx-feat reveal">
-        <span class="hx-feat-ico" aria-hidden="true">☁️</span>
-        <span class="hx-feat-go" aria-hidden="true">↗</span>
-        <h3>私有云盘</h3>
-        <p>Cloudreve 内核，文件只存在自己的硬盘上。WebDAV 可挂成系统盘，IPv6 直连手机，8 GB 系统镜像也放这儿。</p>
-        <div class="tagrow"><span class="tag">WebDAV</span><span class="tag">断点续传</span><span class="tag">IPv6 直连</span></div>
-      </li>
-
-      <li class="hx-feat reveal">
-        <span class="hx-feat-ico" aria-hidden="true">🧭</span>
-        <span class="hx-feat-go" aria-hidden="true">↗</span>
-        <h3>自研浏览器</h3>
-        <p>Electron 壳，多标签、内置广告拦截与翻译。新标签页不是空白页，是这片星空。</p>
-        <div class="tagrow"><span class="tag">Electron</span><span class="tag">多标签</span><span class="tag">广告拦截</span></div>
-      </li>
-
-      <li class="hx-feat reveal">
-        <span class="hx-feat-ico" aria-hidden="true">🧰</span>
-        <span class="hx-feat-go" aria-hidden="true">↗</span>
-        <h3>160 个在线工具</h3>
-        <p>编解码、文本、时间、安全、网络、计算……全部纯前端本地运行，不联网、不上传、不留痕。</p>
-        <div class="tagrow"><span class="tag">零上传</span><span class="tag">断网可用</span><span class="tag">八类分组</span></div>
-      </li>
-
-      <li class="hx-feat reveal">
-        <span class="hx-feat-ico" aria-hidden="true">🌌</span>
-        <span class="hx-feat-go" aria-hidden="true">↗</span>
-        <h3>定制系统</h3>
-        <p>Win11 25H2 底座：星海深空主题、双账户模式、OEM 品牌注入、无人值守安装，开箱即生态。</p>
-        <div class="tagrow"><span class="tag">25H2</span><span class="tag">星空主题</span><span class="tag">无人值守</span></div>
-      </li>
-
-      <li class="hx-feat reveal">
-        <span class="hx-feat-ico" aria-hidden="true">📚</span>
-        <span class="hx-feat-go" aria-hidden="true">↗</span>
-        <h3>手写文档</h3>
-        <p>安装、排障、校验、数据契约、架构取舍，全部自己写，不抄模板。看不懂的地方就是没写清楚。</p>
-        <div class="tagrow"><span class="tag">安装</span><span class="tag">排障</span><span class="tag">API 契约</span></div>
-      </li>
-
-      <li class="hx-feat reveal">
-        <span class="hx-feat-ico" aria-hidden="true">🛡️</span>
-        <span class="hx-feat-go" aria-hidden="true">↗</span>
-        <h3>透明可核对</h3>
-        <p>无后端、无账号、无埋点。安装包全量 SHA256，脚本体积与请求数公开，状态页读的是真实数据。</p>
-        <div class="tagrow"><span class="tag">SHA256</span><span class="tag">无埋点</span><span class="tag">实时状态</span></div>
-      </li>
-
-    </ul>
-  </section>
-
-  <!-- ③ 网站地图 -->
-  <section class="hx-sec alt" id="sitemap">
-    <div class="hx-head">
-      <h2>网站 <span class="gold">地图</span></h2>
-      <p>全站 57 个页面，按用途分成六类，没有一页是凑数的。</p>
+    <div class="feat-card">
+      <div class="feat-em">👤</div>
+      <h3>双账户模式</h3>
+      <p>xkmyth 专属账户 + 微软账户自由切换，本地账户秒开，云端同步两不误</p>
     </div>
-
-    <div class="hx-map">
-
-      <div class="hx-group reveal">
-        <h3><span aria-hidden="true">🧩</span> 产品与软件 <span class="cnt">14</span></h3>
-        <p class="gdesc">十一个自研应用 + 中转站 + 生态全景</p>
-        <ul class="hx-links">
-          <li><a href="/start/"><i class="dot"></i>星空中转站<span class="path">/start/</span></a></li>
-          <li><a href="/software/"><i class="dot"></i>软件库<span class="path">/software/</span></a></li>
-          <li><a href="/software/vault/"><i class="dot"></i>XK Vault 保险箱<span class="path">vault</span></a></li>
-          <li><a href="/software/notes/"><i class="dot"></i>XK Notes 笔记<span class="path">notes</span></a></li>
-          <li><a href="/software/compress/"><i class="dot"></i>XK Compress 压缩<span class="path">compress</span></a></li>
-          <li><a href="/software/ledger/"><i class="dot"></i>XK Ledger 记账<span class="path">ledger</span></a></li>
-          <li><a href="/software/focus/"><i class="dot"></i>XK Focus 专注钟<span class="path">focus</span></a></li>
-          <li><a href="/software/snippets/"><i class="dot"></i>XK Snippets 片段<span class="path">snippets</span></a></li>
-          <li><a href="/software/rename/"><i class="dot"></i>XK Rename 改名<span class="path">rename</span></a></li>
-          <li><a href="/software/wallpaper/"><i class="dot"></i>XK Wallpaper 壁纸<span class="path">wallpaper</span></a></li>
-          <li><a href="/software/record/"><i class="dot"></i>XK Record 录音<span class="path">record</span></a></li>
-          <li><a href="/software/clipboard/"><i class="dot"></i>XK Clipboard 剪贴板<span class="path">clipboard</span></a></li>
-          <li><a href="/software/data/"><i class="dot"></i>XK Data 本地数据<span class="path">data</span></a></li>
-          <li><a href="/ecosystem/"><i class="dot"></i>生态地图<span class="path">/ecosystem/</span></a></li>
-        </ul>
-      </div>
-
-      <div class="hx-group reveal">
-        <h3><span aria-hidden="true">📚</span> 文档与上手 <span class="cnt">12</span></h3>
-        <p class="gdesc">从下载到跑通，再到参与开发</p>
-        <ul class="hx-links">
-          <li><a href="/docs/"><i class="dot"></i>文档中心<span class="path">/docs/</span></a></li>
-          <li><a href="/docs/getting-started/"><i class="dot"></i>十五分钟路线<span class="path">getting-started</span></a></li>
-          <li><a href="/docs/install/"><i class="dot"></i>安装详解<span class="path">install</span></a></li>
-          <li><a href="/docs/architecture/"><i class="dot"></i>架构说明<span class="path">architecture</span></a></li>
-          <li><a href="/docs/api/"><i class="dot"></i>数据契约<span class="path">api</span></a></li>
-          <li><a href="/docs/troubleshoot/"><i class="dot"></i>排障手册<span class="path">troubleshoot</span></a></li>
-          <li><a href="/docs/verify/"><i class="dot"></i>校验与验证<span class="path">verify</span></a></li>
-          <li><a href="/docs/glossary/"><i class="dot"></i>术语表<span class="path">glossary</span></a></li>
-          <li><a href="/docs/contributing/"><i class="dot"></i>参与开发<span class="path">contributing</span></a></li>
-          <li><a href="/guide/"><i class="dot"></i>十分钟上手<span class="path">/guide/</span></a></li>
-          <li><a href="/faq/"><i class="dot"></i>常见问题<span class="path">/faq/</span></a></li>
-          <li><a href="/changelog/"><i class="dot"></i>版本日志<span class="path">/changelog/</span></a></li>
-        </ul>
-      </div>
-
-      <div class="hx-group reveal">
-        <h3><span aria-hidden="true">🧰</span> 工具与实验 <span class="cnt">5</span></h3>
-        <p class="gdesc">能用的东西才搬出来</p>
-        <ul class="hx-links">
-          <li><a href="/tools/"><i class="dot"></i>全部在线工具<span class="path">/tools/</span></a></li>
-          <li><a href="/collections/"><i class="dot"></i>工具合集 · 按活儿分组<span class="path">collections</span></a></li>
-          <li><a href="/lab/"><i class="dot"></i>实验室<span class="path">/lab/</span></a></li>
-          <li><a href="/lab/motion/"><i class="dot"></i>动效实验室<span class="path">lab/motion</span></a></li>
-          <li><a href="/benchmark/"><i class="dot"></i>性能基线<span class="path">benchmark</span></a></li>
-        </ul>
-      </div>
-
-      <div class="hx-group reveal">
-        <h3><span aria-hidden="true">📝</span> 星空日志 <span class="cnt">10</span></h3>
-        <p class="gdesc">改了为什么改，错了怎么补救</p>
-        <ul class="hx-links">
-          <li><a href="/blog/"><i class="dot"></i>全部手记<span class="path">/blog/</span></a></li>
-          <li><a href="/blog/apps-same-bottom-line/"><i class="dot"></i>十个应用共用一条底线<span class="path">bottom-line</span></a></li>
-          <li><a href="/blog/ci-gbk-incident/"><i class="dot"></i>CI 抓到的一次真实事故<span class="path">ci-gbk</span></a></li>
-          <li><a href="/blog/index-order-incident/"><i class="dot"></i>被脚本覆盖的 186 个关键词<span class="path">index-order</span></a></li>
-          <li><a href="/blog/light-theme-is-not-a-filter/"><i class="dot"></i>浅色主题不是滤镜反转<span class="path">light-theme</span></a></li>
-          <li><a href="/blog/pwa-not-just-manifest/"><i class="dot"></i>PWA 不只是个 manifest<span class="path">pwa</span></a></li>
-          <li><a href="/blog/static-first/"><i class="dot"></i>为什么做成静态站<span class="path">static-first</span></a></li>
-          <li><a href="/blog/tests-before-139-tools/"><i class="dot"></i>先写测试再塞 160 个工具<span class="path">tests-first</span></a></li>
-          <li><a href="/blog/tools-not-decoration/"><i class="dot"></i>三十个工具怎么不是摆设<span class="path">tools</span></a></li>
-          <li><a href="/archive/"><i class="dot"></i>历史归档·旧版本<span class="path">/archive/</span></a></li>
-        </ul>
-      </div>
-
-      <div class="hx-group reveal">
-        <h3><span aria-hidden="true">📈</span> 状态与安全 <span class="cnt">6</span></h3>
-        <p class="gdesc">拿数字说话，能核对</p>
-        <ul class="hx-links">
-          <li><a href="/status/"><i class="dot"></i>生态状态<span class="path">/status/</span></a></li>
-          <li><a href="/stats/"><i class="dot"></i>生态数据<span class="path">/stats/</span></a></li>
-          <li><a href="/security/"><i class="dot"></i>安全与校验<span class="path">/security/</span></a></li>
-          <li><a href="/mirrors/"><i class="dot"></i>镜像与直链<span class="path">/mirrors/</span></a></li>
-          <li><a href="/compare/"><i class="dot"></i>两版怎么选<span class="path">/compare/</span></a></li>
-          <li><a href="/roadmap/"><i class="dot"></i>路线图<span class="path">/roadmap/</span></a></li>
-        </ul>
-      </div>
-
-      <div class="hx-group reveal">
-        <h3><span aria-hidden="true">🤝</span> 关于与支持 <span class="cnt">10</span></h3>
-        <p class="gdesc">出问题找谁、素材在哪拿</p>
-        <ul class="hx-links">
-          <li><a href="/support/"><i class="dot"></i>支持与反馈<span class="path">/support/</span></a></li>
-          <li><a href="/support/report/"><i class="dot"></i>怎么提一个问题<span class="path">report</span></a></li>
-          <li><a href="/contact/"><i class="dot"></i>联系四个通道<span class="path">/contact/</span></a></li>
-          <li><a href="/community/"><i class="dot"></i>协作与贡献<span class="path">community</span></a></li>
-          <li><a href="/press/"><i class="dot"></i>媒体资料<span class="path">/press/</span></a></li>
-          <li><a href="/brand/"><i class="dot"></i>品牌素材<span class="path">/brand/</span></a></li>
-          <li><a href="/license/"><i class="dot"></i>许可 · MIT<span class="path">/license/</span></a></li>
-          <li><a href="/privacy/"><i class="dot"></i>隐私 · 数据在哪<span class="path">/privacy/</span></a></li>
-          <li><a href="/thanks/"><i class="dot"></i>致谢<span class="path">/thanks/</span></a></li>
-          <li><a href="/search/"><i class="dot"></i>站内搜索<span class="path">/search/</span></a></li>
-        </ul>
-      </div>
-
+    <div class="feat-card">
+      <div class="feat-em">⚡</div>
+      <h3>开机提速</h3>
+      <p>精简启动项 · 后台服务按需加载，开机即用，拒绝拖沓</p>
     </div>
+    <div class="feat-card">
+      <div class="feat-em">🏷️</div>
+      <h3>OEM 品牌注入</h3>
+      <p>系统属性显示 xkmyth 专属 Logo 与信息，品牌无处不在</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-em">📦</div>
+      <h3>生态预装</h3>
+      <p>浏览器 · 云盘客户端开箱即用，登录即连你的云，与网站、手机端完全同源</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-em">🛡️</div>
+      <h3>无人值守安装</h3>
+      <p>全自动应答 · 免交互装完即进系统，新手也能十分钟装好</p>
+    </div>
+  </div>
+</section>
 
-    <p class="hx-mapnote">
-      按 <kbd>/</kbd> 或 <kbd>Ctrl</kbd>+<kbd>K</kbd> 可以直接全站检索 ——
-      也可以看 <a href="/ecosystem/">生态地图</a> 或 <a href="/sitemap.xml">sitemap.xml</a>。
-    </p>
-  </section>
+<section class="section" id="download">
+  <h2 class="sec-title">立即 <span class="gold">下载</span></h2>
+  <p class="sec-sub">安装包托管于 GitHub Releases（全球 CDN）与私有云盘 · 版本与体积实时同步</p>
+  <div class="dl-grid">
+    <div class="dl-card" data-asset="xkmyth-browser-win-x64.zip">
+      <div class="dl-name">🧭 xkmyth 浏览器</div>
+      <div class="dl-desc">Windows 64位 · 免安装绿色版</div>
+      <div class="dl-meta">读取中…</div>
+      <a class="btn small" href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-browser-win-x64.zip" target="_blank" rel="noopener">下载 ⬇</a>
+    </div>
+    <div class="dl-card" data-asset="xkmyth-cloud-win-x64.zip">
+      <div class="dl-name">☁️ xkmyth 云盘客户端</div>
+      <div class="dl-desc">Windows 64位 · 免安装绿色版</div>
+      <div class="dl-meta">读取中…</div>
+      <a class="btn small" href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-cloud-win-x64.zip" target="_blank" rel="noopener">下载 ⬇</a>
+    </div>
+    <div class="dl-card" data-asset="xkmyth-browser.apk">
+      <div class="dl-name">📱 xkmyth 浏览器 APK</div>
+      <div class="dl-desc">Android · 星空主页 · 可自定义快捷方式</div>
+      <div class="dl-meta">读取中…</div>
+      <a class="btn small" href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-browser.apk" target="_blank" rel="noopener">下载 ⬇</a>
+    </div>
+    <div class="dl-card" data-asset="xkmyth-cloud.apk">
+      <div class="dl-name">📱 xkmyth 云盘 APK</div>
+      <div class="dl-desc">Android · 下载进度条 · 轻量客户端</div>
+      <div class="dl-meta">读取中…</div>
+      <a class="btn small" href="https://github.com/xkmyth/xkmyth/releases/latest/download/xkmyth-cloud.apk" target="_blank" rel="noopener">下载 ⬇</a>
+    </div>
+    <div class="dl-card">
+      <div class="dl-name">🌌 xkmyth 定制系统镜像</div>
+      <div class="dl-desc">Win11 25H2 定制 ISO · 约 8GB</div>
+      <div class="dl-meta">私有云盘直取 · IPv6 + DDNS</div>
+      <a class="btn small" href="https://xkmyth.dynv6.net:5212/" target="_blank" rel="noopener">云盘获取 ↗</a>
+    </div>
+  </div>
+</section>
 
-</main>
+<section class="section alt" id="guide">
+  <h2 class="sec-title">装好系统 · 加入 <span class="gold">生态</span></h2>
+  <div class="guide-steps">
+    <div class="step"><b>1</b><p>下载镜像，用 Ventoy 写入 U 盘启动（或直接解压安装）</p></div>
+    <div class="step"><b>2</b><p>自动应答安装，全程免交互，装完自动创建 xkmyth 账户</p></div>
+    <div class="step"><b>3</b><p>首次进入自动应用星空主题，浏览器与云盘客户端已就位</p></div>
+    <div class="step"><b>4</b><p>打开浏览器进新标签页，云盘、工具站一键直达 —— 生态开始运转</p></div>
+  </div>
+</section>
 
-<footer class="hx-foot">
-  <div class="brand-line"><span class="brand-star">★</span> xkmyth</div>
-  <p>星空之下，万物皆可定制 · © <span id="year">2026</span> 星空神话</p>
-  <ul class="fl">
-    <li><a href="/software/">软件库</a></li>
-    <li><a href="/tools/">在线工具</a></li>
-    <li><a href="/docs/">文档</a></li>
-    <li><a href="/status/">状态</a></li>
-    <li><a href="/privacy/">隐私</a></li>
-    <li><a href="/license/">许可</a></li>
-  </ul>
+<!-- software-library-section -->
+<section class="section alt" id="software">
+  <h2 class="sec-title">软件<span class="gold">库</span></h2>
+  <p class="sec-sub">11 个自研 Web 应用 · 全部纯前端 · 数据只在本机 · 断网也能用</p>
+  <div class="feat-grid">
+    <a class="feat-card app-feat" href="/software/vault/">
+      <h3><span class="ico-sm">🔐</span> XK Vault</h3>
+      <p>PBKDF2 十五万轮派生 + AES-GCM-256 加密，密文只存你自己的浏览器，5 分钟空闲自动上锁。</p>
+      <span class="badge">安全 · 本地加密保险箱</span>
+    </a>
+    <a class="feat-card app-feat" href="/software/notes/">
+      <h3><span class="ico-sm">📝</span> XK Notes</h3>
+      <p>边写边预览、自动保存，支持导入导出 .md，全部数据留在 localStorage。</p>
+      <span class="badge">记录 · 本地 Markdown</span>
+    </a>
+    <a class="feat-card app-feat" href="/software/compress/">
+      <h3><span class="ico-sm">🗜️</span> XK Compress</h3>
+      <p>拖进来批量压图，最长边、质量、格式随意调，逐张给出体积对比与节省率。</p>
+      <span class="badge">媒体 · 图片无损压缩</span>
+    </a>
+    <a class="feat-card app-feat" href="/software/ledger/">
+      <h3><span class="ico-sm">📒</span> XK Ledger</h3>
+      <p>收支记录、分类汇总、柱状分布、按月筛选，CSV 一键导出。</p>
+      <span class="badge">计算 · 本地记账</span>
+    </a>
+    <a class="feat-card app-feat" href="/software/focus/">
+      <h3><span class="ico-sm">⏳</span> XK Focus</h3>
+      <p>环形倒计时配 WebAudio 合成的白噪音/棕噪音/雨声，附今日专注统计与任务清单。</p>
+      <span class="badge">专注 · 番茄钟 + 白噪音</span>
+    </a>
+    <a class="feat-card app-feat" href="/software/snippets/">
+      <h3><span class="ico-sm">✂️</span> XK Snippets</h3>
+      <p>按语言与标签管理常用代码，一键复制，JSON 备份可随身带走。</p>
+      <span class="badge">记录 · 代码片段库</span>
+    </a>
+    <a class="feat-card app-feat" href="/software/rename/">
+      <h3><span class="ico-sm">🏷️</span> XK Rename</h3>
+      <p>正则替换、前后缀、编号补零、空格策略，实时预览新文件名并导出重命名脚本。</p>
+      <span class="badge">效率 · 批量改名</span>
+    </a>
+    <a class="feat-card app-feat" href="/software/wallpaper/">
+      <h3><span class="ico-sm">🌌</span> XK Wallpaper</h3>
+      <p>六套配色 + 可复现种子，程序化生成极光渐层壁纸，直出 2K/4K PNG。</p>
+      <span class="badge">媒体 · 渐层壁纸生成</span>
+    </a>
+    <a class="feat-card app-feat" href="/software/record/">
+      <h3><span class="ico-sm">🎙️</span> XK Record</h3>
+      <p>一键录音、试听、下载，音频只在内存与本机，刷新即清空不留痕。</p>
+      <span class="badge">媒体 · 浏览器录音</span>
+    </a>
+    <a class="feat-card app-feat" href="/software/clipboard/">
+      <h3><span class="ico-sm">📋</span> XK Clipboard</h3>
+      <p>Ctrl+V 自动收录、置顶、搜索、回贴，最多 80 条，只写本机 localStorage。</p>
+      <span class="badge">效率 · 剪贴板历史</span>
+    </a>
+
+    <a class="feat-card app-feat" href="/software/data/">
+      <h3><span class="ico-sm">🗂️</span> XK Data</h3>
+      <p>把浏览器里属于本站的每个键列清楚：存了什么、占多大、能导出、能一键清空，没有隐藏项。</p>
+      <span class="badge">效率 · 本地数据台账</span>
+    </a>
+  </div>
+  <p style="text-align:center;margin-top:26px"><a class="btn primary" href="/software/">进软件库看看 →</a></p>
+</section>
+
+<section class="section" id="sites">
+  <h2 class="sec-title">子站<span class="gold">矩阵</span></h2>
+  <p class="sec-sub">53 个入口 · 全部纯静态 · 一个页脚能跳到任何地方</p>
+  <div class="feat-grid">
+    <a class="feat-card" href="/docs/">
+      <h3><span class="ico-sm">📚</span> 文档中心</h3>
+      <p>安装、校验、排障、架构、术语的总入口</p>
+    </a>
+    <a class="feat-card" href="/docs/getting-started/">
+      <h3><span class="ico-sm">🚀</span> 开始使用</h3>
+      <p>十五分钟从下载到跑通</p>
+    </a>
+    <a class="feat-card" href="/tools/">
+      <h3><span class="ico-sm">🧰</span> 工具目录</h3>
+      <p>160 个在线工具按用途分组</p>
+    </a>
+    <a class="feat-card" href="/Timarsky/">
+      <h3><span class="ico-sm">⭐</span> 工具站</h3>
+      <p>27 个速查模块 + 在线工具箱</p>
+    </a>
+    <a class="feat-card" href="/ecosystem/">
+      <h3><span class="ico-sm">🗺️</span> 生态地图</h3>
+      <p>全部 53 个入口，逐条说明用处</p>
+    </a>
+    <a class="feat-card" href="/security/">
+      <h3><span class="ico-sm">🔐</span> 安全与校验</h3>
+      <p>哈希校验 · 威胁模型 · 隐私边界</p>
+    </a>
+    <a class="feat-card" href="/status/">
+      <h3><span class="ico-sm">📈</span> 状态页</h3>
+      <p>四仓最近提交与 CI，15 分钟刷新</p>
+    </a>
+    <a class="feat-card" href="/stats/">
+      <h3><span class="ico-sm">📊</span> 生态数据</h3>
+      <p>页数、体积、工具数，脚本算出</p>
+    </a>
+    <a class="feat-card" href="/brand/">
+      <h3><span class="ico-sm">🎨</span> 品牌素材</h3>
+      <p>色值 · 标识 SVG · 命名规则</p>
+    </a>
+    <a class="feat-card" href="/benchmark/">
+      <h3><span class="ico-sm">⚡</span> 性能基线</h3>
+      <p>逐页体积与请求数实测</p>
+    </a>
+    <a class="feat-card" href="/lab/">
+      <h3><span class="ico-sm">🧪</span> 实验室</h3>
+      <p>已经能跑但还没定型的东西</p>
+    </a>
+    <a class="feat-card" href="/support/">
+      <h3><span class="ico-sm">💬</span> 支持与反馈</h3>
+      <p>四个通道，按事情性质选</p>
+    </a>
+  </div>
+  <p style="text-align:center;margin-top:26px"><a class="btn ghost" href="/ecosystem/">看完整生态地图 →</a></p>
+</section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand"><span class="brand-star">★</span> xkmyth</div>
+    <p>你的浏览器 · 你的云盘 · 你的系统</p>
+    <div class="foot-map">
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="/">首页</a>
+        <a href="/software/">软件库</a>
+        <a href="/xkmyth/">Downloads</a>
+        <a href="/compare/">Browser × Cloud</a>
+        <a href="/security/">安全与校验</a>
+        <a href="/roadmap/">路线图</a>
+        <a href="/brand/">品牌素材</a>
+        <a href="/license/">许可</a>
+      </div>
+      <div class="foot-col">
+        <h4>软件</h4>
+        <a href="/software/vault/">Vault</a>
+        <a href="/software/notes/">Notes</a>
+        <a href="/software/compress/">Compress</a>
+        <a href="/software/ledger/">Ledger</a>
+        <a href="/software/focus/">Focus</a>
+        <a href="/software/snippets/">Snippets</a>
+        <a href="/software/rename/">Rename</a>
+        <a href="/software/wallpaper/">Wallpaper</a>
+        <a href="/software/record/">Record</a>
+        <a href="/software/clipboard/">Clipboard</a>
+      </div>
+      <div class="foot-col">
+        <h4>文档</h4>
+        <a href="/docs/">文档中心</a>
+        <a href="/guide/">十分钟上手</a>
+        <a href="/docs/getting-started/">开始使用</a>
+        <a href="/docs/install/">安装详解</a>
+        <a href="/docs/verify/">校验与验证</a>
+        <a href="/docs/troubleshoot/">排障手册</a>
+        <a href="/docs/architecture/">架构说明</a>
+        <a href="/docs/contributing/">参与开发</a>
+        <a href="/docs/api/">站点接口</a>
+        <a href="/docs/glossary/">术语表</a>
+        <a href="/faq/">常见问题</a>
+      </div>
+      <div class="foot-col">
+        <h4>生态</h4>
+        <a href="/ecosystem/">生态地图</a>
+        <a href="/tools/">工具目录</a>
+        <a href="/collections/">工具合集</a>
+        <a href="/Timarsky/">工具站</a>
+        <a href="/Timarsky/tools/">在线工具箱</a>
+        <a href="/changelog/">版本日志</a>
+        <a href="/status/">生态状态</a>
+        <a href="/stats/">生态数据</a>
+        <a href="/benchmark/">性能基线</a>
+        <a href="/archive/">历史归档</a>
+        <a href="/mirrors/">镜像与直链</a>
+        <a href="/lab/">实验室</a>
+      </div>
+      <div class="foot-col">
+        <h4>参与</h4>
+        <a href="/developer/">开发者模式</a>
+        <a href="/community/">协作与贡献</a>
+        <a href="/support/">支持与反馈</a>
+        <a href="/support/report/">怎么提问题</a>
+        <a href="/contact/">联系</a>
+        <a href="/blog/">站务日志</a>
+        <a href="/press/">媒体资料</a>
+        <a href="/thanks/">致谢</a>
+        <a href="/privacy/">隐私</a>
+        <a href="/about/">关于</a>
+      </div>
+    </div>
+    <p class="foot-copy">© <span id="year">2026</span> 星空神话 xkmyth · 星空之下，万物皆可定制</p>
+  </div>
 </footer>
 
-<div class="toast" id="toast"></div>
 <script src="main.js"></script>
-<script>
-/* 首页专用：卡片交错入场（sub.js 的 IntersectionObserver 会接管 .reveal） */
-(function () {
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) return;
-  var groups = document.querySelectorAll('.hx-feats, .hx-map');
-  for (var g = 0; g < groups.length; g++) {
-    var kids = groups[g].children;
-    for (var i = 0; i < kids.length; i++) {
-      kids[i].style.transitionDelay = Math.min(i * 60, 420) + 'ms';
-    }
-  }
-})();
-</script>
+<div class="toast" id="toast"></div>
 <script src="/sub.js"></script>
 </body>
 </html>
