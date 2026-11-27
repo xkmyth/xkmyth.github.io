@@ -8,13 +8,13 @@
 <meta name="theme-color" content="#f4f6fb" media="(prefers-color-scheme: light)">
 <meta name="description" content="本站没有后端与账号：localStorage 键的完整清单、只发往 api.github.com 的公开只读请求、以及三条自我保护建议。">
 <title>隐私 · 数据在哪 · 星空神话 xkmyth</title>
-<link rel="canonical" href="https://xkmyth.dpdns.org/privacy/">
+<link rel="canonical" href="https://xkmyth.github.io/privacy/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="xkmyth">
 <meta property="og:title" content="隐私 · 数据在哪">
 <meta property="og:description" content="本站没有后端与账号：localStorage 键的完整清单、只发往 api.github.com 的公开只读请求、以及三条自我保护建议。">
-<meta property="og:url" content="https://xkmyth.dpdns.org/privacy/">
-<meta property="og:image" content="https://xkmyth.dpdns.org/icons/og-1200x630.png">
+<meta property="og:url" content="https://xkmyth.github.io/privacy/">
+<meta property="og:image" content="https://xkmyth.github.io/icons/og-1200x630.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -26,7 +26,8 @@
 <link rel="preconnect" href="https://api.github.com" crossorigin>
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/sub.css">
-<meta name="twitter:image" content="https://xkmyth.dpdns.org/icons/og-1200x630.png">
+<meta name="twitter:image" content="https://xkmyth.github.io/icons/og-1200x630.png">
+  <script src="/js/ai.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主内容</a>
@@ -35,13 +36,13 @@
 <header class="nav">
   <div class="nav-inner">
     <div class="brand"><a href="/" style="color:inherit;text-decoration:none"><span class="brand-star">★</span> xkmyth</a></div>
-    <nav class="nav-links" id="mainNav" aria-label="主导航">
+    <nav>
       <a href="/">首页</a>
-      <a href="/#core">三大件</a>
       <a href="/software/">软件库</a>
-      <a href="/start/">中转站</a>
-      <a href="/#sitemap">地图</a>
-      <a href="/docs/">文档</a>
+      <a href="/tools/">工具</a>
+      <a href="/docs/">Docs</a>
+      <a href="/ecosystem/">生态</a>
+      <a href="/status/">状态</a>
     </nav>
   </div>
 </header>
@@ -78,7 +79,7 @@
   <thead><tr><th>目的地</th><th>什么时候</th><th>带什么</th></tr></thead>
   <tbody>
     <tr><td><code>api.github.com</code></td><td>首页、Downloads、版本日志、状态页</td><td>只读公开仓库信息，无 token，无标识</td></tr>
-    <tr><td><code>xkmyth.dpdns.org</code></td><td>打开页面时</td><td>静态文件请求，与任何静态站相同</td></tr>
+    <tr><td><code>xkmyth.github.io</code></td><td>打开页面时</td><td>静态文件请求，与任何静态站相同</td></tr>
   </tbody>
 </table>
 <p class="note">没有统计脚本、没有第三方 CDN、没有字体外链。GitHub Pages 自身可能记录访问日志，那属于 GitHub 的行为，不在本站控制范围内。</p>
@@ -153,6 +154,7 @@
       </div>
       <div class="foot-col">
         <h4>参与</h4>
+        <a href="/developer/">开发者模式</a>
         <a href="/community/">协作与贡献</a>
         <a href="/support/">支持与反馈</a>
         <a href="/support/report/">怎么提问题</a>
